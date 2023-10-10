@@ -1,11 +1,34 @@
-import { getFeaturedRecipes } from "@/Dummy-data"
+// import Recipes from '@/component/Home/recipes'
+import { useEffect } from 'react'
+import { Run } from '@/components/database/db'
 
+export default function Home({ results }) {
 
+  
 
-export default function Home() {
+  useEffect(() => {
+    console.log(results)
+    
+   
+  })
+
   return (
-    <>
-      <h1>Hi</h1>
-    </>
+    <main>
+      
+      
+    </main>
   )
+}
+
+export async function getStaticProps(){
+
+  const results = await Run()
+
+
+  return {
+    props:{
+      results,
+      
+    }
+  }
 }
