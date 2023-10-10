@@ -5,24 +5,33 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
 
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  backgroundColor: 'white',//theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
-  padding: theme.spacing(1),
+  padding: theme.spacing(2),
   textAlign: 'center',
   color: theme.palette.text.secondary,
+  boxShadow:'none',
+  borderBottom: 'solid black 2px',
+  borderRight: 'solid black 2px',
 }));
 
-export default function Recipes() {
+export default function Recipes({recipes}) {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={2}>
+      <Grid container spacing={1}>  
 
-        <Grid xs={6}>
-          <Item>responsive grid</Item>
-        </Grid>
-        <Grid xs={6}>
-          <Item>responsive grid</Item>
-        </Grid>
+        {
+          recipes && recipes.map((recipe) => {
+            return(
+              <Grid xs={12} md={4} key={recipe.id}>
+                <Item>
+                  <h4>{recipe.title}</h4>
+                
+                </Item>
+              </Grid>
+            )
+          })
+        }
 
       </Grid>
     </Box>
