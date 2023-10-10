@@ -16,6 +16,7 @@ const tags = [
 ];
 
 const TagsContainer = () => {
+  //expecting {tags} as argument
   return (
     <ul>
       {tags.map((tagName, index) => {
