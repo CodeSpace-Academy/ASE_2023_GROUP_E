@@ -2,18 +2,20 @@ import React from 'react';
 import Tag from './Tag';
 
 const tags = [
-  'Dessert',
-  'Low Protein',
-  'Low Cholesterol',
-  'Healthy',
-  'Free Of...',
-  'Summer',
-  'Weeknight',
-  'Freezer',
-  'Easy',
+  [
+    'Dessert',
+    'Low Protein',
+    'Low Cholesterol',
+    'Healthy',
+    'Free Of...',
+    'Summer',
+    'Weeknight',
+    'Freezer',
+    'Easy',
+  ],
 ];
 
-const TagsContainer = ({ tags }) => {
+const TagsContainer = () => {
   return (
     <ul>
       {tags.map((tagName, index) => {
