@@ -21,15 +21,6 @@ if (results) {
 
    return (
      <main>
-       <Recipes recipes={uniqueTags} />
-       {/* <div>
-         {uniqueTags.map((tag) => (
-           <div key={tag}>
-             <h3>{tag}</h3>
-           </div>
-         ))}
-       </div> */}
-
        <Link href={'/tags'}>TagsList</Link>
      </main>
    );
