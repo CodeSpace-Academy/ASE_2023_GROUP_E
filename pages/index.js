@@ -20,7 +20,7 @@ if (results) {
    }, [results]);
 
    return (
-     <main>
+     <main>     
        <Link href={'/tags'}>TagsList</Link>
      </main>
    );
