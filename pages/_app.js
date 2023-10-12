@@ -1,6 +1,6 @@
 
-import { connectDatabase, } from '/database';
-import { Error, InstructionFailure } from './slug/instructionfailure';
+// import { connectDatabase, } from '/database';
+import Error from "next/error";
 
 // Handle database operations
 async function someDatabaseOperation() {
