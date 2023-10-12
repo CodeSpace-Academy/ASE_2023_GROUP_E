@@ -1,5 +1,6 @@
 import React from 'react';
 import IndividualRecipeIntruction from './individualRecipeIntruction';
+import Paper from '@mui/material/Paper';
 
 const instructions = [
   'Trim fat from beef, cut into 1-inch pieces.',
@@ -16,7 +17,10 @@ const instructions = [
 
 const RecipeInstructions = () => {
   return (
-    <div>
+    <Paper
+      variant="outlined"
+      sx={{ padding: '2rem', fontFamily: 'sans-serif' }}
+    >
       {instructions.map((instruction, index) => {
         return (
           <IndividualRecipeIntruction
@@ -26,7 +30,7 @@ const RecipeInstructions = () => {
           />
         );
       })}
-    </div>
+    </Paper>
   );
 };
 
