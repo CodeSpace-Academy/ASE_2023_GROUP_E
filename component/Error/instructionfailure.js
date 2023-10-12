@@ -11,7 +11,7 @@ function Error({ message }) {
   );
 }
 
-export default instructionfailure.js;
+export default Error;
 // instructionfailure.js
 
 export class instructionfailure {
