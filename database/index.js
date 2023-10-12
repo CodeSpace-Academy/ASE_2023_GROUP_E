@@ -7,18 +7,18 @@ export async function connectDatabase() {
   return client
 
 }
-const page = 1; 
-const pageSize = 20; // The number of items per page.
+const page = 0; 
 
-export async function run(){
+
+export async function run(pageSizing){
     let client = await connectDatabase();
     const db = client.db('devdb');
 
     const documents = await db
       .collection('recipes')
       .find()
-      .skip(page * pageSize)
-      .limit(pageSize)
+      .skip(page * pageSizing)
+      .limit(pageSizing)
       .toArray();
       
     const menuList = documents.map((doc) => {
@@ -28,3 +28,22 @@ export async function run(){
 
     return menuList;
 }
+
+// export async function loadmore(pageSizing){
+//   let client = await connectDatabase();
+//   const db = client.db('devdb');
+
+//   const documents = await db
+//     .collection('recipes')
+//     .find()
+//     .skip(page * pageSizing)
+//     .limit(pageSizing)
+//     .toArray();
+    
+//   const menuList = documents.map((doc) => {
+//     const { _id, ...menuData } = doc;
+//     return menuData;
+//   });
+
+//   return menuList;
+// }
