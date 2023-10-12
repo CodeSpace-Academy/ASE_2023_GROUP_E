@@ -1,3 +1,5 @@
+import React, { useState, useEffect } from 'react';
+import InstructionLoadFailure from '../component/input/instruction-load-failure';
 
 function RecipePage() {
   const [error, setError] = useState(false);
