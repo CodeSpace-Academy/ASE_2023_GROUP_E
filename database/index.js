@@ -7,7 +7,6 @@ export async function run() {
   let client
 
   try{
-    
     const uri = process.env.MONGODB_URI;
     client = new MongoClient(uri);
   }catch(error){
@@ -25,7 +24,12 @@ export async function run() {
       .limit(pageSize)
       .toArray();
 
-    return documents;
+      const menuList = documents.map((doc) => {
+        const { _id, ...menuData } = doc;
+        return menuData;
+      });
+
+    return menuList;
   } catch (error) {
     console.error("Connection failed");
   } finally {
