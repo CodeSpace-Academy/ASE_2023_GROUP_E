@@ -1,31 +1,30 @@
-const { MongoClient } = require('mongodb');
+import { MongoClient } from 'mongodb'
 
-const uri = process.env.MONGODB_URI;
-const client = new MongoClient(uri);
+export async function connectDatabase() {
 
-export async function run() {
+  const client = await MongoClient.connect('mongodb+srv://groupe:lx0hIlKaDof7KBJY@groupe.pse1kuk.mongodb.net/devdb?retryWrites=true&w=majority')
 
+  return client
 
-  const page = 1;
-  const pageSize = 20
+}
+const page = 1; 
+const pageSize = 20; // The number of items per page.
 
-  try {
-    const conncetClient = await client.connect();
-    const db = conncetClient.db('devdb')
+export async function run(){
+    let client = await connectDatabase();
+    const db = client.db('devdb');
 
     const documents = await db
-    .collection('recipes')
-    .find()
-    .skip(page * pageSize)
-    .limit(pageSize)
-    .toArray();
+      .collection('recipes')
+      .find()
+      .skip(page * pageSize)
+      .limit(pageSize)
+      .toArray();
+      
+    const menuList = documents.map((doc) => {
+      const { _id, ...menuData } = doc;
+      return menuData;
+    });
 
-
-  return documents;
-
-  } catch (error) {
-    console.error("connection failed");
-    await client.close();
-  }
-    await client.close();
+    return menuList;
 }
