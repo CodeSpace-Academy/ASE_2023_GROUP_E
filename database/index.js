@@ -1,49 +1,20 @@
-import { MongoClient } from 'mongodb'
+import { connectDatabase } from "./mongoDB";
 
-export async function connectDatabase() {
+export async function run(pageSizing) {
+  let client = await connectDatabase();
+  const db = client.db('devdb');
 
-  const client = await MongoClient.connect('mongodb+srv://groupe:lx0hIlKaDof7KBJY@groupe.pse1kuk.mongodb.net/devdb?retryWrites=true&w=majority')
+  const documents = await db
+    .collection('recipes')
+    .find()
+    .skip(0) // You can remove the `page` variable here
+    .limit(parseInt(pageSizing))
+    .toArray();
 
-  return client
+  const menuList = documents.map((doc) => {
+    const { _id, ...menuData } = doc;
+    return menuData;
+  });
 
+  return menuList;
 }
-const page = 0; 
-
-
-export async function run(pageSizing){
-    let client = await connectDatabase();
-    const db = client.db('devdb');
-
-    const documents = await db
-      .collection('recipes')
-      .find()
-      .skip(page * pageSizing)
-      .limit(pageSizing)
-      .toArray();
-      
-    const menuList = documents.map((doc) => {
-      const { _id, ...menuData } = doc;
-      return menuData;
-    });
-
-    return menuList;
-}
-
-// export async function loadmore(pageSizing){
-//   let client = await connectDatabase();
-//   const db = client.db('devdb');
-
-//   const documents = await db
-//     .collection('recipes')
-//     .find()
-//     .skip(page * pageSizing)
-//     .limit(pageSizing)
-//     .toArray();
-    
-//   const menuList = documents.map((doc) => {
-//     const { _id, ...menuData } = doc;
-//     return menuData;
-//   });
-
-//   return menuList;
-// }
