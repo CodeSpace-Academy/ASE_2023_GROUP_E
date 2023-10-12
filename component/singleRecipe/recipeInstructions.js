@@ -14,12 +14,18 @@ const instructions = [
   'Bring beef stew to a boil over medium-high heat. Add cornstarch mixtur…',
   'Reduce heat to medium and cook 3 to 4 minutes or until peas are heated…',
 ];
-
+/**
+ * Takes in single recipe instructions and display each instruction
+ * in the individualRecipeInstruction component.
+ * @param {array} //single recipe instructions
+ * @returns
+ */
 const RecipeInstructions = () => {
+  //expect single recipe instructions as a prop
   return (
     <Paper
       variant="outlined"
-      sx={{ padding: '2rem', fontFamily: 'sans-serif' }}
+      sx={{ padding: '2rem', fontFamily: 'sans-serif' }} //styles the mui paper component
     >
       {instructions.map((instruction, index) => {
         return (
