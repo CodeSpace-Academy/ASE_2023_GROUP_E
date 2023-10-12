@@ -9,7 +9,7 @@ export async function run() {
     const uri = process.env.MONGODB_URI;
 
     if (!uri) {
-      console.error("failed to connect to the database");
+      console.error("failed to connect");
       return [];
     }
 
