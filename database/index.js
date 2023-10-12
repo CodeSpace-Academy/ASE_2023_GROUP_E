@@ -1,15 +1,18 @@
-import { MongoClient } from "mongodb";
+import { MongoClient } from 'mongodb'
 
-const uri = process.env.MONGODB_URI;
-const client = new MongoClient(uri);
+export async function connectDatabase() {
 
-export async function run() {
-  const page = 1;
-  const pageSize = 20;
+  const client = await MongoClient.connect('mongodb+srv://groupe:lx0hIlKaDof7KBJY@groupe.pse1kuk.mongodb.net/devdb?retryWrites=true&w=majority')
 
-  try {
-    const connectClient = await client.connect();
-    const db = connectClient.db('devdb');
+  return client
+
+}
+const page = 1; 
+const pageSize = 20; // The number of items per page.
+
+export async function run(){
+    let client = await connectDatabase();
+    const db = client.db('devdb');
 
     const documents = await db
       .collection('recipes')
@@ -17,11 +20,11 @@ export async function run() {
       .skip(page * pageSize)
       .limit(pageSize)
       .toArray();
+      
+    const menuList = documents.map((doc) => {
+      const { _id, ...menuData } = doc;
+      return menuData;
+    });
 
-    return documents;
-  } catch (error) {
-    console.error("Connection failed");
-  } finally {
-    await client.close();
-  }
+    return menuList;
 }
