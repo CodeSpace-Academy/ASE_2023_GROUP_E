@@ -1,28 +1,30 @@
 
-// // components/instructionfailure.js
+function RecipePage() {
+  const [error, setError] = useState(false);
+  const [instructions, setInstructions] = useState('');
 
-// import React from 'react';
+  useEffect(() => {
+    // Fetch recipe instructions here
+    fetchRecipeInstructions()
+      .then((data) => setInstructions(data))
+      .catch((err) => {
+        console.error('Failed to load instructions. Please try again later.');
+        setError(true);
+      });
+  }, []);
 
-// function Error({ message }) {
-//   return (
-//     <div className="error">
-//       <p>{message}</p>
-//     </div>
-//   );
-// }
+  return (
+    <div>
+      {error ? (
+        <InstructionLoadFailure message="Failed to load instructions. Please try again later." />
+      ) : (
+        <div>
+          {/* have to place recipe instructions here */}
+          {instructions}
+        </div>
+      )}
+    </div>
+  );
+}
 
-// export default Error;
-// // instructionfailure.js
-
-// // export class instructionfailure {
-// //     static handleRecipeInstructionError(error) {
-// //       if (error.message === 'Failed to load instructions') {
-// //         // Display the error message to the user or take appropriate action
-// //         console.error('Failed to load instructions. Please try again later.');
-// //       } else {
-// //         // Handle other types of errors as needed
-// //         console.error('An unexpected error occurred:', error);
-// //       }
-// //     }
-// //   }
-  
+export default RecipePage;
