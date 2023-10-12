@@ -1,21 +1,22 @@
 import { MongoClient } from "mongodb";
 
-
 export async function run() {
   const page = 1;
   const pageSize = 20;
-  let client
-
-  try{
-    const uri = process.env.MONGODB_URI;
-    client = new MongoClient(uri);
-  }catch(error){
-    console.log('failed to fetch data')
-  }
+  let client;
 
   try {
-    const connectClient = await client.connect();
-    const db = connectClient.db('devdb');
+    const uri = process.env.MONGODB_URI;
+
+    if (!uri) {
+      console.error("MONGODB_URI environment variable not set.");
+      return [];
+    }
+
+    client = new MongoClient(uri);
+
+    await client.connect();
+    const db = client.db('devdb');
 
     const documents = await db
       .collection('recipes')
@@ -24,15 +25,13 @@ export async function run() {
       .limit(pageSize)
       .toArray();
 
-      const menuList = documents.map((doc) => {
-        const { _id, ...menuData } = doc;
-        return menuData;
-      });
-
-    return menuList;
+    return documents;
   } catch (error) {
-    console.error("Connection failed");
+    console.error("Error connecting to the database:", error);
+    return [];
   } finally {
-    await client.close();
+    if (client) {
+      await client.close();
+    }
   }
 }
