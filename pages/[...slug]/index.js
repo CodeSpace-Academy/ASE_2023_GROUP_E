@@ -1,30 +1,34 @@
+import React, { useState } from 'react';
 import Recipes from '@/component/Recipes/all-recipes';
 import { run } from '@/database';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
 
 export default function AllRecipes({ results, pagesPath }) {
   const router = useRouter();
   const [currentPage, setCurrentPage] = useState(pagesPath);
-  const [recipesToLoad, setRecipesToLoad] = useState(100);
+  const recipesToLoad = 100;
+
+  // Calculate the initial value for Load More
+  const initialLoadMoreValue = 164959 - currentPage;
+  const [loadMoreValue, setLoadMoreValue] = useState(initialLoadMoreValue);
 
   const loadMoreRecipes = () => {
-    // Increases the currentPage by 1
-    setCurrentPage(currentPage + 1);
+    // Calculate the number of recipes to load for the next page
+    const nextPage = currentPage + recipesToLoad;
+    setCurrentPage(nextPage);
 
-    // Increase the number of recipes to load by 100
-    setRecipesToLoad(recipesToLoad + 100);
+    // Calculate the new value based on the updated currentPage and recipesToLoad
+    const newLoadMoreValue = initialLoadMoreValue - recipesToLoad;
+    setLoadMoreValue(newLoadMoreValue);
 
-    // Navigate to the next page
-    router.push(`/${currentPage + 100}`);
+    // Navigate to the next page with the appropriate number of recipes to load
+    router.push(`/${nextPage}`);
   };
 
   return (
     <main>
-      <Recipes
-        recipes={results && results}
-        click={loadMoreRecipes}
-      />
+      <Recipes recipes={results && results} />
+      <button onClick={loadMoreRecipes}>Load More {loadMoreValue}</button>
     </main>
   );
 }
