@@ -9,7 +9,7 @@ export async function run() {
     const uri = process.env.MONGODB_URI;
 
     if (!uri) {
-      console.error("MONGODB_URI environment variable not set.");
+      console.error("failed to connect to the database");
       return [];
     }
 
