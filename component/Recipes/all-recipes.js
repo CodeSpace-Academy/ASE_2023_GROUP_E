@@ -52,7 +52,7 @@ export default function Recipes({recipes, click}) {
         </Grid>
       </Box>
 
-      <button onClick={click} >Load More </button>
+      {/* <button onClick={click} >Load More {100} </button> */}
     </>
   );
 }
