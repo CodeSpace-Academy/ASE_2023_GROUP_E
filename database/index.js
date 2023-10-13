@@ -1,4 +1,4 @@
-import { MongoClient } from "mongodb";
+import { MongoClient } from 'mongodb';
 
 export async function run() {
   const page = 1;
@@ -6,10 +6,10 @@ export async function run() {
   let client;
 
   try {
-    const uri = process.env.MONGODB_URI;
+    const uri = process.env.mongoConnectionString;
 
     if (!uri) {
-      console.error("failed to connect");
+      console.error('failed to connect');
       return [];
     }
 
@@ -27,7 +27,7 @@ export async function run() {
 
     return documents;
   } catch (error) {
-    console.error("Error connecting to the database:", error);
+    console.error('Error connecting to the database:', error);
     return [];
   } finally {
     if (client) {
