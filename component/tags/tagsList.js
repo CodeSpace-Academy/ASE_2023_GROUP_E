@@ -23,8 +23,8 @@ export default function TagsListt({recipes}) {
         {
           recipes && recipes.map((recipe) => {
             return(
-              <Grid xs={4} md={2} key={recipe.id}>
-                <Item>
+              <Grid xs={4} md={2} key={recipe}>
+                <Item key={recipe}> 
                   <h4>{recipe}</h4>
                 </Item>
               </Grid>
