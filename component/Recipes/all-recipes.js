@@ -31,19 +31,22 @@ export default function Recipes({recipes, click}) {
                 <Item>
                   <h4>{recipe.title}</h4>
                   <p>{recipe.description}</p>
-                  <p> </p>
+                  
                   {/* adding time to display on preview */}
                  <p>⏲️Prep:{NumToTime(recipe.prep)}</p>
                   <p>🕰️Cook:{NumToTime (recipe.cook)}</p>
 
-                  
+
                   {/* here is the total time for (added prep and cook) */}
                  <p>⏰Total Time: {NumToTime(recipe.prep + recipe.cook)}</p>
         
                   {/* <Image src={recipe.images[0]} alt='image' width={200} height={200}/> */}
                   <ol>{recipe.tags.map((m) => <li>{m}</li>)}</ol >
-              
+                
+                
+                  <button onClick={recipe.description}>Details</button>
                 </Item>
+                
               </Grid>
               )
             })
