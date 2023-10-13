@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -18,6 +19,11 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function Recipes({recipes, click}) {
+  const [showDescription, setShowDescription] = useState(false);
+
+  function toggleDescription() {
+    setShowDescription(!showDescription);
+  }
   return (
     <>
 
@@ -29,8 +35,8 @@ export default function Recipes({recipes, click}) {
               return(
                 <Grid xs={12} md={4} key={recipe.id}>
                 <Item>
-                  <h4>{recipe.title}</h4>
-                  <p>{recipe.description}</p>
+                  <h4 onClick={toggleDescription}>{recipe.title}</h4>
+                  {showDescription && <p>{recipe.description}</p>}
                   <p> </p>
                   {/* adding time to display on preview */}
                  <p>⏲️Prep:{NumToTime(recipe.prep)}</p>
