@@ -19,7 +19,11 @@ const singleRecipePage = ({ singleRecipe, allRecipes }) => {
     _id: id,
   } = singleRecipe;
 
-  return <div>{title} </div>;
+  return (
+    <div>
+      <h1>{title}</h1>
+    </div>
+  );
 };
 export default singleRecipePage;
 
