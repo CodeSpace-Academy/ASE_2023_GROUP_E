@@ -1,9 +1,9 @@
 import React from 'react';
 import Chip from '@mui/material/Chip';
-
+import classes from './tag.module.css';
 const Tag = ({ tagName }) => {
   return (
-    <li>
+    <li className={classes.listItem}>
       <Chip label={tagName} />
     </li>
   );
