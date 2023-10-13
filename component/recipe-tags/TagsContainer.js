@@ -1,24 +1,22 @@
 import React from 'react';
 import Tag from './Tag';
+import classes from './TagsContainer.module.css';
 
 const tags = [
-  [
-    'Dessert',
-    'Low Protein',
-    'Low Cholesterol',
-    'Healthy',
-    'Free Of...',
-    'Summer',
-    'Weeknight',
-    'Freezer',
-    'Easy',
-  ],
+  'Dessert',
+  'Low Protein',
+  'Low Cholesterol',
+  'Healthy',
+  'Free Of...',
+  'Summer',
+  'Weeknight',
+  'Freezer',
+  'Easy',
 ];
-
 const TagsContainer = () => {
-  //expecting {tags} as argument
+  //expecting {tags} as argument when
   return (
-    <ul>
+    <ul className={classes.container}>
       {tags.map((tagName, index) => {
         return <Tag key={index} tagName={tagName}></Tag>;
       })}
