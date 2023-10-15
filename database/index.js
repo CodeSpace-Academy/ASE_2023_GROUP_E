@@ -25,6 +25,11 @@ export async function run() {
       .limit(pageSize)
       .toArray();
 
+    const menuList = documents.map((doc) => {
+      const { _id, ...menuData } = doc;
+      return menuData;
+    });
+
     return documents;
   } catch (error) {
     console.error('Error connecting to the database:', error);

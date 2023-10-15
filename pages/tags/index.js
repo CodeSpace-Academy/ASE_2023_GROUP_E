@@ -1,6 +1,5 @@
 
 import React, { useEffect, useState } from 'react';
-import Recipes from '@/component/Home/recipes';
 import { run } from '@/database';
 import TagsListt from '@/component/tags/tagsList';
 
