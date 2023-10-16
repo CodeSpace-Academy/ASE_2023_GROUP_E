@@ -2,6 +2,9 @@ import React from 'react';
 import IndividualRecipeIntruction from './individualRecipeIntruction';
 import Paper from '@mui/material/Paper';
 
+//DUMMY DATA
+//Please remove this dummy data when when using the component
+//replace the dummy data with the instructions array for the recipe data.
 const instructions = [
   'Trim fat from beef, cut into 1-inch pieces.',
   'In Dutch oven, heat oil over medium high hunt until hot. Add beef (hal…',
