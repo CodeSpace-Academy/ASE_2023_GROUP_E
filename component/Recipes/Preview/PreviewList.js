@@ -8,6 +8,7 @@ import style from './previewList.module.css'
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import RecipeLoadFailure from '@/component/Error/RecipeLoadFailure';
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -47,7 +48,10 @@ export default function PreviewList({recipes, click}) {
                                                 </div>
 
                                                 <div>
-                                                    <p>{recipe.description.substring(0, 170)}</p>                               
+                                                    <p>{recipe.description.substring(0, 170)}</p>  
+                                                    
+                                                    
+
                                                     <div className={style.times}> 
                                                         {/* adding time to display on preview */}
                                                         <div>
@@ -80,7 +84,7 @@ export default function PreviewList({recipes, click}) {
                 </Grid>
             </Box>
 
-        <button onClick={click} >Load More </button>
+            <button onClick={click} >Load More </button>
         </>
     );
 }
