@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
 import NumToTime from '@/component/handlerTime/timeRead';
-import style from './PreviewList.module.css'
+import style from './previewList.module.css'
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Link from 'next/link';

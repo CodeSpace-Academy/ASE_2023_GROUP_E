@@ -6,7 +6,7 @@ export async function run() {
   let client;
 
   try {
-    const uri = process.env.mongoConnectionString;
+    const uri = process.env.MONGODB_URI;
 
     if (!uri) {
       console.error('failed to connect');
@@ -21,8 +21,8 @@ export async function run() {
     const documents = await db
       .collection('recipes')
       .find()
-      .skip(page * pageSize)
-      .limit(pageSize)
+      .skip(pageSize - 100)
+      .limit(100)
       .toArray();
 
     const menuList = documents.map((doc) => {
