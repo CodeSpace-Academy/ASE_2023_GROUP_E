@@ -30,6 +30,7 @@ export default function Recipes({recipes, click}) {
                 <Grid xs={12} md={4} key={recipe.id}>
                 <Item>
                   <h4>{recipe.title}</h4>
+              
                   <p>{recipe.description}</p>
                   
                   {/* adding time to display on preview */}
@@ -44,7 +45,7 @@ export default function Recipes({recipes, click}) {
                   <ol>{recipe.tags.map((m) => <li>{m}</li>)}</ol >
                 
                 
-                  <button onClick={recipe.description}>Details</button>
+                  <button>Details</button>
                 </Item>
                 
               </Grid>
