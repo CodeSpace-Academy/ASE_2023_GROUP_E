@@ -55,7 +55,7 @@ export default function Recipes({ recipes, click }) {
         {recipes &&
           recipes.map((recipe) => {
             return (
-              <Grid xs={12} md={4} key={recipe.id}>
+              <Grid item xs={12} md={4} key={recipe.id}>
                 <Item>
                   <h4 onClick={toggleDescription}>{recipe.title}</h4>
                   {showDescription && <p>{recipe.description}</p>}
@@ -64,9 +64,9 @@ export default function Recipes({ recipes, click }) {
                   <p>⏲️Prep:{NumToTime(recipe.prep)}</p>
                   <p>🕰️Cook:{NumToTime(recipe.cook)}</p>
 
-                  {/* here is the total time for (added prep and cook) */}
-                 <p>⏰Total Time: {NumToTime(recipe.prep + recipe.cook)}</p>
-        
+                  {/* Here is the total time for (added prep and cook) */}
+                  <p>⏰Total Time: {NumToTime(recipe.prep + recipe.cook)}</p>
+
                   {/* Error handling */}
                   {error ? (
                     <RecipeLoadFailure message="Failed to load instructions" />

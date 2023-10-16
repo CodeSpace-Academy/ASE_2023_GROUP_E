@@ -1,32 +1,13 @@
-// import React, { useState, useEffect } from 'react';
-// import InstructionLoadFailure from '../component/input/instruction-load-failure';
+// InstructionLoadFailure.js
 
-// function RecipePage() {
-//   const [error, setError] = useState(false);
-//   const [instructions, setInstructions] = useState('');
+import React from 'react';
 
-//   useEffect(() => {
-//     // Fetch recipe instructions here
-//     fetchRecipeInstructions()
-//       .then((data) => setInstructions(data))
-//       .catch((err) => {
-//         console.error('Failed to load instructions. Please try again later.');
-//         setError(true);
-//       });
-//   }, []);
+function InstructionLoadFailure({ message }) {
+  return (
+    <div className="error">
+      <p>{message}</p>
+    </div>
+  );
+}
 
-//   return (
-//     <div>
-//       {error ? (
-//         <InstructionLoadFailure message="Failed to load instructions. Please try again later." />
-//       ) : (
-//         <div>
-//           {/* have to place recipe instructions here */}
-//           {instructions}
-//         </div>
-//       )}
-//     </div>
-//   );
-// }
-
-// export default RecipePage;
+export default InstructionLoadFailure;
