@@ -1,8 +1,8 @@
 import { MongoClient } from 'mongodb';
 
-export async function run() {
+export async function run(pageSize) {
   const page = 1;
-  const pageSize = 20;
+  // const pageSize = 20;
   let client;
 
   try {
