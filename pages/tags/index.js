@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Recipes from '@/component/Home/recipes';
 import { run } from '@/database';
 import TagsListt from '@/component/tags/tagsList';
 
@@ -25,11 +24,20 @@ export default function TagsList({ results }) {
 }
 
 export async function getStaticProps() {
-  const results = await run();
+  try {
+    const {documents} = await run();
+    const results = documents
 
-  return {
-    props: {
-      results,
-    },
-  };
+    return {
+      props: {
+        results,
+      },
+    };
+  } catch (error) {
+    return {
+      props: {
+        error: 'Failed to fetch data. Please check your network connection.',
+      },
+    };
+  }
 }

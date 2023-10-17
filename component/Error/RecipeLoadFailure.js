@@ -1,7 +1,3 @@
-// RecipeLoadFailure.js
-
-import React from 'react';
-
 
 function RecipeLoadFailure({ message }) {
   return (

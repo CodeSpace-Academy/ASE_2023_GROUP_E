@@ -1,12 +1,11 @@
-import '@/styles/globals.css'
-import Notification from "@/component/Notification/notification";
-import NotificationContextProvider from "@/component/store/notification-context";
 
-
+// import '@/styles/globals.css'
+import LayoutAll from "@/Layout/layout"
 export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />
-  return <Notification />
-  return <NotificationContextProvider />
-
+  return (
+    <LayoutAll>
+      <Component {...pageProps} />
+    </LayoutAll>
+  )
 }
 

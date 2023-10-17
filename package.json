@@ -11,19 +11,21 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@mui/material": "^5.14.12",
+    "@mui/icons-material": "^5.14.13",
+    "@mui/material": "^5.14.13",
     "mongodb": "^6.1.0",
     "next": "13.5.4",
     "node-fetch": "^3.3.2",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-icons": "^4.11.0"
   },
   "devDependencies": {
     "autoprefixer": "^10",
     "eslint": "^8",
     "eslint-config-next": "13.5.4",
     "postcss": "^8",
-    "tailwindcss": "^3"
+    "tailwindcss": "^3.3.3"
   },
   "description": "Welcome to Group E!",
   "main": "next.config.js",
