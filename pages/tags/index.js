@@ -25,8 +25,7 @@ export default function TagsList({ results }) {
 
 export async function getStaticProps() {
   try {
-    const {documents} = await run();
-    const results = documents
+    const results = await run();
 
     return {
       props: {
