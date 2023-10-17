@@ -87,7 +87,6 @@ export default function PreviewList({recipes, click}) {
             {selectedRecipe && (
         <RecipeDetails recipe={selectedRecipe} />
       )}
-       
         </>
     );
 }
