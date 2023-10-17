@@ -52,10 +52,7 @@ export default function PreviewList({recipes, click}) {
                                                 </div>
 
                                                 <div>
-                                                    <p>{recipe.description.substring(0, 170)}</p>  
-                                                    
-                                                    
-
+                                                    <p>{recipe.description.substring(0, 170)}</p>                               
                                                     <div className={style.times}> 
                                                         {/* adding time to display on preview */}
                                                         <div>
