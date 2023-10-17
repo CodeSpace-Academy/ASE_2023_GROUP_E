@@ -1,3 +1,4 @@
+
 // import '@/styles/globals.css'
 import LayoutAll from "@/Layout/layout"
 export default function App({ Component, pageProps }) {
@@ -7,3 +8,4 @@ export default function App({ Component, pageProps }) {
     </LayoutAll>
   )
 }
+
