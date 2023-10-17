@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { run } from '@/database';
-import RecipeDetails from '@/component/Recipes/Preview/RecipeDetails';
+import RecipeDetails from '@/component/Recipes/Details/RecipeDetails';
 
 const RecipePage = ({ recipe }) => {
   return <RecipeDetails recipe={recipe} />;

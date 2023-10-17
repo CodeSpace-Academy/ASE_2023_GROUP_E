@@ -1,11 +1,9 @@
-// component/Recipe/Preview/PreviewList
-
 import React,{useState} from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
-import RecipeDetails from './RecipeDetails';
+import RecipeDetails from '../Details/RecipeDetails';
 import NumToTime from '@/component/handlerTime/timeRead';
 import style from './previewList.module.css'
 import Image from 'next/image';
@@ -32,10 +30,8 @@ export default function PreviewList({recipes, click}) {
     
     const handleRecipeClick = (recipe) => {
         setSelectedRecipe(recipe);
-        router.push(`/${currentPath}/${recipe.title}`);
       };
     
-
     return (
         <>
 
@@ -50,7 +46,7 @@ export default function PreviewList({recipes, click}) {
                                         <Link href={`/${currentPath}/${recipe.title}`} className={style.link}>
                                             <h2 className={style.title}>{recipe.title}</h2>
                                             <div className={style.recipe}>
-                                                
+
                                                 <div>
                                                     <Image src={recipe.images[0]} className={style.img} alt={recipe.images[0]} width={200} height={100}/>
                                                 </div>
