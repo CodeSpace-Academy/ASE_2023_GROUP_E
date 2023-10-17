@@ -1,14 +1,16 @@
-import * as React from 'react';
+// component/Recipe/Preview/PreviewList
+
+import React,{useState} from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
+import RecipeDetails from './RecipeDetails';
 import NumToTime from '@/component/handlerTime/timeRead';
 import style from './previewList.module.css'
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -23,10 +25,17 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function PreviewList({recipes, click}) {
-
+    const [selectedRecipe, setSelectedRecipe] = useState(null);
     const router = useRouter()
+
     const currentPath = router.query.preview
     
+    const handleRecipeClick = (recipe) => {
+        setSelectedRecipe(recipe);
+        router.push(`/${currentPath}/${recipe.title}`);
+      };
+    
+
     return (
         <>
 
@@ -36,8 +45,8 @@ export default function PreviewList({recipes, click}) {
                     {
                         recipes && recipes.map((recipe) => {
                             return(
-                                <Grid xs={12} md={12} key={recipe.id} className={style.item}>
-                                    <Item key={recipe.id} >
+                                <Grid xs={12} md={12} key={recipe.id} className={style.item}> 
+                                    <Item key={recipe.id} onClick={() => handleRecipeClick(recipe)}>
                                         <Link href={`/${currentPath}/${recipe.title}`} className={style.link}>
                                             <h2 className={style.title}>{recipe.title}</h2>
                                             <div className={style.recipe}>
@@ -79,7 +88,9 @@ export default function PreviewList({recipes, click}) {
                     }
                 </Grid>
             </Box>
-
+            {selectedRecipe && (
+        <RecipeDetails recipe={selectedRecipe} />
+      )}
         <button onClick={click} >Load More </button>
         </>
     );

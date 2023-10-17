@@ -1,5 +1,25 @@
-export default function Recipe(){
-    return(
-        <h1>Specific recipe will be on this page</h1>
-    )
+// pages/[preview]/[recipe]
+
+import React from 'react';
+import { run } from '@/database';
+import RecipeDetails from '@/component/Recipes/Preview/RecipeDetails';
+
+const RecipePage = ({ recipe }) => {
+  return <RecipeDetails recipe={recipe} />;
+};
+
+export async function getServerSideProps({ params }) {
+  const { preview, recipe } = params;
+
+  // Fetch the recipe details based on preview and recipe params
+  const results = await run(parseInt(preview));
+  const selectedRecipe = results.find((r) => r.title === recipe);
+
+  return {
+    props: {
+      recipe: selectedRecipe || null, // Pass the selected recipe as props
+    },
+  };
 }
+
+export default RecipePage;
