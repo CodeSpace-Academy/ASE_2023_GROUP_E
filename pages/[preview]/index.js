@@ -3,13 +3,15 @@ import { run } from '@/database';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
-export default function AllRecipes({ results, pagesPath }) {
+
+export default function AllRecipes({ documents, pagesPath, totalDataLength }) {
   const router = useRouter();
   const [currentPage, setCurrentPage] = useState(pagesPath);
   const recipesToLoad = 100;
+  console.log(documents)
 
   // Calculate the initial value for Load More
-  const initialLoadMoreValue = 164959 - currentPage;
+  const initialLoadMoreValue = totalDataLength - currentPage;
   const [loadMoreValue, setLoadMoreValue] = useState(initialLoadMoreValue);
 
   const loadMoreRecipes = () => {
@@ -17,14 +19,14 @@ export default function AllRecipes({ results, pagesPath }) {
     const nextPage = currentPage + recipesToLoad;
     setCurrentPage(nextPage);
 
-    // Calculate the new value based on the updated currentPage and recipesToLoad
+  // Calculate the new value based on the updated currentPage and recipesToLoad
     const newLoadMoreValue = initialLoadMoreValue - recipesToLoad;
-    setLoadMoreValue(newLoadMoreValue);
+setLoadMoreValue(newLoadMoreValue);
 
     // Navigate to the next page with the appropriate number of recipes to load
     router.push(`/${nextPage}`);
   };
-
+  
   return (
     <main>
       {/* <Recipes
@@ -33,9 +35,10 @@ export default function AllRecipes({ results, pagesPath }) {
       /> */}
 
       <PreviewList 
-        recipes={results && results}
+        recipes={documents && documents}
         click={loadMoreRecipes}
       />
+    <button onClick={loadMoreRecipes}>Load More {initialLoadMoreValue}</button>
     </main>
   );
 }
@@ -43,12 +46,13 @@ export default function AllRecipes({ results, pagesPath }) {
 export async function getServerSideProps({ params }) {
   const { preview } = params;
   const pagesPath = parseInt(preview);
-  const results = await run(pagesPath);
+  const {documents, totalDataLength} = await run(pagesPath);
 
   return {
     props: {
-      results,
+      documents,
       pagesPath,
+      totalDataLength,
     },
   };
 }
