@@ -1,0 +1,51 @@
+.expandableMenu {
+    position: fixed; /* Position the menu relative to the viewport */
+    top: 0; /* Position it at the top */
+    left: 0; /* Position it at the left */
+    height: 100%; /* Make it cover the entire height of the viewport */
+    width: 150px;
+    background-color: transparent;
+    color: black;
+    overflow: hidden;
+    transition: width 0.3s;
+    border-left: 0px;
+   
+    border-top: 1px;
+    border-right: 1%;
+    
+  }
+  
+  .menuToggle {
+    cursor: pointer;
+    text-align: center;
+    padding: 10px;
+    font-size: 1.5rem;
+  }
+  
+  .menuToggle.expanded {
+    width: 200px;
+  }
+  
+  .menuOptions {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .menuOptions.expanded li {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .menuOptions.expanded svg {
+    margin-right: 10px;
+  }
+  .pageContainer {
+    display: flex;
+  }
+  
+  .content {
+    flex-grow: 1; /* Make the content area grow to fill the remaining space */
+    padding-left: 150px; /* Add padding to the left to accommodate the navigation bar */
+  }
+  
