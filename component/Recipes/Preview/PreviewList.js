@@ -87,7 +87,7 @@ export default function PreviewList({recipes, click}) {
             {selectedRecipe && (
         <RecipeDetails recipe={selectedRecipe} />
       )}
-        <button onClick={click} >Load More </button>
+       
         </>
     );
 }
