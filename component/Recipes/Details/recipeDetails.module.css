@@ -1,0 +1,81 @@
+/* RecipeDetails.module.css */
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.imageRow {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.imageContainer {
+  margin: 0 10px;
+}
+
+.info {
+  margin-bottom: 20px;
+}
+
+.nutrition,
+.ingredients,
+.instructions {
+  margin-bottom: 20px;
+}
+
+.nutrition h2,
+.ingredients h2,
+.instructions h2 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.listContainer {
+  padding-left: 20px;
+}
+
+.listContainer ul,
+.listContainer ol {
+  margin-bottom: 10px;
+}
+
+
+.recipeCard {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two columns */
+  grid-column-gap: 20px; 
+}
+
+.titleAndImage {
+  grid-column: 1 / span 2; /* Span both columns */
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.imageContainer {
+  margin: 10px 0; /* Adjust margin */
+}
+
+
+.nutrition {
+  grid-column: 1; /* Place in the first column */
+}
+
+.ingredients {
+  grid-column: 2; /* Place in the second column */
+}

@@ -1,16 +1,20 @@
 
-
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-export default function Home({ results }) {
+export default function Home() {
 
-const router = useRouter()
+  const router = useRouter()
+
    return (
      <main>
-{/* 
-       <Link href={'/tags'}>TagsList</Link> */}
-       <button  onClick={() => router.push(`/${100}`)}>All Recipes</button>
+       <Link href={'/tags'}>TagsList</Link>
+
+
+    <button  onClick={() => router.push(`/${100}`)}>All Recipes</button>
+
+    
      </main>
    );
  }
