@@ -56,7 +56,7 @@ export default function PreviewList({recipes, click}) {
                                                     <div className={style.times}> 
                                                         {/* adding time to display on preview */}
                                                         <div>
-                                                         ⏲️ Prep: {NumToTime(recipe.prep)}
+                                                            ⏲️ Prep: {NumToTime(recipe.prep)}
                                                             
                                                         </div>
                                                         <div>
@@ -87,7 +87,6 @@ export default function PreviewList({recipes, click}) {
             {selectedRecipe && (
         <RecipeDetails recipe={selectedRecipe} />
       )}
-      
         </>
     );
 }

@@ -1,7 +1,3 @@
-import React from 'react';
-
-
-
 
 function RecipeLoadFailure({ message }) {
   return (
@@ -10,6 +6,5 @@ function RecipeLoadFailure({ message }) {
     </div>
   );
 }
-
 
 export default RecipeLoadFailure;
