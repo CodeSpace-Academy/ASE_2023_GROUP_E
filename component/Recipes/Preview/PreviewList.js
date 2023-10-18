@@ -98,8 +98,7 @@ export default function PreviewList({ recipes, click }) {
             })}
         </Grid>
       </Box>
-      {selectedRecipe && <RecipeDetails recipe={selectedRecipe} />}
-      <button onClick={click}>Load More</button>
+
     </>
   );
 }
