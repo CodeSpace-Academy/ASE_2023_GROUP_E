@@ -53,12 +53,17 @@ export default function AllRecipes({ documents, pagesPath, totalDataLength }) {
         </button>
       )}
       <PreviewList recipes={documents} click={loadMoreRecipes} />
+      {pageNumber >= 2 && (
+        <button onClick={goBack} disabled={false}>
+          Go Back
+        </button>
+      )}
       {loadMoreValue > 0 && (
         <button onClick={loadMoreRecipes} disabled={false}>
           Load More ({loadMoreValue} recipes remaining)
         </button>
       )}
-      <button>{pageNumber}</button>
+      <button>Page: {pageNumber}</button>
     </main>
   );
 }
