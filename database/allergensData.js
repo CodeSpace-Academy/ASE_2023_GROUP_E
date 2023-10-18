@@ -20,7 +20,7 @@ export async function fetchAllergensFromDatabase() {
 
     const allergensCollection = db.collection('allergens');
     const allergensDocuments = await allergensCollection.find().toArray();
-    // Convert the _id fields of allergens to strings
+    // Remove the id and return the allergens
     const allergens = allergensDocuments.map((doc) => {
       const { _id, ...allergensList } = doc;
       return allergensList;
