@@ -3,6 +3,7 @@ import React from "react";
 import Image from "next/image";
 import styles from "./recipeDetails.module.css";
 import NumToTime from "@/component/handlerTime/timeRead";
+import ImageSlider from "./ImageSlider";
 
 const RecipeDetails = ({ recipe }) => {
   if (!recipe) return null;
@@ -12,17 +13,9 @@ const RecipeDetails = ({ recipe }) => {
       <div className={styles.titleAndImage}>
         <h1 className={styles.title}>{recipe.title}</h1>
         <div className={styles.imageRow}>
-          {recipe.images &&
-            recipe.images.map((image, index) => (
-              <div key={index} className={styles.imageContainer}>
-                <Image
-                  src={image}
-                  alt={`Image ${index + 1}`}
-                  width={300}
-                  height={200}
-                />
-              </div>
-            ))}
+
+          <ImageSlider imageUrls = {recipe.images && recipe.images}/>
+
         </div>
       </div>
       <div className={styles.info}>
