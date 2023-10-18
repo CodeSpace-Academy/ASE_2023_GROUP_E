@@ -19,7 +19,7 @@ const ImageSlider = ({ imageUrls }) => {
   return (
     <div className="image-slider">
       <div className="image-container">
-        <Image src={imageUrls[currentIndex]} alt="Recipe" width={200} height={200}/>
+        <Image src={imageUrls[currentIndex]} alt="Recipe" width={400} height={200}/>
       </div>
       <div className="controls">
         <button onClick={goToPrevious}>Previous</button>

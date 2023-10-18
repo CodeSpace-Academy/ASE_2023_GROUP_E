@@ -1,83 +1,102 @@
-/* RecipeDetails.module.css */
+/* recipeDetails.module.css */
 
-.header {
-  text-align: center;
-  margin-bottom: 20px;
+/* Base styles */
+.recipeCard {
+  padding: 20px;
+  border: 2px solid #3498db;
+  border-radius: 10px;
+  background-color: #eceaea;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 73%;
+  margin-left: 180px;
 }
 
+.card{
+  margin-left: 160px;
+}
+
+.listContainer {
+  display: grid;
+  grid-template-columns: 1.5fr 2.5fr; /* Two equal columns */
+  gap: 0px; /* Gap between columns */
+  margin-left: 30px;
+}
+
+.ingredients {
+  grid-column: 1; /* Position in the first column (left) */
+}
+
+.nutrition {
+  grid-column: 2; /* Position in the second column (right) */
+}
+
+/* Title and image styles */
 .title {
   font-size: 24px;
   font-weight: bold;
+  color: #3498db; /* Vibrant color */
+  margin-bottom: 10px;
 }
 
 .imageRow {
   display: flex;
+  justify-content: left;
+  margin-left: 65px;
   margin-bottom: 20px;
 }
 
-.imageContainer {
-  margin: 0 10px;
-}
-
+/* Information styles */
 .info {
   margin-bottom: 20px;
 }
 
-.nutrition,
-.ingredients,
+.info p {
+  font-size: 16px;
+  color: #333; /* Dark text color */
+}
+
+/* Ingredients and Nutrition styles */
+.ingredients, .nutrition {
+  margin-bottom: 20px;
+  width: 50%;
+}
+
+.ingredients h2, .nutrition h2 {
+  font-size: 20px;
+  color: #27ae60; /* Vibrant color */
+  margin-bottom: 10px;
+}
+
+.ingredients ul, .nutrition ul {
+  padding: 0;
+}
+
+.ingredients li, .nutrition li {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+/* Time and Instructions styles */
 .instructions {
   margin-bottom: 20px;
 }
 
-.nutrition h2,
-.ingredients h2,
 .instructions h2 {
   font-size: 20px;
-  font-weight: bold;
-}
-
-.listContainer {
-  padding-left: 20px;
-}
-
-.listContainer ul,
-.listContainer ol {
+  color: #e74c3c; /* Vibrant color */
   margin-bottom: 10px;
 }
 
-.recipeCard {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* Two columns */
-  grid-column-gap: 20px; 
-  width: 50%;
-  align-items: center;
+.instructions ol {
+  padding-left: 20px;
 }
 
-.titleAndImage {
-  grid-column: 1 / span 2; /* Span both columns */
+.instructions li {
+  font-size: 16px;
 }
 
-.imageContainer {
-  margin: 10px 0; /* Adjust margin */
-}
-
-.flexContainer {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
-.columnItem {
-  flex: 1;
-  margin-right: 20px;
-  margin-bottom: 20px;
-}
-
-.columnItem:last-child {
-  margin-right: 0;
+/* Additional creative styling */
+.recipeCard:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease-in-out;
 }
