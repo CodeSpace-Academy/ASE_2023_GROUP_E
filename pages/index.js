@@ -1,14 +1,13 @@
 import React from 'react';
-import { useRouter } from 'next/router';
 import HomeWithBackground from '../component/home-page/HomeWithBackground';
-export default function Home({ results }) {
 
-  const router = useRouter() // Initialize the router for navigation.
+export default function Home({ results }) {
 
    return (
      <main>
       <HomeWithBackground/> {/* Render the HomeWithBackground component. */}
      </main>
    );
+   
  }
 
