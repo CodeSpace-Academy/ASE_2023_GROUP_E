@@ -1,14 +1,28 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const ImageSlider = ({ imageUrls }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const goToPrevious = () => {
-    const isFirstSlide = currentIndex === 0;
-    const newIndex = isFirstSlide ? imageUrls.length - 1 : currentIndex - 1;
-    setCurrentIndex(newIndex);
+  const goAuto = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % imageUrls.length);
   };
+
+  useEffect(() => {
+    // Set an interval to change image every 3 seconds
+    const intervalId = setInterval(goToNext, 3100);
+
+    // Clear the interval when the component unmounts to prevent memory leaks
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [currentIndex]); // Re-run this effect whenever currentIndex changes
+
+  // const goToPrevious = () => {
+  //   const isFirstSlide = currentIndex === 0;
+  //   const newIndex = isFirstSlide ? imageUrls.length - 1 : currentIndex - 1;
+  //   setCurrentIndex(newIndex);
+  // };
 
   const goToNext = () => {
     const isLastSlide = currentIndex === imageUrls.length - 1;
@@ -21,10 +35,10 @@ const ImageSlider = ({ imageUrls }) => {
       <div className="image-container">
         <Image src={imageUrls[currentIndex]} alt="Recipe" width={400} height={200}/>
       </div>
-      <div className="controls">
+      {/* <div className="controls">
         <button onClick={goToPrevious}>Previous</button>
         <button onClick={goToNext}>Next</button>
-      </div>
+      </div> */}
     </div>
   );
 };
