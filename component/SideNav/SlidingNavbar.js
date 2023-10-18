@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaAngleRight, FaHome, FaCog, FaUser, FaBell } from 'react-icons/fa';
+
 import classes from './sideNav.module.css'
 
 const ExpandableMenu = () => {
@@ -39,7 +40,7 @@ const ExpandableMenu = () => {
       </div>
       <div className={classes.content}>
         {/* Add your page content here */}
-        <h1>Chef's Haven</h1>
+        <h1>{"Chef's Haven"}</h1>
         <p>🧑‍🍳</p>
         
 
