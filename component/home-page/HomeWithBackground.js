@@ -26,7 +26,6 @@ const HomeWithBackground = () => {
                     <Link href={'/tags'}>Tags List</Link>
                     <Link href="/favorites">Favorites</Link>
                     <Link href="/updated-recipes">Updated Recipes</Link>
-
                 </div>
             </div>
 
