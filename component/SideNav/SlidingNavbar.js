@@ -38,13 +38,6 @@ const ExpandableMenu = () => {
           ))}
         </ul>
       </div>
-      <div className={classes.content}>
-        {/* Add your page content here */}
-        <h1>{"Chef's Haven"}</h1>
-        <p>🧑‍🍳</p>
-        
-
-      </div>
     </div>
   );
 };
