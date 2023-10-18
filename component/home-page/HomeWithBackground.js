@@ -17,9 +17,7 @@ const HomeWithBackground = () => {
             </Head>
 
             <div className={classes.backgroundImage}> {/* This div represents the background image container. */}
-                <div className={classes.logoimage}> {/*logo image class */}
-                    <Image src='/images/logo3.png' alt='Chefs Heaven Logo' width={270} height={100} /> {/* Display the website logo. */}
-                </div>
+               
                 {/*Links to the pages on the menu lists */}
                 <div className={classes.menu}>
                     <Link href={`/${50}`}>All Recipes</Link>  {/* Link to the "All Recipes" page with route parameter 100. */}
