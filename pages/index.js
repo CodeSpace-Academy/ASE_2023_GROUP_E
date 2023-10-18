@@ -1,21 +1,13 @@
+import React from 'react';
+import HomeWithBackground from '../component/home-page/HomeWithBackground';
 
-import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-
-export default function Home() {
-
-  const router = useRouter()
+export default function Home({ results }) {
 
    return (
      <main>
-       <Link href={'/tags'}>TagsList</Link>
-
-
-    <button  onClick={() => router.push(`/${100}`)}>All Recipes</button>
-
-    
+      <HomeWithBackground/> {/* Render the HomeWithBackground component. */}
      </main>
    );
+   
  }
 
