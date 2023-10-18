@@ -1,37 +1,24 @@
-
 import React, { useEffect, useState } from 'react';
 import { run } from '@/database';
 import TagsListt from '@/component/tags/tagsList';
 
-export default function TagsList({ results }) {
+export default function TagsList({ documents }) {
   const [uniqueTags, setUniqueTags] = useState([]);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const loadTags = async () => {
-      try {
-        const allTags = results.reduce((tags, recipe) => {
-          return tags.concat(recipe.tags);
-        }, []);
+    if (documents) {
+      const allTags = documents.reduce((tags, recipe) => {
+        return tags.concat(recipe.tags);
+      }, []);
 
-        const uniqueTags = [...new Set(allTags)]; // Remove duplicates
-        setUniqueTags(uniqueTags);
-      } catch (error) {
-        console.log('Failed to load tags:', error);
-        setError('Failed to load tags. Please check your network connection.');
-      }
-    };
-
-    loadTags();
-  }, [results]);
+      const uniqueTags = [...new Set(allTags)]; // Remove duplicates
+      setUniqueTags(uniqueTags);
+    }
+  }, [documents]);
 
   return (
     <div>
-      {error ? (
-        <h1>{error}</h1>
-      ) : (
-        <TagsListt recipes={uniqueTags} />
-      )}
+      <TagsListt recipes={uniqueTags} />
     </div>
   );
 }
@@ -39,11 +26,10 @@ export default function TagsList({ results }) {
 export async function getStaticProps() {
   try {
     const {documents} = await run();
-    const results = documents
 
     return {
       props: {
-        results,
+        documents,
       },
     };
   } catch (error) {
