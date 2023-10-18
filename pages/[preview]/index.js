@@ -1,17 +1,17 @@
 import PreviewList from '@/component/Recipes/Preview/PreviewList';
 import { run } from '@/database';
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
-let val = 100;
-export default function AllRecipes({ results, pagesPath, params }) {
-  console.log(params);
+
+export default function AllRecipes({ documents, pagesPath, totalDataLength }) {
   const router = useRouter();
   const [currentPage, setCurrentPage] = useState(pagesPath);
   const recipesToLoad = 100;
-  const [recipes, setRecipes] = [results];
+  console.log(documents)
+
   // Calculate the initial value for Load More
-  const initialLoadMoreValue = 164959 - currentPage;
+  const initialLoadMoreValue = totalDataLength - currentPage;
   const [loadMoreValue, setLoadMoreValue] = useState(initialLoadMoreValue);
 
   const loadMoreRecipes = () => {
@@ -19,17 +19,14 @@ export default function AllRecipes({ results, pagesPath, params }) {
     const nextPage = currentPage + recipesToLoad;
     setCurrentPage(nextPage);
 
-    // Calculate the new value based on the updated currentPage and recipesToLoad
+  // Calculate the new value based on the updated currentPage and recipesToLoad
     const newLoadMoreValue = initialLoadMoreValue - recipesToLoad;
-    setLoadMoreValue(newLoadMoreValue);
+setLoadMoreValue(newLoadMoreValue);
 
     // Navigate to the next page with the appropriate number of recipes to load
-    // router.push(`/${nextPage}`);
+    router.push(`/${nextPage}`);
   };
-  // useEffect(() => {
-  //   return (val = val + 100);
-  //   // console.log(val);
-  // }, [currentPage]);
+  
   return (
     <main>
       {/* <Recipes
@@ -37,7 +34,11 @@ export default function AllRecipes({ results, pagesPath, params }) {
         click={loadMoreRecipes}
       /> */}
 
-      <PreviewList recipes={results && results} click={loadMoreRecipes} />
+      <PreviewList 
+        recipes={documents && documents}
+        click={loadMoreRecipes}
+      />
+    <button onClick={loadMoreRecipes}>Load More {initialLoadMoreValue}</button>
     </main>
   );
 }
@@ -45,13 +46,13 @@ export default function AllRecipes({ results, pagesPath, params }) {
 export async function getServerSideProps({ params }) {
   const { preview } = params;
   const pagesPath = parseInt(preview);
-  const results = await run(pagesPath);
+  const {documents, totalDataLength} = await run(pagesPath);
 
   return {
     props: {
-      results,
+      documents,
       pagesPath,
-      params,
+      totalDataLength,
     },
   };
 }
