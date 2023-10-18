@@ -74,7 +74,7 @@ export default function PreviewList({ recipes, click }) {
                         </div>
                         <div>
                           {showDescriptions[index] && (
-                            <p>{recipe.description.substring(0, 170)}</p>
+                            <p>{recipe.description}</p>
                           )}
                           <div className={style.times}>
                             <div>⏲️ Prep: {NumToTime(recipe.prep)}</div>
@@ -86,12 +86,15 @@ export default function PreviewList({ recipes, click }) {
                           </div>
                         </div>
                       </div>
-                      <button onClick={() => toggleDescription(index)}>
-                        Show Description
-                      </button>
+
                       {/* Recipe tags */}
                       <SingleRecipeTags tags={recipe.tags} />
                     </Link>
+
+                    <button onClick={() => toggleDescription(index)}>
+                        Show Description
+                    </button>
+
                   </Item>
                 </Grid>
               );

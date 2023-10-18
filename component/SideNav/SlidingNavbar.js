@@ -18,12 +18,11 @@ const ExpandableMenu = () => {
   };
 
   const menuOptions = [
-    { icon:<Link href={'/'}> <AiOutlineHome /></Link>, name: 'Home' },
+    { icon:<Link href={'/'} > <AiOutlineHome /></Link>, name: 'Home' },
     { icon: <Link href={'/'}><AiOutlineUser /> </Link>, name: 'Profile' },
-     { icon: <Link href={`${100}`} ><MdOutlineFastfood /></Link>, name: 'Recipes' },
-     { icon: <Link href={'/tags'}> <AiOutlineTags/> </Link>, name: 'Tags' },
+    { icon: <Link href={`${50}`} ><MdOutlineFastfood /></Link>, name: 'Recipes' },
+    { icon: <Link href={'/tags'}> <AiOutlineTags/> </Link>, name: 'Tags' },
     { icon: <AiOutlineHeart />, name: 'Favourites' },
- 
     { icon: <AiOutlineSetting />, name: 'Settings' },
   ];
 
@@ -33,9 +32,10 @@ const ExpandableMenu = () => {
         <div className={`${classes.menuToggle}`} onClick={toggleExpand}>
           <AiOutlineMenu />
         </div>
+
         <ul className={`${classes.menuOptions} ${toggleMenu ? classes.expanded : ''}`}>
           {menuOptions.map((option, index) => (
-            <li key={index}>
+            <li key={index} onClick={() => setToggleMenu(false)}>
               {toggleMenu ? (
                 <>
                   <div style={{ fontSize: '24px' }}>{option.icon}</div> {/* Increase the font size */}
