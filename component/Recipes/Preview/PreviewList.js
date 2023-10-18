@@ -77,43 +77,13 @@ export default function PreviewList({ recipes, click }) {
                     </Link>
                   </Item>
 
-
-                                                <div>
-                                                    <p>{recipe.description.substring(0, 170)}</p>                               
-                                                    <div className={style.times}> 
-                                                        {/* adding time to display on preview */}
-                                                        <div>
-                                                            ⏲️ Prep: {NumToTime(recipe.prep)}
-                                                            
-                                                        </div>
-                                                        <div>
-                                                            🕰️ Cook: {NumToTime (recipe.cook)}
-                                                            
-                                                        </div>
-
-                                                        {/* here is the total time for (added prep and cook) */}
-                                                        <div>
-                                                            ⏰ Total Time: {NumToTime(recipe.prep + recipe.cook)}
-                                                            
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-
-                                            <div className={style.tagsList}>{recipe.tags.map((tag) => <h4 key={tag}> {`${tag}`}</h4>)}</div>
-                                        </Link>
-                                    </Item>
-
-                                </Grid>
-                            )
-                        })
-                    }
+                                        
                 </Grid>
-            </Box>
-            {selectedRecipe && (
-        <RecipeDetails recipe={selectedRecipe} />
-      )}
-        </>
-    );
+              );
+            })}
+        </Grid>
+      </Box>
+
+    </>
+  );
 }

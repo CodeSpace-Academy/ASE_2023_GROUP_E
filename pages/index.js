@@ -9,7 +9,7 @@ export default function Home({ results }) {
     <main>
       <Link href={'/tags'}>TagsList</Link>
 
-      <button onClick={() => router.push(`/${100}`)}>All Recipes</button>
+      <button onClick={() => router.push(`/${50}`)}>All Recipes</button>
       {/* <button onClick={() => router.push(`/${'recipes'}`)}>All Recipes</button> */}
     </main>
   );
