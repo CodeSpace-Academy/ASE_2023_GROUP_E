@@ -1,7 +1,7 @@
 import React from 'react';
 
-const SingleRecipeTag = () => {
-  return <div>SingleRecipeTag</div>;
+const SingleRecipeTag = ({ tag }) => {
+  return <li>{tag}</li>;
 };
 
 export default SingleRecipeTag;
