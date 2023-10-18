@@ -20,8 +20,29 @@
   border-radius: 5px;
   text-align: center;
   background-color: rgba(218, 224, 250, 0.277);
+  text-wrap: nowrap;
 }
 
-.logoimage{
-  text-align: center;
-} 
+.menu{
+  margin: 10%;
+}
+
+@media only screen and (max-width: 759px){
+ .backgroundImage{
+  background-position: 70%;
+ }
+}
+
+@media only screen and (min-width: 770px){
+ .menu{
+  display: grid;
+  grid-template-columns: 20% 20%;
+  gap: 12%;
+ }
+
+ .menu a{
+  padding: 15px;
+  width: 156px;
+  text-wrap: nowrap;
+ }
+}

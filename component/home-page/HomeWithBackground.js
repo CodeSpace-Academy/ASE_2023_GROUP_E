@@ -1,7 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import Image from 'next/image';
 import classes from './HomeWithBackground.module.css'
 import { useRouter } from 'next/router';
 
