@@ -1,7 +1,7 @@
 import React from 'react';
-
-const SingleAllergen = () => {
-  return <div>SingleAllergen</div>;
+import classes from './SingleAllergen.module.css';
+const SingleAllergen = ({ allergen }) => {
+  return <li className={classes.listItem}>{allergen}</li>;
 };
 
 export default SingleAllergen;
