@@ -1,4 +1,3 @@
-import React from 'react';
 
 // the function changes number to a time format 
 
