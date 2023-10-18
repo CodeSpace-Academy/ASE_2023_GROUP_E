@@ -5,6 +5,8 @@ import styles from './recipeDetails.module.css';
 import NumToTime from '@/component/handlerTime/timeRead';
 import ImageSlider from './ImageSlider';
 import SingleRecipeTags from '../SingleRecipeTags/SingleRecipeTags';
+import SingleRecipeAllergens from '../Allergens/SingleRecipeAllergens';
+
 const RecipeDetails = ({ recipe, allergens }) => {
   /**
    * Contains the allergens present in this recipe
@@ -35,6 +37,14 @@ const RecipeDetails = ({ recipe, allergens }) => {
         </p>
         <p>
           <strong>Tags:</strong> <SingleRecipeTags tags={recipe.tags} />
+        </p>
+        <p className={styles.aligned}>
+          <strong>Allergens:</strong>
+          {allergenList.length !== 0 ? (
+            <SingleRecipeAllergens allergensList={allergenList} />
+          ) : (
+            <p>No allergens</p>
+          )}
         </p>
       </div>
       <div className={styles.nutrition}>
