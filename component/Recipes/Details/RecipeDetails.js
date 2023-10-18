@@ -5,9 +5,19 @@ import styles from './recipeDetails.module.css';
 import NumToTime from '@/component/handlerTime/timeRead';
 import ImageSlider from './ImageSlider';
 import SingleRecipeTags from '../SingleRecipeTags/SingleRecipeTags';
-const RecipeDetails = ({ recipe }) => {
-  if (!recipe) return null;
+const RecipeDetails = ({ recipe, allergens }) => {
+  /**
+   * Contains the allergens present in this recipe
+   */
+  let allergenList = [];
+  //If ingredient is present in allergen array, add it to the allergens list
+  for (let ingredient in recipe.ingredients) {
+    if (allergens?.includes(ingredient)) {
+      allergenList.push(ingredient);
+    }
+  }
 
+  if (!recipe) return null;
   return (
     <div className={styles.recipeCard}>
       <div className={styles.titleAndImage}>
