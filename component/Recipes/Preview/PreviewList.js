@@ -89,6 +89,7 @@ export default function PreviewList({ recipes, click }) {
                       <button onClick={() => toggleDescription(index)}>
                         Show Description
                       </button>
+                      {/* Recipe tags */}
                       <SingleRecipeTags tags={recipe.tags} />
                     </Link>
                   </Item>
