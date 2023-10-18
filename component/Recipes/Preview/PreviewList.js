@@ -76,6 +76,8 @@ export default function PreviewList({ recipes, click }) {
                       </div>
                     </Link>
                   </Item>
+
+                                        
                 </Grid>
               );
             })}
