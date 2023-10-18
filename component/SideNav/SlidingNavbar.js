@@ -1,50 +1,63 @@
 import React, { useState } from 'react';
-import { FaAngleRight, FaHome, FaCog, FaUser, FaBell } from 'react-icons/fa';
 
-import classes from './sideNav.module.css'
+import { AiOutlineMenu,AiOutlineTags, AiOutlineHome, AiOutlineSetting, AiOutlineUser, AiOutlineHeart, } from 'react-icons/ai';
+import classes from './sideNav.module.css';
+import { MdOutlineFastfood,} from 'react-icons/md'
+import StateContext from '@/useContext/StateContext';
+import Link from 'next/link';
+
+
+
+
 
 const ExpandableMenu = () => {
-  const [expanded, setExpanded] = useState(false);
+  const {setToggleMenu, toggleMenu} = StateContext()
 
   const toggleExpand = () => {
-    setExpanded(!expanded);
+    setToggleMenu(!toggleMenu);
   };
 
   const menuOptions = [
-    { icon: <FaHome />, name: 'Home' },
-    { icon: <FaCog />, name: 'Settings' },
-    { icon: <FaUser />, name: 'Profile' },
-    { icon: <FaBell />, name: 'Notifications' },
+    { icon:<Link href={'/'}> <AiOutlineHome /></Link>, name: 'Home' },
+    { icon: <Link href={'/'}><AiOutlineUser /> </Link>, name: 'Profile' },
+     { icon: <Link href={`${100}`} ><MdOutlineFastfood /></Link>, name: 'Recipes' },
+     { icon: <Link href={'/tags'}> <AiOutlineTags/> </Link>, name: 'Tags' },
+    { icon: <AiOutlineHeart />, name: 'Favourites' },
+ 
+    { icon: <AiOutlineSetting />, name: 'Settings' },
   ];
 
   return (
     <div className={classes.pageContainer}>
       <div className={classes.expandableMenu}>
-        <div className={`${classes.menuToggle} ${expanded ? 'expanded' : ''}`} onClick={toggleExpand}>
-          <FaAngleRight />
+        <div className={`${classes.menuToggle}`} onClick={toggleExpand}>
+          <AiOutlineMenu />
         </div>
-        <ul className={`${classes.menuOptions} ${expanded ? classes.expanded : ''}`}>
+        <ul className={`${classes.menuOptions} ${toggleMenu ? classes.expanded : ''}`}>
           {menuOptions.map((option, index) => (
             <li key={index}>
-              {expanded ? (
+              {toggleMenu ? (
                 <>
-                  {option.icon}
+                  <div style={{ fontSize: '24px' }}>{option.icon}</div> {/* Increase the font size */}
                   {option.name}
                 </>
               ) : (
-                option.icon
+                <div style={{ fontSize: '30px'}}>
+                  {option.icon}
+                </div>
               )}
             </li>
           ))}
         </ul>
       </div>
-      <div className={classes.content}>
-        {/* Add your page content here */}
-        <h1>{"Chef's Haven"}</h1>
-        <p>🧑‍🍳</p>
-        
 
+      <div className={`${classes.content} ${toggleMenu ? '' : classes.contentClose}`}>
+        {/* Add your page content here */}
+        
+        
       </div>
+
+
     </div>
   );
 };
