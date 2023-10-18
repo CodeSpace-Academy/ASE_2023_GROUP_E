@@ -1,0 +1,8 @@
+.tagItem {
+  list-style: none;
+}
+.tagButton {
+  background-color: transparent;
+  border-radius: 0.25rem;
+  padding: 0.35rem 0.5rem;
+}
