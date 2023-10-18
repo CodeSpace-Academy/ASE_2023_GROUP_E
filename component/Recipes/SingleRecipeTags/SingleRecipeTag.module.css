@@ -1,0 +1,12 @@
+.tagItem {
+  list-style: none;
+}
+.tagButton {
+  background-color: white;
+  border-radius: 0.25rem;
+  padding: 0.35rem 0.5rem;
+}
+.tagButton:hover {
+  background-color: rgb(143, 143, 143);
+  transform: scale(1.05);
+}

@@ -1,9 +1,10 @@
 // component/Recipe/Preview/RecipeDetails
-import React from "react";
-import Image from "next/image";
-import styles from "./recipeDetails.module.css";
-import NumToTime from "@/component/handlerTime/timeRead";
-
+import React from 'react';
+import Image from 'next/image';
+import styles from './recipeDetails.module.css';
+import NumToTime from '@/component/handlerTime/timeRead';
+import ImageSlider from './ImageSlider';
+import SingleRecipeTags from '../SingleRecipeTags/SingleRecipeTags';
 const RecipeDetails = ({ recipe }) => {
   if (!recipe) return null;
 
@@ -12,17 +13,7 @@ const RecipeDetails = ({ recipe }) => {
       <div className={styles.titleAndImage}>
         <h1 className={styles.title}>{recipe.title}</h1>
         <div className={styles.imageRow}>
-          {recipe.images &&
-            recipe.images.map((image, index) => (
-              <div key={index} className={styles.imageContainer}>
-                <Image
-                  src={image}
-                  alt={`Image ${index + 1}`}
-                  width={300}
-                  height={200}
-                />
-              </div>
-            ))}
+          <ImageSlider imageUrls={recipe.images && recipe.images} />
         </div>
       </div>
       <div className={styles.info}>
@@ -33,7 +24,7 @@ const RecipeDetails = ({ recipe }) => {
           <strong>Category:</strong> {recipe.category}
         </p>
         <p>
-          <strong>Tags:</strong> {recipe.tags.join(", ")}
+          <strong>Tags:</strong> <SingleRecipeTags tags={recipe.tags} />
         </p>
       </div>
       <div className={styles.nutrition}>
