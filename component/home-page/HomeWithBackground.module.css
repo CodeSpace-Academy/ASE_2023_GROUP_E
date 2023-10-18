@@ -10,6 +10,7 @@
 
 .menu {
   margin: 15%;
+  
 }
 
 .menu a {
@@ -24,6 +25,10 @@
   border-radius: 5px;
   text-align: center;
   background-color: rgba(218, 224, 250, 0.277);
+}
+
+.menu a:hover {
+  text-decoration: underline;
 }
 
 .logoimage{

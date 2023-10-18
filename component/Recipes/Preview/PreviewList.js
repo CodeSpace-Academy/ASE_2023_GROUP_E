@@ -73,9 +73,11 @@ export default function PreviewList({ recipes, click }) {
                           />
                         </div>
                         <div>
-                          {showDescriptions[index] && (
-                            <p>{recipe.description.substring(0, 170)}</p>
-                          )}
+                          {
+                            showDescriptions[index] &&  recipe.description ? (
+                              <p>{recipe.description.substring(0, 170)}</p> 
+                            ) : <p>Failed to load description</p>
+                          }
                           <div className={style.times}>
                             <div>⏲️ Prep: {NumToTime(recipe.prep)}</div>
                             <div>🕰️ Cook: {NumToTime(recipe.cook)}</div>
@@ -86,7 +88,7 @@ export default function PreviewList({ recipes, click }) {
                           </div>
                         </div>
                       </div>
-                      <button onClick={() => toggleDescription(index)}>
+                      <button className={style.description} onClick={() => toggleDescription(index)}>
                         Show Description
                       </button>
                       {/* Recipe tags */}
