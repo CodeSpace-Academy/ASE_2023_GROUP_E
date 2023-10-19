@@ -1,61 +1,56 @@
 .expandableMenu {
-    position: fixed; /* Position the menu relative to the viewport */
-    top: 0; /* Position it at the top */
-    left: 0; /* Position it at the left */
-    height: 100%; /* Make it cover the entire height of the viewport */
-    /* width: 150px; */
-    background-color: rgb(225, 222, 222);
-    color: black;
-    overflow: hidden;
-    transition: width 0.3s;
-    border-left: 0px;
-    box-shadow:10%;
-    border-top: 1px;
-    border-right: 1%;
-    padding: 1%;
-    text-align: center;
-    
-  }
+  position: fixed; /* Position the menu relative to the viewport */
+  top: 0; /* Position it at the top */
+  left: 0; /* Position it at the left */
+  height: 100%; /* Make it cover the entire height of the viewport */
+  /* width: 150px; */
+  background-color: rgb(225, 222, 222);
+  color: black;
+  overflow: hidden;
+  transition: width 0.3s;
+  border-left: 0px;
+  box-shadow:10%;
+  border-top: 1px;
+  border-right: 1%;
+  padding: 1%;
+  text-align: center;
   
-  .menuToggle {
-    cursor: pointer;
-    text-align: center;
-    padding: 10px;
-    font-size: 1.5rem;
-  }
-  
-  .menuToggle.expanded {
-    width: 200px;
-  }
-  
-  .menuOptions {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .menuOptions.expanded li {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-  }
-  
-  .menuOptions.expanded svg {
-    margin-right: 10px;
-  }
-  .pageContainer {
-    display: flex;
-  }
-  
-  .content {
-   /* flex-grow: 1;  Make the content area grow to fill the remaining space */
-    padding-left:px; /* Add padding to the left to accommodate the navigation bar */
-  }
-  
-  .contentClose {
-    margin-left:50px; /* Adjust the value to your preference */
-  }
+}
 
-  .layout{
-    display: flex;
-    flex-direction: column;
-  }
+.menuToggle {
+  cursor: pointer;
+  text-align: center;
+  padding: 10px;
+  font-size: 1.5rem;
+}
+
+.menuToggle.expanded {
+  width: 200px;
+}
+
+.menuOptions {
+  list-style: none;
+  padding: 0;
+}
+
+.menuOptions.expanded li {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.menuOptions.expanded svg {
+  margin-right: 10px;
+}
+.pageContainer {
+  display: flex;
+}
+
+.content {
+  /* flex-grow: 1;  Make the content area grow to fill the remaining space */
+  padding-left:px; /* Add padding to the left to accommodate the navigation bar */
+}
+
+.contentClose {
+  margin-left:50px; /* Adjust the value to your preference */
+}
