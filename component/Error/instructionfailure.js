@@ -1,5 +1,3 @@
-import React from 'react';
-
 
 function InstructionLoadFailure({ message }) {
   return (
@@ -8,6 +6,5 @@ function InstructionLoadFailure({ message }) {
     </div>
   );
 }
-
 
 export default InstructionLoadFailure;

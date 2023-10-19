@@ -45,8 +45,10 @@
 }
 
 .item :hover{
+
     background-color: rgb(226, 226, 226);
 }
 .description{
     border-radius: 5px;
+
 }

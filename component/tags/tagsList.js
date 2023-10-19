@@ -18,12 +18,12 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function TagsListt({recipes}) {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={1}>
+      <Grid container spacing={2}>
 
         {
           recipes && recipes.map((recipe) => {
             return(
-              <Grid xs={4} md={2} key={recipe}>
+              <Grid xs={12} md={4} key={recipe}>
                 <Item key={recipe}> 
                   <h4>{recipe}</h4>
                 </Item>
