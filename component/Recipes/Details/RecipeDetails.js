@@ -65,6 +65,7 @@ const RecipeDetails = ({ recipe }) => {
 
       <div className={styles.instructions}>
         <h2>Instructions:</h2>
+        {/* Display error message if cannot load instructions */}
         {recipe.instructions ? (
           <div className={styles.listContainer}>
             <ol>
