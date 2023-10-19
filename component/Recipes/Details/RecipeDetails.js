@@ -113,7 +113,7 @@ const RecipeDetails = ({ recipe, allergens }) => {
         )}
 
       </div>
-  
+          </div> 
   );
 };
 
