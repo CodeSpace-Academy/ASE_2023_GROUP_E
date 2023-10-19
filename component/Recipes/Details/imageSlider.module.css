@@ -1,0 +1,37 @@
+.imageSlider button{
+    background-color: transparent;
+    border: none;
+    font-size: 200%;
+    cursor: pointer;
+}
+
+.img {
+    box-shadow: 3px 3px 12px black;
+    border-radius: 10px;
+    width: 19em;
+    height: 19em;
+}
+
+.imageSlider {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* gap: 15px; */
+}
+
+@media only screen and (max-width: 424px){
+    
+    .img{
+        width: 14em;
+        height: 14em;
+    }
+    
+}
+@media only screen and (max-width: 342px){
+    
+    .img{
+        width: 10.5em;
+        height: 10.5em;
+    }
+    
+}
