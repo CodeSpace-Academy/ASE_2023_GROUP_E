@@ -1,17 +1,13 @@
 // component/Recipe/Preview/RecipeDetails
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import styles from './recipeDetails.module.css';
 import NumToTime from '@/component/handlerTime/timeRead';
 import ImageSlider from './ImageSlider';
 import SingleRecipeTags from '../SingleRecipeTags/SingleRecipeTags';
-
+import EditDescription from '@/component/editDescription/editDescription';
 import ErrorMessage from '@/component/Error/ErrorMessage';
-
-
-
 import IndividualRecipeIntruction from '@/component/singleRecipe/instructions/individualRecipeIntruction'
-
 import SingleRecipeAllergens from '../Allergens/SingleRecipeAllergens';
 
 const RecipeDetails = ({ recipe, allergens }) => {
@@ -26,8 +22,11 @@ const RecipeDetails = ({ recipe, allergens }) => {
     }
   }
 
+  //
+  const [ edit, setEdit] = useState(false)
 
   if (!recipe) return null;
+  
   return (
     <div className={styles.recipeCard}>
       <div className={styles.titleAndImage}>
@@ -40,21 +39,22 @@ const RecipeDetails = ({ recipe, allergens }) => {
         <p>
           <strong>Description:</strong> {recipe.description}
         </p>
-<button onClick={EditDescription}>Edit Description</button>
+          <button onClick={() => setEdit(!edit)}>Edit Description</button>
+          {  edit ? <EditDescription info={recipe.description} /> : '' }
         <p>
           <strong>Category:</strong> {recipe.category}
         </p>
-        <p>
+        <div>
           <strong>Tags:</strong> <SingleRecipeTags tags={recipe.tags} />
-        </p>
-        <p className={styles.aligned}>
+        </div>
+        <div className={styles.aligned}>
           <strong>Allergens:</strong>
           {allergenList.length !== 0 ? (
             <SingleRecipeAllergens allergensList={allergenList} />
           ) : (
             <p>No allergens</p>
           )}
-        </p>
+        </div>
       </div>
       <div className={styles.nutrition}>
         <h2>Nutrition:</h2>
