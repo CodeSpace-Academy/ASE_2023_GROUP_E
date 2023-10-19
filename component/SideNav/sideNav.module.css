@@ -70,3 +70,13 @@
 .links2 a {
   color: rgb(0, 0, 0);
 }
+
+.optionName{
+  cursor: pointer;
+
+}
+
+.optionName a {
+  color: black;
+  text-decoration: none;
+}
