@@ -38,11 +38,11 @@ const ExpandableMenu = () => {
             <li key={index} onClick={() => setToggleMenu(false)}>
               {toggleMenu ? (
                 <>
-                  <div style={{ fontSize: '24px' }}>{option.icon}</div> {/* Increase the font size */}
+                  <div className={classes.link}>{option.icon}</div> {/* Increase the font size */}
                   {option.name}
                 </>
               ) : (
-                <div style={{ fontSize: '30px'}}>
+                <div className={classes.links2}>
                   {option.icon}
                 </div>
               )}
