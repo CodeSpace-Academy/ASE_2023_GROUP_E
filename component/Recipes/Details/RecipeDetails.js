@@ -5,6 +5,7 @@ import styles from './recipeDetails.module.css';
 import NumToTime from '@/component/handlerTime/timeRead';
 import ImageSlider from './ImageSlider';
 import SingleRecipeTags from '../SingleRecipeTags/SingleRecipeTags';
+import ErrorMessage from '@/component/Error/ErrorMessage';
 const RecipeDetails = ({ recipe }) => {
   if (!recipe) return null;
 
@@ -64,14 +65,18 @@ const RecipeDetails = ({ recipe }) => {
 
       <div className={styles.instructions}>
         <h2>Instructions:</h2>
-        <div className={styles.listContainer}>
-          <ol>
-            {recipe.instructions &&
-              recipe.instructions.map((instruction, index) => (
-                <li key={index}>{instruction}</li>
-              ))}
-          </ol>
-        </div>
+        {recipe.instructions ? (
+          <div className={styles.listContainer}>
+            <ol>
+              {recipe.instructions &&
+                recipe.instructions.map((instruction, index) => (
+                  <li key={index}>{instruction}</li>
+                ))}
+            </ol>
+          </div>
+        ) : (
+          <ErrorMessage message={'Error loading the instructions'} />
+        )}
       </div>
     </div>
   );
