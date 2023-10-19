@@ -5,6 +5,7 @@
   background-size: cover;
   background-position: center;
   width: 100%;
+
   height: 83vh;
   overflow: hidden;
 }
@@ -22,6 +23,15 @@
   background-color: rgba(218, 224, 250, 0.277);
   text-wrap: nowrap;
 }
+
+
+.menu a:hover {
+  text-decoration: underline;
+}
+
+.logoimage{
+  text-align: center;
+} 
 
 .menu{
   margin: 10%;
@@ -46,3 +56,4 @@
   text-wrap: nowrap;
  }
 }
+
