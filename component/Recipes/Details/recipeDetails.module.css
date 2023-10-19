@@ -1,6 +1,5 @@
 /* recipeDetails.module.css */
 
-/* Base styles */
 .recipeCard {
   display: flex;
   flex-direction: column;
@@ -112,7 +111,6 @@
   margin: 0;
   /* Add gradient text effect */
   background-image: linear-gradient(45deg, #ff9900, #ff0033);
-  -webkit-background-clip: text;
   color: transparent;
 }
 
