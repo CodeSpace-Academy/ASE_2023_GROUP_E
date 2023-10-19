@@ -78,7 +78,7 @@ const RecipeDetails = ({ recipe, allergens }) => {
           </ul>
         </div>
       </div>
-   
+
 
       <div>
         <p>{recipe.description.substring(0, 170)}</p>
@@ -101,11 +101,11 @@ const RecipeDetails = ({ recipe, allergens }) => {
               {recipe.instructions &&
                 recipe.instructions.map((instruction, index) => (
                   <li key={index}>{instruction}
-                   <IndividualRecipeIntruction
+                    <IndividualRecipeIntruction
                       number={index}
                       instruction={instruction}
                     />
-                 </li>
+                  </li>
                 ))}
             </ol>
           </div>
@@ -114,7 +114,7 @@ const RecipeDetails = ({ recipe, allergens }) => {
         )}
 
       </div>
-          </div> 
+    </div>
   );
 };
 
