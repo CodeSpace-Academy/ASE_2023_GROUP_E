@@ -1,11 +1,33 @@
-// component/Recipe/Preview/RecipeDetails
-import React from 'react';
+// component/Recipe/Preview/RecipeDetails.js
+import React, { useState } from 'react';
 import Image from 'next/image';
 import styles from './recipeDetails.module.css';
 import NumToTime from '@/component/handlerTime/timeRead';
 import ImageSlider from './ImageSlider';
 import SingleRecipeTags from '../SingleRecipeTags/SingleRecipeTags';
+import EditDescription from '@/component/editDescription/editDescription';
+
 const RecipeDetails = ({ recipe }) => {
+  const [isEditingDescription, setIsEditingDescription] = useState(false);
+  const [editedDescription, setEditedDescription] = useState(recipe.description);
+
+  // Handler for opening the edit description modal
+  const handleEditDescription = () => {
+    setIsEditingDescription(true);
+  };
+
+  // Handler for saving the edited description and closing the modal
+  const handleSaveDescription = (newDescription) => {
+    setEditedDescription(newDescription);
+    // You may want to save the newDescription to your data source here.
+    setIsEditingDescription(false); // Close the modal
+  };
+
+  // Handler for closing the edit description modal
+  const handleCloseDescriptionModal = () => {
+    setIsEditingDescription(false);
+  };
+
   if (!recipe) return null;
 
   return (
@@ -18,8 +40,9 @@ const RecipeDetails = ({ recipe }) => {
       </div>
       <div className={styles.info}>
         <p>
-          <strong>Description:</strong> {recipe.description}
+          <strong>Description:</strong> {editedDescription}
         </p>
+        <button onClick={EditDescription}>Edit Description</button>
         <p>
           <strong>Category:</strong> {recipe.category}
         </p>
@@ -49,19 +72,12 @@ const RecipeDetails = ({ recipe }) => {
           </ul>
         </div>
       </div>
-      {/* Add prep time here */}
-
       <div>
         <p>{recipe.description.substring(0, 170)}</p>
       </div>
-      <div>
-        {/*adding time to display on preview */}
-        ⏲️ Prep: {NumToTime(recipe.prep)}
-      </div>
+      <div>⏲️ Prep: {NumToTime(recipe.prep)}</div>
       <div>🕰️ Cook: {NumToTime(recipe.cook)}</div>
-      {/* total time for (added prep and cook) */}
       <div>⏰ Total Time: {NumToTime(recipe.prep + recipe.cook)}</div>
-
       <div className={styles.instructions}>
         <h2>Instructions:</h2>
         <div className={styles.listContainer}>
@@ -73,6 +89,14 @@ const RecipeDetails = ({ recipe }) => {
           </ol>
         </div>
       </div>
+
+      {isEditingDescription && (
+        <EditDescription
+          currentDescription={editedDescription}
+          onSave={handleSaveDescription}
+          onClose={handleCloseDescriptionModal}
+        />
+      )}
     </div>
   );
 };
