@@ -5,11 +5,26 @@ import styles from './recipeDetails.module.css';
 import NumToTime from '@/component/handlerTime/timeRead';
 import ImageSlider from './ImageSlider';
 import SingleRecipeTags from '../SingleRecipeTags/SingleRecipeTags';
-import IndividualRecipeIntruction from '@/component/singleRecipe/instructions/individualRecipeIntruction'
 
-const RecipeDetails = ({ recipe }) => {
+import IndividualRecipeIntruction from '@/component/singleRecipe/instructions/individualRecipeIntruction'
   if (!recipe) return null;
 
+import SingleRecipeAllergens from '../Allergens/SingleRecipeAllergens';
+
+const RecipeDetails = ({ recipe, allergens }) => {
+  /**
+   * Contains the allergens present in this recipe
+   */
+  let allergenList = [];
+  //If ingredient is present in allergen array, add it to the allergens list
+  for (let ingredient in recipe.ingredients) {
+    if (allergens?.includes(ingredient)) {
+      allergenList.push(ingredient);
+    }
+  }
+
+
+  if (!recipe) return null;
   return (
     <div className={styles.recipeCard}>
       <div className={styles.titleAndImage}>
@@ -27,6 +42,14 @@ const RecipeDetails = ({ recipe }) => {
         </p>
         <p>
           <strong>Tags:</strong> <SingleRecipeTags tags={recipe.tags} />
+        </p>
+        <p className={styles.aligned}>
+          <strong>Allergens:</strong>
+          {allergenList.length !== 0 ? (
+            <SingleRecipeAllergens allergensList={allergenList} />
+          ) : (
+            <p>No allergens</p>
+          )}
         </p>
       </div>
       <div className={styles.nutrition}>
