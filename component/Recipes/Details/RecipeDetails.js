@@ -34,25 +34,35 @@ const RecipeDetails = ({ recipe, allergens }) => {
             <ImageSlider imageUrls={recipe.images && recipe.images} />
           </div>
         </div>
-
-        <div className={styles.info}>
-          <p>
-            <strong>Description:</strong> {recipe.description}
-          </p>
-          <p>
-            <strong>Category:</strong> {recipe.category}
-          </p>
-          <p>
-           <SingleRecipeTags tags={recipe.tags} />
-          </p>
-          <p className={styles.aligned}>
-            <strong>Allergens:</strong>
-            {allergenList.length !== 0 ? (
-              <SingleRecipeAllergens allergensList={allergenList} />
-            ) : (
-              <p>No allergens</p>
-            )}
-          </p>
+      </div>
+      <div className={styles.info}>
+        <p>
+          <strong>Description:</strong> {recipe.description}
+        </p>
+        <p>
+          <strong>Category:</strong> {recipe.category}
+        </p>
+        <div>
+          <strong>Tags:</strong> <SingleRecipeTags tags={recipe.tags} />
+        </div>
+        <div className={styles.aligned}>
+          <strong>Allergens:</strong>
+          {allergenList.length !== 0 ? (
+            <SingleRecipeAllergens allergensList={allergenList} />
+          ) : (
+            <p>No allergens</p>
+          )}
+        </div>
+      </div>
+      <div className={styles.nutrition}>
+        <h2>Nutrition:</h2>
+        <div className={styles.listContainer}>
+          <ul>
+            {recipe.nutrition &&
+              Object.entries(recipe.nutrition).map(([key, value]) => (
+                <li key={key}>{`${key}: ${value}`}</li>
+              ))}
+          </ul>
         </div>
 
         <div className={styles.listContainer}>
@@ -107,6 +117,7 @@ const RecipeDetails = ({ recipe, allergens }) => {
               {recipe.instructions &&
                 recipe.instructions.map((instruction, index) => (
                   <li className={styles.listItem} key={index}>
+
                     {instruction}
                     <IndividualRecipeIntruction
                       number={index}
@@ -116,7 +127,6 @@ const RecipeDetails = ({ recipe, allergens }) => {
                 ))}
             </ol>
           </div>
-
           {/* Display error message if cannot load instructions */}
           {recipe.instructions ? (
             <div className={styles.listContainer}>
@@ -137,6 +147,7 @@ const RecipeDetails = ({ recipe, allergens }) => {
             <ErrorMessage message={'Error loading the instructions'} />
           )}
         </div>
+
       </div>
     </div>
   );
