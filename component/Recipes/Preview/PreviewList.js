@@ -73,11 +73,11 @@ export default function PreviewList({ recipes, click }) {
                           />
                         </div>
                         <div>
-
+                          
                           {
                             showDescriptions[index] &&  recipe.description ? (
-                              <p>{recipe.description}</p> 
-                            ) : <p>Failed to load description</p>
+                            <p>{recipe.description}</p>
+                          ) : <p>Failed to load description</p>
                           }
 
                           <div className={style.times}>
