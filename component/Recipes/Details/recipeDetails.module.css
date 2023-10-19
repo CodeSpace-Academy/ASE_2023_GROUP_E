@@ -78,8 +78,14 @@
   grid-column: 2; /* Place in the second column */
 }
 
+.highlighted {
+  background-color: rgb(255, 64, 0); /* Set your desired highlight color here */
+  font-weight: bold; /* Optionally make the text bold */
+}
+
 .aligned {
   display: flex;
   align-items: center;
   gap: 1rem;
+
 }

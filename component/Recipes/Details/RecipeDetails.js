@@ -5,6 +5,9 @@ import styles from './recipeDetails.module.css';
 import NumToTime from '@/component/handlerTime/timeRead';
 import ImageSlider from './ImageSlider';
 import SingleRecipeTags from '../SingleRecipeTags/SingleRecipeTags';
+
+import IndividualRecipeIntruction from '@/component/singleRecipe/instructions/individualRecipeIntruction'
+
 import SingleRecipeAllergens from '../Allergens/SingleRecipeAllergens';
 
 const RecipeDetails = ({ recipe, allergens }) => {
@@ -18,6 +21,7 @@ const RecipeDetails = ({ recipe, allergens }) => {
       allergenList.push(ingredient);
     }
   }
+
 
   if (!recipe) return null;
   return (
@@ -69,7 +73,7 @@ const RecipeDetails = ({ recipe, allergens }) => {
           </ul>
         </div>
       </div>
-      {/* Add prep time here */}
+   
 
       <div>
         <p>{recipe.description.substring(0, 170)}</p>
@@ -82,18 +86,21 @@ const RecipeDetails = ({ recipe, allergens }) => {
       {/* total time for (added prep and cook) */}
       <div>⏰ Total Time: {NumToTime(recipe.prep + recipe.cook)}</div>
 
-      <div className={styles.instructions}>
-        <h2>Instructions:</h2>
-        <div className={styles.listContainer}>
-          <ol>
-            {recipe.instructions &&
-              recipe.instructions.map((instruction, index) => (
-                <li key={index}>{instruction}</li>
+     <div className={styles.listContainer}>
+    <ol>
+      {recipe.instructions &&
+        recipe.instructions.map((instruction, index) => (
+          <li key={index}>
+            <IndividualRecipeIntruction
+              number={index}
+              instruction={instruction}
+            />
+          </li>
               ))}
           </ol>
         </div>
       </div>
-    </div>
+  
   );
 };
 
