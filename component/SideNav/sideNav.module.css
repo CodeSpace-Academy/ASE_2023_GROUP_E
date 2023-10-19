@@ -54,3 +54,29 @@
 .contentClose {
   margin-left:50px; /* Adjust the value to your preference */
 }
+
+.link {
+  font-size: 24px;
+}
+
+.link a {
+  color: black;
+}
+
+.links2 {
+  font-size: 30px;
+}
+
+.links2 a {
+  color: rgb(0, 0, 0);
+}
+
+.optionName{
+  cursor: pointer;
+
+}
+
+.optionName a {
+  color: black;
+  text-decoration: none;
+}
