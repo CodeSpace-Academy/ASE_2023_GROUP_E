@@ -7,7 +7,6 @@ import ImageSlider from './ImageSlider';
 import SingleRecipeTags from '../SingleRecipeTags/SingleRecipeTags';
 
 import IndividualRecipeIntruction from '@/component/singleRecipe/instructions/individualRecipeIntruction'
-  if (!recipe) return null;
 
 import SingleRecipeAllergens from '../Allergens/SingleRecipeAllergens';
 
