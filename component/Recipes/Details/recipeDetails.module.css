@@ -46,7 +46,6 @@
   margin-bottom: 10px;
 }
 
-
 .recipeCard {
   background-color: #fff;
   padding: 20px;
@@ -55,7 +54,7 @@
   margin-bottom: 20px;
   display: grid;
   grid-template-columns: 1fr 1fr; /* Two columns */
-  grid-column-gap: 20px; 
+  grid-column-gap: 20px;
 }
 
 .titleAndImage {
@@ -71,11 +70,16 @@
   margin: 10px 0; /* Adjust margin */
 }
 
-
 .nutrition {
   grid-column: 1; /* Place in the first column */
 }
 
 .ingredients {
   grid-column: 2; /* Place in the second column */
+}
+
+.aligned {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
