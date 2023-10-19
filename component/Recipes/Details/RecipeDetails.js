@@ -6,6 +6,10 @@ import NumToTime from '@/component/handlerTime/timeRead';
 import ImageSlider from './ImageSlider';
 import SingleRecipeTags from '../SingleRecipeTags/SingleRecipeTags';
 
+import ErrorMessage from '@/component/Error/ErrorMessage';
+
+
+
 import IndividualRecipeIntruction from '@/component/singleRecipe/instructions/individualRecipeIntruction'
 
 import SingleRecipeAllergens from '../Allergens/SingleRecipeAllergens';
@@ -86,21 +90,30 @@ const RecipeDetails = ({ recipe, allergens }) => {
       {/* total time for (added prep and cook) */}
       <div>⏰ Total Time: {NumToTime(recipe.prep + recipe.cook)}</div>
 
-     <div className={styles.listContainer}>
-    <ol>
-      {recipe.instructions &&
-        recipe.instructions.map((instruction, index) => (
-          <li key={index}>
-            <IndividualRecipeIntruction
-              number={index}
-              instruction={instruction}
-            />
-          </li>
-              ))}
-          </ol>
-        </div>
+
+      <div className={styles.instructions}>
+        <h2>Instructions:</h2>
+        {/* Display error message if cannot load instructions */}
+        {recipe.instructions ? (
+          <div className={styles.listContainer}>
+            <ol>
+              {recipe.instructions &&
+                recipe.instructions.map((instruction, index) => (
+                  <li key={index}>{instruction}
+                   <IndividualRecipeIntruction
+                      number={index}
+                      instruction={instruction}
+                    />
+                 </li>
+                ))}
+            </ol>
+          </div>
+        ) : (
+          <ErrorMessage message={'Error loading the instructions'} />
+        )}
+
       </div>
-  
+          </div> 
   );
 };
 
