@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { GrNext, GrPrevious } from 'react-icons/gr'
+import classes from './imageSlider.module.css' 
 
 const ImageSlider = ({ imageUrls }) => {
   const [currentIndex, setCurrentIndex] = useState(0);

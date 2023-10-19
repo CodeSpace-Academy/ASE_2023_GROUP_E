@@ -5,13 +5,28 @@ import styles from './recipeDetails.module.css';
 import NumToTime from '@/component/handlerTime/timeRead';
 import ImageSlider from './ImageSlider';
 import SingleRecipeTags from '../SingleRecipeTags/SingleRecipeTags';
+import ErrorMessage from '@/component/Error/ErrorMessage';
+import IndividualRecipeIntruction from '@/component/singleRecipe/instructions/individualRecipeIntruction'
+import SingleRecipeAllergens from '../Allergens/SingleRecipeAllergens';
 
 const RecipeDetails = ({ recipe }) => {
   const [showIngredients, setShowIngredients] = useState(false);
   const [showNutrition, setShowNutrition] = useState(false);
 
-  if (!recipe) return null;
+const RecipeDetails = ({ recipe, allergens }) => {
+  /**
+   * Contains the allergens present in this recipe
+   */
+  let allergenList = [];
+  //If ingredient is present in allergen array, add it to the allergens list
+  for (let ingredient in recipe.ingredients) {
+    if (allergens?.includes(ingredient)) {
+      allergenList.push(ingredient);
+    }
+  }
 
+
+  if (!recipe) return null;
   return (
     <div className={styles.recipeCard}>
 
@@ -22,7 +37,7 @@ const RecipeDetails = ({ recipe }) => {
             <ImageSlider imageUrls={recipe.images && recipe.images} />
           </div>
         </div>
-
+  
         <div className={styles.info}>
           <p>
             <strong>Description:</strong> {recipe.description}
@@ -34,6 +49,35 @@ const RecipeDetails = ({ recipe }) => {
             <p>{recipe.description.substring(0, 170)}</p>
           </div>
             <SingleRecipeTags tags={recipe.tags} />
+      </div>
+      <div className={styles.info}>
+        <p>
+          <strong>Description:</strong> {recipe.description}
+        </p>
+        <p>
+          <strong>Category:</strong> {recipe.category}
+        </p>
+        <p>
+          <strong>Tags:</strong> <SingleRecipeTags tags={recipe.tags} />
+        </p>
+        <p className={styles.aligned}>
+          <strong>Allergens:</strong>
+          {allergenList.length !== 0 ? (
+            <SingleRecipeAllergens allergensList={allergenList} />
+          ) : (
+            <p>No allergens</p>
+          )}
+        </p>
+      </div>
+      <div className={styles.nutrition}>
+        <h2>Nutrition:</h2>
+        <div className={styles.listContainer}>
+          <ul>
+            {recipe.nutrition &&
+              Object.entries(recipe.nutrition).map(([key, value]) => (
+                <li key={key}>{`${key}: ${value}`}</li>
+              ))}
+          </ul>
         </div>
 
       </div>
@@ -80,11 +124,14 @@ const RecipeDetails = ({ recipe }) => {
           {/* total time for (added prep and cook) */}
           ⏰ Total Time: {NumToTime(recipe.prep + recipe.cook)}
         </div>
-
       </div>
+   
+      </div>
+
 
       <div className={styles.instructions}>
         <h2>Instructions:</h2>
+
         <div className={`${styles.listContainer} ${styles.list}`}>
           <ol className={styles.orderedList}>
             {recipe.instructions &&
@@ -93,8 +140,27 @@ const RecipeDetails = ({ recipe }) => {
               ))}
           </ol>
         </div>
+
+        {/* Display error message if cannot load instructions */}
+        {recipe.instructions ? (
+          <div className={styles.listContainer}>
+            <ol>
+              {recipe.instructions &&
+                recipe.instructions.map((instruction, index) => (
+                  <li key={index}>{instruction}
+                   <IndividualRecipeIntruction
+                      number={index}
+                      instruction={instruction}
+                    />
+                 </li>
+                ))}
+            </ol>
+          </div>
+        ) : (
+          <ErrorMessage message={'Error loading the instructions'} />
+        )}
       </div>
-    </div>
+          </div> 
   );
 };
 

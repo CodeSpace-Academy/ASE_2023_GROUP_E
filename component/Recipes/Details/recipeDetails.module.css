@@ -137,6 +137,15 @@
   /* animation: bounce 0.3s ease infinite; */
   animation: cardAnimation 1s infinite alternate;
 
+.recipeCard {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two columns */
+  grid-column-gap: 20px;
 }
 
 @keyframes cardAnimation {
@@ -179,6 +188,7 @@
   transform: rotate(0deg);
 }
 
+
 /* Styling for Instructions section */
 .instructions {
   font-size: 18px;
@@ -200,3 +210,24 @@
   margin: 0;
   padding: 0 0 0 20px;
 }
+
+.nutrition {
+  grid-column: 1; /* Place in the first column */
+}
+
+.ingredients {
+  grid-column: 2; /* Place in the second column */
+}
+
+.highlighted {
+  background-color: rgb(255, 64, 0); /* Set your desired highlight color here */
+  font-weight: bold; /* Optionally make the text bold */
+}
+
+.aligned {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+}
+

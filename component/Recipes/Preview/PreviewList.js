@@ -10,6 +10,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import SingleRecipeTags from '../SingleRecipeTags/SingleRecipeTags';
+import ErrorMessage from '@/component/Error/ErrorMessage';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -73,9 +74,13 @@ export default function PreviewList({ recipes, click }) {
                           />
                         </div>
                         <div>
-                          {showDescriptions[index] && (
-                            <p>{recipe.description.substring(0, 170)}</p>
-                          )}
+
+                          {
+                            showDescriptions[index] &&  recipe.description ? (
+                              <p>{recipe.description}</p> 
+                            ) : showDescriptions[index] ? <ErrorMessage message = 'Failed to load description' /> : ''
+                          }
+
                           <div className={style.times}>
                             <div>⏲️ Prep: {NumToTime(recipe.prep)}</div>
                             <div>🕰️ Cook: {NumToTime(recipe.cook)}</div>
@@ -86,20 +91,22 @@ export default function PreviewList({ recipes, click }) {
                           </div>
                         </div>
                       </div>
-                      <button onClick={() => toggleDescription(index)}>
-                        Show Description
-                      </button>
+                      
                       {/* Recipe tags */}
                       <SingleRecipeTags tags={recipe.tags} />
                     </Link>
+
+                    <button onClick={() => toggleDescription(index)}>
+                        Show Description
+                    </button>
+
                   </Item>
                 </Grid>
               );
             })}
         </Grid>
       </Box>
-      {selectedRecipe && <RecipeDetails recipe={selectedRecipe} />}
-      <button onClick={click}>Load More</button>
+
     </>
   );
 }
