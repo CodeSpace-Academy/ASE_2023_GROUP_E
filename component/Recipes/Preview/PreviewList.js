@@ -9,6 +9,7 @@ import style from './previewList.module.css';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import SingleRecipeTags from '../SingleRecipeTags/SingleRecipeTags';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -52,37 +53,59 @@ export default function PreviewList({ recipes, click }) {
             recipes.map((recipe, index) => {
               return (
                 <Grid xs={12} md={12} key={recipe.id} className={style.item}>
-                  <Item key={recipe.id} onClick={() => handleRecipeClick(recipe)}>
-                    <Link href={`/${currentPath}/${recipe.title}`} className={style.link}>
+                  <Item
+                    key={recipe.id}
+                    onClick={() => handleRecipeClick(recipe)}
+                  >
+                    <Link
+                      href={`/${currentPath}/${recipe.title}`}
+                      className={style.link}
+                    >
                       <h2 className={style.title}>{recipe.title}</h2>
                       <div className={style.recipe}>
                         <div>
-                          <Image src={recipe.images[0]} className={style.img} alt={recipe.images[0]} width={200} height={100} />
+                          <Image
+                            src={recipe.images[0]}
+                            className={style.img}
+                            alt={recipe.images[0]}
+                            width={200}
+                            height={100}
+                          />
                         </div>
                         <div>
-                          {showDescriptions[index] && <p>{recipe.description.substring(0, 170)}</p>}
+
+                          {
+                            showDescriptions[index] &&  recipe.description ? (
+                              <p>{recipe.description}</p> 
+                            ) : <p>Failed to load description</p>
+                          }
+
                           <div className={style.times}>
                             <div>⏲️ Prep: {NumToTime(recipe.prep)}</div>
                             <div>🕰️ Cook: {NumToTime(recipe.cook)}</div>
-                            <div>⏰ Total Time: {NumToTime(recipe.prep + recipe.cook)}</div>
+                            <div>
+                              ⏰ Total Time:{' '}
+                              {NumToTime(recipe.prep + recipe.cook)}
+                            </div>
                           </div>
                         </div>
                       </div>
-                      <button onClick={() => toggleDescription(index)}>Show Description</button>
-                      <div className={style.tagsList}>
-                        {recipe.tags.map((tag) => (
-                          <h4 key={tag}> {`${tag}`}</h4>
-                        ))}
-                      </div>
+                      
+                      {/* Recipe tags */}
+                      <SingleRecipeTags tags={recipe.tags} />
                     </Link>
+
+                    <button onClick={() => toggleDescription(index)}>
+                        Show Description
+                    </button>
+
                   </Item>
                 </Grid>
               );
             })}
         </Grid>
       </Box>
-      {selectedRecipe && <RecipeDetails recipe={selectedRecipe} />}
-      <button onClick={click}>Load More</button>
+
     </>
   );
 }

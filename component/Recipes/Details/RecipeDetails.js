@@ -1,28 +1,39 @@
 // component/Recipe/Preview/RecipeDetails
-import React from "react";
-import Image from "next/image";
-import styles from "./recipeDetails.module.css";
-import NumToTime from "@/component/handlerTime/timeRead";
+import React from 'react';
+import Image from 'next/image';
+import styles from './recipeDetails.module.css';
+import NumToTime from '@/component/handlerTime/timeRead';
+import ImageSlider from './ImageSlider';
+import SingleRecipeTags from '../SingleRecipeTags/SingleRecipeTags';
 
-const RecipeDetails = ({ recipe }) => {
+import ErrorMessage from '@/component/Error/ErrorMessage';
+
+
+
+import IndividualRecipeIntruction from '@/component/singleRecipe/instructions/individualRecipeIntruction'
+
+import SingleRecipeAllergens from '../Allergens/SingleRecipeAllergens';
+
+const RecipeDetails = ({ recipe, allergens }) => {
+  /**
+   * Contains the allergens present in this recipe
+   */
+  let allergenList = [];
+  //If ingredient is present in allergen array, add it to the allergens list
+  for (let ingredient in recipe.ingredients) {
+    if (allergens?.includes(ingredient)) {
+      allergenList.push(ingredient);
+    }
+  }
+
+
   if (!recipe) return null;
-
   return (
     <div className={styles.recipeCard}>
       <div className={styles.titleAndImage}>
         <h1 className={styles.title}>{recipe.title}</h1>
         <div className={styles.imageRow}>
-          {recipe.images &&
-            recipe.images.map((image, index) => (
-              <div key={index} className={styles.imageContainer}>
-                <Image
-                  src={image}
-                  alt={`Image ${index + 1}`}
-                  width={300}
-                  height={200}
-                />
-              </div>
-            ))}
+          <ImageSlider imageUrls={recipe.images && recipe.images} />
         </div>
       </div>
       <div className={styles.info}>
@@ -33,7 +44,15 @@ const RecipeDetails = ({ recipe }) => {
           <strong>Category:</strong> {recipe.category}
         </p>
         <p>
-          <strong>Tags:</strong> {recipe.tags.join(", ")}
+          <strong>Tags:</strong> <SingleRecipeTags tags={recipe.tags} />
+        </p>
+        <p className={styles.aligned}>
+          <strong>Allergens:</strong>
+          {allergenList.length !== 0 ? (
+            <SingleRecipeAllergens allergensList={allergenList} />
+          ) : (
+            <p>No allergens</p>
+          )}
         </p>
       </div>
       <div className={styles.nutrition}>
@@ -58,7 +77,7 @@ const RecipeDetails = ({ recipe }) => {
           </ul>
         </div>
       </div>
-      {/* Add prep time here */}
+   
 
       <div>
         <p>{recipe.description.substring(0, 170)}</p>
@@ -71,18 +90,30 @@ const RecipeDetails = ({ recipe }) => {
       {/* total time for (added prep and cook) */}
       <div>⏰ Total Time: {NumToTime(recipe.prep + recipe.cook)}</div>
 
+
       <div className={styles.instructions}>
         <h2>Instructions:</h2>
-        <div className={styles.listContainer}>
-          <ol>
-            {recipe.instructions &&
-              recipe.instructions.map((instruction, index) => (
-                <li key={index}>{instruction}</li>
-              ))}
-          </ol>
-        </div>
+        {/* Display error message if cannot load instructions */}
+        {recipe.instructions ? (
+          <div className={styles.listContainer}>
+            <ol>
+              {recipe.instructions &&
+                recipe.instructions.map((instruction, index) => (
+                  <li key={index}>{instruction}
+                   <IndividualRecipeIntruction
+                      number={index}
+                      instruction={instruction}
+                    />
+                 </li>
+                ))}
+            </ol>
+          </div>
+        ) : (
+          <ErrorMessage message={'Error loading the instructions'} />
+        )}
+
       </div>
-    </div>
+          </div> 
   );
 };
 

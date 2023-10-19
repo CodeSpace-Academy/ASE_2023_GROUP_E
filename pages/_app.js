@@ -1,11 +1,16 @@
 
-// import '@/styles/globals.css'
+import '@/styles/globals.css'
+
 import LayoutAll from "@/Layout/layout"
+import { ContextProvider } from "@/useContext/StateContext"
+
 export default function App({ Component, pageProps }) {
   return (
-    <LayoutAll>
-      <Component {...pageProps} />
-    </LayoutAll>
+    <ContextProvider>
+      <LayoutAll>
+        <Component {...pageProps} />
+      </LayoutAll>
+    </ContextProvider>
   )
 }
 

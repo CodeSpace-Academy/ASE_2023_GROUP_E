@@ -1,49 +1,65 @@
 import React, { useState } from 'react';
-import { FaAngleRight, FaHome, FaCog, FaUser, FaBell } from 'react-icons/fa';
-import classes from './sideNav.module.css'
+
+import { AiOutlineMenu,AiOutlineTags, AiOutlineHome, AiOutlineSetting, AiOutlineUser, AiOutlineHeart, } from 'react-icons/ai';
+import classes from './sideNav.module.css';
+import { MdOutlineFastfood,} from 'react-icons/md'
+import StateContext from '@/useContext/StateContext';
+import Link from 'next/link';
+
+function Links(link, text){
+  return (
+    <Link href={link}>{text}</Link>
+  )
+}
 
 const ExpandableMenu = () => {
-  const [expanded, setExpanded] = useState(false);
+  const {setToggleMenu, toggleMenu} = StateContext()
 
   const toggleExpand = () => {
-    setExpanded(!expanded);
+    setToggleMenu(!toggleMenu);
   };
 
   const menuOptions = [
-    { icon: <FaHome />, name: 'Home' },
-    { icon: <FaCog />, name: 'Settings' },
-    { icon: <FaUser />, name: 'Profile' },
-    { icon: <FaBell />, name: 'Notifications' },
+    { icon: Links('/',  <AiOutlineHome /> ) , name: Links('/', 'Home')},
+    { icon: Links('/', <AiOutlineUser />) , name: Links('/', 'Profile') },
+    { icon: Links(`${50}`, <MdOutlineFastfood />) , name: Links(`${50}`, 'Recipes') },
+    { icon: Links('/tags', <AiOutlineTags/>) , name: Links('/tags', 'Tags')},
+    { icon: Links('/',  <AiOutlineHeart />), name: Links('/', 'Favourites') },
+    { icon: Links('/', <AiOutlineSetting />) , name: Links('/', 'Settings')  },
   ];
 
   return (
     <div className={classes.pageContainer}>
       <div className={classes.expandableMenu}>
-        <div className={`${classes.menuToggle} ${expanded ? 'expanded' : ''}`} onClick={toggleExpand}>
-          <FaAngleRight />
+        <div className={`${classes.menuToggle}`} onClick={toggleExpand}>
+          <AiOutlineMenu />
         </div>
-        <ul className={`${classes.menuOptions} ${expanded ? classes.expanded : ''}`}>
+
+        <ul className={`${classes.menuOptions} ${toggleMenu ? classes.expanded : ''}`}>
           {menuOptions.map((option, index) => (
-            <li key={index}>
-              {expanded ? (
+            <li key={index} onClick={() => setToggleMenu(false)}>
+              {toggleMenu ? (
                 <>
-                  {option.icon}
-                  {option.name}
+                  <div className={classes.link}>{option.icon}</div> {/* Increase the font size */}
+                  <p className={classes.optionName}>{option.name}</p>
                 </>
               ) : (
-                option.icon
+                <div className={classes.links2}>
+                  {option.icon}
+                </div>
               )}
             </li>
           ))}
         </ul>
       </div>
-      <div className={classes.content}>
-        {/* Add your page content here */}
-        <h1>Chef's Haven</h1>
-        <p>🧑‍🍳</p>
-        
 
+      <div className={`${classes.content} ${toggleMenu ? '' : classes.contentClose}`}>
+        {/* Add your page content here */}
+        
+        
       </div>
+
+
     </div>
   );
 };

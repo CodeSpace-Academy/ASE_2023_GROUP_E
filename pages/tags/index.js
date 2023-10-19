@@ -2,19 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { run } from '@/database';
 import TagsListt from '@/component/tags/tagsList';
 
-export default function TagsList({ results }) {
+export default function TagsList({ documents }) {
   const [uniqueTags, setUniqueTags] = useState([]);
 
   useEffect(() => {
-    if (results) {
-      const allTags = results.reduce((tags, recipe) => {
+    if (documents) {
+      const allTags = documents.reduce((tags, recipe) => {
         return tags.concat(recipe.tags);
       }, []);
 
       const uniqueTags = [...new Set(allTags)]; // Remove duplicates
       setUniqueTags(uniqueTags);
     }
-  }, [results]);
+  }, [documents]);
 
   return (
     <div>
@@ -25,11 +25,11 @@ export default function TagsList({ results }) {
 
 export async function getStaticProps() {
   try {
-    const results = await run();
+    const {documents} = await run();
 
     return {
       props: {
-        results,
+        documents,
       },
     };
   } catch (error) {

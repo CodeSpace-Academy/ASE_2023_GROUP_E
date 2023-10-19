@@ -1,0 +1,45 @@
+.layout{
+    display: flex;
+    flex-direction: column;
+}
+
+.imgDiv{
+    text-align: center;
+    background-color: rgba(218, 224, 250, 0.277);
+    padding: 5px;
+    margin-left: 50px;
+}
+
+.img{
+    width: 220px;
+}
+
+.expanded{
+    margin-left: 150px;
+}
+
+.expand {
+    margin-left: 75px;
+}
+
+@media only screen and (max-width: 1040px){
+    
+    .expanded{
+        margin-left: 140px;
+    }
+    
+    .expand {
+        margin-left: 60px;
+    }
+}
+
+@media only screen and (max-width: 445px){
+    
+    .expanded{
+        margin-left: 47px;
+    }
+    
+    .expand {
+        margin-left: 47px;
+    }
+}
