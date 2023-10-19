@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { useState } from "react";
+import { GrNext, GrPrevious } from 'react-icons/gr'
+import classes from './imageSlider.module.css' 
 
 const ImageSlider = ({ imageUrls }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -17,13 +19,15 @@ const ImageSlider = ({ imageUrls }) => {
   };
 
   return (
-    <div className="image-slider">
-      <div className="image-container">
-        <Image src={imageUrls[currentIndex]} alt="Recipe" width={200} height={200}/>
+    <div className={classes.imageSlider}>
+      <div>
+        <button onClick={goToPrevious}><GrPrevious/></button>
       </div>
-      <div className="controls">
-        <button onClick={goToPrevious}>Previous</button>
-        <button onClick={goToNext}>Next</button>
+      <div className={classes.imageContainer}>
+        <Image className={classes.img} src={imageUrls[currentIndex]} alt="Recipe" width={200} height={200}/>
+      </div>
+      <div>
+        <button onClick={goToNext}><GrNext/></button>
       </div>
     </div>
   );
