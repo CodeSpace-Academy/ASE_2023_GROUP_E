@@ -28,44 +28,33 @@ const RecipeDetails = ({ recipe, allergens }) => {
   return (
     <div className={styles.recipeCard}>
       <h1 className={styles.title}>{recipe.title}</h1>
+
       <div className={styles.card}>
+
         <div className={styles.titleAndImage}>
           <div className={styles.imageRow}>
             <ImageSlider imageUrls={recipe.images && recipe.images} />
           </div>
         </div>
-      </div>
-      <div className={styles.info}>
-        <p>
-          <strong>Description:</strong> {recipe.description}
-        </p>
-        <p>
-          <strong>Category:</strong> {recipe.category}
-        </p>
-        <div>
-          <strong>Tags:</strong> <SingleRecipeTags tags={recipe.tags} />
-        </div>
-        <div className={styles.aligned}>
-          <strong>Allergens:</strong>
-          {allergenList.length !== 0 ? (
-            <SingleRecipeAllergens allergensList={allergenList} />
-          ) : (
-            <p>No allergens</p>
-          )}
-        </div>
-      </div>
-      <div className={styles.nutrition}>
-        <h2>Nutrition:</h2>
-        <div className={styles.listContainer}>
-          <ul>
-            {recipe.nutrition &&
-              Object.entries(recipe.nutrition).map(([key, value]) => (
-                <li key={key}>{`${key}: ${value}`}</li>
-              ))}
-          </ul>
+
+        <div className={styles.info}>
+          <div className={styles.info1}> 
+          <div><strong>Description:</strong> {recipe.description}</div>
+          <div><strong>Category:</strong> {recipe.category}</div>
+          <div> <SingleRecipeTags tags={recipe.tags} /></div>
+          <div className={styles.aligned}>
+            <strong>Allergens:</strong>
+            {allergenList.length !== 0 ? (
+              <SingleRecipeAllergens allergensList={allergenList} />
+            ) : (
+              <p>No allergens</p>
+            )}
+          </div>
+          </div>
+          
         </div>
 
-        <div className={styles.listContainer}>
+        <div className={`${styles.listContainer} list-container`}>
           <div className={styles.ingredients}>
             <h2 className={styles.heading}>Ingredients:</h2>
             {showIngredients && (
@@ -111,23 +100,6 @@ const RecipeDetails = ({ recipe, allergens }) => {
 
         <div className={styles.instructions}>
           <h2>Instructions:</h2>
-
-          <div className={`${styles.listContainer} ${styles.list}`}>
-            <ol className={styles.orderedList}>
-              {recipe.instructions &&
-                recipe.instructions.map((instruction, index) => (
-                  <li className={styles.listItem} key={index}>
-
-                    {instruction}
-                    <IndividualRecipeIntruction
-                      number={index}
-                      instruction={instruction}
-                    />
-                  </li>
-                ))}
-            </ol>
-          </div>
-          {/* Display error message if cannot load instructions */}
           {recipe.instructions ? (
             <div className={styles.listContainer}>
               <ol>
@@ -147,7 +119,6 @@ const RecipeDetails = ({ recipe, allergens }) => {
             <ErrorMessage message={'Error loading the instructions'} />
           )}
         </div>
-
       </div>
     </div>
   );

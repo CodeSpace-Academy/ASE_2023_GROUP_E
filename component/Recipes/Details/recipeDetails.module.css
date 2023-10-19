@@ -1,196 +1,117 @@
-/* recipeDetails.module.css */
+/* component/Recipe/Preview/recipeDetails.module.css */
 
+/* Main recipe card container */
 .recipeCard {
-  display: flex;
-  border: 2px solid #333;
+  display: grid;
+  grid-template-columns: 1fr 2fr; /* TitleAndImage on the left, Info on the right */
+  gap: 20px;
+  background-color: #f4f4f4;
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
-  background-color: #696969;
-  font-family: Arial, sans-serif;
-  animation: cardAnimation 1s infinite alternate, pulse 1.5s infinite;
+  font-family: 'Arial', sans-serif; /* Use a user-friendly font */
+
+  /* Add eye-catching animation to the card */
+  transform: scale(1);
+  transition: transform 0.2s;
 }
 
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.03);
-  }
-  100% {
-    transform: scale(1);
-  }
+.recipeCard:hover {
+  transform: scale(1.02); /* Scale up on hover */
+}
+.card{
+  margin-left: -100px;
 }
 
+/* Title */
+.title {
+  font-size: 24px; /* Increase font size for the title */
+}
 
-
-/* Styling for the left section containing title and image */
+/* TitleAndImage container (Left side) */
 .titleAndImage {
   display: flex;
-  align-items: center; /* Center the content vertically */
+  flex-direction: column;
+  align-items: center;
 }
 
-.title {
-  font-size: 24px;
-  font-weight: bold;
-  margin: 0;
-}
-
-.imageRow {
-  display: flex;
-  justify-content: center; /* Center the images horizontally */
-  align-items: center; /* Center the images vertically */
-  margin-top: 20px; /* Add margin as needed */
-}
-
-/* Style for individual images within the image slider */
-.image {
-  max-width: 100%;
-  max-height: 200px;
-  object-fit: cover; /* Maintain the aspect ratio and cover the container */
-  margin-right: 5px;
-  border: 2px solid #0f0e0e;
-  border-radius: 5px;
-}
-
-/* Add any other styles or animations to the images within the slider */
-
+/* Info container (Right side) */
 .info {
-  font-size: 16px;
   display: flex;
   flex-direction: column;
-  gap: 0px; /* Adjust the gap as needed */
-
-  /* You can customize these styles as needed */
-  .description p {
-    margin: 0;
-  }
-
-  /* Example: Add a background color and padding to the description and tags section */
-  .description {
-    background-color: #f2f2f2;
-    padding: 10px;
-    border-radius: 5px;
-  }
-
-  /* Example: Style tags with a background color and rounded corners */
-  .tag {
-    background-color: #007bff;
-    color: #fff;
-    border-radius: 5px;
-    padding: 2px 5px;
-  }
+  gap: 10px;
 }
 
-/* Ingredients and Nutrition Styles */
-.listContainer {
-  display: flex;
-  margin-top: 10px;
+.info1 {
+  /* User-friendly color and font for the description */
+  color: #333;
+  font-family: 'Roboto', sans-serif;
 }
 
-/* If you want to add spacing between the items, you can also add padding to the items themselves */
-.ingredients,
-.nutrition,
-.myDiv {
-  padding: 10px; /* Adjust the padding as needed to control the space around each item */
-}
-
-/* Styling for Ingredients and Nutrition headings */
-.heading {
-  font-size: 20px;
-  font-weight: bold;
-  margin: 0;
-  /* Add gradient text effect */
-  background-image: linear-gradient(45deg, #ff9900, #ff0033);
-  color: transparent;
-}
-
-.list {
-  list-style-type: disc;
-  margin: 0;
-  padding: 0 0 0 20px;
-}
-
-.listItem {
-  margin: 5px 0;
-}
-
-/* Styling for the show/hide button */
-.button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 5px 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  animation: cardAnimation 1s infinite alternate;
-}
-
-/* Time and Instructions Styles */
-.myDiv {
-  margin: 20px 0;
-  text-align: center;
-  transition: transform 0.5s ease;
-}
-
-.myDiv:hover {
-  transform: rotate(0deg);
-}
-
-/* Styling for Instructions section */
-.instructions {
-  font-size: 18px;
-  animation: fade-in 1s ease-in;
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.orderedList {
-  list-style-type: decimal;
-  margin: 0;
-  padding: 0 0 0 20px;
-}
-
-.nutrition {
-  grid-column: 1; /* Place in the first column */
-}
-
-.ingredients {
-  grid-column: 2; /* Place in the second column */
-}
-
-.highlighted {
-  background-color: rgb(255, 64, 0); /* Set your desired highlight color here */
-  font-weight: bold; /* Optionally make the text bold */
-}
-
+/* Allergens */
 .aligned {
   display: flex;
   align-items: center;
-  gap: 1rem;
 }
 
-/* Define the card animation */
-@keyframes cardAnimation {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1.02);
-  }
+/* Ingredients, Nutrition, and MyDiv container (Below the title and info) */
+.listContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* MyDiv on the left, Nutrition in the middle, Ingredients on the right */
+  gap: 20px;
+  margin-top: 20px;
 }
 
-/* Add hover effect to catch the user's attention */
+.ingredients, .nutrition, .myDiv {
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+/* Instructions container (Below the Ingredients, Nutrition, and MyDiv) */
+.instructions {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+/* Button for Show/Hide Ingredients and Nutrition */
+.button {
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+
+  /* Add eye-catching animation to the button */
+  transition: background-color 0.2s;
+}
+
 .button:hover {
-  background-color: #0056b3;
-  transform: scale(1.1);
+  background-color: #0056b3; /* Darker color on hover */
+}
+/* Add user-friendly fonts and styles to list items */
+.list-container ul,
+.list-container ol {
+  list-style: none;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  color: #555;
+}
+
+.list-container li {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+/* Add animations to list items */
+.list-container li {
+  transform: translateY(0);
+  transition: transform 0.2s;
+}
+
+.list-container li:hover {
+  transform: translateY(-2px); /* Lift on hover */
 }
