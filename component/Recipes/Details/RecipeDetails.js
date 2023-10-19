@@ -8,9 +8,7 @@ import SingleRecipeTags from '../SingleRecipeTags/SingleRecipeTags';
 
 import ErrorMessage from '@/component/Error/ErrorMessage';
 
-
-
-import IndividualRecipeIntruction from '@/component/singleRecipe/instructions/individualRecipeIntruction'
+import IndividualRecipeIntruction from '@/component/singleRecipe/instructions/individualRecipeIntruction';
 
 import SingleRecipeAllergens from '../Allergens/SingleRecipeAllergens';
 
@@ -25,7 +23,6 @@ const RecipeDetails = ({ recipe, allergens }) => {
       allergenList.push(ingredient);
     }
   }
-
 
   if (!recipe) return null;
   return (
@@ -43,17 +40,17 @@ const RecipeDetails = ({ recipe, allergens }) => {
         <p>
           <strong>Category:</strong> {recipe.category}
         </p>
-        <p>
+        <div>
           <strong>Tags:</strong> <SingleRecipeTags tags={recipe.tags} />
-        </p>
-        <p className={styles.aligned}>
+        </div>
+        <div className={styles.aligned}>
           <strong>Allergens:</strong>
           {allergenList.length !== 0 ? (
             <SingleRecipeAllergens allergensList={allergenList} />
           ) : (
             <p>No allergens</p>
           )}
-        </p>
+        </div>
       </div>
       <div className={styles.nutrition}>
         <h2>Nutrition:</h2>
@@ -77,7 +74,6 @@ const RecipeDetails = ({ recipe, allergens }) => {
           </ul>
         </div>
       </div>
-   
 
       <div>
         <p>{recipe.description.substring(0, 170)}</p>
@@ -90,7 +86,6 @@ const RecipeDetails = ({ recipe, allergens }) => {
       {/* total time for (added prep and cook) */}
       <div>⏰ Total Time: {NumToTime(recipe.prep + recipe.cook)}</div>
 
-
       <div className={styles.instructions}>
         <h2>Instructions:</h2>
         {/* Display error message if cannot load instructions */}
@@ -99,21 +94,21 @@ const RecipeDetails = ({ recipe, allergens }) => {
             <ol>
               {recipe.instructions &&
                 recipe.instructions.map((instruction, index) => (
-                  <li key={index}>{instruction}
-                   <IndividualRecipeIntruction
+                  <li key={index}>
+                    {instruction}
+                    <IndividualRecipeIntruction
                       number={index}
                       instruction={instruction}
                     />
-                 </li>
+                  </li>
                 ))}
             </ol>
           </div>
         ) : (
           <ErrorMessage message={'Error loading the instructions'} />
         )}
-
       </div>
-          </div> 
+    </div>
   );
 };
 
