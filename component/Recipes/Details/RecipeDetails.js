@@ -12,11 +12,12 @@ import SingleRecipeAllergens from '../Allergens/SingleRecipeAllergens';
 import EditDescription from '@/component/editDecription/editDescription';
 import StateContext from '@/useContext/StateContext';
 import Button from '@/component/Button/button';
+import EditInstruction from '@/component/editInstructions/editInstructions';
 
 const RecipeDetails = ({ recipe, allergens }) => {
   const [showIngredients, setShowIngredients] = useState(false);
   const [showNutrition, setShowNutrition] = useState(false);
-  const { edit, setEdit }= StateContext()
+  const { edit, setEdit, setEditInstruction, editInstruction }= StateContext()
 
   /**
    * Contains the allergens present in this recipe
@@ -121,6 +122,7 @@ const RecipeDetails = ({ recipe, allergens }) => {
                   </li>
                 ))}
             </ol>
+            {  editInstruction ? <EditInstruction info={recipe.instructions} /> : <Button color={'success'} text={'Edit Description'} click={() => setEditInstruction(!editInstruction)}/>}
           </div>
         ) : (
           <ErrorMessage message={'Error loading the instructions'} />
@@ -131,3 +133,5 @@ const RecipeDetails = ({ recipe, allergens }) => {
 };
 
 export default RecipeDetails;
+
+//Toss 2 cups berries with sugar.,Let stand for 45 minutes, stirring occasionally.,Transfer berry-sugar mixture to food processor.,Add yogurt and process until smooth.,Strain through fine sieve. Pour into baking pan (or transfer to ice cream maker and process according to manufacturers' directions). Freeze uncovered until edges are solid but centre is soft.  Transfer to processor and blend until smooth again.,Return to pan and freeze until edges are solid.,Transfer to processor and blend until smooth again.,Fold in remaining 2 cups of blueberries.,Pour into plastic mold and freeze overnight. Let soften slightly to serve.,it works maybe
