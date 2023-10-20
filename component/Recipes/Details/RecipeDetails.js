@@ -9,6 +9,8 @@ import EditDescription from '@/component/editDescription/editDescription';
 import ErrorMessage from '@/component/Error/ErrorMessage';
 import IndividualRecipeIntruction from '@/component/singleRecipe/instructions/individualRecipeIntruction'
 import SingleRecipeAllergens from '../Allergens/SingleRecipeAllergens';
+import StateContext from '@/useContext/StateContext';
+import Button from '@/component/button/button';
 
 const RecipeDetails = ({ recipe, allergens }) => {
   /**
@@ -22,8 +24,8 @@ const RecipeDetails = ({ recipe, allergens }) => {
     }
   }
 
-  //
-  const [ edit, setEdit] = useState(false)
+  //hides and show the edit button and form for description
+  const { edit, setEdit }= StateContext()
 
   if (!recipe) return null;
   
@@ -39,8 +41,12 @@ const RecipeDetails = ({ recipe, allergens }) => {
         <p>
           <strong>Description:</strong> {recipe.description}
         </p>
-          <button onClick={() => setEdit(!edit)}>Edit Description</button>
-          {  edit ? <EditDescription info={recipe.description} /> : '' }
+          
+
+          {/** 
+           * {@link info} is a props that hold the current descripton that will get modified
+           */}
+          {  edit ? <EditDescription info={recipe.description} /> : <Button color={'success'} text={'Edit Description'} click={() => setEdit(!edit)}/>}
         <p>
           <strong>Category:</strong> {recipe.category}
         </p>
