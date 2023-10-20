@@ -1,27 +1,26 @@
-/* recipeDetails.module.css */
+/* Default styles for recipeDetails.module.css */
 
 .recipeCard {
   display: flex;
   flex-direction: column;
-  margin: 35px;;
-  /* Add styles for the recipe card container */
+  margin: 2em; /* Using em for margin */
 }
 
 .card {
   display: grid;
   grid-template-columns: 1fr 2fr; /* Left for titleAndImage, right for info */
-  /* Add styles for the card container */
+  /* Add default styles for the card container */
 }
 
 .titleAndImage {
   display: flex;
   flex-direction: column;
-  /* Add styles for the title and image container */
+  /* Add default styles for the title and image container */
 }
 
 .title {
-  /* Styles for the title */
-  font-size: 24px;
+  /* Default styles for the title */
+  font-size: 1.1em; /* Using em for font size */
   font-weight: bold;
   order: 1; /* Put the title at the top */
 }
@@ -32,81 +31,78 @@
 }
 
 .info {
-  /* Styles for the info */
-  order: 2; /* Put styles.info on the right */
+  /* Default styles for the info */
+  margin: 2em;
+  order: 2; /* Put info on the right */
 }
-/* recipeDetails.module.css */
-
-/* recipeDetails.module.css */
 
 .listContainer {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr; /* Left for ingredients, middle for nutrition, right for myDiv */
-  /* Add styles for the list container */
+  grid-template-columns: 1fr; /* Default layout for small screens */
+  /* Add default styles for the list container */
 }
 
-.ingredients {
-  /* Styles for ingredients */
-  padding: 10px;
-}
-
-.ingredients h2 {
-  /* Styles for the heading */
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-.ingredients ul {
-  /* Styles for the ingredient list */
-  list-style-type: disc;
-  margin-left: 20px;
-}
-
-.ingredients button {
-  /* Styles for the button */
-  background-color: #0074d9;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.nutrition {
-  /* Styles for nutrition */
-  padding: 10px;
-}
-
-.nutrition h2 {
-  /* Styles for the heading */
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-.nutrition ul {
-  /* Styles for the nutrition list */
-  list-style-type: disc;
-  margin-left: 20px;
-}
-
-.nutrition button {
-  /* Styles for the button */
-  background-color: #0074d9;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
+.ingredients,
+.nutrition,
 .myDiv {
-  /* Styles for myDiv */
-  padding: 10px;
+  /* Default styles for each section */
+  padding: 1em; /* Using em for padding */
+}
+
+.ingredients h2,
+.nutrition h2 {
+  /* Default styles for headings */
+  font-size: 1.25em; /* Using em for font size */
+  margin-bottom: 0.625em; /* Using em for margin */
+}
+
+.ingredients ul,
+.nutrition ul {
+  /* Default styles for lists */
+  list-style-type: disc;
+  margin-left: 1.25em; /* Using em for margin */
+}
+
+.ingredients button,
+.nutrition button {
+  /* Default styles for buttons */
+  background-color: #0074d9;
+  color: #fff;
+  border: none;
+  padding: 0.625em 1.25em; /* Using em for padding */
+  font-size: 1em; /* Using em for font size */
+  cursor: pointer;
 }
 
 .instructions {
-  /* Styles for instructions */
-  padding: 10px;
-  order: 3; /* Put styles.instructions at the bottom */
+  /* Default styles for instructions */
+  padding: 1em; /* Using em for padding */
+  order: 3; /* Put instructions at the bottom */
 }
 
+/* Media Queries for Responsiveness */
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .card {
+    grid-template-columns: 1fr 2fr; /* Adjust for small screens */
+  }
+
+  .listContainer {
+    grid-template-columns: 1fr 1fr 1fr; /* Adjust for small screens */
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .title {
+    font-size: 1.75em; /* Increase title font size for medium screens */
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .recipeCard {
+    margin: 1.25em; /* Adjust margin for large screens */
+  }
+}
