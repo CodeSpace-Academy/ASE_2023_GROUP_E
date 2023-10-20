@@ -78,7 +78,7 @@ export default function PreviewList({ recipes, click }) {
                           {
                             showDescriptions[index] &&  recipe.description ? (
                               <p>{recipe.description}</p> 
-                            ) : showDescriptions[index] ? <ErrorMessage message = 'Failed to load description' /> : ''
+                            ) : <p>Failed to load description</p>
                           }
 
                           <div className={style.times}>
@@ -91,7 +91,7 @@ export default function PreviewList({ recipes, click }) {
                           </div>
                         </div>
                       </div>
-                      
+
                       {/* Recipe tags */}
                       <SingleRecipeTags tags={recipe.tags} />
                     </Link>
