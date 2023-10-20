@@ -12,8 +12,9 @@ export async function getServerSideProps({ params }) {
   const { preview, recipe } = params;
 
   // Fetch the recipe details based on preview and recipe params
-  const { documents } = await run(parseInt(preview));
+  const {documents} = await run(parseInt(preview));
   const selectedRecipe = documents.find((r) => r.title === recipe);
+  
   // Fetch allergens from the database
   const { allergens } = await fetchAllergensFromDatabase();
 
