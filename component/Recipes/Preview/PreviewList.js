@@ -10,6 +10,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import SingleRecipeTags from '../SingleRecipeTags/SingleRecipeTags';
+import ErrorMessage from '@/component/Error/ErrorMessage';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -73,9 +74,13 @@ export default function PreviewList({ recipes, click }) {
                           />
                         </div>
                         <div>
-                          {showDescriptions[index] && (
-                            <p>{recipe.description}</p>
-                          )}
+
+                          {
+                            showDescriptions[index] &&  recipe.description ? (
+                              <p>{recipe.description}</p> 
+                            ) : <p>Failed to load description</p>
+                          }
+
                           <div className={style.times}>
                             <div>⏲️ Prep: {NumToTime(recipe.prep)}</div>
                             <div>🕰️ Cook: {NumToTime(recipe.cook)}</div>

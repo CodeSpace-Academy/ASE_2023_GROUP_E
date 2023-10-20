@@ -6,9 +6,11 @@ import { MdOutlineFastfood,} from 'react-icons/md'
 import StateContext from '@/useContext/StateContext';
 import Link from 'next/link';
 
-
-
-
+function Links(link, text){
+  return (
+    <Link href={link}>{text}</Link>
+  )
+}
 
 const ExpandableMenu = () => {
   const {setToggleMenu, toggleMenu} = StateContext()
@@ -18,12 +20,12 @@ const ExpandableMenu = () => {
   };
 
   const menuOptions = [
-    { icon:<Link href={'/'} > <AiOutlineHome /></Link>, name: 'Home' },
-    { icon: <Link href={'/'}><AiOutlineUser /> </Link>, name: 'Profile' },
-    { icon: <Link href={`${50}`} ><MdOutlineFastfood /></Link>, name: 'Recipes' },
-    { icon: <Link href={'/tags'}> <AiOutlineTags/> </Link>, name: 'Tags' },
-    { icon: <AiOutlineHeart />, name: 'Favourites' },
-    { icon: <AiOutlineSetting />, name: 'Settings' },
+    { icon: Links('/',  <AiOutlineHome /> ) , name: Links('/', 'Home')},
+    { icon: Links('/', <AiOutlineUser />) , name: Links('/', 'Profile') },
+    { icon: Links(`${50}`, <MdOutlineFastfood />) , name: Links(`${50}`, 'Recipes') },
+    { icon: Links('/tags', <AiOutlineTags/>) , name: Links('/tags', 'Tags')},
+    { icon: Links('/',  <AiOutlineHeart />), name: Links('/', 'Favourites') },
+    { icon: Links('/', <AiOutlineSetting />) , name: Links('/', 'Settings')  },
   ];
 
   return (
@@ -38,11 +40,11 @@ const ExpandableMenu = () => {
             <li key={index} onClick={() => setToggleMenu(false)}>
               {toggleMenu ? (
                 <>
-                  <div style={{ fontSize: '24px' }}>{option.icon}</div> {/* Increase the font size */}
-                  {option.name}
+                  <div className={classes.link}>{option.icon}</div> {/* Increase the font size */}
+                  <p className={classes.optionName}>{option.name}</p>
                 </>
               ) : (
-                <div style={{ fontSize: '30px'}}>
+                <div className={classes.links2}>
                   {option.icon}
                 </div>
               )}
