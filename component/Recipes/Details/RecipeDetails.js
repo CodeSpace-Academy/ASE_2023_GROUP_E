@@ -9,10 +9,14 @@ import SingleRecipeTags from '../SingleRecipeTags/SingleRecipeTags';
 import ErrorMessage from '@/component/Error/ErrorMessage';
 import IndividualRecipeIntruction from '@/component/singleRecipe/instructions/individualRecipeIntruction';
 import SingleRecipeAllergens from '../Allergens/SingleRecipeAllergens';
+import EditDescription from '@/component/editDecription/editDescription';
+import StateContext from '@/useContext/StateContext';
+import Button from '@/component/Button/button';
 
 const RecipeDetails = ({ recipe, allergens }) => {
   const [showIngredients, setShowIngredients] = useState(false);
   const [showNutrition, setShowNutrition] = useState(false);
+  const { edit, setEdit }= StateContext()
 
   /**
    * Contains the allergens present in this recipe
@@ -35,21 +39,24 @@ const RecipeDetails = ({ recipe, allergens }) => {
           </div>
         </div>
         <div className={styles.info}>
-          <div className={styles.info1}>
-          <div className={styles.title}>
-              <h1>{recipe.title}</h1>
-            </div>
-            <div><strong>Description:</strong> {recipe.description}</div>
-            <div><strong>Category:</strong> {recipe.category}</div>
-            <div> <SingleRecipeTags tags={recipe.tags} /></div>
-            <div className={styles.aligned}>
-              <strong>Allergens:</strong>
-              {allergenList.length !== 0 ? (
-                <SingleRecipeAllergens allergensList={allergenList} />
-              ) : (
-                <p>No allergens</p>
-              )}
-            </div>
+          <div className={styles.info1}> 
+          <div><strong>Description:</strong> {recipe.description}</div>
+
+          {/**
+           * {@link info} is a props that hold the current descripton that will get modified
+           */}
+          {  edit ? <EditDescription info={recipe.description} /> : <Button color={'success'} text={'Edit Description'} click={() => setEdit(!edit)}/>}
+
+          <div><strong>Category:</strong> {recipe.category}</div>
+          <div> <SingleRecipeTags tags={recipe.tags} /></div>
+          <div className={styles.aligned}>
+            <strong>Allergens:</strong>
+            {allergenList.length !== 0 ? (
+              <SingleRecipeAllergens allergensList={allergenList} />
+            ) : (
+              <p>No allergens</p>
+            )}
+          </div>
           </div>
 
         </div>
