@@ -11,9 +11,10 @@ export function ContextProvider({children}){
     
     const [ toggleMenu , setToggleMenu ] = useState(false) 
     const [ edit, setEdit] = useState(false)
+    const [ editInstruction, setEditInstruction ] = useState(false)
 
     return (
-        <Context.Provider value={{ edit, setEdit, toggleMenu, setToggleMenu}}>
+        <Context.Provider value={{editInstruction, setEditInstruction, edit, setEdit, toggleMenu, setToggleMenu}}>
             {children}
         </Context.Provider>
     )

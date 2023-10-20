@@ -6,7 +6,7 @@ export default async function handler( req, res){
 
     if( req.method === 'POST'){
        
-        const { recipeTitle, recipeDescription, recipeInstruction } = req.body
+        const { recipeTitle, recipeInstruction } = req.body
        
         let client = await run()
        
@@ -20,7 +20,6 @@ export default async function handler( req, res){
                 title: recipeTitle
             }, {
                 $set: {
-                    description: recipeDescription,
                     instructions: recipeInstruction
                 }
             })
