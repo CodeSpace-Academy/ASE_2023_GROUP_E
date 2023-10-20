@@ -19,7 +19,7 @@ export default async function handler( req, res){
             await db.collection('recipes').updateOne({
                 title: recipeTitle
             }, {
-                $set: {
+                $push: {
                     instructions: recipeInstruction
                 }
             })
