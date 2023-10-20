@@ -7,5 +7,5 @@ export default function NumToTime(num) {
       minutes = '0' + minutes;
     }
     // enable the return to display h for hours and min for minuetes
-    return hours + "h" +":" + minutes +"min";
+    return hours  +":" + minutes;
   }

@@ -3,16 +3,18 @@ import { run } from '@/database';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 
-let val = 100;
-export default function AllRecipes({ results, pagesPath, params }) {
-  console.log(params);
+export default function AllRecipes({ documents, pagesPath, totalDataLength }) {
   const router = useRouter();
   const [currentPage, setCurrentPage] = useState(pagesPath);
-  const recipesToLoad = 100;
-  const [recipes, setRecipes] = [results];
-  // Calculate the initial value for Load More
-  const initialLoadMoreValue = 164959 - currentPage;
-  const [loadMoreValue, setLoadMoreValue] = useState(initialLoadMoreValue);
+  const recipesToLoad = 50;
+  const [loadMoreValue, setLoadMoreValue] = useState(totalDataLength - currentPage);
+  const [pageNumber, setPageNumber] = useState(1); // Initialize page number
+
+  useEffect(() => {
+    // Calculate the page number based on the URL whenever it changes
+    const page = Math.ceil(pagesPath / recipesToLoad);
+    setPageNumber(page);
+  }, [pagesPath]);
 
   const loadMoreRecipes = () => {
     // Calculate the number of recipes to load for the next page
@@ -20,24 +22,48 @@ export default function AllRecipes({ results, pagesPath, params }) {
     setCurrentPage(nextPage);
 
     // Calculate the new value based on the updated currentPage and recipesToLoad
-    const newLoadMoreValue = initialLoadMoreValue - recipesToLoad;
+    const newLoadMoreValue = totalDataLength - nextPage;
     setLoadMoreValue(newLoadMoreValue);
 
     // Navigate to the next page with the appropriate number of recipes to load
-    // router.push(`/${nextPage}`);
+    router.push(`/${nextPage}`);
   };
-  // useEffect(() => {
-  //   return (val = val + 100);
-  //   // console.log(val);
-  // }, [currentPage]);
+
+  const goBack = () => {
+    // Decrease the page number
+    if (pageNumber > 1) {
+      const prevPage = currentPage - recipesToLoad;
+      setCurrentPage(prevPage); // Update the currentPage directly
+  
+      // Calculate the remaining value for the "Load More" button
+      const remainingValue = loadMoreValue + recipesToLoad;
+      setLoadMoreValue(remainingValue);
+  
+      // Navigate back to the previous page
+      router.push(`/${prevPage}`);
+    }
+  };
+  
+
   return (
     <main>
-      {/* <Recipes
-        recipes={results && results}
-        click={loadMoreRecipes}
-      /> */}
-
-      <PreviewList recipes={results && results} click={loadMoreRecipes} />
+      {pageNumber >= 2 && (
+        <button onClick={goBack} disabled={false}>
+          Go Back
+        </button>
+      )}
+      <PreviewList recipes={documents} click={loadMoreRecipes} />
+      {pageNumber >= 2 && (
+        <button onClick={goBack} disabled={false}>
+          Go Back
+        </button>
+      )}
+      {loadMoreValue > 0 && (
+        <button onClick={loadMoreRecipes} disabled={false}>
+          Load More ({loadMoreValue} recipes remaining)
+        </button>
+      )}
+      <button>Page: {pageNumber}</button>
     </main>
   );
 }
@@ -45,13 +71,13 @@ export default function AllRecipes({ results, pagesPath, params }) {
 export async function getServerSideProps({ params }) {
   const { preview } = params;
   const pagesPath = parseInt(preview);
-  const results = await run(pagesPath);
+  const { documents, totalDataLength } = await run(pagesPath);
 
   return {
     props: {
-      results,
+      documents,
       pagesPath,
-      params,
+      totalDataLength,
     },
   };
 }
