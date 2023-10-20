@@ -10,9 +10,10 @@ export default function StateContext(){
 export function ContextProvider({children}){
     
     const [ toggleMenu , setToggleMenu ] = useState(false) 
+    const [ edit, setEdit] = useState(false)
 
     return (
-        <Context.Provider value={{ toggleMenu, setToggleMenu}}>
+        <Context.Provider value={{ edit, setEdit, toggleMenu, setToggleMenu}}>
             {children}
         </Context.Provider>
     )
