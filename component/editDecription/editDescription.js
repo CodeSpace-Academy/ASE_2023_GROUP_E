@@ -2,7 +2,7 @@ import StateContext from '@/useContext/StateContext';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import classes from './editDescription.module.css'
-import Button from '../Button/button';
+import Button, { FormButton } from '../Button/button';
 import { addItem } from '@/database/addToDatabase';
 
 function EditDescription({info}) {
@@ -30,14 +30,14 @@ function EditDescription({info}) {
   }
  
   return (
-    <form className={classes.form}>
+    <form className={classes.form} onSubmit={addItemHandler}>
       <textarea
         value={newDescription}
         onChange={(e) => setNewDescription(e.target.value)}
       />
       <div className={classes.buttons}>
-        <Button text={'SAVE'} color={'success'} click={addItemHandler}/>
         <Button text={'CLOSE'} color={'warning'} click={() => setEdit(!edit)}/>
+        <FormButton text='SAVE' />
       </div>
     </form>
   );
