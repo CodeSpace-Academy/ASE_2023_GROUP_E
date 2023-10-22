@@ -111,7 +111,7 @@ const RecipeDetails = ({ recipe, allergens }) => {
       <div className={styles.instructions}>
         <h2>Instructions:</h2>
         {recipe.instructions ? (
-          <div className={styles.listContainer}>
+          <div className={styles.instructionContainer}>
             <ol>
               {recipe.instructions &&
                 recipe.instructions.map((instruction, index) => (
@@ -123,9 +123,15 @@ const RecipeDetails = ({ recipe, allergens }) => {
                   </li>
                 ))}
             </ol>
-            { editInstruction ? '': <GetSpecificInstruction instructions={recipe.instructions}/>}
-            { editInstruction && <EditInstruction info={recipe.instructions[instructionIndex]} />}
-            { addInstruction ? <NewInstruction /> : <Button text='Add Instruction' color='success' click={() => setAddInstruction(!addInstruction)}/>}
+
+            <div>
+              <div className={styles.editInstruction}>
+                { editInstruction ? '': <GetSpecificInstruction instructions={recipe.instructions}/>}
+                { editInstruction && <EditInstruction info={recipe.instructions[instructionIndex]} />}
+              </div>
+                { addInstruction ? <NewInstruction /> : <div className={styles.addButton}><Button text='Add Instruction' color='success' click={() => setAddInstruction(!addInstruction)}/></div>}
+
+            </div>
           </div>
         ) : (
           <ErrorMessage message={'Error loading the instructions'} />
