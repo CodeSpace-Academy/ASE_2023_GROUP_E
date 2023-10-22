@@ -17,12 +17,13 @@ function EditInstruction({info}) {
   async function addItemHandler(e) {
     e.preventDefault()
 
-    //hides form after editing
-    setEditInstruction(!editInstruction)
+
 
 
     try {
       await addItem('/api/editInstructions', { recipeTitle: titleRouter, recipeInstruction: newInstruction, selectInstruction: instructionIndex });
+      //hides form after editing
+      setEditInstruction(!editInstruction)
     } catch (error) {
       console.log('Error adding item');
     }
