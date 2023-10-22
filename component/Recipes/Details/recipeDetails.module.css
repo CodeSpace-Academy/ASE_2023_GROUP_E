@@ -179,6 +179,18 @@
     padding: 0;
     margin: 10px;
   }
+
+  .instructions{
+    padding: 0;
+    margin: 0;
+  }
 }
 
 
+@media only screen and (max-width : 389px){
+  .modufyInstruction{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

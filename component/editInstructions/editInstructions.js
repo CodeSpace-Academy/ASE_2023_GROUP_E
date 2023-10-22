@@ -29,13 +29,13 @@ function EditInstruction({info}) {
   }
  
   return (
-    <form className={classes.form}>
+    <form className={classes.form} onSubmit={addItemHandler}>
       <textarea
         value={newInstruction}
         onChange={(e) => setNewInstruction(e.target.value)}
       />
       <div className={classes.buttons}>
-        <Button text={'SAVE'} color={'success'} click={addItemHandler}/>
+        <FormButton text={'SAVE'}/>
         <Button text={'CLOSE'} color={'warning'} click={() => setEditInstruction(!editInstruction)}/>
       </div>
     </form>
@@ -108,7 +108,7 @@ export function NewInstruction() {
       <div className={classes.buttons}>
         {/* <Button text={'Add Instruction'} color={'success'} /> */}
         <Button text={'CLOSE'} color={'warning'} click={() => setAddInstruction(!addInstruction)}/>
-        <FormButton text={'Add Instruction'}/>
+        <FormButton text={'ADD'}/>
       </div>
     </form>
   );
