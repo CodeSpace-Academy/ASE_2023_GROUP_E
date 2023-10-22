@@ -106,3 +106,13 @@
     margin: 1.25em; /* Adjust margin for large screens */
   }
 }
+
+.addButton{
+  margin-top: 5%;
+}
+
+.instructionContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
