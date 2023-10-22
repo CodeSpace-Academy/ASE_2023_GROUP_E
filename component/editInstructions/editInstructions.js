@@ -1,13 +1,13 @@
 import StateContext from '@/useContext/StateContext';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import classes from './editDescription.module.css'
 import Button from '../Button/button';
 import { addItem } from '@/database/addToDatabase';
 
 function EditInstruction({info}) {
   const [newInstruction, setNewInstruction] = useState(info);
-  const { editInstruction, setEditInstruction }= StateContext()
+  const { editInstruction, setEditInstruction, instructionIndex }= StateContext()
 
 
   const router = useRouter()
@@ -22,7 +22,7 @@ function EditInstruction({info}) {
 
 
     try {
-      await addItem('/api/editInstructions', { recipeTitle: titleRouter, recipeInstruction: newInstruction });
+      await addItem('/api/editInstructions', { recipeTitle: titleRouter, recipeInstruction: newInstruction, selectInstruction: instructionIndex });
     } catch (error) {
       console.log('Error adding item');
     }
@@ -45,13 +45,34 @@ function EditInstruction({info}) {
 
 export default EditInstruction;
 
-export function getSpecificInstruction({valueIndex, option}){
+/**
+ * 
+ * maps over the instruction to calculate the amount of instruction
+ * then we will have that amout as the number of option we have
+ * 
+ * the selected option is the set inside {@link setInstructionIndex} which is a global state, that will then be used to target a specific recipe to edit by using its index
+ */
+
+export function GetSpecificInstruction({instructions}){
+
+  const option = useRef()
+  const { setInstructionIndex, setEditInstruction } = StateContext()
+
+  function optionHandler(e){
+    e.preventDefault()
+    setInstructionIndex(option.current.value)
+    setEditInstruction(true)
+  }
 
   return(
     <form>
-      <select>
-        <option value={valueIndex} >{option}</option>
+      <select ref={option}>
+        {
+          instructions.map((instructions, index) => <option key={index} value={index} >{index  +1}</option>)
+        }
       </select>
+
+      <Button text={'Edit Instruction'}  color={'success'} click={optionHandler} />
     </form>
   )
 }
