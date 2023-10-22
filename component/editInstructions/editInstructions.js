@@ -65,8 +65,8 @@ export function GetSpecificInstruction({instructions}){
   }
 
   return(
-    <form>
-      <select ref={option}>
+    <form className={classes.optionsForm}>
+      <select ref={option} className={classes.select}>
         {
           instructions.map((instructions, index) => <option key={index} value={index} >{index  +1}</option>)
         }
