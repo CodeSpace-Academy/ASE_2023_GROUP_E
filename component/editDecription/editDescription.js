@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import classes from './editDescription.module.css'
 import Button from '../Button/button';
-import { addItem } from '@/database/fetchUsingApiFile';
+import { addItem } from '@/database/addToDatabase';
 
 function EditDescription({info}) {
   const [newDescription, setNewDescription] = useState(info);

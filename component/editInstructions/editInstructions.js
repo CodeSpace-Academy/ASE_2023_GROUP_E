@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import classes from './editDescription.module.css'
 import Button from '../Button/button';
-import { addItem } from '@/database/fetchUsingApiFile';
+import { addItem } from '@/database/addToDatabase';
 
 function EditInstruction({info}) {
   const [newInstruction, setNewInstruction] = useState(info);
@@ -44,6 +44,17 @@ function EditInstruction({info}) {
 
 
 export default EditInstruction;
+
+export function getSpecificInstruction({valueIndex, option}){
+
+  return(
+    <form>
+      <select>
+        <option value={valueIndex} >{option}</option>
+      </select>
+    </form>
+  )
+}
 
 
 //Make and share this Low-Fat Berry Blue Frozen Dessert recipe from Food.com.
