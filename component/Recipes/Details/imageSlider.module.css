@@ -19,19 +19,27 @@
     /* gap: 15px; */
 }
 
-/* @media only screen and (max-width: 424px){
+@media only screen and (max-width: 473px){
     
     .img{
-        width: 14em;
-        height: 14em;
+        width:  20em;
+        height: 17em;
     }
     
 }
-@media only screen and (max-width: 342px){
+@media only screen and (max-width: 387px){
     
     .img{
-        width: 10.5em;
-        height: 10.5em;
+        width: 18em;
+        height: 15em;
     }
     
-} */
+}
+@media only screen and (max-width: 349px){
+    
+    .img{
+        width: 15em;
+        height: 15em;
+    }
+    
+}
