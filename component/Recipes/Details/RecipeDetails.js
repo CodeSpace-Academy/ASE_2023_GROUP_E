@@ -31,6 +31,34 @@ const RecipeDetails = ({ recipe, allergens }) => {
     }
   }
 
+  function Info(){
+    return(
+      <div className={styles.info}>
+      <div className={styles.info1}> 
+      <div><strong>Description:</strong> {recipe.description}</div>
+
+      {/**
+       * {@link info} is a props that hold the current descripton that will get modified
+       */}
+      {  edit ? <EditDescription info={recipe.description} /> : <Button color={'success'} text={'Edit Description'} click={() => setEdit(!edit)}/>}
+
+      <div><strong>Category:</strong> {recipe.category}</div>
+      
+      <div className={styles.tagsDesktop}> <SingleRecipeTags tags={recipe.tags} /></div>
+        <div className={styles.aligned}>
+          <strong>Allergens:</strong>
+          {allergenList.length !== 0 ? (
+            <SingleRecipeAllergens allergensList={allergenList} />
+          ) : (
+            <p>No allergens</p>
+          )}
+        </div>
+      </div>
+
+    </div>
+    )
+  }
+
   if (!recipe) return null;
   return (
     <div className={styles.recipeCard}>
@@ -40,29 +68,17 @@ const RecipeDetails = ({ recipe, allergens }) => {
             <ImageSlider imageUrls={recipe.images && recipe.images} />
           </div>
         </div>
-        <div className={styles.info}>
-          <div className={styles.info1}> 
-          <div><strong>Description:</strong> {recipe.description}</div>
-
-          {/**
-           * {@link info} is a props that hold the current descripton that will get modified
-           */}
-          {  edit ? <EditDescription info={recipe.description} /> : <Button color={'success'} text={'Edit Description'} click={() => setEdit(!edit)}/>}
-
-          <div><strong>Category:</strong> {recipe.category}</div>
-          <div> <SingleRecipeTags tags={recipe.tags} /></div>
-          <div className={styles.aligned}>
-            <strong>Allergens:</strong>
-            {allergenList.length !== 0 ? (
-              <SingleRecipeAllergens allergensList={allergenList} />
-            ) : (
-              <p>No allergens</p>
-            )}
+        {/* this display when we are on a desktop screen  */}
+          <div className={styles.infoDesktop}>
+            {Info()}
           </div>
-          </div>
-
-        </div>
       </div>
+
+      {/* this display when we are on a smaller screen  */}
+      <div className={styles.infoMobileView}>
+            {Info()}
+      </div>
+      <div className={styles.tagsMobileView}> <SingleRecipeTags tags={recipe.tags} /></div>
 
       <div className={`${styles.listContainer} list-container`}>
         <div className={styles.ingredients}>
@@ -109,7 +125,7 @@ const RecipeDetails = ({ recipe, allergens }) => {
       </div>
 
       <div className={styles.instructions}>
-        <h2>Instructions:</h2>
+        <h2>Instructions :</h2>
         {recipe.instructions ? (
           <div className={styles.instructionContainer}>
             <ol>
@@ -124,7 +140,7 @@ const RecipeDetails = ({ recipe, allergens }) => {
                 ))}
             </ol>
 
-            <div>
+            <div className={styles.modufyInstruction}>
               <div className={styles.editInstruction}>
                 { editInstruction ? '': <GetSpecificInstruction instructions={recipe.instructions}/>}
                 { editInstruction && <EditInstruction info={recipe.instructions[instructionIndex]} />}
@@ -142,5 +158,3 @@ const RecipeDetails = ({ recipe, allergens }) => {
 };
 
 export default RecipeDetails;
-
-//Toss 2 cups berries with sugar.,Let stand for 45 minutes, stirring occasionally.,Transfer berry-sugar mixture to food processor.,Add yogurt and process until smooth.,Strain through fine sieve. Pour into baking pan (or transfer to ice cream maker and process according to manufacturers' directions). Freeze uncovered until edges are solid but centre is soft.  Transfer to processor and blend until smooth again.,Return to pan and freeze until edges are solid.,Transfer to processor and blend until smooth again.,Fold in remaining 2 cups of blueberries.,Pour into plastic mold and freeze overnight. Let soften slightly to serve.,it works maybe
