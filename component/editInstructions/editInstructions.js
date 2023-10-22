@@ -2,7 +2,7 @@ import StateContext from '@/useContext/StateContext';
 import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react';
 import classes from './editDescription.module.css'
-import Button from '../Button/button';
+import Button, { FormButton } from '../Button/button';
 import { addItem } from '@/database/addToDatabase';
 
 function EditInstruction({info}) {
@@ -77,7 +77,39 @@ export function GetSpecificInstruction({instructions}){
   )
 }
 
+export function NewInstruction() {
+  const [newInstruction, setNewInstruction] = useState(null);
+  const { addInstruction, setAddInstruction }= StateContext()
 
-//Make and share this Low-Fat Berry Blue Frozen Dessert recipe from Food.com.
+
+  const router = useRouter()
+  const titleRouter = router.query.recipe
 
 
+  async function addItemHandler(e) {
+    e.preventDefault()
+
+
+    try {
+      await addItem('/api/addNewInstruction', { recipeTitle: titleRouter, recipeInstruction: newInstruction });
+      setAddInstruction(!addInstruction)
+    } catch (error) {
+      console.log('Error adding item');
+    }
+  }
+ 
+  return (
+    <form className={classes.form} onSubmit={addItemHandler}>
+      <textarea
+        value={newInstruction}
+        onChange={(e) => setNewInstruction(e.target.value)}
+        required
+      />
+      <div className={classes.buttons}>
+        {/* <Button text={'Add Instruction'} color={'success'} /> */}
+        <Button text={'CLOSE'} color={'warning'} click={() => setAddInstruction(!addInstruction)}/>
+        <FormButton text={'Add Instruction'}/>
+      </div>
+    </form>
+  );
+}

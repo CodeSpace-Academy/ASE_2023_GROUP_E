@@ -12,13 +12,13 @@ import SingleRecipeAllergens from '../Allergens/SingleRecipeAllergens';
 import EditDescription from '@/component/editDecription/editDescription';
 import StateContext from '@/useContext/StateContext';
 import Button from '@/component/Button/button';
-import EditInstruction from '@/component/editInstructions/editInstructions';
+import EditInstruction, { NewInstruction } from '@/component/editInstructions/editInstructions';
 import { GetSpecificInstruction } from '@/component/editInstructions/editInstructions';
 
 const RecipeDetails = ({ recipe, allergens }) => {
   const [showIngredients, setShowIngredients] = useState(false);
   const [showNutrition, setShowNutrition] = useState(false);
-  const { edit, setEdit, setEditInstruction, editInstruction, instructionIndex }= StateContext()
+  const { edit, setEdit, setEditInstruction, editInstruction, addInstruction, setAddInstruction, instructionIndex }= StateContext()
 
   /**
    * Contains the allergens present in this recipe
@@ -124,7 +124,8 @@ const RecipeDetails = ({ recipe, allergens }) => {
                 ))}
             </ol>
             { editInstruction ? '': <GetSpecificInstruction instructions={recipe.instructions}/>}
-            {  editInstruction && <EditInstruction info={recipe.instructions[instructionIndex]} />}
+            { editInstruction && <EditInstruction info={recipe.instructions[instructionIndex]} />}
+            { addInstruction ? <NewInstruction /> : <Button text='Add Instruction' color='success' click={() => setAddInstruction(!addInstruction)}/>}
           </div>
         ) : (
           <ErrorMessage message={'Error loading the instructions'} />
