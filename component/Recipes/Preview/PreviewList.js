@@ -53,7 +53,7 @@ export default function PreviewList({ recipes, click }) {
           {recipes &&
             recipes.map((recipe, index) => {
               return (
-                <Grid xs={12} md={12} key={recipe.id} className={style.item}>
+                <Grid xs={12} md={12} key={index} className={style.item}>
                   <Item
                     key={recipe.id}
                     onClick={() => handleRecipeClick(recipe)}
