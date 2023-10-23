@@ -21,7 +21,7 @@ const ExpandableMenu = () => {
 
   const menuOptions = [
     { icon: Links('/',  <AiOutlineHome /> ) , name: Links('/', 'Home')},
-    { icon: Links('/', <AiOutlineUser />) , name: Links('/', 'Profile') },
+    { icon: Links('/profile', <AiOutlineUser />) , name: Links('/profile', 'Profile') },
     { icon: Links(`/${50}`, <MdOutlineFastfood />) , name: Links(`${50}`, 'Recipes') },
     { icon: Links('/tags', <AiOutlineTags/>) , name: Links('/tags', 'Tags')},
     { icon: Links('/',  <AiOutlineHeart />), name: Links('/', 'Favourites') },
