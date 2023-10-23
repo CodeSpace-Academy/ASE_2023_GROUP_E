@@ -74,13 +74,11 @@ export default function PreviewList({ recipes, click }) {
                           />
                         </div>
                         <div>
-
                           {
-                            showDescriptions[index] &&  recipe.description ? (
-                              <p>{recipe.description}</p> 
-                            ) : <p>Failed to load description</p>
+                            showDescriptions[index] &&  recipe.description ? 
+                            (<p>{recipe.description}</p>) : 
+                            showDescriptions[index] ? <ErrorMessage message = 'Failed to load description' /> : ''
                           }
-
                           <div className={style.times}>
                             <div>⏲️ Prep: {NumToTime(recipe.prep)}</div>
                             <div>🕰️ Cook: {NumToTime(recipe.cook)}</div>
