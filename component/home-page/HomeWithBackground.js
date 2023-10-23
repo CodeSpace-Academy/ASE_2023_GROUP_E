@@ -21,9 +21,8 @@ const HomeWithBackground = () => {
           <Link href={`/${50}`}>All Recipes</Link>{' '}
           {/* Link to the "All Recipes" page with route parameter 100. */}
           <Link href={'/tags'}>Tags List</Link>
-          <Link href="/favorites">Favorites</Link>
+          <Link href="/favourites">Favorites</Link>
           <Link href="/updated-recipes">Updated Recipes</Link>
-          <Link href="/favourites">Favourites</Link>
         </div>
       </div>
     </div>
