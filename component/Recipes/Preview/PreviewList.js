@@ -48,7 +48,7 @@ export default function PreviewList({ recipes, click }) {
 
   return (
     <>
-    <button>Filter</button>
+    
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={1}>
           {recipes &&

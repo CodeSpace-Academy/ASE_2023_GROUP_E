@@ -22,8 +22,8 @@ export async function run(pageSize) {
     const documents = await db
       .collection('recipes')
       .find()
-      .skip(pageSize - 25)
-      .limit(25)
+      .skip(pageSize - 12)
+      .limit(12)
       .toArray();
 
     const totalDataLength = await fetchTotalDataLength(); // Fetch the total data length asynchronously
