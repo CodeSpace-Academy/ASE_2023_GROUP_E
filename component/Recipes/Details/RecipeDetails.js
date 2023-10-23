@@ -1,4 +1,3 @@
-
 // component/Recipe/Preview/RecipeDetails.js
 
 import React, { useState } from 'react';
@@ -12,13 +11,24 @@ import SingleRecipeAllergens from '../Allergens/SingleRecipeAllergens';
 import EditDescription from '@/component/editDecription/editDescription';
 import StateContext from '@/useContext/StateContext';
 import Button from '@/component/Button/button';
-import EditInstruction, { NewInstruction } from '@/component/editInstructions/editInstructions';
+import EditInstruction, {
+  NewInstruction,
+} from '@/component/editInstructions/editInstructions';
 import { GetSpecificInstruction } from '@/component/editInstructions/editInstructions';
+import FavouritesButton from '../FavouritesButton/FavouritesButton';
 
 const RecipeDetails = ({ recipe, allergens }) => {
   const [showIngredients, setShowIngredients] = useState(false);
   const [showNutrition, setShowNutrition] = useState(false);
-  const { edit, setEdit, setEditInstruction, editInstruction, addInstruction, setAddInstruction, instructionIndex }= StateContext()
+  const {
+    edit,
+    setEdit,
+    setEditInstruction,
+    editInstruction,
+    addInstruction,
+    setAddInstruction,
+    instructionIndex,
+  } = StateContext();
 
   /**
    * Contains the allergens present in this recipe
@@ -31,32 +41,47 @@ const RecipeDetails = ({ recipe, allergens }) => {
     }
   }
 
-  function Info(){
-    return(
+  function Info() {
+    return (
       <div className={styles.info}>
-      <div className={styles.info1}> 
-      <div><strong>Description:</strong> {recipe.description}</div>
+        <div className={styles.info1}>
+          <div>
+            <strong>Description:</strong> {recipe.description}
+          </div>
 
-      {/**
-       * {@link info} is a props that hold the current descripton that will get modified
-       */}
-      {  edit ? <EditDescription info={recipe.description} /> : <Button color={'success'} text={'Edit Description'} click={() => setEdit(!edit)}/>}
-
-      <div><strong>Category:</strong> {recipe.category}</div>
-      
-      <div className={styles.tagsDesktop}> <SingleRecipeTags tags={recipe.tags} /></div>
-        <div className={styles.aligned}>
-          <strong>Allergens:</strong>
-          {allergenList.length !== 0 ? (
-            <SingleRecipeAllergens allergensList={allergenList} />
+          {/**
+           * {@link info} is a props that hold the current descripton that will get modified
+           */}
+          {edit ? (
+            <EditDescription info={recipe.description} />
           ) : (
-            <p>No allergens</p>
+            <Button
+              color={'success'}
+              text={'Edit Description'}
+              click={() => setEdit(!edit)}
+            />
           )}
-        </div>
-      </div>
 
-    </div>
-    )
+          <div>
+            <strong>Category:</strong> {recipe.category}
+          </div>
+
+          <div className={styles.tagsDesktop}>
+            {' '}
+            <SingleRecipeTags tags={recipe.tags} />
+          </div>
+          <div className={styles.aligned}>
+            <strong>Allergens:</strong>
+            {allergenList.length !== 0 ? (
+              <SingleRecipeAllergens allergensList={allergenList} />
+            ) : (
+              <p>No allergens</p>
+            )}
+          </div>
+        </div>
+        <FavouritesButton />
+      </div>
+    );
   }
 
   if (!recipe) return null;
@@ -69,16 +94,15 @@ const RecipeDetails = ({ recipe, allergens }) => {
           </div>
         </div>
         {/* this display when we are on a desktop screen  */}
-          <div className={styles.infoDesktop}>
-            {Info()}
-          </div>
+        <div className={styles.infoDesktop}>{Info()}</div>
       </div>
 
       {/* this display when we are on a smaller screen  */}
-      <div className={styles.infoMobileView}>
-            {Info()}
+      <div className={styles.infoMobileView}>{Info()}</div>
+      <div className={styles.tagsMobileView}>
+        {' '}
+        <SingleRecipeTags tags={recipe.tags} />
       </div>
-      <div className={styles.tagsMobileView}> <SingleRecipeTags tags={recipe.tags} /></div>
 
       <div className={`${styles.listContainer} list-container`}>
         <div className={styles.ingredients}>
@@ -87,13 +111,18 @@ const RecipeDetails = ({ recipe, allergens }) => {
             <div>
               <ul>
                 {recipe.ingredients &&
-                  Object.entries(recipe.ingredients).map(([ingredient, amount]) => (
-                    <li key={ingredient}>{`${ingredient}: ${amount}`}</li>
-                  ))}
+                  Object.entries(recipe.ingredients).map(
+                    ([ingredient, amount]) => (
+                      <li key={ingredient}>{`${ingredient}: ${amount}`}</li>
+                    )
+                  )}
               </ul>
             </div>
           )}
-          <button className={styles.button} onClick={() => setShowIngredients(!showIngredients)}>
+          <button
+            className={styles.button}
+            onClick={() => setShowIngredients(!showIngredients)}
+          >
             {showIngredients ? 'Hide Ingredients' : 'Show Ingredients'}
           </button>
         </div>
@@ -110,7 +139,10 @@ const RecipeDetails = ({ recipe, allergens }) => {
               </ul>
             </div>
           )}
-          <button className={styles.button} onClick={() => setShowNutrition(!showNutrition)}>
+          <button
+            className={styles.button}
+            onClick={() => setShowNutrition(!showNutrition)}
+          >
             {showNutrition ? 'Hide Nutrition' : 'Show Nutrition'}
           </button>
         </div>
@@ -119,8 +151,8 @@ const RecipeDetails = ({ recipe, allergens }) => {
           {/* Adding time to display on preview */}
           ⏲️ Prep: {NumToTime(recipe.prep)}
           🕰️ Cook: {NumToTime(recipe.cook)}
-          {/* Total time for (added prep and cook) */}
-          ⏰ Total Time: {NumToTime(recipe.prep + recipe.cook)}
+          {/* Total time for (added prep and cook) */}⏰ Total Time:{' '}
+          {NumToTime(recipe.prep + recipe.cook)}
         </div>
       </div>
 
@@ -142,11 +174,28 @@ const RecipeDetails = ({ recipe, allergens }) => {
 
             <div className={styles.modufyInstruction}>
               <div className={styles.editInstruction}>
-                { editInstruction ? '': <GetSpecificInstruction instructions={recipe.instructions}/>}
-                { editInstruction && <EditInstruction info={recipe.instructions[instructionIndex]} />}
+                {editInstruction ? (
+                  ''
+                ) : (
+                  <GetSpecificInstruction instructions={recipe.instructions} />
+                )}
+                {editInstruction && (
+                  <EditInstruction
+                    info={recipe.instructions[instructionIndex]}
+                  />
+                )}
               </div>
-                { addInstruction ? <NewInstruction /> : <div className={styles.addButton}><Button text='Add Instruction' color='success' click={() => setAddInstruction(!addInstruction)}/></div>}
-
+              {addInstruction ? (
+                <NewInstruction />
+              ) : (
+                <div className={styles.addButton}>
+                  <Button
+                    text="Add Instruction"
+                    color="success"
+                    click={() => setAddInstruction(!addInstruction)}
+                  />
+                </div>
+              )}
             </div>
           </div>
         ) : (
