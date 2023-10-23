@@ -1,4 +1,4 @@
-import run from "@/database/updateData";
+import run from "@/database/client";
 
 
 export default async function handler( req, res){
