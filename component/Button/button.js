@@ -21,3 +21,7 @@ export default function Button({text, color, click}){
         <button onClick={click} type="button" className={`btn btn-${color}`}>{text}</button>
     )
 }
+
+export function FormButton({text}){
+    return <button className={classes.button}>{text}</button>
+}

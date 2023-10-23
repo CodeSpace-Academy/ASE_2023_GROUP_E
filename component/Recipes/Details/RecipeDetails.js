@@ -12,11 +12,13 @@ import SingleRecipeAllergens from '../Allergens/SingleRecipeAllergens';
 import EditDescription from '@/component/editDecription/editDescription';
 import StateContext from '@/useContext/StateContext';
 import Button from '@/component/Button/button';
+import EditInstruction, { NewInstruction } from '@/component/editInstructions/editInstructions';
+import { GetSpecificInstruction } from '@/component/editInstructions/editInstructions';
 
 const RecipeDetails = ({ recipe, allergens }) => {
   const [showIngredients, setShowIngredients] = useState(false);
   const [showNutrition, setShowNutrition] = useState(false);
-  const { edit, setEdit }= StateContext()
+  const { edit, setEdit, setEditInstruction, editInstruction, addInstruction, setAddInstruction, instructionIndex }= StateContext()
 
   /**
    * Contains the allergens present in this recipe
@@ -29,6 +31,34 @@ const RecipeDetails = ({ recipe, allergens }) => {
     }
   }
 
+  function Info(){
+    return(
+      <div className={styles.info}>
+      <div className={styles.info1}> 
+      <div><strong>Description:</strong> {recipe.description}</div>
+
+      {/**
+       * {@link info} is a props that hold the current descripton that will get modified
+       */}
+      {  edit ? <EditDescription info={recipe.description} /> : <Button color={'success'} text={'Edit Description'} click={() => setEdit(!edit)}/>}
+
+      <div><strong>Category:</strong> {recipe.category}</div>
+      
+      <div className={styles.tagsDesktop}> <SingleRecipeTags tags={recipe.tags} /></div>
+        <div className={styles.aligned}>
+          <strong>Allergens:</strong>
+          {allergenList.length !== 0 ? (
+            <SingleRecipeAllergens allergensList={allergenList} />
+          ) : (
+            <p>No allergens</p>
+          )}
+        </div>
+      </div>
+
+    </div>
+    )
+  }
+
   if (!recipe) return null;
   return (
     <div className={styles.recipeCard}>
@@ -38,29 +68,17 @@ const RecipeDetails = ({ recipe, allergens }) => {
             <ImageSlider imageUrls={recipe.images && recipe.images} />
           </div>
         </div>
-        <div className={styles.info}>
-          <div className={styles.info1}> 
-          <div><strong>Description:</strong> {recipe.description}</div>
-
-          {/**
-           * {@link info} is a props that hold the current descripton that will get modified
-           */}
-          {  edit ? <EditDescription info={recipe.description} /> : <Button color={'success'} text={'Edit Description'} click={() => setEdit(!edit)}/>}
-
-          <div><strong>Category:</strong> {recipe.category}</div>
-          <div> <SingleRecipeTags tags={recipe.tags} /></div>
-          <div className={styles.aligned}>
-            <strong>Allergens:</strong>
-            {allergenList.length !== 0 ? (
-              <SingleRecipeAllergens allergensList={allergenList} />
-            ) : (
-              <p>No allergens</p>
-            )}
+        {/* this display when we are on a desktop screen  */}
+          <div className={styles.infoDesktop}>
+            {Info()}
           </div>
-          </div>
-
-        </div>
       </div>
+
+      {/* this display when we are on a smaller screen  */}
+      <div className={styles.infoMobileView}>
+            {Info()}
+      </div>
+      <div className={styles.tagsMobileView}> <SingleRecipeTags tags={recipe.tags} /></div>
 
       <div className={`${styles.listContainer} list-container`}>
         <div className={styles.ingredients}>
@@ -107,9 +125,9 @@ const RecipeDetails = ({ recipe, allergens }) => {
       </div>
 
       <div className={styles.instructions}>
-        <h2>Instructions:</h2>
+        <h2>Instructions :</h2>
         {recipe.instructions ? (
-          <div className={styles.listContainer}>
+          <div className={styles.instructionContainer}>
             <ol>
               {recipe.instructions &&
                 recipe.instructions.map((instruction, index) => (
@@ -121,6 +139,15 @@ const RecipeDetails = ({ recipe, allergens }) => {
                   </li>
                 ))}
             </ol>
+
+            <div className={styles.modufyInstruction}>
+              <div className={styles.editInstruction}>
+                { editInstruction ? '': <GetSpecificInstruction instructions={recipe.instructions}/>}
+                { editInstruction && <EditInstruction info={recipe.instructions[instructionIndex]} />}
+              </div>
+                { addInstruction ? <NewInstruction /> : <div className={styles.addButton}><Button text='Add Instruction' color='success' click={() => setAddInstruction(!addInstruction)}/></div>}
+
+            </div>
           </div>
         ) : (
           <ErrorMessage message={'Error loading the instructions'} />

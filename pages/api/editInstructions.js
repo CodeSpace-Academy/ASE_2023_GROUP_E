@@ -6,7 +6,7 @@ export default async function handler( req, res){
 
     if( req.method === 'POST'){
        
-        const { recipeTitle, recipeDescription, recipeInstruction } = req.body
+        const { recipeTitle, recipeInstruction, selectInstruction } = req.body
        
         let client = await run()
        
@@ -14,13 +14,15 @@ export default async function handler( req, res){
 
         const db = client.db('devdb')
 
+        const instructionKey = `instructions.${selectInstruction}`
+
 
         try{
             await db.collection('recipes').updateOne({
-                title: recipeTitle
+                title: recipeTitle,
             }, {
                 $set: {
-                    description: recipeDescription,
+                    [instructionKey] : recipeInstruction
                 }
             })
 

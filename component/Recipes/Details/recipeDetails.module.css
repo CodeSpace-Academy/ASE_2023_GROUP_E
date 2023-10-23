@@ -6,10 +6,17 @@
   margin: 2em; /* Using em for margin */
 }
 
-.card {
+/* .card {
   display: grid;
   grid-template-columns: 1fr 2fr; /* Left for titleAndImage, right for info */
-  /* Add default styles for the card container */
+  /* Add default styles for the card container 
+} */
+
+.card{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .titleAndImage {
@@ -28,12 +35,17 @@
 .imageRow {
   display: grid;
   grid-template-columns: 1fr 1fr; /* Left for titleAndImage, right for info */
+  margin-bottom: 20px;
+  justify-content: center;
 }
 
 .info {
   /* Default styles for the info */
   margin: 2em;
   order: 2; /* Put info on the right */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .listContainer {
@@ -104,5 +116,81 @@
 @media only screen and (min-width: 992px) {
   .recipeCard {
     margin: 1.25em; /* Adjust margin for large screens */
+  }
+}
+
+.addButton{
+  margin-top: 5%;
+}
+
+.instructionContainer{
+  display: flex;
+  flex-direction: row;
+  gap: 5%;
+}
+
+@media only screen and (max-width: 971px){
+  .tagsDesktop{
+    display: none;
+  }
+
+}
+
+
+@media only screen and (min-width: 972px){
+  .tagsMobileView{
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 759px){
+  .infoDesktop{
+    display: none;
+  }
+
+  .imageRow{
+    width: 0em;
+  }
+
+  .info{
+    margin: 0;
+  }
+}
+
+@media only screen and (min-width: 759px){
+  .infoMobileView{
+    display: none;
+  }
+}
+@media only screen and (max-width: 850px){
+
+  .instructionContainer{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .modufyInstruction{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .recipeCard{
+    padding: 0;
+    margin: 10px;
+  }
+
+  .instructions{
+    padding: 0;
+    margin: 0;
+  }
+}
+
+
+@media only screen and (max-width : 389px){
+  .modufyInstruction{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }

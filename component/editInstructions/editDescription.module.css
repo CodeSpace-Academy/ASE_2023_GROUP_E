@@ -1,0 +1,36 @@
+.form textarea{
+    height: 10vh;
+    border-radius: 5px;
+    font-size: larger;
+    margin-bottom: 10px;
+}
+
+
+.form{
+    background-color: rgb(230, 229, 229);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    text-align: center;
+    margin: 2%;
+    width: 15em;
+}
+
+.optionsForm{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 134px;
+}
+
+.select{
+    height: 5vh;
+    border-radius: 5px;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}

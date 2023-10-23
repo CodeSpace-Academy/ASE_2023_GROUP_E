@@ -53,7 +53,7 @@ export default function PreviewList({ recipes, click }) {
           {recipes &&
             recipes.map((recipe, index) => {
               return (
-                <Grid xs={12} md={12} key={recipe.id} className={style.item}>
+                <Grid xs={12} md={12} key={index} className={style.item}>
                   <Item
                     key={recipe.id}
                     onClick={() => handleRecipeClick(recipe)}
@@ -74,13 +74,11 @@ export default function PreviewList({ recipes, click }) {
                           />
                         </div>
                         <div>
-
                           {
-                            showDescriptions[index] &&  recipe.description ? (
-                              <p>{recipe.description}</p> 
-                            ) : <p>Failed to load description</p>
+                            showDescriptions[index] &&  recipe.description ? 
+                            (<p>{recipe.description}</p>) : 
+                            showDescriptions[index] ? <ErrorMessage message = 'Failed to load description' /> : ''
                           }
-
                           <div className={style.times}>
                             <div>⏲️ Prep: {NumToTime(recipe.prep)}</div>
                             <div>🕰️ Cook: {NumToTime(recipe.cook)}</div>
