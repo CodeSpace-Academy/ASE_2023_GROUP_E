@@ -6,16 +6,11 @@
   margin: 2em; /* Using em for margin */
 }
 
-/* .card {
-  display: grid;
-  grid-template-columns: 1fr 2fr; /* Left for titleAndImage, right for info */
-  /* Add default styles for the card container 
-} */
+
 
 .card{
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
   align-items: center;
 }
 
@@ -33,10 +28,9 @@
 }
 
 .imageRow {
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* Left for titleAndImage, right for info */
+ 
   margin-bottom: 20px;
-  justify-content: center;
+
 }
 
 .info {
