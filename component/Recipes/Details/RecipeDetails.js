@@ -15,6 +15,7 @@ import EditInstruction, {
   NewInstruction,
 } from '@/component/editInstructions/editInstructions';
 import { GetSpecificInstruction } from '@/component/editInstructions/editInstructions';
+import FavouritesButton from '../FavouritesButton/FavouritesButton';
 
 const RecipeDetails = ({ recipe, allergens }) => {
   const [showIngredients, setShowIngredients] = useState(false);
@@ -78,9 +79,7 @@ const RecipeDetails = ({ recipe, allergens }) => {
             )}
           </div>
         </div>
-        <div>
-          <button>Add to favourites</button>
-        </div>
+        <FavouritesButton />
       </div>
     );
   }
