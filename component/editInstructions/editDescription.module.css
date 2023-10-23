@@ -17,24 +17,17 @@
     width: 15em;
 }
 
+.optionsForm{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 134px;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.select{
+    height: 5vh;
+    border-radius: 5px;
+}
 
 .buttons{
     display: flex;

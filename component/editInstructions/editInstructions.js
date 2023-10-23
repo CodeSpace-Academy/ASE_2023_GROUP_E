@@ -17,25 +17,26 @@ function EditInstruction({info}) {
   async function addItemHandler(e) {
     e.preventDefault()
 
-    //hides form after editing
-    setEditInstruction(!editInstruction)
+
 
 
     try {
       await addItem('/api/editInstructions', { recipeTitle: titleRouter, recipeInstruction: newInstruction, selectInstruction: instructionIndex });
+      //hides form after editing
+      setEditInstruction(!editInstruction)
     } catch (error) {
       console.log('Error adding item');
     }
   }
  
   return (
-    <form className={classes.form}>
+    <form className={classes.form} onSubmit={addItemHandler}>
       <textarea
         value={newInstruction}
         onChange={(e) => setNewInstruction(e.target.value)}
       />
       <div className={classes.buttons}>
-        <Button text={'SAVE'} color={'success'} click={addItemHandler}/>
+        <FormButton text={'SAVE'}/>
         <Button text={'CLOSE'} color={'warning'} click={() => setEditInstruction(!editInstruction)}/>
       </div>
     </form>
@@ -65,8 +66,8 @@ export function GetSpecificInstruction({instructions}){
   }
 
   return(
-    <form>
-      <select ref={option}>
+    <form className={classes.optionsForm}>
+      <select ref={option} className={classes.select}>
         {
           instructions.map((instructions, index) => <option key={index} value={index} >{index  +1}</option>)
         }
@@ -108,7 +109,7 @@ export function NewInstruction() {
       <div className={classes.buttons}>
         {/* <Button text={'Add Instruction'} color={'success'} /> */}
         <Button text={'CLOSE'} color={'warning'} click={() => setAddInstruction(!addInstruction)}/>
-        <FormButton text={'Add Instruction'}/>
+        <FormButton text={'ADD'}/>
       </div>
     </form>
   );
