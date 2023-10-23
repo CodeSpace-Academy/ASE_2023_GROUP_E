@@ -35,6 +35,7 @@ const RecipeDetails = ({ recipe, allergens }) => {
     return(
       <div className={styles.info}>
       <div className={styles.info1}> 
+      <h2>{recipe.title}</h2>
       <div><strong>Description:</strong> {recipe.description}</div>
 
       {/**
