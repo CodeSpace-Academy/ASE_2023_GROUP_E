@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 export default function AllRecipes({ documents, pagesPath, totalDataLength }) {
   const router = useRouter();
   const [currentPage, setCurrentPage] = useState(pagesPath);
-  const recipesToLoad = 50;
+  const recipesToLoad = 25;
   const [loadMoreValue, setLoadMoreValue] = useState(totalDataLength - currentPage);
   const [pageNumber, setPageNumber] = useState(1); // Initialize page number
 

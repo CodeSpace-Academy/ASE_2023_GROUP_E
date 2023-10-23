@@ -19,7 +19,7 @@ const HomeWithBackground = () => {
                
                 {/*Links to the pages on the menu lists */}
                 <div className={classes.menu}>
-                    <Link href={`/${50}`}>All Recipes</Link>  {/* Link to the "All Recipes" page with route parameter 100. */}
+                    <Link href={`/${25}`}>All Recipes</Link>  {/* Link to the "All Recipes" page with route parameter 100. */}
                     <Link href={'/tags'}>Tags List</Link>
                     <Link href="/favorites">Favorites</Link>
                     <Link href="/updated-recipes">Updated Recipes</Link>
