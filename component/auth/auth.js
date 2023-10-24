@@ -1,9 +1,10 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import classes from './auth.module.css'
 import { BlueButton, LinkButton } from '../Button/button';
 import Image from 'next/image';
 import Link from 'next/link';
 import { addItem } from '@/database/addToDatabase';
+import {signIn, useSession} from 'next-auth/react'
 
 export default  function AuthForm() {
   const [isLogin, setIsLogin] = useState(true);
@@ -11,15 +12,26 @@ export default  function AuthForm() {
   const usernameRef = useRef()
   const emailRef = useRef()
   const passwordRef = useRef()
-
+  
   async function submitHandler(e){
     e.preventDefault()
 
-    const enteredUsername = usernameRef.current.value
+    let enteredUsername;
     const enteredEmail = emailRef.current.value
     const enteredPassword = passwordRef.current.value
 
+    if(!isLogin){
+        enteredUsername = usernameRef.current.value;
+      }
+  
+
     if(isLogin){
+
+        const result = await signIn('credentials', {
+            redirect: false,
+            email: enteredEmail.toLowerCase(),
+            password: enteredPassword,
+          });
         console.log('logged in')
         
     }else{
