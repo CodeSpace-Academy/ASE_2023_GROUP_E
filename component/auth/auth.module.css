@@ -1,11 +1,11 @@
 .auth{
     display: grid;
     grid-template-columns: 40% 60%;
-
+    overflow: hidden;
 }
 
 .img{
-    height: 83vh;
+    height: 80vh;
     width: 100%;
 }
 
@@ -47,4 +47,19 @@
 
 .auth label{
     margin-left: 10px;
+}
+
+@media only screen and (max-width: 756px){
+    .auth{
+        display: grid;
+        grid-template-columns: 60% 40%;
+    
+    }
+}
+@media only screen and (max-width: 470px){
+    .auth{
+        display: grid;
+        grid-template-columns: 100% 0%;
+    
+    }
 }
