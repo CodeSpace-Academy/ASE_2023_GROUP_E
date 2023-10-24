@@ -1,3 +1,5 @@
+// database/filterData.js
+
 import { MongoClient } from 'mongodb';
 
 export async function fetchIngredients() {
@@ -16,16 +18,20 @@ export async function fetchIngredients() {
     client = new MongoClient(uri);
 
     await client.connect();
-    const db = client.db('devdb'); 
+    const db = client.db('devdb');
 
     // Access the 'recipes' collection in the 'devdb' database and fetch all documents.
     const ingredientsCollection = db.collection('recipes');
-    const ingredientsDocuments = await ingredientsCollection.find({}).toArray();
+    const ingredientsDocuments = await ingredientsCollection.find({}).sort.toArray();
 
-    // Extract and map the ingredients data from the documents.
+    // Extract and map only the names of ingredients from the documents.
     const ingredients = ingredientsDocuments.map((doc) => {
-      const { _id, ...ingredientsList } = doc;
-      return ingredientsList;
+      // Assuming that 'ingredients' is an array of objects in the document.
+      const ingredientNames = doc.ingredients.map(ingredient => ingredient.name);
+      return {
+        _id: doc._id,
+        ingredients: ingredientNames,
+      };
     });
 
     // Return the extracted ingredients.

@@ -1,11 +1,18 @@
+// pages/filterData/index
+
 import React from "react";
-import ingredientsFilter from "@/component/Filter/ingredientsFilter";
+import IngredientsFilter from "@/component/Filter/ingredientsFilter";
 
 const  filterData= () => {
-
   return (
-   <ingredientsFilter />
+    <div>
+      <h1>Filter by Ingredients</h1>
+
+      <IngredientsFilter />
+      
+    </div>
   );
+
 };
 
 export default filterData;
