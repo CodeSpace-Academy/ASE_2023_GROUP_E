@@ -5,9 +5,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { addItem } from '@/database/addToDatabase';
 import {signIn, useSession} from 'next-auth/react'
+import { useRouter } from 'next/router';
 
 export default  function AuthForm() {
   const [isLogin, setIsLogin] = useState(true);
+  const router = useRouter()
 
   const usernameRef = useRef()
   const emailRef = useRef()
@@ -37,7 +39,7 @@ export default  function AuthForm() {
     }else{
         try{
             addItem('/api/auth/signUp', {username : enteredUsername.toLowerCase(), email : enteredEmail.toLowerCase(), password: enteredPassword})
-            console.log(enteredUsername)
+            router.push('/')
         }catch(error){
             console.log('error signing up', error.message)
         }
