@@ -85,6 +85,7 @@ const RecipeDetails = ({ recipe, allergens }) => {
 
   if (!recipe) return null;
   return (
+    <div className={styles.background}>
     <div className={styles.recipeCard}>
       <div className={styles.card}>
         <div className={styles.titleAndImage}>
@@ -201,6 +202,7 @@ const RecipeDetails = ({ recipe, allergens }) => {
           <ErrorMessage message={'Error loading the instructions'} />
         )}
       </div>
+    </div>
     </div>
   );
 };

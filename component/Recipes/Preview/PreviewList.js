@@ -18,9 +18,14 @@ const Item = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),
   color: theme.palette.text.secondary,
   boxShadow: 'none',
-  borderBottom: 'solid black 2px',
-  borderRight: 'solid black 2px',
+  borderBottom: 'solid #eeeeee 1px',
+  borderRight: 'solid #eeeeee 1px',
+  borderLeft: 'solid #eeeeee 1px',
   cursor: 'pointer',
+ 
+
+  
+  
 }));
 
 export default function PreviewList({ recipes, click }) {
@@ -48,7 +53,6 @@ export default function PreviewList({ recipes, click }) {
 
   return (
     <>
-    
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={1}>
           {recipes &&
@@ -63,9 +67,10 @@ export default function PreviewList({ recipes, click }) {
                       href={`/${currentPath}/${recipe.title}`}
                       className={style.link}
                     >
-                      <h2 className={style.title}>{recipe.title}</h2>
+                   
                       <div className={style.recipe}>
-                        <div>
+                       
+                      <div>
                           <Image
                             src={recipe.images[0]}
                             className={style.img}
@@ -74,7 +79,9 @@ export default function PreviewList({ recipes, click }) {
                             height={100}
                           />
                         </div>
-                        <div>
+                       <div className={style.details}>
+                       <h4 className={style.title}>{recipe.title}</h4>
+                         <div>
                           {
                             showDescriptions[index] &&  recipe.description ? 
                             (<p>{recipe.description}</p>) : 
@@ -89,16 +96,18 @@ export default function PreviewList({ recipes, click }) {
                             </div>
                           </div>
                         </div>
+                        <SingleRecipeTags tags={recipe.tags} />
+                        </div>
                       </div>
 
                       {/* Recipe tags */}
-                      <SingleRecipeTags tags={recipe.tags} />
+                     
                     </Link>
-
-                    <button onClick={() => toggleDescription(index)}>
+                   <div className={style.description} >
+                    <button className={style.button} onClick={() => toggleDescription(index)}>
                         Show Description
                     </button>
-
+                   </div>
                   </Item>
                 </Grid>
               );

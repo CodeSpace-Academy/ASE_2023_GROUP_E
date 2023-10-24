@@ -2,7 +2,7 @@ import PreviewList from '@/component/Recipes/Preview/PreviewList';
 import { run } from '@/database';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
-
+import classes from './index.module.css'
 export default function AllRecipes({ documents, pagesPath, totalDataLength }) {
   const router = useRouter();
   const [currentPage, setCurrentPage] = useState(pagesPath);
@@ -46,7 +46,7 @@ export default function AllRecipes({ documents, pagesPath, totalDataLength }) {
   
 
   return (
-    <main>
+    <main className={classes.background}>
       {pageNumber >= 2 && (
         <button onClick={goBack} disabled={false}>
           Go Back
@@ -54,16 +54,22 @@ export default function AllRecipes({ documents, pagesPath, totalDataLength }) {
       )}
       <PreviewList recipes={documents} click={loadMoreRecipes} />
       {pageNumber >= 2 && (
-        <button onClick={goBack} disabled={false}>
+        <button   className={classes.button}onClick={goBack} disabled={false}>
           Go Back
         </button>
       )}
+      <div className={classes.buttons}>
       {loadMoreValue > 0 && (
-        <button onClick={loadMoreRecipes} disabled={false}>
+        <div className={classes.loadmoreButton}>
+        <button  className={classes.button} onClick={loadMoreRecipes} disabled={false}>
           Load More ({loadMoreValue} recipes remaining)
         </button>
+        </div>
       )}
-      <button>Page: {pageNumber}</button>
+      <div className={classes.pageNumber}>
+      <button  className={classes.button}>Page: {pageNumber}</button>
+      </div>
+      </div>
     </main>
   );
 }

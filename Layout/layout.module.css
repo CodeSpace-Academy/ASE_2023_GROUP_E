@@ -5,7 +5,7 @@
 
 .imgDiv{
     text-align: center;
-    background-color: rgba(218, 224, 250, 0.277);
+    background-image: url('../public/images/marble-background.png');
     padding: 5px;
     margin-left: 50px;
 }

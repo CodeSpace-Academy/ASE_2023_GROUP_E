@@ -1,0 +1,23 @@
+
+.buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 61px;
+    
+}
+.background{
+    background-image: url('../../public/images/marble-background.png');
+}
+
+.loadmoreButton{
+    padding: 20px;
+   
+}
+
+.button{
+padding: 5px;
+border-radius: 10px;
+background-color: rgba(26, 26, 72, 0.784);
+color: white;
+}
