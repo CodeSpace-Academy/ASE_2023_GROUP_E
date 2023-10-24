@@ -1,17 +1,17 @@
-// pages/filterData/index
+// pages/filterData/index.js
+import IngredientsFilter from '@/component/Filter/ingredientsFilter';
+import { fetchIngredients } from '@/database/filterData';
 
-import React from "react";
-import IngredientsFilter from "@/component/Filter/ingredientsFilter";
-
-const  filterData= () => {
+const FilterData = ({ ingredients }) => {
   return (
     <div>
-      <h1>Filter by Ingredients</h1>
-      <IngredientsFilter />
-      
+      <IngredientsFilter ingredients={ingredients} />
     </div>
   );
-
 };
 
-export default filterData;
+export default FilterData;
+
+export async function getStaticProps() {
+  
+}

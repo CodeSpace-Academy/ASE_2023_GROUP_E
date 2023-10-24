@@ -33,6 +33,7 @@ export async function fetchIngredients() {
         ingredients: ingredientNames,
       };
     });
+    
 
     // Return the extracted ingredients.
     return {
@@ -51,4 +52,6 @@ export async function fetchIngredients() {
       await client.close();
     }
   }
+
+  
 }
