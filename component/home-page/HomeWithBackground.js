@@ -24,6 +24,7 @@ const HomeWithBackground = () => {
           <Link href="/favorites">Favorites</Link>
           <Link href="/updated-recipes">Updated Recipes</Link>
           <Link href="/favourites">Favourites</Link>
+          <Link href={'/filterData'}>Search</Link>
         </div>
       </div>
     </div>
