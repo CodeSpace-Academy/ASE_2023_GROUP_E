@@ -22,7 +22,7 @@ export async function fetchIngredients() {
 
     // Access the 'recipes' collection in the 'devdb' database and fetch all documents.
     const ingredientsCollection = db.collection('recipes');
-    const ingredientsDocuments = await ingredientsCollection.find({}).sort.toArray();
+    const ingredientsDocuments = await ingredientsCollection.find({}).sort().toArray();
 
     // Extract and map only the names of ingredients from the documents.
     const ingredients = ingredientsDocuments.map((doc) => {

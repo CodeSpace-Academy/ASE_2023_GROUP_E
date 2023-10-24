@@ -7,7 +7,6 @@ const  filterData= () => {
   return (
     <div>
       <h1>Filter by Ingredients</h1>
-
       <IngredientsFilter />
       
     </div>
