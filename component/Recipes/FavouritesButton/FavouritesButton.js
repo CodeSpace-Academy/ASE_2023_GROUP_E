@@ -1,9 +1,11 @@
 import React from 'react';
 import classes from './FavouritesButton.module.css';
-const FavouritesButton = () => {
+const FavouritesButton = ({ onClick }) => {
   return (
     <div>
-      <button className={classes.favButton}>Add to favourites</button>
+      <button onClick={onClick} className={classes.favButton}>
+        Add to favourites
+      </button>
     </div>
   );
 };
