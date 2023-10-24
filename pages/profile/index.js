@@ -4,7 +4,7 @@ import { Fragment } from "react";
 export default function Profile(){
     return (
         <Fragment>
-            <LinkButton path={'/profile/auth'} text={'Login'}/>
+            <LinkButton path={'/profile/auth/login'} text={'Login'}/>
         </Fragment>
     )
 }
