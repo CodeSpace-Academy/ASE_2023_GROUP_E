@@ -19,7 +19,6 @@ export default function AllRecipes() {
   return (
     <main>
 
-      <button onClick={() => localStorage.setItem("skipNo", addSkip + 50)}>button</button>
       <PreviewList recipes={results}/*  click={loadMoreRecipes}  *//>
       
       <button onClick={() => localStorage.setItem("skipNo", addSkip + 50)} disabled={false}>
