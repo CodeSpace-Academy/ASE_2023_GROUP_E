@@ -11,6 +11,8 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import SingleRecipeTags from '../SingleRecipeTags/SingleRecipeTags';
 import ErrorMessage from '@/component/Error/ErrorMessage';
+import CategoryFilter from '@/component/category/categoryFilter';
+import { fetchCategories } from '@/database/categories';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -28,6 +30,10 @@ export default function PreviewList({ recipes, click }) {
   const [showDescriptions, setShowDescriptions] = useState([]);
   const router = useRouter();
   const currentPath = router.query.preview;
+  const [setRecipes] = useState([]);
+
+  const [searchCategory, setSearchCategory] = useState('');
+
 
   useEffect(() => {
     // Initialize the showDescriptions array when the recipes prop is available
@@ -35,6 +41,17 @@ export default function PreviewList({ recipes, click }) {
       setShowDescriptions(recipes.map(() => false));
     }
   }, [recipes]);
+
+  const [categories, setCategories] = useState([]);
+useEffect(() => {
+  const loadCategories = async () => {
+    const { categories } = await fetchCategories();
+    setCategories(categories);
+    console.log(categories);
+  };
+
+  loadCategories();
+}, []);
 
   const handleRecipeClick = (recipe) => {
     setSelectedRecipe(recipe);
@@ -46,10 +63,25 @@ export default function PreviewList({ recipes, click }) {
     setShowDescriptions(newShowDescriptions);
   };
 
+  const handleCategoryChange = async (category) => {
+    setSelectedCategory(category);
+
+    if (category) {
+      const response = await fetch(`/api/recipes/${category}`);
+      const data = await response.json();
+      setRecipes(data);
+    } else {
+      setRecipes([]);
+    }
+  };
+
   return (
     <>
     
       <Box sx={{ flexGrow: 1 }}>
+
+      <CategoryFilter onCategoryChange={handleCategoryChange} />
+
         <Grid container spacing={1}>
           {recipes &&
             recipes.map((recipe, index) => {
