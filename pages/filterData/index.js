@@ -1,5 +1,3 @@
-// pages/filterData/index.js
-
 import React, { useEffect, useState } from 'react';
 import { run } from '@/database';
 import IngredientsList from '@/component/Filter/ingredients';

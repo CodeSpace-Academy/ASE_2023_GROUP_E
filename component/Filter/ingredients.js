@@ -1,4 +1,3 @@
-// component/Filter/ingredients
 import React from 'react';
 import styles from './IngredientsList.module.css';
 
