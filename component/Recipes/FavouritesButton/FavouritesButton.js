@@ -1,22 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import classes from './FavouritesButton.module.css';
-const FavouritesButton = ({ onClick, isFavourited, recipe }) => {
-  const [isInFavourites, setIsInFavourites] = useState(isFavourited);
+const FavouritesButton = ({ recipe }) => {
+  const [isInFavourites, setIsInFavourites] = useState(null);
   const [favouritesList, setFavouritesList] = useState(
     JSON.parse(localStorage.getItem('favs')) || []
   );
-  console.log(favouritesList);
+  const recipeIsInFavouritesList = favouritesList.find((singleRecipe) => {
+    return singleRecipe._id === recipe._id;
+  });
+
   useEffect(() => {
     localStorage.setItem('favs', JSON.stringify(favouritesList));
-  }, [favouritesList]);
+  }, [favouritesList, isInFavourites]);
+
   const toggleIsInFavourites = () => {
-    // setIsInFavourites((prevIsInFavourite) => !isInFavourites);
-    const recipeIsInFavouritesList = favouritesList.find((singleRecipe) => {
-      return singleRecipe._id === recipe._id;
-    });
-    console.log(recipeIsInFavouritesList);
     if (!recipeIsInFavouritesList) {
       setFavouritesList((prevFavourites) => [...prevFavourites, recipe]);
+      setIsInFavourites(true);
+    } else {
+      setFavouritesList((prevFavourites) =>
+        prevFavourites.filter((singleRecipe) => {
+          return singleRecipe._id !== recipe._id;
+        })
+      );
+      setIsInFavourites(false);
     }
   };
   return (
@@ -24,7 +31,7 @@ const FavouritesButton = ({ onClick, isFavourited, recipe }) => {
       <button
         onClick={toggleIsInFavourites}
         className={
-          isInFavourites
+          recipeIsInFavouritesList
             ? `${classes.isFavourite} ${classes.favButton}`
             : classes.favButton
         }
