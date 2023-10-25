@@ -1,14 +1,10 @@
-let MongoClient;
-if (typeof window === 'undefined') {
-  // This code will only run on the server side
-  MongoClient = require('mongodb').MongoClient;
-}
+import{client} from '.index'
 
 export async function fetchCategories() {
-  let client;
+
 
   try {
-    const uri = process.env.MONGODB_URI;
+    // const uri = process.env.MONGODB_URI;
 
     if (!uri) {
       console.error('failed to connect');
@@ -17,21 +13,16 @@ export async function fetchCategories() {
       };
     }
 
-    if (!MongoClient) {
-      console.error('MongoClient is not available on the client side');
-      return {
-        categories: [],
-      };
-    }
+ 
 
-    client = new MongoClient(uri);
-
-    await client.connect();
-    const db = client.db('devdb');
+    // await client.connect();
+    // const db = client.db('devdb');
 
     const categoriesCollection = db.collection('categories');
     const categoriesDocuments = await categoriesCollection.find({}).toArray();
+    console.log('categoriesDocuments:', categoriesDocuments);
     const categories = categoriesDocuments.map((doc) => doc.name);
+    console.log('categories:', categories);
 
     return {
       categories,

@@ -1,7 +1,7 @@
 import { MongoClient } from 'mongodb';
 
 export async function fetchAllergensFromDatabase() {
-  let client;
+  // let client;
 
   try {
     const uri = process.env.MONGODB_URI;
@@ -13,10 +13,10 @@ export async function fetchAllergensFromDatabase() {
       };
     }
 
-    client = new MongoClient(uri);
+    // client = new MongoClient(uri);
 
-    await client.connect();
-    const db = client.db('devdb');
+    // await client.connect();
+    // const db = client.db('devdb');
 
     const allergensCollection = db.collection('allergens');
     const allergensDocuments = await allergensCollection.find().toArray();

@@ -4,20 +4,20 @@ import { MongoClient } from 'mongodb';
 
 export async function run(pageSize) {
  
-  let client;
+  // let client;
 
   try {
-    const uri = process.env.MONGODB_URI;
+    // const uri = process.env.MONGODB_URI;
 
     if (!uri) {
       console.error('failed to connect');
       return [];
     }
 
-    client = new MongoClient(uri);
+    // client = new MongoClient(uri);
 
-    await client.connect();
-    const db = client.db('devdb');
+    // await client.connect();
+    // const db = client.db('devdb');
 
     const documents = await db
       .collection('recipes')
