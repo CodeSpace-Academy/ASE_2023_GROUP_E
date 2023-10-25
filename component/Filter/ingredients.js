@@ -1,19 +1,20 @@
+// component/Filter/ingredients
 import React, { useState } from 'react';
+import styles from './IngredientsList.module.css';
 
 const IngredientsList = ({ recipes }) => {
-  
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItems, setSelectedItems] = useState([]);
-  
+
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
-  const toggleItem = (item) => {
-    if (selectedItems.includes(item)) {
-      setSelectedItems(selectedItems.filter((i) => i !== item));
+  const toggleItem = (ingredient) => {
+    if (selectedItems.includes(ingredient)) {
+      setSelectedItems(selectedItems.filter((i) => i !== ingredient));
     } else {
-      setSelectedItems([...selectedItems, item]);
+      setSelectedItems([...selectedItems, ingredient]);
     }
   };
 

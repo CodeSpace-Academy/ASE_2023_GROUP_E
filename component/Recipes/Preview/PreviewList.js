@@ -11,6 +11,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import SingleRecipeTags from '../SingleRecipeTags/SingleRecipeTags';
 import ErrorMessage from '@/component/Error/ErrorMessage';
+import IngredientsList from '@/component/Filter/ingredients';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -26,6 +27,8 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function PreviewList({ recipes, click }) {
   const [selectedRecipe, setSelectedRecipe] = useState(null);
   const [showDescriptions, setShowDescriptions] = useState([]);
+  const [isOpen, setIsOpen] = useState(false); // State to control the dropdown
+
   const router = useRouter();
   const currentPath = router.query.preview;
 
@@ -46,9 +49,15 @@ export default function PreviewList({ recipes, click }) {
     setShowDescriptions(newShowDescriptions);
   };
 
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <>
-    
+      <button onClick={toggleDropdown}>Toggle Ingredients</button> {/* Button to toggle the dropdown */}
+      {isOpen && <IngredientsList recipes={recipes} />} {/* Show IngredientsList when dropdown is clicked */}
+
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={1}>
           {recipes &&

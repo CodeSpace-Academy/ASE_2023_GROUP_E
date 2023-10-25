@@ -1,0 +1,46 @@
+/* IngredientsList.module.css */
+.dropdownChecklist {
+  position: relative;
+  width: 200px;
+}
+
+.dropdownToggle {
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  text-align: center;
+  user-select: none;
+}
+
+.dropdownMenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  z-index: 1;
+}
+
+.item {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Apply a class to label elements */
+.itemLabel {
+  display: flex;
+  align-items: center;
+}
+
+/* Style for checked checkboxes */
+input[type="checkbox"]:checked + .itemLabel {
+  text-decoration: line-through;
+}
