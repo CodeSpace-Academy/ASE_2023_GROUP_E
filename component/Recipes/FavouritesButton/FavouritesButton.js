@@ -3,13 +3,13 @@ import classes from './FavouritesButton.module.css';
 const FavouritesButton = ({ onClick, isFavourited }) => {
   const [isInFavourites, setIsInFavourites] = useState(isFavourited);
 
-  const toggleIsFavourite = () => {
+  const toggleIsInFavourites = () => {
     setIsInFavourites((prevIsInFavourite) => !isInFavourites);
   };
   return (
     <div>
       <button
-        onClick={toggleIsFavourite}
+        onClick={toggleIsInFavourites}
         className={
           isInFavourites
             ? `${classes.isFavourite} ${classes.favButton}`
