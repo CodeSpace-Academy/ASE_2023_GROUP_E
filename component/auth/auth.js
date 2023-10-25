@@ -38,8 +38,14 @@ export default  function AuthForm() {
         
     }else{
         try{
-            addItem('/api/auth/signUp', {username : enteredUsername.toLowerCase(), email : enteredEmail.toLowerCase(), password: enteredPassword})
-            router.push('/')
+            console.log('spinning')
+            const results = await addItem('/api/auth/signUp', {username : enteredUsername.toLowerCase(), email : enteredEmail.toLowerCase(), password: enteredPassword})
+        
+            if(results.message === `Welcome ${enteredUsername.toLowerCase()}`){
+                console.log('signed up')
+            }else{
+                console.log(results.message)
+            }
         }catch(error){
             console.log('error signing up', error.message)
         }
