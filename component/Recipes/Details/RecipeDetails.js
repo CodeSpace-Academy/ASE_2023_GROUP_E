@@ -20,7 +20,6 @@ import FavouritesButton from '../FavouritesButton/FavouritesButton';
 const RecipeDetails = ({ recipe, allergens }) => {
   const [showIngredients, setShowIngredients] = useState(false);
   const [showNutrition, setShowNutrition] = useState(false);
-  const [isFavourited, setIsFavourited] = useState(false);
 
   const {
     edit,
@@ -82,7 +81,7 @@ const RecipeDetails = ({ recipe, allergens }) => {
             )}
           </div>
         </div>
-        <FavouritesButton isFavourited={isFavourited} recipe={recipe} />
+        <FavouritesButton recipe={recipe} />
       </div>
     );
   }
