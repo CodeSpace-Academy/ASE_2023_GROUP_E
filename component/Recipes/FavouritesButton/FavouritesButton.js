@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import classes from './FavouritesButton.module.css';
 const FavouritesButton = ({ recipe }) => {
-  const [isInFavourites, setIsInFavourites] = useState(null);
   const [favouritesList, setFavouritesList] = useState(
     JSON.parse(localStorage.getItem('favs')) || []
   );
@@ -11,19 +10,17 @@ const FavouritesButton = ({ recipe }) => {
 
   useEffect(() => {
     localStorage.setItem('favs', JSON.stringify(favouritesList));
-  }, [favouritesList, isInFavourites]);
+  }, [favouritesList]);
 
   const toggleIsInFavourites = () => {
     if (!recipeIsInFavouritesList) {
       setFavouritesList((prevFavourites) => [...prevFavourites, recipe]);
-      setIsInFavourites(true);
     } else {
       setFavouritesList((prevFavourites) =>
         prevFavourites.filter((singleRecipe) => {
           return singleRecipe._id !== recipe._id;
         })
       );
-      setIsInFavourites(false);
     }
   };
   return (
