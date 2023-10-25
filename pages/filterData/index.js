@@ -20,6 +20,7 @@ export default function IngredientList({ documents }) {
 
   return (
     <div>
+      <h2>Filter by Ingredients</h2>
       <IngredientsList recipes={uniqueIngredient} />
     </div>
   );
