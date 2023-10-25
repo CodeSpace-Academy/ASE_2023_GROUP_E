@@ -16,12 +16,22 @@ export default function AllRecipes() {
       .then(data => setResults(data.recipes))
   })
 
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth', // Smooth scrolling animation
+    });
+  };
+
   return (
     <main>
 
       <PreviewList recipes={results}/*  click={loadMoreRecipes}  *//>
       
-      <button onClick={() => localStorage.setItem("skipNo", addSkip + 50)} disabled={false}>
+      <button onClick={() => {
+        localStorage.setItem("skipNo", addSkip + 50)
+        scrollToTop()
+        }} disabled={false}>
         Next
       </button>
      
