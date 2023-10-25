@@ -9,3 +9,22 @@
     background: rgb(16, 161, 180);
     font-size: large;
 }
+
+.linkbutton {
+    cursor: pointer;
+    font: inherit;
+    color: white;
+    background-color: rgb(253, 140, 1);
+    border:none;
+    border-radius: 4px;
+    padding: 0.5rem 2.5rem;
+    text-decoration: none;
+}
+
+.linkbutton:hover{
+    background-color:  rgb(255, 106, 6);
+}
+
+.linkbutton:active{
+    background-color:  rgb(253, 140, 1)
+}

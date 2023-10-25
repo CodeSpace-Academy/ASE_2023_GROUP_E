@@ -12,7 +12,6 @@ const HomeWithBackground = () => {
       <Head>
         <title>{"Chef's Heaven"}</title>
       </Head>
-
       <div className={classes.backgroundImage}>
         {' '}
         {/* This div represents the background image container. */}
@@ -26,9 +25,8 @@ const HomeWithBackground = () => {
           <Link href="/favourites">Favourites</Link>
           <Link href={'/filterData'}>Search</Link>
         </div>
-      </div>
-    </div>
-  );
+    );
+   
 };
 
 export default HomeWithBackground;

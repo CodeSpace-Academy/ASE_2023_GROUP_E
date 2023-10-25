@@ -44,10 +44,9 @@ const RecipeDetails = ({ recipe, allergens }) => {
   function Info() {
     return (
       <div className={styles.info}>
-        <div className={styles.info1}>
-          <div>
-            <strong>Description:</strong> {recipe.description}
-          </div>
+      <div className={styles.info1}> 
+      <h2>{recipe.title}</h2>
+      <div><strong>Description:</strong> {recipe.description}</div>
 
           {/**
            * {@link info} is a props that hold the current descripton that will get modified
