@@ -49,7 +49,9 @@ const FavouritesButton = ({ recipe }) => {
             : classes.favButton
         }
       >
-        Add to favourites
+        {recipeIsInFavouritesList
+          ? 'Remove from favourites'
+          : 'Add to favourites'}
       </button>
     </div>
   );
