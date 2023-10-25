@@ -1,0 +1,29 @@
+.ingredientList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.item {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s; /* Smooth background color transition */
+}
+
+.item button {
+  background-color: #4f5356; /* Blue button background */
+  color: #fff; /* White text color */
+  height: auto;
+  width: auto;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s; /* Smooth background color transition */
+}
+
+.item button:hover {
+  background-color: #bb8f21; /* Darker blue on hover */
+}
+
