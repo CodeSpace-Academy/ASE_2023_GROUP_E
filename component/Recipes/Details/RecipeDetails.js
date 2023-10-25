@@ -82,7 +82,7 @@ const RecipeDetails = ({ recipe, allergens }) => {
             )}
           </div>
         </div>
-        <FavouritesButton isFavourited={isFavourited} />
+        <FavouritesButton isFavourited={isFavourited} recipe={recipe} />
       </div>
     );
   }
