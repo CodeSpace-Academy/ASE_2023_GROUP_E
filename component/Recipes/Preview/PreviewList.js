@@ -41,7 +41,16 @@ export default function PreviewList({ recipes, click }) {
     setSelectedRecipe(recipe);
   };
 
-  
+  const handleSearch = async (category) => {
+    try {
+      const response = await fetch(`/api/search?category=${category}`);
+      const data = await response.json();
+      console.log('Search results:', data);
+      // Update state or perform actions based on the search results
+    } catch (error) {
+      console.error('Error fetching recipes:', error);
+    }
+  };
 
   const toggleDescription = (index) => {
     const newShowDescriptions = [...showDescriptions];
