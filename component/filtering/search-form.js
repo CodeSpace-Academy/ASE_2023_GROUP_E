@@ -1,28 +1,45 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
+import PreviewList from "../Recipes/Preview/PreviewList";
 
+export default function SearchForm() {
+  const searchRef = useRef();
+  const timeoutRef = useRef(null); 
+  const [ results, setResults ] = useState(null)
 
+  const searchHandler = () => {
+    const filterInput = searchRef.current.value;
 
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
 
-export default function SearchForm(){
-
-
-    const searchRef = useRef()
-    useEffect(() =>{
-      const filterInput = searchRef.current.value.toLowerCase();
+    /**
+     * fetches results from the api folder.
+     * insert in inside a state, state is then mapped over to display results.
+     * 
+     * {@link timeoutRef} set the delay to only display results after stopping to text
+     */
+    timeoutRef.current = setTimeout(() => {
       fetch(`/api/filtering/search?title=${filterInput}`)
-        .then(res => res.json())
-        .then(data => console.log(data.results))
-    })
+        .then((res) => res.json())
+        .then((data) => {
+          setResults(data && data.results)
+        });
+    }, 500); 
+  };
 
-    return(
-        <div>
-            <h1>Search Bar in React</h1>
-                <input
-                    type="text"
-                    placeholder="Search for data"
-                    onChange={searchHandler}
-                    ref={searchRef}
-                />
-        </div>
-    )
+  return (
+    <div>
+      <h1>Find recipes</h1>
+      <input
+        type="text"
+        placeholder="Search for data"
+        onChange={searchHandler}
+        ref={searchRef}
+      />
+      {/* maps over results state and map over it */}
+      <PreviewList recipes={results} />
+   
+    </div>
+  );
 }
