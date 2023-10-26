@@ -4,8 +4,13 @@ const Favourites = () => {
   const [favouriteRecipesList, setFavouriteRecipesList] = useState(
     JSON.parse(localStorage.getItem('favouriteRecipesList')) || []
   );
-  console.log(favouriteRecipesList);
-  return <PreviewList recipes={favouriteRecipesList} />;
+
+  return (
+    <>
+      <h1>My favourite recipes</h1>
+      <PreviewList recipes={favouriteRecipesList} />;
+    </>
+  );
 };
 
 export default Favourites;
