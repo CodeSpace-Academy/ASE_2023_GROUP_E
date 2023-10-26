@@ -1,10 +1,9 @@
-import connectClient from "./client";
+import { client } from "./client";
 
 export async function fetchAllergensFromDatabase() {
-  let client;
 
   try {
-    const client = await connectClient()
+    // const client = await connectClient()
 
     if (!client) {
       console.error('failed to connect');

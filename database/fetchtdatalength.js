@@ -1,11 +1,9 @@
-import connectClient from './client';
+import {client} from './client';
 
 export async function run(pageSize) {
  
-  let client;
-
   try {
-    client = await connectClient()
+    // client = await connectClient()
 
     if (!client) {
       console.error('failed to connect');
@@ -42,12 +40,12 @@ export async function run(pageSize) {
 
 
 
-//this function fetches the length of the total recipes from the database using .countDocuments() and it is called in the main run function
+// this function fetches the length of the total recipes from the database using .countDocuments() and it is called in the main run function
 
 export async function fetchTotalDataLength() {
-  let client;
+
   try {
-    const client = await connectClient()
+    // const client = await connectClient()
     if (!client) {
       console.error('failed to connect');
       return 0;
