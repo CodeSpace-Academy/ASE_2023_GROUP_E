@@ -12,7 +12,7 @@ import Link from 'next/link';
 import SingleRecipeTags from '../SingleRecipeTags/SingleRecipeTags';
 import ErrorMessage from '@/component/Error/ErrorMessage';
 import CategoryFilter from '@/component/category/categoryFilter';
-import { fetchCategories } from '@/database/categories';
+import { fetchCategories } from '@/database/categoriesData';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
