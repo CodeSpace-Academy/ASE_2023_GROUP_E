@@ -1,7 +1,11 @@
-import React from 'react';
-
+import React, { useEffect, useState } from 'react';
+import PreviewList from '@/component/Recipes/Preview/PreviewList';
 const Favourites = () => {
-  return <div>Favourites</div>;
+  const [favouriteRecipesList, setFavouriteRecipesList] = useState(
+    JSON.parse(localStorage.getItem('favouriteRecipesList')) || []
+  );
+  console.log(favouriteRecipesList);
+  return <PreviewList recipes={favouriteRecipesList} />;
 };
 
 export default Favourites;
