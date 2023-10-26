@@ -60,7 +60,7 @@ export default function PreviewList({ recipes, click }) {
                     onClick={() => handleRecipeClick(recipe)}
                   >
                     <Link
-                      href={`/${currentPath}/${recipe.title}`}
+                      href={`/recipes/${recipe.title}`}
                       className={style.link}
                     >
                       <h2 className={style.title}>{recipe.title}</h2>
