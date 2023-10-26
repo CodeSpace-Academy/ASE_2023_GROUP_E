@@ -25,7 +25,7 @@ export default function SearchForm() {
         .then((data) => {
           setResults(data && data.results)
         });
-    }, 500); 
+    }, 620); 
   };
 
   return (
@@ -38,7 +38,7 @@ export default function SearchForm() {
         ref={searchRef}
       />
       {/* maps over results state and map over it */}
-      <PreviewList recipes={results} />
+      <PreviewList recipes={results} input={results && searchRef.current.value} />
    
     </div>
   );
