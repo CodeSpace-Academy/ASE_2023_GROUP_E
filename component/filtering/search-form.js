@@ -1,30 +1,28 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 
-export default function SearchForm({data}){
+
+
+export default function SearchForm(){
+
 
     const searchRef = useRef()
-  
-    const searchHandler = (e) => {
+    useEffect(() =>{
       const filterInput = searchRef.current.value.toLowerCase();
-  
-      const filteredData = data.filter((item) =>
-        item.title.toLowerCase().includes(filterInput)
-      );
-  
-      setResults(filteredData);
-    };
+      fetch(`/api/filtering/search?title=${filterInput}`)
+        .then(res => res.json())
+        .then(data => console.log(data.results))
+    })
 
     return(
         <div>
             <h1>Search Bar in React</h1>
                 <input
                     type="text"
-                    placeholder="Search for recipe"
+                    placeholder="Search for data"
                     onChange={searchHandler}
                     ref={searchRef}
                 />
-          
         </div>
     )
 }
