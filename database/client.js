@@ -1,7 +1,7 @@
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = process.env.MONGODB_URI;
 
-const client = new MongoClient(uri, {
+export const client = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,
     strict: true,
@@ -9,13 +9,13 @@ const client = new MongoClient(uri, {
   }
 });
 
-export default async function connectClient() {
-  try {
+// export default async function connectClient() {
+//   try {
 
-    return await client.connect();
+//     return await client.connect();
 
-  } catch(error){
-    console.log('failed to connect', error)
-  }
-}
-connectClient().catch(console.dir);
+//   } catch(error){
+//     console.log('failed to connect', error)
+//   }
+// }
+// connectClient().catch(console.dir);

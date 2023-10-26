@@ -8,13 +8,11 @@ const RecipePage = () => {
   const [ recipe, setRecipe] = useState(null)
 
   useEffect(() => {
-    console.log(router.query.recipe)
 
     fetch(`/api/recipes/recipeDetails?filter=${router.query.recipe}`)
       .then(res => res.json())
       .then(data => setRecipe(data && data.recipeDetails[0]))
 
-      console.log(recipe)
   })
 
   return (
