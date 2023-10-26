@@ -1,6 +1,7 @@
 import PreviewList from '@/component/Recipes/Preview/PreviewList';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import SearchBar from '@/component/searchCategories/categorySearchbar';
 
 export default function AllRecipes() {
   const router = useRouter();
@@ -25,7 +26,7 @@ export default function AllRecipes() {
 
   return (
     <main>
-
+      <SearchBar />
       <PreviewList recipes={results}/*  click={loadMoreRecipes}  *//>
       
       <button onClick={() => {
