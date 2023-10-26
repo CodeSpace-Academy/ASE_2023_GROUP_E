@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import classes from './button.module.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -24,4 +25,12 @@ export default function Button({text, color, click}){
 
 export function FormButton({text}){
     return <button className={classes.button}>{text}</button>
+}
+
+export function LinkButton({ path, text, click }){
+    return <Link href={path} className={classes.linkbutton} onClick={click}>{text}</Link>
+}
+
+export function BlueButton({ click, text }){
+    return <button onClick={click} className={classes.linkbutton}>{text}</button>
 }

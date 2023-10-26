@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { AiOutlineMenu,AiOutlineTags, AiOutlineHome, AiOutlineSetting, AiOutlineUser, AiOutlineHeart, } from 'react-icons/ai';
 import classes from './sideNav.module.css';
@@ -6,14 +6,20 @@ import { MdOutlineFastfood,} from 'react-icons/md'
 import StateContext from '@/useContext/StateContext';
 import Link from 'next/link';
 
-function Links(link, text){
+function Links(link, text, click){
   return (
-    <Link href={link}>{text}</Link>
+    <Link href={link} onClick={click}>{text}</Link>
   )
 }
 
+
 const ExpandableMenu = () => {
   const {setToggleMenu, toggleMenu} = StateContext()
+
+function skip(){
+  return localStorage.setItem("skipNo", 0)
+}
+
 
   const toggleExpand = () => {
     setToggleMenu(!toggleMenu);
@@ -21,8 +27,8 @@ const ExpandableMenu = () => {
 
   const menuOptions = [
     { icon: Links('/',  <AiOutlineHome /> ) , name: Links('/', 'Home')},
-    { icon: Links('/', <AiOutlineUser />) , name: Links('/', 'Profile') },
-    { icon: Links(`/${50}`, <MdOutlineFastfood />) , name: Links(`${50}`, 'Recipes') },
+    { icon: Links('/profile', <AiOutlineUser />) , name: Links('/profile', 'Profile') },
+    { icon: Links(`/recipes`, <MdOutlineFastfood />, skip ), name: Links(`recipes`, 'Recipes') },
     { icon: Links('/tags', <AiOutlineTags/>) , name: Links('/tags', 'Tags')},
     { icon: Links('/',  <AiOutlineHeart />), name: Links('/', 'Favourites') },
     { icon: Links('/', <AiOutlineSetting />) , name: Links('/', 'Settings')  },
