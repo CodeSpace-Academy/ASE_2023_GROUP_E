@@ -19,7 +19,7 @@ export default function AllRecipes() {
   function scrollToTop() {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth', // Smooth scrolling animation
+      behavior: 'instant', // Smooth scrolling animation
     });
   };
 
