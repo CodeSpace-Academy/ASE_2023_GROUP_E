@@ -1,24 +1,33 @@
-// components/SearchBar.js
 import { useState } from 'react';
+import Link from 'next/link';
 
-const SearchBar = ({ onSearch }) => {
+const SearchBar = () => {
   const [query, setQuery] = useState('');
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    onSearch(query);
-  };
+//   const [result, setResults] = useState('');
+//   const handleSearch = async (category) => {
+//     try {
+//       const response = await fetch(`/api/recipes?category=${category}`);
+//       const data = await response.json();
+//       setResults(data);
+//     } catch (error) {
+//       console.error('Error fetching recipes:', error);
+//     }
+//   };
 
   return (
-    <form onSubmit={handleSearch}>
+    <>
+    <form >
       <input
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Enter category..."
       />
-      <button type="submit">Search</button>
+      <Link href={`/categories/${query}`}>
+      <button>Search</button>
+      </Link>
     </form>
+    </>
   );
 };
 
