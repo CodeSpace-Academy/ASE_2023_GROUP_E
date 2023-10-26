@@ -1,7 +1,7 @@
 import PreviewList from '@/component/Recipes/Preview/PreviewList';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import SearchBar from '@/component/searchCategories/categorySearchbar';
+import SearchBar from '@/component/searchCategories/categorySearch';
 
 
 export default function AllRecipes() {
