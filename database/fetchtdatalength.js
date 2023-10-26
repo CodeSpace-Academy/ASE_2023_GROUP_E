@@ -1,22 +1,14 @@
-import { MongoClient } from 'mongodb';
-
-
+import {client} from './client';
 
 export async function run(pageSize) {
  
-  let client;
-
   try {
-    const uri = process.env.MONGODB_URI;
+    // client = await connectClient()
 
-    if (!uri) {
+    if (!client) {
       console.error('failed to connect');
       return [];
     }
-
-    client = new MongoClient(uri);
-
-    await client.connect();
     const db = client.db('devdb');
 
     const documents = await db
@@ -41,26 +33,24 @@ export async function run(pageSize) {
     };
   } finally {
     if (client) {
-      await client.close();
+      console.log('')
     }
   }
 }
 
 
 
-//this function fetches the length of the total recipes from the database using .countDocuments() and it is called in the main run function
+// this function fetches the length of the total recipes from the database using .countDocuments() and it is called in the main run function
 
 export async function fetchTotalDataLength() {
-  let client;
+
   try {
-    const uri = process.env.MONGODB_URI;
-    if (!uri) {
+    // const client = await connectClient()
+    if (!client) {
       console.error('failed to connect');
       return 0;
     }
-
-    client = new MongoClient(uri);
-    await client.connect();
+    
     const db = client.db('devdb');
 
     const totalDataLength = await db.collection('recipes').countDocuments();

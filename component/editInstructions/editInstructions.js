@@ -79,7 +79,7 @@ export function GetSpecificInstruction({instructions}){
 }
 
 export function NewInstruction() {
-  const [newInstruction, setNewInstruction] = useState(null);
+  const [newInstruction, setNewInstruction] = useState('');
   const { addInstruction, setAddInstruction }= StateContext()
 
 
