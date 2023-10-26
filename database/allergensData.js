@@ -1,21 +1,17 @@
-import { MongoClient } from 'mongodb';
+import { client } from "./client";
 
 export async function fetchAllergensFromDatabase() {
-  let client;
 
   try {
-    const uri = process.env.MONGODB_URI;
+    // const client = await connectClient()
 
-    if (!uri) {
+    if (!client) {
       console.error('failed to connect');
       return {
         allergensDocuments: [],
       };
     }
 
-    client = new MongoClient(uri);
-
-    await client.connect();
     const db = client.db('devdb');
 
     const allergensCollection = db.collection('allergens');

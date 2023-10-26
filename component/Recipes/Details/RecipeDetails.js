@@ -14,6 +14,16 @@ const RecipeDetails = ({ recipe, allergens }) => {
   const [showIngredients, setShowIngredients] = useState(false);
   const [showNutrition, setShowNutrition] = useState(false);
 
+  const {
+    edit,
+    setEdit,
+    setEditInstruction,
+    editInstruction,
+    addInstruction,
+    setAddInstruction,
+    instructionIndex,
+  } = StateContext();
+
   /**
    * Contains the allergens present in this recipe
    */
@@ -23,6 +33,50 @@ const RecipeDetails = ({ recipe, allergens }) => {
     if (allergens?.includes(ingredient)) {
       allergenList.push(ingredient);
     }
+  }
+
+  function Info() {
+    return (
+      <div className={styles.info}>
+        <div className={styles.info1}>
+          <h2>{recipe.title}</h2>
+          <div>
+            <strong>Description:</strong> {recipe.description}
+          </div>
+
+          {/**
+           * {@link info} is a props that hold the current descripton that will get modified
+           */}
+          {edit ? (
+            <EditDescription info={recipe.description} />
+          ) : (
+            <Button
+              color={'success'}
+              text={'Edit Description'}
+              click={() => setEdit(!edit)}
+            />
+          )}
+
+          <div>
+            <strong>Category:</strong> {recipe.category}
+          </div>
+
+          <div className={styles.tagsDesktop}>
+            {' '}
+            <SingleRecipeTags tags={recipe.tags} />
+          </div>
+          <div className={styles.aligned}>
+            <strong>Allergens:</strong>
+            {allergenList.length !== 0 ? (
+              <SingleRecipeAllergens allergensList={allergenList} />
+            ) : (
+              <p>No allergens</p>
+            )}
+          </div>
+        </div>
+        <FavouritesButton recipe={recipe} />
+      </div>
+    );
   }
 
   if (!recipe) return null;
