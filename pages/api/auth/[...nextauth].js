@@ -19,17 +19,17 @@ export default NextAuth({
                 const user = await userscollection.findOne({ email: credentials.email})
                 
                 if (!user){
-                    client.close()
+                    // client.close()
                     throw new Error('User not found!')
                 }
                 
                 const isValid = await verifyPassword(credentials.password, user.password)
 
                 if(!isValid){
-                    client.close()
+                    // client.close()
                     throw new Error('Incorrect Password')
                 }
-                client.close()
+                // client.close()
                 return { email: [user.email, user.username] }
             }
         })

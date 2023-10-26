@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { run } from '@/database';
+import { run } from '@/database/fetchtdatalength';
 import TagsListt from '@/component/tags/tagsList';
 
 export default function TagsList({ documents }) {
