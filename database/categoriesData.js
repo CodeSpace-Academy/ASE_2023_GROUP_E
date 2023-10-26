@@ -1,4 +1,4 @@
-import { MongoClient } from 'mongodb';
+import { client } from './client';
 
 export async function fetchCategoriesFromDatabase() {
   
@@ -10,6 +10,8 @@ export async function fetchCategoriesFromDatabase() {
     const db = client.db('devdb');
     const categoriesCollection = db.collection('categories');
     const categories = await categoriesCollection.find().toArray();
+    
+    console.log(categoriesCollection)
 
     return {
       categories,
