@@ -11,8 +11,8 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import SingleRecipeTags from '../SingleRecipeTags/SingleRecipeTags';
 import ErrorMessage from '@/component/Error/ErrorMessage';
-import CategoryFilter from '@/component/category/categoryFilter';
-import { fetchCategories } from '@/database/categoriesData';
+
+
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -25,14 +25,13 @@ const Item = styled(Paper)(({ theme }) => ({
   cursor: 'pointer',
 }));
 
+
 export default function PreviewList({ recipes, click }) {
   const [selectedRecipe, setSelectedRecipe] = useState(null);
   const [showDescriptions, setShowDescriptions] = useState([]);
   const router = useRouter();
   const currentPath = router.query.preview;
-  const [setRecipes] = useState([]);
-
-  const [searchCategory, setSearchCategory] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
 
 
   useEffect(() => {
@@ -42,20 +41,25 @@ export default function PreviewList({ recipes, click }) {
     }
   }, [recipes]);
 
-  const [categories, setCategories] = useState([]);
-useEffect(() => {
-  const loadCategories = async () => {
-    const { categories } = await fetchCategories();
-    setCategories(categories);
-    console.log(categories);
-  };
-
-  loadCategories();
-}, []);
 
   const handleRecipeClick = (recipe) => {
     setSelectedRecipe(recipe);
   };
+
+
+
+
+  // const handleSearch = async (category) => {
+  //   try {
+  //     const response = await fetch(`/api/search?category=${category}`);
+  //     const data = await response.json();
+  //     console.log('Search results:', data);
+  //     // Update state or perform actions based on the search results
+  //   } catch (error) {
+  //     console.error('Error fetching recipes:', error);
+  //   }
+  // };
+
 
   const toggleDescription = (index) => {
     const newShowDescriptions = [...showDescriptions];
@@ -63,25 +67,11 @@ useEffect(() => {
     setShowDescriptions(newShowDescriptions);
   };
 
-  const handleCategoryChange = async (category) => {
-    setSelectedCategory(category);
-
-    if (category) {
-      const response = await fetch(`/api/recipes/${category}`);
-      const data = await response.json();
-      setRecipes(data);
-    } else {
-      setRecipes([]);
-    }
-  };
 
   return (
     <>
-    
+    {/* <SearchBar onSearch={handleSearch} /> */}
       <Box sx={{ flexGrow: 1 }}>
-
-      <CategoryFilter onCategoryChange={handleCategoryChange} />
-
         <Grid container spacing={1}>
           {recipes &&
             recipes.map((recipe, index) => {
@@ -108,8 +98,8 @@ useEffect(() => {
                         </div>
                         <div>
                           {
-                            showDescriptions[index] &&  recipe.description ? 
-                            (<p>{recipe.description}</p>) : 
+                            showDescriptions[index] &&  recipe.description ?
+                            (<p>{recipe.description}</p>) :
                             showDescriptions[index] ? <ErrorMessage message = 'Failed to load description' /> : ''
                           }
                           <div className={style.times}>
@@ -123,13 +113,16 @@ useEffect(() => {
                         </div>
                       </div>
 
+
                       {/* Recipe tags */}
                       <SingleRecipeTags tags={recipe.tags} />
                     </Link>
 
+
                     <button onClick={() => toggleDescription(index)}>
                         Show Description
                     </button>
+
 
                   </Item>
                 </Grid>
@@ -138,6 +131,10 @@ useEffect(() => {
         </Grid>
       </Box>
 
+
     </>
   );
 }
+
+
+
