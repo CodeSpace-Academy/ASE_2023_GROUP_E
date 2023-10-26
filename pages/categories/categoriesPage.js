@@ -1,7 +1,7 @@
 // pages/search.js
 import { useState } from 'react';
 import SearchBar from '../components/SearchBar';
-import RecipeList from '../components/RecipeList';
+import PreviewList from '@/component/Recipes/Preview/PreviewList';
 
 const Search = () => {
   const [results, setResults] = useState([]);
@@ -20,7 +20,7 @@ const Search = () => {
     <div>
       <h1>Recipe Search</h1>
       <SearchBar onSearch={handleSearch} />
-      <RecipeList recipes={results} />
+      <PreviewList recipes={results} />
     </div>
   );
 };

@@ -11,6 +11,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import SingleRecipeTags from '../SingleRecipeTags/SingleRecipeTags';
 import ErrorMessage from '@/component/Error/ErrorMessage';
+import SearchBar from '@/component/searchCategories/categorySearchbar';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -40,6 +41,8 @@ export default function PreviewList({ recipes, click }) {
     setSelectedRecipe(recipe);
   };
 
+  
+
   const toggleDescription = (index) => {
     const newShowDescriptions = [...showDescriptions];
     newShowDescriptions[index] = !newShowDescriptions[index];
@@ -48,7 +51,7 @@ export default function PreviewList({ recipes, click }) {
 
   return (
     <>
-    <
+    <SearchBar onSearch={handleSearch} />
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={1}>
           {recipes &&
