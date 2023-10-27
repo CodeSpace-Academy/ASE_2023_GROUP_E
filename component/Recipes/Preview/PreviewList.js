@@ -12,6 +12,10 @@ import Link from 'next/link';
 import SingleRecipeTags from '../SingleRecipeTags/SingleRecipeTags';
 import ErrorMessage from '@/component/Error/ErrorMessage';
 import RecipeFilter from '@/component/filtering/filterList';
+import {PiBookOpenText } from 'react-icons/pi';
+import {FcClock,FcAlarmClock } from 'react-icons/fc';
+import{TfiTimer} from 'react-icons/tfi'
+
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -134,10 +138,10 @@ export default function PreviewList({ recipes, click, input }) {
                             showDescriptions[index] ? <ErrorMessage message = 'Failed to load description' /> : ''
                           }
                           <div className={style.times}>
-                            <div>⏲️ Prep: {NumToTime(recipe.prep)}</div>
-                            <div>🕰️ Cook: {NumToTime(recipe.cook)}</div>
+                            <div> <FcClock/> Prep: {NumToTime(recipe.prep)}</div>
+                            <div> <FcAlarmClock/> Cook: {NumToTime(recipe.cook)}</div>
                             <div>
-                              ⏰ Total Time:{' '}
+                              <TfiTimer/> Total Time:{' '}
                               {NumToTime(recipe.prep + recipe.cook)}
                             </div>
                           </div>
@@ -148,11 +152,12 @@ export default function PreviewList({ recipes, click, input }) {
                       {/* Recipe tags */}
                       <SingleRecipeTags tags={recipe.tags} />
                     </Link>
+                  
 
-
-                    <button onClick={() => toggleDescription(index)}>
-                        Show Description
-                    </button>
+                  
+                      <PiBookOpenText onClick={() => toggleDescription(index)}
+                        Show Description/>
+                        
 
 
                   </Item>
