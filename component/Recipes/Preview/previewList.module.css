@@ -44,9 +44,7 @@
     text-decoration: none;
     color: rgb(104, 104, 104);
 }
-.item{
-    background-image: url('../../../public/images/marble-background.png')
-}
+
 
 .item :hover{
     background-color: rgb(246, 245, 245);
@@ -94,8 +92,7 @@
     .item{
         padding-left: 80px;
         padding-right: 80px;
-        padding-top: 15px;
-        border-radius: 30px;
+       padding-top: 20px;
         
         
     }

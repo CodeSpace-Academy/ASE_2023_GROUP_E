@@ -9,7 +9,7 @@ const LayoutAll = (props) => {
     const {toggleMenu} = StateContext()
 
     return (
-        <div>
+        <div className={classes.background} >
             <div className={classes.layout}>
                 <ExpandableMenu expanded={toggleMenu} />
 

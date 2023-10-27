@@ -2,14 +2,14 @@
 // import SearchBar from '../components/SearchBar';
 import getFilteredRecipes from '@/database/getFilterRecipes';
 import PreviewList from '@/component/Recipes/Preview/PreviewList';
-
+import classes from './categories.module.css'
 
 const Search = ({Result}) => {
 
 
   return (
     <div>
-      <h1>Recipe Search</h1>
+      <h1 className={classes.title}>Recipe Search</h1>
       {/* <SearchBar /> */}
       <PreviewList recipes={Result} />
     </div>
