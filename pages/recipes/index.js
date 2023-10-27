@@ -2,6 +2,7 @@ import PreviewList from '@/component/Recipes/Preview/PreviewList';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import SearchBar from '@/component/searchCategories/categorySearch';
+import {MdSkipNext} from 'react-icons/md'
 
 
 export default function AllRecipes() {
@@ -32,13 +33,12 @@ export default function AllRecipes() {
     <main>
       <SearchBar />
       <PreviewList recipes={results}/*  click={loadMoreRecipes}  *//>
-     
-      <button onClick={() => {
+
+
+     <MdSkipNext onClick={() => {
         localStorage.setItem("skipNo", addSkip + 50)
         scrollToTop()
-        }} disabled={false}>
-        Next
-      </button>
+        }} disabled={false}/>
      
       {/* <button>Page: {pageNumber}</button> */}
     </main>

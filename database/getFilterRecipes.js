@@ -1,7 +1,7 @@
 import { client } from "./client"
 
 
-export default async function getFilteredRecipes(skip,filter){
+export default async function getFilteredRecipes(filter, skip){
 
 
     const db = client.db('devdb')
@@ -13,4 +13,12 @@ export default async function getFilteredRecipes(skip,filter){
 
 
         return results
+}
+
+export async function getCategories(){
+
+    const db = client.db('devdb')
+    const results = await db.collection('categories').find().toArray()
+
+    return results
 }

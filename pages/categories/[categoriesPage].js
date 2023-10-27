@@ -19,7 +19,7 @@ const Search = ({Result}) => {
 
 export async function getServerSideProps(context){
   const SearchWord = context.params.categoriesPage
-  const Result =  await getFilteredRecipes(0, {category: SearchWord})
+  const Result =  await getFilteredRecipes({category: SearchWord}, 0)
   return {
    props:{
     Result,
