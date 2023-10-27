@@ -26,7 +26,8 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 
-export default function PreviewList({ recipes, click }) {
+export default function PreviewList({ recipes, click, input }) {
+
   const [selectedRecipe, setSelectedRecipe] = useState(null);
   const [showDescriptions, setShowDescriptions] = useState([]);
   const router = useRouter();
@@ -85,7 +86,28 @@ export default function PreviewList({ recipes, click }) {
                       href={`/recipes/${recipe.title}`}
                       className={style.link}
                     >
-                      <h2 className={style.title}>{recipe.title}</h2>
+
+                      {/** 
+                       * Check if search bar has text
+                       * if true, no matter the case the text in the input is then highlighted on the title of the search results
+                       * 
+                      */}
+                      {
+                        input ? (
+                          <div>
+                            {recipe.title.split(new RegExp(`(${input})`, "i")).map((title, index) => (
+                              <div
+                                key={index}
+                                style={title.toLowerCase() === input.toLowerCase() ? { color: "orange" } : {}}>
+                                <h3>{title}</h3>
+                            </div>
+                            ))}
+
+                          </div>
+                        ) : (
+                          <h3>{recipe.title}</h3>
+                        )
+                      }
                       <div className={style.recipe}>
                         <div>
                           <Image

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { AiOutlineMenu,AiOutlineTags, AiOutlineHome, AiOutlineSetting, AiOutlineUser, AiOutlineHeart, } from 'react-icons/ai';
+import { AiOutlineMenu,AiOutlineTags, AiOutlineHome, AiOutlineSetting, AiOutlineUser, AiOutlineHeart, AiOutlineSearch } from 'react-icons/ai';
 import classes from './sideNav.module.css';
 import { MdOutlineFastfood,} from 'react-icons/md'
 import StateContext from '@/useContext/StateContext';
@@ -30,7 +30,8 @@ function skip(){
     { icon: Links('/profile', <AiOutlineUser />) , name: Links('/profile', 'Profile') },
     { icon: Links(`/recipes`, <MdOutlineFastfood />, skip ), name: Links(`recipes`, 'Recipes') },
     { icon: Links('/tags', <AiOutlineTags/>) , name: Links('/tags', 'Tags')},
-    { icon: Links('/',  <AiOutlineHeart />), name: Links('/', 'Favourites') },
+    { icon: Links('/favourites',  <AiOutlineHeart />), name: Links('/favourites', 'Favourites') },
+    { icon: Links('/search',  <AiOutlineSearch />), name: Links('/search', 'Search') },
     { icon: Links('/', <AiOutlineSetting />) , name: Links('/', 'Settings')  },
   ];
 

@@ -31,6 +31,7 @@
 .menuOptions {
   list-style: none;
   padding: 0;
+  
 }
 
 .menuOptions.expanded li {
@@ -60,20 +61,20 @@
 }
 
 .link a {
-  color: black;
+  color:  rgb(43, 42, 42);
 }
 
 .links2 {
   font-size: 30px;
+  margin-bottom: 15px;
 }
 
 .links2 a {
-  color: rgb(0, 0, 0);
+  color: rgb(43, 42, 42);
 }
 
 .optionName{
   cursor: pointer;
-
 }
 
 .optionName a {
