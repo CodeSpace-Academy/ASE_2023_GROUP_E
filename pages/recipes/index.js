@@ -1,14 +1,20 @@
 import PreviewList from '@/component/Recipes/Preview/PreviewList';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+<<<<<<< HEAD
 import SearchBar from '@/component/searchCategories/categorySearchbar';
+=======
+import SearchBar from '@/component/searchCategories/categorySearch';
+
+>>>>>>> 29e4f0bc7ad52b8ebbf947520671b513fddf53e0
 
 export default function AllRecipes() {
   const router = useRouter();
   const [ results, setResults] = useState(null)
   let addSkip
-  
+ 
   useEffect(() => {
+
 
     const skipNo = parseInt(localStorage.getItem("skipNo"))
     addSkip = skipNo
@@ -17,6 +23,7 @@ export default function AllRecipes() {
       .then(data => setResults(data.recipes))
   })
 
+
   function scrollToTop() {
     window.scrollTo({
       top: 0,
@@ -24,11 +31,12 @@ export default function AllRecipes() {
     });
   };
 
+
   return (
     <main>
       <SearchBar />
       <PreviewList recipes={results}/*  click={loadMoreRecipes}  *//>
-      
+     
       <button onClick={() => {
         localStorage.setItem("skipNo", addSkip + 50)
         scrollToTop()
