@@ -11,9 +11,11 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import SingleRecipeTags from '../SingleRecipeTags/SingleRecipeTags';
 import ErrorMessage from '@/component/Error/ErrorMessage';
+import RecipeFilter from '@/component/filtering/filterList';
 import {PiBookOpenText } from 'react-icons/pi';
 import {FcClock,FcAlarmClock } from 'react-icons/fc';
 import{TfiTimer} from 'react-icons/tfi'
+
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -40,6 +42,7 @@ export default function PreviewList({ recipes, click, input }) {
   const router = useRouter();
   const currentPath = router.query.preview;
   const [searchResults, setSearchResults] = useState([]);
+  const [showFilter, setShowFilter] = useState(false);
 
 
   useEffect(() => {
@@ -53,9 +56,6 @@ export default function PreviewList({ recipes, click, input }) {
   const handleRecipeClick = (recipe) => {
     setSelectedRecipe(recipe);
   };
-
-
-
 
   // const handleSearch = async (category) => {
   //   try {
@@ -75,9 +75,20 @@ export default function PreviewList({ recipes, click, input }) {
     setShowDescriptions(newShowDescriptions);
   };
 
+  const toggleFilter = () => {
+    setShowFilter(!showFilter);
+  };
+
+  const closeFilter = () => {
+    setShowFilter(false);
+  };
 
   return (
     <>
+    <div>
+      <button onClick={toggleFilter}>Show Filter</button>
+      {showFilter && <RecipeFilter onClose={closeFilter} />}
+    </div>
     {/* <SearchBar onSearch={handleSearch} /> */}
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={1}>
