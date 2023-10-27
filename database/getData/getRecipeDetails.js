@@ -1,11 +1,12 @@
-import { client } from "./client"
+import { client } from "../client"
 
-export default async  function getRecipeDetails(filter){
+
+export default async function getRecipeDetails(filter){
 
     const db = client.db('devdb')
     const results = await db.collection('recipes')
-        .find({title : filter})
+        .find(filter)
         .toArray()
-
+        
         return results
 }

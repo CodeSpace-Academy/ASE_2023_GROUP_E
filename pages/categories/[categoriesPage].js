@@ -1,6 +1,6 @@
 // pages/search.js
 // import SearchBar from '../components/SearchBar';
-import getFilteredRecipes from '@/database/getFilterRecipes';
+import getFilteredRecipes from '@/database/getData/getFilterRecipes';
 import PreviewList from '@/component/Recipes/Preview/PreviewList';
 
 

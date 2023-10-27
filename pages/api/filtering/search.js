@@ -1,4 +1,4 @@
-import { client } from "@/database/client"
+import search from "@/database/getData/getSearchResults"
 
 //get results from the search text 
 export default async function handler(req, res){
@@ -9,10 +9,7 @@ export default async function handler(req, res){
         const title = req.query.title || ''
 
         try{
-            const db = client.db('devdb')
-            //regex is used to get results from an incasensative input
-            const results = await db.collection('recipes').find({ title : { $regex: new RegExp(title, 'i') }}).limit(50).toArray();
-    
+            const results = await search(title)
             res.status(200).json({ results: results})
         }catch(error){
             return res.status(417).json({ message:  'failed to load results', error })
