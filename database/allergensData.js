@@ -2,6 +2,7 @@ import { client } from "./client";
 
 export async function fetchAllergensFromDatabase() {
 
+
   try {
     // const client = await connectClient()
 
@@ -12,7 +13,9 @@ export async function fetchAllergensFromDatabase() {
       };
     }
 
+
     const db = client.db('devdb');
+
 
     const allergensCollection = db.collection('allergens');
     const allergensDocuments = await allergensCollection.find().toArray();

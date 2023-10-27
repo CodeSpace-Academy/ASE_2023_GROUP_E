@@ -12,6 +12,8 @@ import Link from 'next/link';
 import SingleRecipeTags from '../SingleRecipeTags/SingleRecipeTags';
 import ErrorMessage from '@/component/Error/ErrorMessage';
 
+
+
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
@@ -28,11 +30,15 @@ const Item = styled(Paper)(({ theme }) => ({
   
 }));
 
-export default function PreviewList({ recipes, click }) {
+
+export default function PreviewList({ recipes, click, input }) {
+
   const [selectedRecipe, setSelectedRecipe] = useState(null);
   const [showDescriptions, setShowDescriptions] = useState([]);
   const router = useRouter();
   const currentPath = router.query.preview;
+  const [searchResults, setSearchResults] = useState([]);
+
 
   useEffect(() => {
     // Initialize the showDescriptions array when the recipes prop is available
@@ -41,9 +47,25 @@ export default function PreviewList({ recipes, click }) {
     }
   }, [recipes]);
 
+
   const handleRecipeClick = (recipe) => {
     setSelectedRecipe(recipe);
   };
+
+
+
+
+  // const handleSearch = async (category) => {
+  //   try {
+  //     const response = await fetch(`/api/search?category=${category}`);
+  //     const data = await response.json();
+  //     console.log('Search results:', data);
+  //     // Update state or perform actions based on the search results
+  //   } catch (error) {
+  //     console.error('Error fetching recipes:', error);
+  //   }
+  // };
+
 
   const toggleDescription = (index) => {
     const newShowDescriptions = [...showDescriptions];
@@ -51,8 +73,10 @@ export default function PreviewList({ recipes, click }) {
     setShowDescriptions(newShowDescriptions);
   };
 
+
   return (
     <>
+    {/* <SearchBar onSearch={handleSearch} /> */}
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={1}>
           {recipes &&
@@ -67,7 +91,28 @@ export default function PreviewList({ recipes, click }) {
                       href={`/recipes/${recipe.title}`}
                       className={style.link}
                     >
-                   
+
+                      {/** 
+                       * Check if search bar has text
+                       * if true, no matter the case the text in the input is then highlighted on the title of the search results
+                       * 
+                      */}
+                      {
+                        input ? (
+                          <div>
+                            {recipe.title.split(new RegExp(`(${input})`, "i")).map((title, index) => (
+                              <div
+                                key={index}
+                                style={title.toLowerCase() === input.toLowerCase() ? { color: "orange" } : {}}>
+                                <h3>{title}</h3>
+                            </div>
+                            ))}
+
+                          </div>
+                        ) : (
+                          <h3>{recipe.title}</h3>
+                        )
+                      }
                       <div className={style.recipe}>
                        
                       <div>
@@ -83,8 +128,8 @@ export default function PreviewList({ recipes, click }) {
                        <h4 className={style.title}>{recipe.title}</h4>
                          <div>
                           {
-                            showDescriptions[index] &&  recipe.description ? 
-                            (<p>{recipe.description}</p>) : 
+                            showDescriptions[index] &&  recipe.description ?
+                            (<p>{recipe.description}</p>) :
                             showDescriptions[index] ? <ErrorMessage message = 'Failed to load description' /> : ''
                           }
                           <div className={style.times}>
@@ -100,14 +145,17 @@ export default function PreviewList({ recipes, click }) {
                         </div>
                       </div>
 
+
                       {/* Recipe tags */}
                      
                     </Link>
-                   <div className={style.description} >
-                    <button className={style.button} onClick={() => toggleDescription(index)}>
+
+
+                    <button onClick={() => toggleDescription(index)}>
                         Show Description
                     </button>
-                   </div>
+
+
                   </Item>
                 </Grid>
               );
@@ -115,6 +163,10 @@ export default function PreviewList({ recipes, click }) {
         </Grid>
       </Box>
 
+
     </>
   );
 }
+
+
+
