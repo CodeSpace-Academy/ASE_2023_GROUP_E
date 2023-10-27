@@ -5,7 +5,7 @@
 
 .imgDiv{
     text-align: center;
-    background-image: url('../public/images/marble-background.png');
+    background-image: url('../../public/images/marble-background.png');
     padding: 5px;
     margin-left: 50px;
 }
