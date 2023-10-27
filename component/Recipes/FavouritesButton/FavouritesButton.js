@@ -31,12 +31,14 @@ const FavouritesButton = ({ recipe }) => {
   const toggleIsInFavourites = () => {
     if (!recipeIsInFavouritesList) {
       setFavouritesList((prevFavourites) => [...prevFavourites, recipe]);
+      console.log(recipe.title, 'is not in the list. Adding it');
     } else {
       setFavouritesList((prevFavourites) =>
         prevFavourites.filter((singleRecipe) => {
           return singleRecipe._id !== recipe._id;
         })
       );
+      console.log(recipe.title, 'is already in the list');
     }
   };
   return (
