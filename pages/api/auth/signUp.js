@@ -1,4 +1,4 @@
-import run from "@/database/client";
+import { client } from "@/database/client";
 import hashPassword from "../../../database/auth";
 
 export default async function handler(req, res){
@@ -25,7 +25,6 @@ export default async function handler(req, res){
             res.status(400).json({ message: 'Password should include atleast 8 characters'})
         }
 
-        const client = await run()
         const db = client.db('authentication')
 
         /** 

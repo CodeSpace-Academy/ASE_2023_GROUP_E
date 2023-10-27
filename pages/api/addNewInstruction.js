@@ -1,19 +1,22 @@
-import { newInstructions } from "@/component/editInstructions/editInstructions";
+import { client } from "@/database/client";
 
 export default async function handler( req, res){
 
     if( req.method === 'POST'){
        
         const { recipeTitle, recipeInstruction } = req.body
-
-        if(recipeInstruction.length  === 0) {
-            res.status(417).json({ message: 'bad request' })
-        }
+        const db = client.db('devdb')
 
         try{
-            const results = await newInstructions(recipeTitle, recipeInstruction)
+            await db.collection('recipes').updateOne({
+                title: recipeTitle
+            }, {
+                $push: {
+                    instructions: recipeInstruction,
+                }
+            })
+
             res.status(201).json({message: 'data has been modified'})
-            return results
 
         }catch(error){
             res.status(417).json({ message : error})
