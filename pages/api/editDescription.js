@@ -1,4 +1,4 @@
-import editDecription from "@/database/editDescription";
+import editDecription from "@/database/add-Edit-Data/editDescription";
 
 export default async function handler( req, res){
 

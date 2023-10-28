@@ -1,4 +1,4 @@
-import getRecipeDetails from "@/database/getData/getRecipeDetails";
+import getRecipes from "@/database/getData/getRecipes";
 
 
 export default async function handler(req, res){
@@ -7,8 +7,10 @@ export default async function handler(req, res){
 
         const filter = req.query.filter || '';
 
+        
+
         try{
-            const results = await getRecipeDetails({title : filter})
+            const results = await getRecipes({title : filter}, 0 )
             res.status(200).json({ recipeDetails : results })
 
         }catch(error){
