@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import classes from './FavouritesButton.module.css';
+import StateContext from '@/useContext/StateContext';
 
 /**
  * When clicked can add or remove the recipe provided from the favourite recipes list.
@@ -7,12 +8,10 @@ import classes from './FavouritesButton.module.css';
  * @returns
  */
 const FavouritesButton = ({ recipe }) => {
-  const [favouritesList, setFavouritesList] = useState(
-    JSON.parse(localStorage.getItem('favouriteRecipesList')) || []
-  );
   /**
    * Returns the recipe if it is already in the favouritesList
    */
+  const { favouritesList, setFavouritesList } = StateContext();
   const recipeIsInFavouritesList = favouritesList.find((singleRecipe) => {
     return singleRecipe._id === recipe._id;
   });

@@ -1,6 +1,6 @@
 import PreviewList from '@/component/Recipes/Preview/PreviewList';
 import { useState, useEffect } from 'react';
-import SearchBar from '@/component/searchCategories/categorySearch';
+import SearchBar from '@/component/filtering/searchCategories/categorySearch';
 import {MdSkipNext} from 'react-icons/md'
 
 
