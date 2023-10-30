@@ -1,0 +1,14 @@
+.info {
+    /* Default styles for the info */
+    margin: 2em;
+    order: 2; /* Put info on the right */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+@media only screen and (max-width: 971px){
+    .tagsDesktop{
+      display: none;
+    }
+}

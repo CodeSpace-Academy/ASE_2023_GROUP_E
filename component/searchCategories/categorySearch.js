@@ -4,17 +4,10 @@ import Link from 'next/link';
 
 const SearchBar = () => {
   const [query, setQuery] = useState('');
-//   const [result, setResults] = useState('');
-//   const handleSearch = async (category) => {
-//     try {
-//       const response = await fetch(`/api/recipes?category=${category}`);
-//       const data = await response.json();
-//       setResults(data);
-//     } catch (error) {
-//       console.error('Error fetching recipes:', error);
-//     }
-//   };
-
+  
+  const handleCategoryChange = (e) => {
+    setSelectedCategory(e.target.value);
+  }
 
   return (
     <>

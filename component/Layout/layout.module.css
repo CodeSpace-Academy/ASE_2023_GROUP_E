@@ -5,13 +5,23 @@
 
 .imgDiv{
     text-align: center;
-    background-color: rgba(218, 224, 250, 0.277);
+    /* background-color: rgba(218, 224, 250, 0.277); */
+    background-image: url('../../public/images/layoutHeader.jpg');
+    height:400px;
+    background-size:cover;
+    background-repeat: no-repeat;
+    width: 100%;
     padding: 5px;
-    margin-left: 50px;
 }
 
 .img{
     width: 220px;
+    /* padding-top: 10%;
+    height: 260px; */
+    position: fixed;
+    top: 0;
+    
+    
 }
 
 .expanded{
