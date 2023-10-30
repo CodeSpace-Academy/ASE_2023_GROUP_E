@@ -1,17 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import PreviewList from '@/component/Recipes/Preview/PreviewList';
+import StateContext from '@/useContext/StateContext';
 import FavouritesContainer from '@/component/FavouritesContainer/FavouritesContainer';
 const Favourites = () => {
-  const [favouriteRecipesList, setFavouriteRecipesList] = useState([]);
-  //Get the favourites from local storage after the page loads
-  //and change the favouriteRecipesList state.
-  useEffect(() => {
-    const storedData = localStorage.getItem('favouriteRecipesList');
-    if (storedData) {
-      setFavouriteRecipesList(JSON.parse(storedData));
-    }
-  }, []);
-  const favouriteListEmpty = favouriteRecipesList.length === 0;
+  const { favouritesList } = StateContext();
+  const favouriteListEmpty = favouritesList.length === 0;
   return (
     <FavouritesContainer>
       <h1>My favourite recipes</h1>
@@ -19,7 +12,7 @@ const Favourites = () => {
       {favouriteListEmpty ? (
         <p>No favourites saved.</p>
       ) : (
-        <PreviewList recipes={favouriteRecipesList} />
+        <PreviewList recipes={favouritesList} />
       )}
     </FavouritesContainer>
   );
