@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PreviewList from '@/component/Recipes/Preview/PreviewList';
+import FavouritesContainer from '@/component/FavouritesContainer/FavouritesContainer';
 const Favourites = () => {
   const [favouriteRecipesList, setFavouriteRecipesList] = useState([]);
   //Get the favourites from local storage after the page loads
@@ -12,7 +13,7 @@ const Favourites = () => {
   }, []);
   const favouriteListEmpty = favouriteRecipesList.length === 0;
   return (
-    <>
+    <FavouritesContainer>
       <h1>My favourite recipes</h1>
       {/* Recipe list component */}
       {favouriteListEmpty ? (
@@ -20,7 +21,7 @@ const Favourites = () => {
       ) : (
         <PreviewList recipes={favouriteRecipesList} />
       )}
-    </>
+    </FavouritesContainer>
   );
 };
 
