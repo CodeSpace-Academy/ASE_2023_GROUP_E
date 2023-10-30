@@ -34,7 +34,7 @@ const SearchBar = () => {
 
   return (
     <>
-
+{/* Enables the user to search with category*/}
 <form >
       <input
         type="text"
@@ -56,6 +56,7 @@ const SearchBar = () => {
        
        
       }}>
+        {/* gives user the option to select a category */}
         <select ref={optionRef}>
           {categories && categories.map((item) => <option key={item} value={item}>{item}</option>)}
         </select>
@@ -63,6 +64,7 @@ const SearchBar = () => {
 
         <button>filter</button>
       </form>
+      {/* displays a message */}
        {noRecipesMessage && <p>{noRecipesMessage}</p>}
     </>
   );
