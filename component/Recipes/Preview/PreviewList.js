@@ -3,11 +3,9 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
-import RecipeDetails from '../Details/RecipeDetails';
 import NumToTime from '@/component/handlerTime/timeRead';
 import style from './previewList.module.css';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import Link from 'next/link';
 import SingleRecipeTags from '../SingleRecipeTags/SingleRecipeTags';
 import ErrorMessage from '@/component/Error/ErrorMessage';
@@ -15,8 +13,7 @@ import RecipeFilter from '@/component/filtering/filterList';
 import {PiBookOpenText } from 'react-icons/pi';
 import {FcClock,FcAlarmClock } from 'react-icons/fc';
 import{TfiTimer} from 'react-icons/tfi'
-
-
+import { PrepandCookTime } from '@/component/handlerTime/timeRead';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -35,15 +32,10 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 
-export default function PreviewList({ recipes, click, input }) {
+export default function PreviewList({ recipes, input }) {
 
-  const [selectedRecipe, setSelectedRecipe] = useState(null);
   const [showDescriptions, setShowDescriptions] = useState([]);
-  const router = useRouter();
-  const currentPath = router.query.preview;
-  const [searchResults, setSearchResults] = useState([]);
-  const [showFilter, setShowFilter] = useState(false);
-
+  const [ showFilter, setShowFilter ] = useState(false)
 
   useEffect(() => {
     // Initialize the showDescriptions array when the recipes prop is available
@@ -52,44 +44,19 @@ export default function PreviewList({ recipes, click, input }) {
     }
   }, [recipes]);
 
-
-  const handleRecipeClick = (recipe) => {
-    setSelectedRecipe(recipe);
-  };
-
-  // const handleSearch = async (category) => {
-  //   try {
-  //     const response = await fetch(`/api/search?category=${category}`);
-  //     const data = await response.json();
-  //     console.log('Search results:', data);
-  //     // Update state or perform actions based on the search results
-  //   } catch (error) {
-  //     console.error('Error fetching recipes:', error);
-  //   }
-  // };
-
-
-  const toggleDescription = (index) => {
+  function toggleDescription(index) {
     const newShowDescriptions = [...showDescriptions];
     newShowDescriptions[index] = !newShowDescriptions[index];
     setShowDescriptions(newShowDescriptions);
   };
 
-  const toggleFilter = () => {
-    setShowFilter(!showFilter);
-  };
-
-  const closeFilter = () => {
-    setShowFilter(false);
-  };
-
   return (
     <>
-    <div>
-      <button onClick={toggleFilter}>Show Filter</button>
-      {showFilter && <RecipeFilter onClose={closeFilter} />}
-    </div>
-    {/* <SearchBar onSearch={handleSearch} /> */}
+      <div>
+        <button onClick={() => setShowFilter(!showFilter)}>Show Filter</button>
+        {showFilter && <RecipeFilter onClose={() => setShowFilter(false)} />}
+      </div>
+      {/* <SearchBar onSearch={handleSearch} /> */}
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={1}>
           {recipes &&
@@ -98,12 +65,8 @@ export default function PreviewList({ recipes, click, input }) {
                 <Grid xs={12} md={12} key={index} className={style.item}>
                   <Item
                     key={recipe.id}
-                    onClick={() => handleRecipeClick(recipe)}
                   >
-                    <Link
-                      href={`/recipes/${recipe.title}`}
-                      className={style.link}
-                    >
+                    <Link href={`/recipes/${recipe.title}`} className={style.link} >
 
                       {/** 
                        * Check if search bar has text
@@ -126,6 +89,7 @@ export default function PreviewList({ recipes, click, input }) {
                           <h3>{recipe.title}</h3>
                         )
                       }
+                      
                       <div className={style.recipe}>
                        
                       <div>
@@ -145,14 +109,7 @@ export default function PreviewList({ recipes, click, input }) {
                             (<p>{recipe.description}</p>) :
                             showDescriptions[index] ? <ErrorMessage message = 'Failed to load description' /> : ''
                           }
-                          <div className={style.times}>
-                            <div> <FcClock/> Prep: {NumToTime(recipe.prep)}</div>
-                            <div> <FcAlarmClock/> Cook: {NumToTime(recipe.cook)}</div>
-                            <div>
-                              <TfiTimer/> Total Time:{' '}
-                              {NumToTime(recipe.prep + recipe.cook)}
-                            </div>
-                          </div>
+                          <PrepandCookTime recipe={recipe}/>
                         </div>
                         <SingleRecipeTags tags={recipe.tags} />
                         </div>
@@ -162,14 +119,8 @@ export default function PreviewList({ recipes, click, input }) {
                       {/* Recipe tags */}
                      
                     </Link>
-                  
-
-                  
-                      <PiBookOpenText onClick={() => toggleDescription(index)}
-                        Show Description/>
-                        
-
-
+                    
+                      <PiBookOpenText onClick={() => toggleDescription(index)}/>
                   </Item>
                 </Grid>
               );

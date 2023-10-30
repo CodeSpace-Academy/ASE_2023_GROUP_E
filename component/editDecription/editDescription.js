@@ -16,14 +16,11 @@ function EditDescription({info}) {
 
   async function addItemHandler(e) {
     e.preventDefault()
-
-
     //hides form after editing
     setEdit(!edit)
 
-
     try {
-      await addItem('/api/insertData',{ recipeTitle: titleRouter, recipeDescription: newDescription });
+      await addItem('/api/editDescription',{ recipeTitle: titleRouter, recipeDescription: newDescription });
     } catch (error) {
       console.log('Error adding item');
     }

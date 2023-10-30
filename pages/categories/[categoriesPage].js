@@ -1,16 +1,13 @@
-// pages/search.js
-// import SearchBar from '../components/SearchBar';
-import getFilteredRecipes from '@/database/getFilterRecipes';
 import PreviewList from '@/component/Recipes/Preview/PreviewList';
-import classes from './categories.module.css'
+import getRecipes from '@/database/getData/getRecipes';
+
 
 const Search = ({Result}) => {
 
 
   return (
     <div>
-      <h1 className={classes.title}>Recipe Search</h1>
-      {/* <SearchBar /> */}
+      <h1>Recipe Search</h1>
       <PreviewList recipes={Result} />
     </div>
   );
@@ -19,7 +16,8 @@ const Search = ({Result}) => {
 
 export async function getServerSideProps(context){
   const SearchWord = context.params.categoriesPage
-  const Result =  await getFilteredRecipes({category: SearchWord}, 0)
+  const Result =  await getRecipes({category: SearchWord}, 0, 5)
+
   return {
    props:{
     Result,
@@ -27,7 +25,4 @@ export async function getServerSideProps(context){
   }
 }
 
-
 export default Search;
-
-

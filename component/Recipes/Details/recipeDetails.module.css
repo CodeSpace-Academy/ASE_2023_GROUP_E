@@ -41,57 +41,15 @@
 
 }
 
-.info {
-  /* Default styles for the info */
-  margin: 2em;
-  order: 2; /* Put info on the right */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
-
 .listContainer {
   display: grid;
   grid-template-columns: 1fr; /* Default layout for small screens */
   /* Add default styles for the list container */
 }
 
-.ingredients,
-.nutrition,
 .myDiv {
   /* Default styles for each section */
   padding: 1em; /* Using em for padding */
-}
-
-.ingredients h2,
-.nutrition h2 {
-  /* Default styles for headings */
-  font-size: 1.25em; /* Using em for font size */
-  margin-bottom: 0.625em; /* Using em for margin */
-}
-
-.ingredients ul,
-.nutrition ul {
-  /* Default styles for lists */
-  list-style-type: disc;
-  margin-left: 1.25em; /* Using em for margin */
-}
-
-.ingredients button,
-.nutrition button {
-  /* Default styles for buttons */
-  background-color: #0074d9;
-  color: #fff;
-  border: none;
-  padding: 0.625em 1.25em; /* Using em for padding */
-  font-size: 1em; /* Using em for font size */
-  cursor: pointer;
-}
-
-.instructions {
-  /* Default styles for instructions */
-  padding: 1em; /* Using em for padding */
-  order: 3; /* Put instructions at the bottom */
 }
 
 /* Media Queries for Responsiveness */
@@ -120,24 +78,6 @@
   }
 }
 
-.addButton{
-  margin-top: 5%;
-}
-
-.instructionContainer{
-  display: flex;
-  flex-direction: row;
-  gap: 5%;
-}
-
-@media only screen and (max-width: 971px){
-  .tagsDesktop{
-    display: none;
-  }
-
-}
-
-
 @media only screen and (min-width: 972px){
   .tagsMobileView{
     display: none;
@@ -165,33 +105,9 @@
 }
 @media only screen and (max-width: 850px){
 
-  .instructionContainer{
-    display: flex;
-    flex-direction: column;
-  }
-
-  .modufyInstruction{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-  }
-
   .recipeCard{
     padding: 0;
     margin: 10px;
   }
 
-  .instructions{
-    padding: 0;
-    margin: 0;
-  }
-}
-
-
-@media only screen and (max-width : 389px){
-  .modufyInstruction{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
 }
