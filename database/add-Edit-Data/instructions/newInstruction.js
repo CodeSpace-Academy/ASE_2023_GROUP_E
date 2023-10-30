@@ -1,4 +1,4 @@
-import { client } from "./client"
+import { client } from "../../client"
 
 export default async function newInstructions(recipeTitle, recipeInstruction){
 
@@ -11,5 +11,4 @@ export default async function newInstructions(recipeTitle, recipeInstruction){
             instructions : recipeInstruction
         }
     })
-
 }

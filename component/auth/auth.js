@@ -34,7 +34,7 @@ export default  function AuthForm() {
             email: enteredEmail.toLowerCase(),
             password: enteredPassword,
           });
-        console.log('logged in')
+        console.log(result)
         
     }else{
         try{

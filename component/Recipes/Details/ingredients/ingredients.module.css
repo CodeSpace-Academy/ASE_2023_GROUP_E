@@ -1,0 +1,26 @@
+.ingredients {
+  /* Default styles for each section */
+  padding: 1em; /* Using em for padding */
+}
+
+.ingredients h2{
+    /* Default styles for headings */
+    font-size: 1.25em; /* Using em for font size */
+    margin-bottom: 0.625em; /* Using em for margin */
+}
+
+.ingredients ul {
+    /* Default styles for lists */
+    list-style-type: disc;
+    margin-left: 1.25em; /* Using em for margin */
+}
+
+.ingredients button {
+    /* Default styles for buttons */
+    background-color: #0074d9;
+    color: #fff;
+    border: none;
+    padding: 0.625em 1.25em; /* Using em for padding */
+    font-size: 1em; /* Using em for font size */
+    cursor: pointer;
+}
