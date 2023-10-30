@@ -25,6 +25,7 @@ const Item = styled(Paper)(({ theme }) => ({
   borderRight: 'solid #eeeeee 1px',
   borderLeft: 'solid #eeeeee 1px',
   cursor: 'pointer',
+  borderRadius: '10px'
  
 
   
