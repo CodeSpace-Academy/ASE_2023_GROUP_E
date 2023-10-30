@@ -11,6 +11,10 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import SingleRecipeTags from '../SingleRecipeTags/SingleRecipeTags';
 import ErrorMessage from '@/component/Error/ErrorMessage';
+import RecipeFilter from '@/component/filtering/filterList';
+import {PiBookOpenText } from 'react-icons/pi';
+import {FcClock,FcAlarmClock } from 'react-icons/fc';
+import{TfiTimer} from 'react-icons/tfi'
 
 
 
@@ -33,6 +37,7 @@ export default function PreviewList({ recipes, click, input }) {
   const router = useRouter();
   const currentPath = router.query.preview;
   const [searchResults, setSearchResults] = useState([]);
+  const [showFilter, setShowFilter] = useState(false);
 
 
   useEffect(() => {
@@ -46,9 +51,6 @@ export default function PreviewList({ recipes, click, input }) {
   const handleRecipeClick = (recipe) => {
     setSelectedRecipe(recipe);
   };
-
-
-
 
   // const handleSearch = async (category) => {
   //   try {
@@ -68,9 +70,20 @@ export default function PreviewList({ recipes, click, input }) {
     setShowDescriptions(newShowDescriptions);
   };
 
+  const toggleFilter = () => {
+    setShowFilter(!showFilter);
+  };
+
+  const closeFilter = () => {
+    setShowFilter(false);
+  };
 
   return (
     <>
+    <div>
+      <button onClick={toggleFilter}>Show Filter</button>
+      {showFilter && <RecipeFilter onClose={closeFilter} />}
+    </div>
     {/* <SearchBar onSearch={handleSearch} /> */}
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={1}>
@@ -125,10 +138,10 @@ export default function PreviewList({ recipes, click, input }) {
                             showDescriptions[index] ? <ErrorMessage message = 'Failed to load description' /> : ''
                           }
                           <div className={style.times}>
-                            <div>⏲️ Prep: {NumToTime(recipe.prep)}</div>
-                            <div>🕰️ Cook: {NumToTime(recipe.cook)}</div>
+                            <div> <FcClock/> Prep: {NumToTime(recipe.prep)}</div>
+                            <div> <FcAlarmClock/> Cook: {NumToTime(recipe.cook)}</div>
                             <div>
-                              ⏰ Total Time:{' '}
+                              <TfiTimer/> Total Time:{' '}
                               {NumToTime(recipe.prep + recipe.cook)}
                             </div>
                           </div>
@@ -139,11 +152,12 @@ export default function PreviewList({ recipes, click, input }) {
                       {/* Recipe tags */}
                       <SingleRecipeTags tags={recipe.tags} />
                     </Link>
+                  
 
-
-                    <button onClick={() => toggleDescription(index)}>
-                        Show Description
-                    </button>
+                  
+                      <PiBookOpenText onClick={() => toggleDescription(index)}
+                        Show Description/>
+                        
 
 
                   </Item>
