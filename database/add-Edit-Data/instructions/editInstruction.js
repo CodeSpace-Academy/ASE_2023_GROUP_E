@@ -1,4 +1,4 @@
-import { client } from "../client";
+import { client } from "../../client";
 
 export default async function editInstructions(selectInstruction, recipeTitle, recipeInstruction){
     const db = client.db('devdb')

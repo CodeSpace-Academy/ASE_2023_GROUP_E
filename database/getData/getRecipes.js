@@ -1,13 +1,17 @@
 import { client } from "../client"
 
-export default async  function getRecipes(skip, limit){
-
+export default async function getRecipes(filter, skip, limit) {
     const db = client.db('devdb')
-    const results = await db.collection('recipes')
-        .find()
-        .skip(skip)
-        .limit(limit)
-        .toArray()
+    const query = db.collection('recipes').find(filter).skip(skip);
+    
+    /**
+     * check if limit it defined, if not, when the function is used the will be no limit set
+     */
+    if (limit !== undefined) {
+        query.limit(limit);
+    }
 
-        return results
+    const results = await query.toArray();
+
+    return results;
 }

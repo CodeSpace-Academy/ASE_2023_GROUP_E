@@ -9,7 +9,7 @@ export default async function handler(req, res){
         const limit =  parseInt(req.query.limit) || 0;
 
         try{
-            const results = await getRecipes(skip, limit)
+            const results = await getRecipes({}, skip, limit)
             res.status(200).json({ recipes: results })
 
         }catch(error){

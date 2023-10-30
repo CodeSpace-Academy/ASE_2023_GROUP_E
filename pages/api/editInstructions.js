@@ -1,4 +1,4 @@
-import editInstructions from "@/database/instructions/editInstruction"
+import editInstructions from "@/database/add-Edit-Data/instructions/editInstruction"
 
 export default async function handler( req, res){
 
