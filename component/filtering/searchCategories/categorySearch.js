@@ -42,9 +42,13 @@ const SearchBar = () => {
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Enter category..."
       />
+      
       <Link href={`/categories/${query}`}>
       <button>Search</button>
       </Link>
+       {/* displays a message */}
+      {noRecipesMessage && <p>{noRecipesMessage}</p>}
+
     </form>
 
 
