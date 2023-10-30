@@ -15,7 +15,7 @@ export default function AllRecipes() {
 
     const skipNo = parseInt(localStorage.getItem("skipNo"))
     addSkip = skipNo
-    fetch(`/api/recipes/preview?skip=${skipNo && skipNo}`)
+    fetch(`/api/recipes/preview?skip=${skipNo && skipNo}&limit=${50}`)
       .then(res => res.json())
       .then(data => setResults(data.recipes))
   })
