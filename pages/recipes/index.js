@@ -1,12 +1,10 @@
 import PreviewList from '@/component/Recipes/Preview/PreviewList';
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
 import SearchBar from '@/component/searchCategories/categorySearch';
 import {MdSkipNext} from 'react-icons/md'
 
 
 export default function AllRecipes() {
-  const router = useRouter();
   const [ results, setResults] = useState(null)
   let addSkip
  
@@ -15,11 +13,10 @@ export default function AllRecipes() {
 
     const skipNo = parseInt(localStorage.getItem("skipNo"))
     addSkip = skipNo
-    fetch(`/api/recipes/preview?skip=${skipNo && skipNo}`)
+    fetch(`/api/recipes/preview?skip=${skipNo && skipNo}&limit=${50}`)
       .then(res => res.json())
       .then(data => setResults(data.recipes))
   })
-
 
   function scrollToTop() {
     window.scrollTo({
@@ -27,7 +24,6 @@ export default function AllRecipes() {
       behavior: 'instant', // Smooth scrolling animation
     });
   };
-
 
   return (
     <main>

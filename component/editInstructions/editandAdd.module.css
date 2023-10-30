@@ -1,0 +1,44 @@
+.instructions {
+    /* Default styles for instructions */
+    padding: 1em; /* Using em for padding */
+    order: 3; /* Put instructions at the bottom */
+}
+
+.instructionContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 5%;
+}
+
+@media only screen and (max-width : 389px){
+    .modufyInstruction{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media only screen and (max-width: 850px){
+
+    .modufyInstruction{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .instructions{
+        padding: 0;
+        margin: 0;
+    }
+
+    .instructionContainer{
+        display: flex;
+        flex-direction: column;
+    }
+
+}
+
+
+.addButton{
+    margin-top: 5%;
+}

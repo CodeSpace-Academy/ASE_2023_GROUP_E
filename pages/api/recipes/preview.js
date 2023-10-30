@@ -1,17 +1,15 @@
-import getRecipes from "@/database/getRecipes";
+import getRecipes from "@/database/getData/getRecipes";
 
 export default async function handler(req, res){
 
 
     if(req.method === "GET"){
 
-  
-
-        const skip = parseInt(req.query.skip) || 0; 
+        const skip = parseInt(req.query.skip) || 0;
+        const limit =  parseInt(req.query.limit) || 0;
 
         try{
-
-            const results = await getRecipes(skip)
+            const results = await getRecipes({}, skip, limit)
             res.status(200).json({ recipes: results })
 
         }catch(error){
