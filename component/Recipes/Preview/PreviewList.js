@@ -102,7 +102,7 @@ export default function PreviewList({ recipes, input }) {
                           />
                         </div>
                        <div className={style.details}>
-                       <h4 className={style.title}>{recipe.title}</h4>
+                       {/* <h4 className={style.title}>{recipe.title}</h4> */}
                          <div>
                           {
                             showDescriptions[index] &&  recipe.description ?
