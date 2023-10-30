@@ -43,6 +43,8 @@
 }
 
 
+/* Mobile view */
+
 
 @media only screen and (max-width: 600px){
     .item{
@@ -79,8 +81,74 @@
     }
    
    }
+
+
+   /* Tablet view */
    
    @media only screen and (min-width: 900px){
+    .item{
+        padding-left: 80px;
+        padding-right: 80px;
+       padding-top: 20px;
+        
+        
+    }
+
+    .img{
+        height: 150px;
+        width: 200px;
+       
+        
+    }
+
+    .recipe{
+        display: flex;
+        margin-top: 10px;
+        padding-left: 25px;
+        
+    }
+
+    .details{
+        display: flex;
+        flex-direction: column;
+        padding: 5px;
+        
+    }
+
+    .title{
+        padding-bottom: 10px;
+    }
+   
+    .description{
+        padding-left: 250px;
+        padding-bottom: 5px;
+
+    }
+
+    .button{
+        padding: 5px;
+        border-radius: 10px;
+        background-color: rgba(26, 26, 72, 0.784);
+        color: white;
+        
+    }
+
+    
+    .button:hover{
+        padding: 5px;
+        border-radius: 10px;
+        background-color: rgba(26, 26, 72, 0.784);
+        color: white;
+        
+    }
+
+
+}  
+
+/* Laptop view */
+
+
+@media only screen and (max-width: 1280px){
     .item{
         padding-left: 80px;
         padding-right: 80px;
