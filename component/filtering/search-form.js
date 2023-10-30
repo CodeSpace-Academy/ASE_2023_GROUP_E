@@ -28,6 +28,8 @@ export default function SearchForm() {
     }, 620); 
   };
 
+  const checkResults =  results && results.length !== 0
+
   return (
     <div>
       <h1>Find recipes</h1>
@@ -38,7 +40,7 @@ export default function SearchForm() {
         ref={searchRef}
       />
       {/* maps over results state and map over it */}
-      <PreviewList recipes={results} input={results && searchRef.current.value} />
+      {checkResults ? <PreviewList recipes={results} input={results && searchRef.current.value} /> : <p>No Matching Recipes</p>}
    
     </div>
   );
