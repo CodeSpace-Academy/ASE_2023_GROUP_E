@@ -8,18 +8,29 @@ import { useRouter } from 'next/router';
 const SearchBar = () => {
   const [query, setQuery] = useState('');
   const [categories, setCategories] = useState([]);
+  const [noRecipesMessage, setNoRecipesMessage] = useState('');
   const optionRef = useRef()
-
+  const router = useRouter()
 
   useEffect(() => {
     fetch('/api/filtering/categories')
       .then(res => res.json())
       .then(data => setCategories(data && data.categories[0].categories))
   })
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const selectedCategory = optionRef.current.value;
+    const hasRecipes = true; 
 
+    if (!hasRecipes) {
+      setNoRecipesMessage(`No recipes found for category: ${selectedCategory}`);
+    } else {
+      setNoRecipesMessage('');
+      router.replace(`/categories/${selectedCategory}`);
+    }
+  };
 
-  const router = useRouter()
-
+  
 
   return (
     <>
@@ -36,7 +47,7 @@ const SearchBar = () => {
       </Link>
     </form>
 
-    
+
       <form onSubmit={(e) => {
         e.preventDefault()
         console.log(optionRef && optionRef.current.value)
@@ -52,7 +63,7 @@ const SearchBar = () => {
 
         <button>filter</button>
       </form>
- 
+       {noRecipesMessage && <p>{noRecipesMessage}</p>}
     </>
   );
 };
