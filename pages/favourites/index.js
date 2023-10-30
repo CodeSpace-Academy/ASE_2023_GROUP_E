@@ -10,11 +10,16 @@ const Favourites = () => {
       setFavouriteRecipesList(JSON.parse(storedData));
     }
   }, []);
+  const favouriteListEmpty = favouriteRecipesList.length === 0;
   return (
     <>
       <h1>My favourite recipes</h1>
       {/* Recipe list component */}
-      <PreviewList recipes={favouriteRecipesList} />
+      {favouriteListEmpty ? (
+        <p>No favourites saved.</p>
+      ) : (
+        <PreviewList recipes={favouriteRecipesList} />
+      )}
     </>
   );
 };
