@@ -24,14 +24,12 @@ const FavouritesButton = ({ recipe }) => {
    */
   const handleClickOpen = () => {
     setOpen(true);
-    console.log('modal open');
   };
   /**
    * Closes the modal
    */
   const handleClose = () => {
     setOpen(false);
-    console.log('modal close');
   };
 
   //set the favouriteRecipesList in local storage each time the favouritesList is updated
