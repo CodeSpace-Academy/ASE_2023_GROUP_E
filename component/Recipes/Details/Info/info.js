@@ -5,6 +5,7 @@ import SingleRecipeTags from '../../SingleRecipeTags/SingleRecipeTags';
 import SingleRecipeAllergens from '../../Allergens/SingleRecipeAllergens';
 import FavouritesButton from '../../FavouritesButton/FavouritesButton';
 import StateContext from '@/useContext/StateContext';
+import {TiEdit} from 'react-icons/ti';
 
 export default function Info({recipe , allergens}) {
 
@@ -36,7 +37,7 @@ export default function Info({recipe , allergens}) {
           {edit ? (
             <EditDescription info={recipe.description} />
           ) : (
-            <Button color={'success'} text={'Edit Description'} click={() => setEdit(!edit)} />
+            <Button color={'blue'}  text={<TiEdit fontSize={'25px'}/> } click={() => setEdit(!edit)} />
           )}
 
           <div>
