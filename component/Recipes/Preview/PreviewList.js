@@ -14,7 +14,7 @@ import { PiBookOpenText } from 'react-icons/pi';
 import { FcClock, FcAlarmClock } from 'react-icons/fc';
 import { TfiTimer } from 'react-icons/tfi';
 import { PrepandCookTime } from '@/component/handlerTime/timeRead';
-import FavouritesButton from '../FavouritesButton/FavouritesButton';
+import FavouritesButton from '../../Favourites/FavouritesButton/FavouritesButton';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
