@@ -1,7 +1,7 @@
 import PreviewList from '@/component/Recipes/Preview/PreviewList';
 import { useState, useEffect } from 'react';
 import SearchBar from '@/component/filtering/searchCategories/categorySearch';
-import {MdSkipNext} from 'react-icons/md'
+import {GrChapterNext} from 'react-icons/gr'
 
 
 export default function AllRecipes() {
@@ -31,7 +31,7 @@ export default function AllRecipes() {
       <PreviewList recipes={results}/*  click={loadMoreRecipes}  *//>
 
 
-     <MdSkipNext onClick={() => {
+     <GrChapterNext color='light gray' fontSize='24px'  onClick={() => {
         localStorage.setItem("skipNo", addSkip + 50)
         scrollToTop()
         }} disabled={false}/>
