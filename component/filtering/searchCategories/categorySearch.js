@@ -17,18 +17,25 @@ const SearchBar = () => {
       .then(res => res.json())
       .then(data => setCategories(data && data.categories[0].categories))
   })
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const selectedCategory = optionRef.current.value;
-    const hasRecipes = true; 
-
-    if (!hasRecipes) {
-      setNoRecipesMessage(`No recipes found for category: ${selectedCategory}`);
-    } else {
-      setNoRecipesMessage('');
-      router.replace(`/categories/${selectedCategory}`);
-    }
-  };
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   const selectedCategory = optionRef.current.value;
+  
+  //   try {
+  //     const response = await fetch(`/api/recipes?category=${selectedCategory}`);
+  //     const data = await response.json();
+  
+  //     if (data.recipes.length === 0) {
+  //       setNoRecipesMessage(`No recipes found for category: ${selectedCategory}`);
+  //     } else {
+  //       setNoRecipesMessage('');
+  //       router.replace(`/categories/${selectedCategory}`);
+  //     }
+  //   } catch (error) {
+  //     console.error('Error fetching recipes:', error);
+  //   }
+  // };
+  
 
   
 
@@ -42,12 +49,12 @@ const SearchBar = () => {
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Enter category..."
       />
-      
+
       <Link href={`/categories/${query}`}>
       <button>Search</button>
       </Link>
        {/* displays a message */}
-      {noRecipesMessage && <p>{noRecipesMessage}</p>}
+      {/* {noRecipesMessage && <p>{noRecipesMessage}</p>} */}
 
     </form>
 
@@ -69,7 +76,7 @@ const SearchBar = () => {
         <button>filter</button>
       </form>
       {/* displays a message */}
-       {noRecipesMessage && <p>{noRecipesMessage}</p>}
+       {/* {noRecipesMessage && <p>{noRecipesMessage}</p>} */}
     </>
   );
 };
