@@ -1,20 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { styled } from '@mui/material/styles';
+import ErrorMessage from '@/component/Error/ErrorMessage';
+import RecipeFilter from '@/component/filtering/filterList';
+import { PrepandCookTime } from '@/component/handlerTime/timeRead';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
-import NumToTime from '@/component/handlerTime/timeRead';
-import style from './previewList.module.css';
+import { styled } from '@mui/material/styles';
 import Image from 'next/image';
 import Link from 'next/link';
-import SingleRecipeTags from '../SingleRecipeTags/SingleRecipeTags';
-import ErrorMessage from '@/component/Error/ErrorMessage';
-import RecipeFilter from '@/component/filtering/filterList';
-import { PiBookOpenText } from 'react-icons/pi';
-import { FcClock, FcAlarmClock } from 'react-icons/fc';
-import { TfiTimer } from 'react-icons/tfi';
-import { PrepandCookTime } from '@/component/handlerTime/timeRead';
+import { useEffect, useState } from 'react';
+import { IoIosInformationCircle } from 'react-icons/io';
 import FavouritesButton from '../FavouritesButton/FavouritesButton';
+import SingleRecipeTags from '../SingleRecipeTags/SingleRecipeTags';
+import style from './previewList.module.css';
+
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -22,8 +20,8 @@ const Item = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),
   color: theme.palette.text.secondary,
   boxShadow: 'none',
-  borderBottom: 'solid black 2px',
-  borderRight: 'solid black 2px',
+  borderBottom: 'solid gray 2px',
+  borderRight: 'solid gray 2px',
   cursor: 'pointer',
 }));
 
@@ -114,7 +112,7 @@ export default function PreviewList({ recipes, input }) {
                       <SingleRecipeTags tags={recipe.tags} />
                     </Link>
                     <FavouritesButton recipe={recipe} />
-                    <PiBookOpenText onClick={() => toggleDescription(index)} />
+                    <IoIosInformationCircle color='light gray' fontSize='20px' onClick={() => toggleDescription(index)} />
                   </Item>
                 </Grid>
               );
