@@ -70,16 +70,13 @@ const FavouritesButton = ({ recipe }) => {
         removeFromFavourites={removeFromFavourites}
         handleClose={handleClose}
       />
-      <button
-        onClick={addToFavourites}
-        className={
-          recipeIsInFavouritesList
-            ? `${classes.isFavourite} ${classes.favButton}`
-            : classes.favButton
-        }
-      >
-        {recipeIsInFavouritesList ? <FaHeart /> : <FaRegHeart />}
-      </button>
+      <span onClick={addToFavourites}>
+        {recipeIsInFavouritesList ? (
+          <FaHeart className={`${classes.isFavourite} ${classes.icon}`} />
+        ) : (
+          <FaHeart className={` ${classes.icon}`} />
+        )}
+      </span>
     </div>
   );
 };
