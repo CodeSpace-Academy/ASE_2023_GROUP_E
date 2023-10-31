@@ -27,7 +27,7 @@ const Item = styled(Paper)(({ theme }) => ({
   cursor: 'pointer',
 }));
 
-export default function PreviewList({ recipes, input }) {
+export default function PreviewList({ recipes, input, sortDate }) {
   const [showDescriptions, setShowDescriptions] = useState([]);
   const [showFilter, setShowFilter] = useState(false);
 
@@ -48,7 +48,7 @@ export default function PreviewList({ recipes, input }) {
     <>
       <div>
         <button onClick={() => setShowFilter(!showFilter)}>Show Filter</button>
-        {showFilter && <RecipeFilter onClose={() => setShowFilter(false)} />}
+        {showFilter && <RecipeFilter sortDate={sortDate} onClose={() => setShowFilter(false)} />}
       </div>
       {/* <SearchBar onSearch={handleSearch} /> */}
       <Box sx={{ flexGrow: 1 }}>
