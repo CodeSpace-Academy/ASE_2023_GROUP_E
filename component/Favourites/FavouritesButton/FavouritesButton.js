@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import classes from './FavouritesButton.module.css';
 import StateContext from '@/useContext/StateContext';
 import FavouritesModal from '../FavouritesModal/FavouritesModal';
-
+import { FaHeart, FaRegHeart } from 'react-icons/fa';
 /**
  * When clicked can add or remove the recipe provided from the favourite recipes list.
  * @param {object} recipe
@@ -78,9 +78,7 @@ const FavouritesButton = ({ recipe }) => {
             : classes.favButton
         }
       >
-        {recipeIsInFavouritesList
-          ? 'Remove from favourites'
-          : 'Add to favourites'}
+        {recipeIsInFavouritesList ? <FaHeart /> : <FaRegHeart />}
       </button>
     </div>
   );

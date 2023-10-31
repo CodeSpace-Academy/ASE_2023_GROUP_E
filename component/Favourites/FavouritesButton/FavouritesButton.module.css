@@ -1,8 +1,10 @@
 .favButton {
   padding: 0.3rem 0.7rem;
   border-radius: 0.25rem;
+  border: none;
+  background-color: transparent;
 }
 
 .isFavourite {
-  background-color: red;
+  color: red;
 }
