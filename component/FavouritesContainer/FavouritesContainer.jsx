@@ -3,6 +3,7 @@ import classes from './FavouritesContainer.module.css';
 import StateContext from '../../useContext/StateContext';
 import PreviewList from '../Recipes/Preview/PreviewList';
 import LoadingSpinner from '../ui/loadingSpinner/LoadingSpinner';
+
 export default function FavouritesContainer() {
   const { favouritesList } = StateContext();
   const favouriteListEmpty = favouritesList.length === 0;
