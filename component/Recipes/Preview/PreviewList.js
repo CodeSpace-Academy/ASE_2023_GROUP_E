@@ -9,10 +9,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { IoIosInformationCircle } from 'react-icons/io';
-import FavouritesButton from '../FavouritesButton/FavouritesButton';
 import SingleRecipeTags from '../SingleRecipeTags/SingleRecipeTags';
 import style from './previewList.module.css';
-
+import { PrepandCookTime } from '@/component/handlerTime/timeRead';
+import FavouritesButton from '../../Favourites/FavouritesButton/FavouritesButton';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -25,7 +25,7 @@ const Item = styled(Paper)(({ theme }) => ({
   cursor: 'pointer',
 }));
 
-export default function PreviewList({ recipes, input }) {
+export default function PreviewList({ recipes, input, sortDate }) {
   const [showDescriptions, setShowDescriptions] = useState([]);
   const [showFilter, setShowFilter] = useState(false);
 
@@ -46,7 +46,7 @@ export default function PreviewList({ recipes, input }) {
     <>
       <div>
         <button onClick={() => setShowFilter(!showFilter)}>Show Filter</button>
-        {showFilter && <RecipeFilter onClose={() => setShowFilter(false)} />}
+        {showFilter && <RecipeFilter sortDate={sortDate} onClose={() => setShowFilter(false)} />}
       </div>
       {/* <SearchBar onSearch={handleSearch} /> */}
       <Box sx={{ flexGrow: 1 }}>

@@ -1,16 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import PreviewList from '@/component/Recipes/Preview/PreviewList';
 import StateContext from '@/useContext/StateContext';
+import FavouritesContainer from '@/component/FavouritesContainer/FavouritesContainer';
 const Favourites = () => {
-  const { favouritesList } = StateContext();
-
-  return (
-    <>
-      <h1>My favourite recipes</h1>
-      {/* Recipe list component */}
-      <PreviewList recipes={favouritesList} />
-    </>
-  );
+  return <FavouritesContainer />;
 };
 
 export default Favourites;
