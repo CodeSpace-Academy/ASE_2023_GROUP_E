@@ -29,7 +29,7 @@ export default function AllRecipes() {
     });
   }
   return results ? (
-    <main>
+    <main className='previewMain'>
       <SearchBar />
       <div className="sort-dropdown">
         <label> Sort by:</label>
