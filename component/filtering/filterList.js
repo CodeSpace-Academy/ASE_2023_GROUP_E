@@ -15,7 +15,7 @@ const RecipeFilter = ({ onClose }) => {
   };
 
   const applyFilters = () => {
-    // Implement your filter logic here
+   
   };
 
   return (
