@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import classes from './category.module.css';
 
 
 const SearchBar = () => {
@@ -18,8 +19,12 @@ const SearchBar = () => {
 
   
   return (
-    <>
+    < >
 {/* Enables the user to search with category*/}
+<div className={classes.background}>
+ <div lassName={classes.text}>
+  Try a category
+ </div>
 <form >
       <input
         type="text"
@@ -34,7 +39,9 @@ const SearchBar = () => {
      
 
     </form>
+    </div>
 
+     <div>
       <form onSubmit={(e) => {
         e.preventDefault()
         console.log(optionRef && optionRef.current.value)
@@ -47,10 +54,11 @@ const SearchBar = () => {
           {categories && categories.map((item) => <option key={item} value={item}>{item}</option>)}
         </select>
 
-        <button>filter</button>
+        <button>Filter categories</button>
       </form>
+      </div>
    
-    </>
+      </>
   );
 };
 
