@@ -1,8 +1,9 @@
 import React from 'react';
 import classes from './FavouritesContainer.module.css';
-import StateContext from '@/useContext/StateContext';
-import PreviewList from '@/component/Recipes/Preview/PreviewList';
-const FavouritesContainer = () => {
+import StateContext from '../../useContext/StateContext';
+import PreviewList from '../Recipes/Preview/PreviewList';
+
+export default function FavouritesContainer() {
   const { favouritesList } = StateContext();
   const favouriteListEmpty = favouritesList.length === 0;
   return (
@@ -16,6 +17,4 @@ const FavouritesContainer = () => {
       )}
     </div>
   );
-};
-
-export default FavouritesContainer;
+}
