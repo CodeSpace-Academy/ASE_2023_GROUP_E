@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import RecipeDetails from '@/component/Recipes/Details/RecipeDetails';
-
+import LoadingSpinner from '@/component/ui/loadingSpinner/LoadingSpinner';
 const RecipePage = () => {
   const router = useRouter();
   const [recipe, setRecipe] = useState(null);
