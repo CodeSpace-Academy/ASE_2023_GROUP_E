@@ -14,10 +14,11 @@ function Links(link, text, click){
 
 
 const ExpandableMenu = () => {
-  const {setToggleMenu, toggleMenu} = StateContext()
+  const {setToggleMenu, toggleMenu, setAddSkip} = StateContext()
 
 function skip(){
-  return localStorage.setItem("skipNo", 0)
+  localStorage.setItem("skipNo", 0)
+  setAddSkip(0)
 }
 
 

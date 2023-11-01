@@ -13,7 +13,7 @@ function SearchBar() {
     fetch('/api/filtering/categories')
       .then((res) => res.json())
       .then((data) => setCategories(data.categories && data.categories[0].categories));
-  });
+  },[]);
 
   return (
     <>
