@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import Skeleton from '@mui/material/Skeleton';
 import Grid from '@mui/material/Grid';
 
-const variants = ['h1', 'h5', 'h2', 'h2', 'h3', 'h3', 'h4', 'h4'];
+const variants = ['h1', 'h1', 'h1', 'h1', 'h3', 'h4', 'h4'];
 
 function TypographyDemo(props) {
   const { loading = false } = props;
