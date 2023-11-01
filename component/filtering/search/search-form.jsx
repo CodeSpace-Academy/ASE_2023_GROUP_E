@@ -32,7 +32,7 @@ export default function SearchForm() {
       setAddSearchHistory(false);
       await addItem('/api/filtering/search/searchHistory', { username: 'bob', searchHistoryInput: results && searchRef.current.value });
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   }
 
