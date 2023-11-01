@@ -15,7 +15,7 @@ const RecipeFilter = ({ onClose, sortDate }) => {
   };
 
   const applyFilters = () => {
-    // Implement your filter logic here
+   
   };
 
   return (
