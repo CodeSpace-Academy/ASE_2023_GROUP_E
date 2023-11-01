@@ -7,9 +7,11 @@ export default async function handler(req, res){
 
         const skip = parseInt(req.query.skip) || 0;
         const limit =  parseInt(req.query.limit) || 0;
+        const sort = req.query.sort || ''
+        const sortIn = req.query.sortIn || ''
 
         try{
-            const results = await getRecipes({}, skip, limit)
+            const results = await getRecipes({}, skip, limit, {[sort]: sortIn})
             res.status(200).json({ recipes: results })
 
         }catch(error){
