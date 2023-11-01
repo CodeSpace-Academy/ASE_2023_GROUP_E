@@ -36,6 +36,7 @@ export default function AllRecipes() {
       <div className="sort-dropdown">
         <label> Sort by:</label>
         <select value={sortField} onChange={(e) => setSortField(e.target.value)}>
+        <option value="title">Title</option>
           <option value="prep">Prep time</option>
           <option value="cook">Cook time</option>
           <option value="published">Date</option>
