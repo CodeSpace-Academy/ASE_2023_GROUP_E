@@ -36,11 +36,8 @@ export default function Info({ recipe, allergens }) {
         {edit ? (
           <EditDescription info={recipe.description} />
         ) : (
-          <Button
-            color={'success'}
-            text={'Edit Description'}
-            click={() => setEdit(!edit)}
-          />
+        
+          <Button color={'blue'}  text={<TiEdit fontSize={'25px'}/> } click={() => setEdit(!edit)} />
         )}
 
         <div>
@@ -59,7 +56,6 @@ export default function Info({ recipe, allergens }) {
           ) : (
             <>
             
-              <Button color={'blue'}  text={<TiEdit fontSize={'25px'}/> } click={() => setEdit(!edit)} />
 
               <p>No allergens</p>
             
