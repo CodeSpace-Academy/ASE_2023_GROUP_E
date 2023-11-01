@@ -25,10 +25,12 @@ export default function FavouritesModal({
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{'Remove recipe?'}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">Remove recipe?</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Are you sure you want to remove "{title}" from your favourites list?
+            {`Are you sure you want to remove 
+            "${title}"
+            from your favourites list?`}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
