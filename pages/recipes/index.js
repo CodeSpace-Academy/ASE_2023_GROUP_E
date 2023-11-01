@@ -8,17 +8,15 @@ export default function AllRecipes() {
   const [ results, setResults] = useState(null)
   const [ sortDate, setSortDate ] = useState('title')
   const [ sortIn, setSortIn ] = useState(false)
-  let addSkip
+  const [ addSkip, setAddSkip ] = useState(0)
  
   useEffect(() => {
-
-
     const skipNo = parseInt(localStorage.getItem("skipNo"))
-    addSkip = skipNo
+    setAddSkip(skipNo)
     fetch(`/api/recipes/preview?skip=${skipNo && skipNo}&limit=${50}&sort=${sortDate}&sortIn=${sortIn ? -1 : 1}`)
       .then(res => res.json())
       .then(data => setResults(data.recipes))
-  }, [sortIn])
+  }, [sortIn, addSkip, sortDate])
 
   function scrollToTop() {
     window.scrollTo({
