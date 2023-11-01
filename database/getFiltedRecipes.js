@@ -6,7 +6,7 @@ export default async function getFilteredRecipes(skip,filter){
     const results = await db.collection('recipes')
         .find(filter)
         .skip(skip)
-        .limit(50)
+        .limit(100)
         .toArray()
 
         return results

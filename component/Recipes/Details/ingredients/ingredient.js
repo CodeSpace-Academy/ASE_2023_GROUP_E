@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import classes from './ingredients.module.css'
+import { MdOutlineExpandLess, MdOutlineExpandMore } from 'react-icons/md';
+import classes from './ingredients.module.css';
 
 export default function Ingredients({recipe}){
 
@@ -21,7 +22,7 @@ export default function Ingredients({recipe}){
                 </div>
             )}
             <button onClick={() => setShowIngredients(!showIngredients)} >
-                {showIngredients ? 'Hide Ingredients' : 'Show Ingredients'}
+                {showIngredients ?  <MdOutlineExpandLess fontSize={'20px'}/> : <MdOutlineExpandMore fontSize={'20px'}/>}
             </button>
         </div>
     )
