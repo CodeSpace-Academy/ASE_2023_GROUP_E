@@ -11,6 +11,7 @@ const nextConfig = {
       'pages/favourites',
       'component/Favourites',
       'component/FavouritesContainer',
+      'component/ui/loadingSpinner',
     ],
   },
 };
