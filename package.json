@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint --file component/filtering/search/search-form.js"
+  },
+  "prettier": {
+    "singleQuote": false
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
