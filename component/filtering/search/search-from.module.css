@@ -29,3 +29,7 @@
 .search h1 {
     font-size: 400%;
 }
+
+.results{
+    padding: 15px;
+}

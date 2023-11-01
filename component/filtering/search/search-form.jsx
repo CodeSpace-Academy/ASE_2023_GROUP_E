@@ -57,7 +57,7 @@ export default function SearchForm() {
 
       </div>
 
-      <div>
+      <div className={classes.results}>
         {checkResults
           ? <PreviewList recipes={results} input={results && searchRef.current.value} />
           : <p>No Matching Recipes</p>}

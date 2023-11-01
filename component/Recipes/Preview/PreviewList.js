@@ -43,7 +43,7 @@ export default function PreviewList({ recipes, input, sortDate }) {
 
   return (
     <>
-      <div>
+      <div className={style.filter}>
         <button onClick={() => setShowFilter(!showFilter)}>Show Filter</button>
         {showFilter && <RecipeFilter sortDate={sortDate} onClose={() => setShowFilter(false)} />}
       </div>

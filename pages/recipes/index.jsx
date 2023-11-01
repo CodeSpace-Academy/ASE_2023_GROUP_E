@@ -26,7 +26,7 @@ export default function AllRecipes() {
   };
 
   return (
-    <main>
+    <main className='previewMain'>
       <SearchBar />
       <PreviewList sortDate={() => {
         setSortDate('published')
