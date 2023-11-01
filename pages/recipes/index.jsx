@@ -1,7 +1,9 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react';
-import SearchBar from '@/component/filtering/searchCategories/categorySearch';
-import {GrChapterNext} from 'react-icons/gr'
-import PreviewList from '@/component/Recipes/Preview/PreviewList';
+import { GrChapterNext } from 'react-icons/gr';
+import SearchBar from '../../component/filtering/searchCategories/categorySearch';
+
+import PreviewList from '../../component/Recipes/Preview/PreviewList';
 
 export default function AllRecipes() {
   const [results, setResults] = useState(null);
@@ -9,13 +11,13 @@ export default function AllRecipes() {
   const [sortOrder, setSortOrder] = useState('asc'); // Default sort order
   let addSkip;
 
- 
   useEffect(() => {
+    // eslint-disable-next-line radix
     const skipNo = parseInt(localStorage.getItem('skipNo'));
     addSkip = skipNo;
 
     fetch(
-      `/api/recipes/preview?skip=${skipNo && skipNo}&limit=${50}&sort=${sortField}&sortIn=${sortOrder === 'asc' ? 1 : -1}`
+      `/api/recipes/preview?skip=${skipNo && skipNo}&limit=${50}&sort=${sortField}&sortIn=${sortOrder === 'asc' ? 1 : -1}`,
     )
       .then((res) => res.json())
       .then((data) => setResults(data.recipes));
@@ -32,9 +34,8 @@ export default function AllRecipes() {
     <main>
       <SearchBar />
       <div className="sort-dropdown">
-        <label>Sort by:</label>
+        <label> Sort by:</label>
         <select value={sortField} onChange={(e) => setSortField(e.target.value)}>
-          
           <option value="prep">Prep time</option>
           <option value="cook">Cook time</option>
           <option value="published">Date</option>
@@ -44,21 +45,15 @@ export default function AllRecipes() {
           <option value="desc">Descending</option>
         </select>
       </div>
-      <MdSkipNext
+      <GrChapterNext
+        color="light gray"
+        fontSize="24px"
         onClick={() => {
           localStorage.setItem('skipNo', addSkip + 50);
           scrollToTop();
         }}
         disabled={false}
       />
-      
-
-
-     <GrChapterNext color='light gray' fontSize='24px'  onClick={() => {
-        localStorage.setItem("skipNo", addSkip + 50)
-        scrollToTop()
-        }} disabled={false}/>
-     
       {/* <button>Page: {pageNumber}</button> */}
       <PreviewList recipes={results} />
     </main>
