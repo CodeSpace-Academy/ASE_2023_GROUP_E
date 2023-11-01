@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { FaHeart } from 'react-icons/fa';
 import classes from './FavouritesButton.module.css';
-import StateContext from '@/useContext/StateContext';
+import StateContext from '../../../useContext/StateContext';
 import FavouritesModal from '../FavouritesModal/FavouritesModal';
-import { FaHeart, FaRegHeart } from 'react-icons/fa';
 /**
  * When clicked can add or remove the recipe provided from the favourite recipes list.
  * @param {object} recipe
  * @returns
  */
-const FavouritesButton = ({ recipe }) => {
+export default function FavouritesButton({ recipe }) {
   // Global state list of favourite recipes
   const { favouritesList, setFavouritesList } = StateContext();
   /**
@@ -17,7 +17,7 @@ const FavouritesButton = ({ recipe }) => {
   const recipeIsInFavouritesList = favouritesList.find((singleRecipe) => {
     return singleRecipe._id === recipe._id;
   });
-  //Modal open state
+  // Modal open state
   const [open, setOpen] = React.useState(false);
   /**
    * Opens the modal
@@ -32,11 +32,11 @@ const FavouritesButton = ({ recipe }) => {
     setOpen(false);
   };
 
-  //set the favouriteRecipesList in local storage each time the favouritesList is updated
+  // set the favouriteRecipesList in local storage each time the favouritesList is updated
   useEffect(() => {
     localStorage.setItem(
       'favouriteRecipesList',
-      JSON.stringify(favouritesList)
+      JSON.stringify(favouritesList),
     );
   }, [favouritesList]);
   /**
@@ -45,7 +45,9 @@ const FavouritesButton = ({ recipe }) => {
    */
   const addToFavourites = () => {
     if (!recipeIsInFavouritesList) {
-      setFavouritesList((prevFavourites) => [...prevFavourites, recipe]);
+      setFavouritesList((prevFavourites) => {
+        return [...prevFavourites, recipe];
+      });
     } else {
       handleClickOpen();
     }
@@ -55,11 +57,11 @@ const FavouritesButton = ({ recipe }) => {
    * it is currently present in the list.
    */
   const removeFromFavourites = () => {
-    setFavouritesList((prevFavourites) =>
-      prevFavourites.filter((singleRecipe) => {
+    setFavouritesList((prevFavourites) => {
+      return prevFavourites.filter((singleRecipe) => {
         return singleRecipe._id !== recipe._id;
-      })
-    );
+      });
+    });
   };
   return (
     <div>
@@ -70,15 +72,13 @@ const FavouritesButton = ({ recipe }) => {
         removeFromFavourites={removeFromFavourites}
         handleClose={handleClose}
       />
-      <span onClick={addToFavourites}>
+      <button onClick={addToFavourites} type="button">
         {recipeIsInFavouritesList ? (
           <FaHeart className={`${classes.isFavourite} ${classes.icon}`} />
         ) : (
           <FaHeart className={` ${classes.icon}`} />
         )}
-      </span>
+      </button>
     </div>
   );
-};
-
-export default FavouritesButton;
+}

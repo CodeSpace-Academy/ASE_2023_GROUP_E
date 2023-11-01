@@ -7,7 +7,11 @@ const nextConfig = {
     domains: ['img.sndimg.com', 'images.pexels.com'], // Updated from remotePatterns to domains
   },
   eslint: {
-    dirs: ['pages/favourites'],
+    dirs: [
+      'pages/favourites',
+      'component/Favourites',
+      'component/FavouritesContainer',
+    ],
   },
 };
 
