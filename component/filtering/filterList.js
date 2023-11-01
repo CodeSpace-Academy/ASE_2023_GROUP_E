@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './filter.module.css';
 
-const RecipeFilter = ({ onClose }) => {
+const RecipeFilter = ({ onClose, sortDate }) => {
   const [categories, setCategories] = useState('');
   const [tags, setTags] = useState('');
   const [ingredients, setIngredients] = useState('');
@@ -15,7 +15,7 @@ const RecipeFilter = ({ onClose }) => {
   };
 
   const applyFilters = () => {
-    // Implement your filter logic here
+   
   };
 
   return (
@@ -51,13 +51,22 @@ const RecipeFilter = ({ onClose }) => {
         onChange={(e) => setNumOfInstructions(e.target.value)}
         className={styles.input}
       />
+        <button onClick={sortDate}>
+          Sort by Date
+        </button>
       <button onClick={clearFilters} className={styles.button}>
+
         Clear All Filters
+
       </button>
+      <> 
+      alert('filter category has been cleared' )
+      </>
       <button onClick={applyFilters} className={styles.button}>
         Apply
       </button>
-    </div>
+
+          </div>
   );
 };
 

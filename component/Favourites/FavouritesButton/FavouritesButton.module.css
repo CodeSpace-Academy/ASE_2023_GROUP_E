@@ -1,0 +1,9 @@
+.isFavourite {
+  color: red;
+}
+.icon {
+  margin: 0.5rem 0;
+}
+.icon:hover {
+  transform: scale(1.4);
+}

@@ -9,21 +9,28 @@
     flex-direction: column;
 }
 
-.imgDiv{
-    text-align: center;
-
+/* .imgDiv{
+ 
     /* background-color: rgba(218, 224, 250, 0.277); */
-    background-image: url('../../public/images/marble-background.png');
-  
-}
+    /* background-image: url('../../public/images/layoutHeader.jpg'); */
+    /* height:400px;
+    background-size:cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    padding: 5px; */
+/* }  */
 
 .img{
-    width: 220px;
-    /* padding-top: 10%;
-    height: 260px; */
- 
+    text-align: center; 
+    /* width: 190px; */
+    padding: 6%;
+    /* height: 140px;  */
+    /* position: fixed; */
     
-}
+    top: 0;
+    
+    
+ } 
 
 .expanded{
     margin-left: 150px;
