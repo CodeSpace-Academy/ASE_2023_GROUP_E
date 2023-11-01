@@ -1,5 +1,6 @@
 import { useState } from "react";
 import classes from './nutrition.module.css'
+import {MdOutlineExpandLess,MdOutlineExpandMore} from 'react-icons/md'
 
 export default function Nutritions({recipe}){
 
@@ -19,7 +20,7 @@ export default function Nutritions({recipe}){
                 </div>
             )}
             <button onClick={() => setShowNutrition(!showNutrition)} >
-                {showNutrition ? 'Hide Nutrition' : 'Show Nutrition'}
+                {showNutrition ? <MdOutlineExpandLess fontSize={'20px'}/> : <MdOutlineExpandMore fontSize={'20px'}/>}
             </button>
         </div>
     )

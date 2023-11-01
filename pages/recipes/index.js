@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import SearchBar from '@/component/filtering/searchCategories/categorySearch';
-import { MdSkipNext } from 'react-icons/md';
+import {GrChapterNext} from 'react-icons/gr'
 import PreviewList from '@/component/Recipes/Preview/PreviewList';
 
 export default function AllRecipes() {
@@ -9,6 +9,7 @@ export default function AllRecipes() {
   const [sortOrder, setSortOrder] = useState('asc'); // Default sort order
   let addSkip;
 
+ 
   useEffect(() => {
     const skipNo = parseInt(localStorage.getItem('skipNo'));
     addSkip = skipNo;
@@ -50,6 +51,15 @@ export default function AllRecipes() {
         }}
         disabled={false}
       />
+      
+
+
+     <GrChapterNext color='light gray' fontSize='24px'  onClick={() => {
+        localStorage.setItem("skipNo", addSkip + 50)
+        scrollToTop()
+        }} disabled={false}/>
+     
+      {/* <button>Page: {pageNumber}</button> */}
       <PreviewList recipes={results} />
     </main>
   );

@@ -33,11 +33,11 @@ const LayoutAll = (props) => {
                 <ExpandableMenu expanded={toggleMenu} />
 
                 <div
-                    className={classes.imgDiv}
-                    style={{ height: `${imgDivHeight}vh` }}
+                    // className={classes.imgDiv}
+                    // style={{ height: `${imgDivHeight}vh` }}
                 >
                     <Image
-                        className={classes.img}
+                        // className={classes.img}
                         src='/images/logo3.png'
                         alt='Chefs Heaven Logo'
                         width={270}
