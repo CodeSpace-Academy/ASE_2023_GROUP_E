@@ -14,7 +14,7 @@ function LayoutAll({ children }) {
 
         <div className={classes.imgDiv}>
           <Image
-            // className={classes.img}
+            className={classes.img}
             src="/images/logo3.png"
             alt="Chefs Heaven Logo"
             width={270}
