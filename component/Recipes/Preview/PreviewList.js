@@ -10,10 +10,11 @@ import Link from 'next/link';
 import SingleRecipeTags from '../SingleRecipeTags/SingleRecipeTags';
 import ErrorMessage from '@/component/Error/ErrorMessage';
 import RecipeFilter from '@/component/filtering/filterList';
-import {PiBookOpenText } from 'react-icons/pi';
-import {FcClock,FcAlarmClock } from 'react-icons/fc';
-import{TfiTimer} from 'react-icons/tfi'
+import { PiBookOpenText } from 'react-icons/pi';
+import { FcClock, FcAlarmClock } from 'react-icons/fc';
+import { TfiTimer } from 'react-icons/tfi';
 import { PrepandCookTime } from '@/component/handlerTime/timeRead';
+import FavouritesButton from '../../Favourites/FavouritesButton/FavouritesButton';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -26,11 +27,9 @@ const Item = styled(Paper)(({ theme }) => ({
   cursor: 'pointer',
 }));
 
-
-export default function PreviewList({ recipes, input }) {
-
+export default function PreviewList({ recipes, input, sortDate }) {
   const [showDescriptions, setShowDescriptions] = useState([]);
-  const [ showFilter, setShowFilter ] = useState(false)
+  const [showFilter, setShowFilter] = useState(false);
 
   useEffect(() => {
     // Initialize the showDescriptions array when the recipes prop is available
@@ -43,13 +42,13 @@ export default function PreviewList({ recipes, input }) {
     const newShowDescriptions = [...showDescriptions];
     newShowDescriptions[index] = !newShowDescriptions[index];
     setShowDescriptions(newShowDescriptions);
-  };
+  }
 
   return (
     <>
       <div>
         <button onClick={() => setShowFilter(!showFilter)}>Show Filter</button>
-        {showFilter && <RecipeFilter onClose={() => setShowFilter(false)} />}
+        {showFilter && <RecipeFilter sortDate={sortDate} onClose={() => setShowFilter(false)} />}
       </div>
       {/* <SearchBar onSearch={handleSearch} /> */}
       <Box sx={{ flexGrow: 1 }}>
@@ -58,33 +57,37 @@ export default function PreviewList({ recipes, input }) {
             recipes.map((recipe, index) => {
               return (
                 <Grid xs={12} md={12} key={index} className={style.item}>
-                  <Item
-                    key={recipe.id}
-                  >
-                    <Link href={`/recipes/${recipe.title}`} className={style.link} >
-
-                      {/** 
+                  <Item key={recipe.id}>
+                    <Link
+                      href={`/recipes/${recipe.title}`}
+                      className={style.link}
+                    >
+                      {/**
                        * Check if search bar has text
                        * if true, no matter the case the text in the input is then highlighted on the title of the search results
-                       * 
-                      */}
-                      {
-                        input ? (
-                          <div>
-                            {recipe.title.split(new RegExp(`(${input})`, "i")).map((title, index) => (
+                       *
+                       */}
+                      {input ? (
+                        <div>
+                          {recipe.title
+                            .split(new RegExp(`(${input})`, 'i'))
+                            .map((title, index) => (
                               <div
                                 key={index}
-                                style={title.toLowerCase() === input.toLowerCase() ? { color: "orange" } : {}}>
+                                style={
+                                  title.toLowerCase() === input.toLowerCase()
+                                    ? { color: 'orange' }
+                                    : {}
+                                }
+                              >
                                 <h3>{title}</h3>
-                            </div>
+                              </div>
                             ))}
+                        </div>
+                      ) : (
+                        <h3>{recipe.title}</h3>
+                      )}
 
-                          </div>
-                        ) : (
-                          <h3>{recipe.title}</h3>
-                        )
-                      }
-                      
                       <div className={style.recipe}>
                         <div>
                           <Image
@@ -96,32 +99,28 @@ export default function PreviewList({ recipes, input }) {
                           />
                         </div>
                         <div>
-                          {
-                            showDescriptions[index] &&  recipe.description ?
-                            (<p>{recipe.description}</p>) :
-                            showDescriptions[index] ? <ErrorMessage message = 'Failed to load description' /> : ''
-                          }
-                          <PrepandCookTime recipe={recipe}/>
+                          {showDescriptions[index] && recipe.description ? (
+                            <p>{recipe.description}</p>
+                          ) : showDescriptions[index] ? (
+                            <ErrorMessage message="Failed to load description" />
+                          ) : (
+                            ''
+                          )}
+                          <PrepandCookTime recipe={recipe} />
                         </div>
                       </div>
-
 
                       {/* Recipe tags */}
                       <SingleRecipeTags tags={recipe.tags} />
                     </Link>
-                    
-                      <PiBookOpenText onClick={() => toggleDescription(index)}/>
+                    <FavouritesButton recipe={recipe} />
+                    <PiBookOpenText onClick={() => toggleDescription(index)} />
                   </Item>
                 </Grid>
               );
             })}
         </Grid>
       </Box>
-
-
     </>
   );
 }
-
-
-

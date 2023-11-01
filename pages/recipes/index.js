@@ -1,11 +1,13 @@
 import PreviewList from '@/component/Recipes/Preview/PreviewList';
 import { useState, useEffect } from 'react';
-import SearchBar from '@/component/searchCategories/categorySearch';
+import SearchBar from '@/component/filtering/searchCategories/categorySearch';
 import {MdSkipNext} from 'react-icons/md'
 
 
 export default function AllRecipes() {
   const [ results, setResults] = useState(null)
+  const [ sortDate, setSortDate ] = useState('title')
+  const [ sortIn, setSortIn ] = useState(false)
   let addSkip
  
   useEffect(() => {
@@ -13,10 +15,10 @@ export default function AllRecipes() {
 
     const skipNo = parseInt(localStorage.getItem("skipNo"))
     addSkip = skipNo
-    fetch(`/api/recipes/preview?skip=${skipNo && skipNo}&limit=${50}`)
+    fetch(`/api/recipes/preview?skip=${skipNo && skipNo}&limit=${50}&sort=${sortDate}&sortIn=${sortIn ? -1 : 1}`)
       .then(res => res.json())
       .then(data => setResults(data.recipes))
-  })
+  }, [sortIn])
 
   function scrollToTop() {
     window.scrollTo({
@@ -28,8 +30,11 @@ export default function AllRecipes() {
   return (
     <main>
       <SearchBar />
-      <PreviewList recipes={results}/*  click={loadMoreRecipes}  *//>
-
+      <PreviewList sortDate={() => {
+        setSortDate('published')
+        setSortIn(!sortIn)
+        
+        }} recipes={results}/*  click={loadMoreRecipes}  *//>
 
      <MdSkipNext onClick={() => {
         localStorage.setItem("skipNo", addSkip + 50)

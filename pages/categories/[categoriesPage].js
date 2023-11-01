@@ -6,13 +6,12 @@ const Search = ({Result}) => {
 
 
   return (
-    <div>
-      <h1>Recipe Search</h1>
-      <PreviewList recipes={Result} />
-    </div>
-  );
-};
-
+      <div>
+        <h1>Recipe Search</h1>
+        <PreviewList recipes={Result} />
+      </div>
+    );
+  };
 
 export async function getServerSideProps(context){
   const SearchWord = context.params.categoriesPage
