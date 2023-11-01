@@ -57,10 +57,13 @@ export default function Info({ recipe, allergens }) {
           {allergenList.length !== 0 ? (
             <SingleRecipeAllergens allergensList={allergenList} />
           ) : (
+            <>
+            
+              <Button color={'blue'}  text={<TiEdit fontSize={'25px'}/> } click={() => setEdit(!edit)} />
 
-            <Button color={'blue'}  text={<TiEdit fontSize={'25px'}/> } click={() => setEdit(!edit)} />
-
-            <p>No allergens</p>
+              <p>No allergens</p>
+            
+            </>
 
           )}
         </div>
