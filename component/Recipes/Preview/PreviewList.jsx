@@ -1,5 +1,5 @@
-/* eslint-disable no-shadow */
-/* eslint-disable import/no-useless-path-segments */
+import ErrorMessage from '@/component/Error/ErrorMessage';
+import RecipeFilter from '@/component/filtering/filterList';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
@@ -8,11 +8,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { IoIosInformationCircle } from 'react-icons/io';
-import RecipeFilter from '../../../component/filtering/filterList';
-import ErrorMessage from '../../../component/Error/ErrorMessage';
 import SingleRecipeTags from '../SingleRecipeTags/SingleRecipeTags';
 import style from './previewList.module.css';
-import { PrepandCookTime } from '../../../component/handlerTime/timeRead';
+import { PrepandCookTime } from '@/component/handlerTime/timeRead';
 import FavouritesButton from '../../Favourites/FavouritesButton/FavouritesButton';
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -45,82 +43,79 @@ export default function PreviewList({ recipes, input, sortDate }) {
 
   return (
     <>
-      <div className={style.filter}>
-        {/*  eslint-disable-next-line react/button-has-type */}
+      <div>
         <button onClick={() => setShowFilter(!showFilter)}>Show Filter</button>
         {showFilter && <RecipeFilter sortDate={sortDate} onClose={() => setShowFilter(false)} />}
       </div>
       {/* <SearchBar onSearch={handleSearch} /> */}
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={1}>
-          {recipes
-            && recipes.map((recipe, index) => (
-              <Grid xs={12} md={12} key={recipe.id} className={style.item}>
-                <Item key={recipe.id}>
-                  <Link
-                    href={`/recipes/${recipe.title}`}
-                    className={style.link}
-                  >
-                    {/**
-                     * Check if search bar has text
-                     * if true, no matter the case the text in the input is then
-                     * highlighted on the title of the search results
-                     *
-                     */}
-                    {input ? (
-                      <div>
-                        {recipe.title
-                          .split(new RegExp(`(${input})`, 'i'))
-                          .map((title, index) => (
-                            <div
-                              // eslint-disable-next-line react/no-array-index-key
-                              key={index}
-                              style={
-                                title.toLowerCase() === input.toLowerCase()
-                                  ? { color: 'orange' }
-                                  : {}
-                              }
-                            >
-                              <h3>{title}</h3>
-                            </div>
-                          ))}
-                      </div>
-                    ) : (
-                      <h3>{recipe.title}</h3>
-                    )}
+          {recipes &&
+            recipes.map((recipe, index) => {
+              return (
+                <Grid xs={12} md={12} key={index} className={style.item}>
+                  <Item key={recipe.id}>
+                    <Link
+                      href={`/recipes/${recipe.title}`}
+                      className={style.link}
+                    >
+                      {/**
+                       * Check if search bar has text
+                       * if true, no matter the case the text in the input is then highlighted on the title of the search results
+                       *
+                       */}
+                      {input ? (
+                        <div>
+                          {recipe.title
+                            .split(new RegExp(`(${input})`, 'i'))
+                            .map((title, index) => (
+                              <div
+                                key={index}
+                                style={
+                                  title.toLowerCase() === input.toLowerCase()
+                                    ? { color: 'orange' }
+                                    : {}
+                                }
+                              >
+                                <h3>{title}</h3>
+                              </div>
+                            ))}
+                        </div>
+                      ) : (
+                        <h3>{recipe.title}</h3>
+                      )}
 
-                    <div className={style.recipe}>
-                      <div>
-                        <Image
-                          src={recipe.images[0]}
-                          className={style.img}
-                          alt={recipe.images[0]}
-                          width={200}
-                          height={100}
-                        />
-                      </div>
-                      <div>
-                        {/* eslint-disable-next-line no-nested-ternary */}
-                        {showDescriptions[index] && recipe.description
-                          ? (
+                      <div className={style.recipe}>
+                        <div>
+                          <Image
+                            src={recipe.images[0]}
+                            className={style.img}
+                            alt={recipe.images[0]}
+                            width={200}
+                            height={100}
+                          />
+                        </div>
+                        <div>
+                          {showDescriptions[index] && recipe.description ? (
                             <p>{recipe.description}</p>
                           ) : showDescriptions[index] ? (
                             <ErrorMessage message="Failed to load description" />
                           ) : (
                             ''
                           )}
-                        <PrepandCookTime recipe={recipe} />
+                          <PrepandCookTime recipe={recipe} />
+                        </div>
                       </div>
-                    </div>
 
-                    {/* Recipe tags */}
-                    <SingleRecipeTags tags={recipe.tags} />
-                  </Link>
-                  <FavouritesButton recipe={recipe} />
-                  <IoIosInformationCircle color="light gray" fontSize="20px" onClick={() => toggleDescription(index)} />
-                </Item>
-              </Grid>
-            ))}
+                      {/* Recipe tags */}
+                      <SingleRecipeTags tags={recipe.tags} />
+                    </Link>
+                    <FavouritesButton recipe={recipe} />
+                    <IoIosInformationCircle color='light gray' fontSize='20px' onClick={() => toggleDescription(index)} />
+                  </Item>
+                </Grid>
+              );
+            })}
         </Grid>
       </Box>
     </>
