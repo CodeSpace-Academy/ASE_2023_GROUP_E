@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint --file component/filtering/search/search-form.js"
+    "lint": "next lint"
   },
   "prettier": {
     "singleQuote": false
