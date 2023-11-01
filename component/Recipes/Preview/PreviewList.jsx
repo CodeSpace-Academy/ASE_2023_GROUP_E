@@ -22,6 +22,7 @@ const Item = styled(Paper)(({ theme }) => ({
   borderBottom: 'solid gray 2px',
   borderRight: 'solid gray 2px',
   cursor: 'pointer',
+  color:'#003153',
 }));
 
 export default function PreviewList({ recipes, input, sortDate }) {
@@ -82,7 +83,7 @@ export default function PreviewList({ recipes, input, sortDate }) {
                             ))}
                         </div>
                       ) : (
-                        <h3>{recipe.title}</h3>
+                        <h3 className={style.title}>{recipe.title}</h3>
                       )}
 
                       <div className={style.recipe}>

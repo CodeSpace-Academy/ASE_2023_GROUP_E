@@ -13,6 +13,8 @@
 
 .title{
     margin: 0;
+    color: #003153;
+
 }
 
 .img{
@@ -64,7 +66,8 @@
     }
 
    .title{
-    font-size: 18px
+    font-size: 20px;
+    text-align: center;
    }
 
     .recipe{
@@ -95,8 +98,9 @@
     }
 
     .img{
-        height: 150px;
-        width: 200px;
+        height: 200px;
+        width: 250px;
+        padding-left: -10px;
        
         
     }
@@ -117,6 +121,7 @@
 
     .title{
         padding-bottom: 10px;
+        font-size: 25px;
     }
    
     .description{
