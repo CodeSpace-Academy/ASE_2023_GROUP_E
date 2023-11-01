@@ -1,7 +1,9 @@
-import { useRef, useState } from 'react';
+import React, { Fragment, useRef, useState } from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { debounce } from 'lodash';
 import PreviewList from '../../Recipes/Preview/PreviewList';
 import { addItem } from '../../../database/addToDatabase';
+import classes from './search-from.module.css';
 
 export default function SearchForm() {
   const searchRef = useRef();
@@ -42,19 +44,24 @@ export default function SearchForm() {
   }
 
   return (
-    <div>
-      <h1>Find recipes</h1>
-      <input
-        type="text"
-        placeholder="Search for data"
-        onChange={debouncedSearchHandler}
-        ref={searchRef}
-      />
-      {/* maps over results state and map over it */}
-      {checkResults
-        ? <PreviewList recipes={results} input={results && searchRef.current.value} />
-        : <p>No Matching Recipes</p>}
+    <>
+      <div className={classes.search}>
+        <h1>Find recipes</h1>
+        <input
+          type="text"
+          placeholder="Search for recipes"
+          onChange={debouncedSearchHandler}
+          ref={searchRef}
+        />
+        {/* maps over results state and map over it */}
 
-    </div>
+      </div>
+
+      <div>
+        {checkResults
+          ? <PreviewList recipes={results} input={results && searchRef.current.value} />
+          : <p>No Matching Recipes</p>}
+      </div>
+    </>
   );
 }
