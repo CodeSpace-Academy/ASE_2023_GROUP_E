@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import classes from './editDescription.module.css'
 import Button, { FormButton } from '../Button/button';
 import { addItem } from '@/database/addToDatabase';
+import {TiEdit } from 'react-icons/ti'
 
 function EditInstruction({info}) {
   const [newInstruction, setNewInstruction] = useState(info);
@@ -73,7 +74,7 @@ export function GetSpecificInstruction({instructions}){
         }
       </select>
 
-      <Button text={'Edit Instruction'}  color={'success'} click={optionHandler} />
+      <Button text={<TiEdit  fontSize={'25px'}/>}   click={optionHandler} />
     </form>
   )
 }

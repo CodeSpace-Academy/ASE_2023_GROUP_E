@@ -5,6 +5,10 @@ import getRecipes from '@/database/getData/getRecipes';
 const Search = ({Result}) => {
 
 
+  if (Result.length == 0){
+    return <p>No results</p>
+  }
+
   return (
       <div>
         <h1>Recipe Search</h1>
