@@ -1,34 +1,46 @@
 import { useRef, useState } from "react";
 import PreviewList from "../Recipes/Preview/PreviewList";
+import { addItem } from "@/database/addToDatabase";
+import { debounce } from "lodash";
 
 export default function SearchForm() {
   const searchRef = useRef();
-  const timeoutRef = useRef(null); 
   const [ results, setResults ] = useState(null)
+
+  const [ addSearchHistory,  setAddSearchHistory] = useState(false)
 
   const searchHandler = () => {
     const filterInput = searchRef.current.value;
-
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-
     /**
      * fetches results from the api folder.
      * insert in inside a state, state is then mapped over to display results.
-     * 
-     * {@link timeoutRef} set the delay to only display results after stopping to text
      */
-    timeoutRef.current = setTimeout(() => {
-      fetch(`/api/filtering/search?title=${filterInput}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setResults(data && data.results)
-        });
-    }, 620); 
+    fetch(`/api/filtering/search/search?title=${filterInput}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setResults(data && data.results)
+        setAddSearchHistory(true)
+      });
   };
+  const debouncedSearchHandler = debounce(searchHandler, 1000);
 
   const checkResults =  results && results.length !== 0
+
+  async function searchHistoryHandler(){
+    try{
+      setAddSearchHistory(false)
+      await addItem('/api/filtering/search/searchHistory', {username: 'bob', searchHistoryInput: results && searchRef.current.value })
+    } catch(error){
+      console.log(error)
+    }
+  }
+
+  const debouncedSearchHistoryHandler = debounce(searchHistoryHandler, 2000);
+
+  if(addSearchHistory  && results && searchRef.current.value.length > 1){
+    setAddSearchHistory(false)
+    debouncedSearchHistoryHandler()
+  }
 
   return (
     <div>
@@ -36,7 +48,7 @@ export default function SearchForm() {
       <input
         type="text"
         placeholder="Search for data"
-        onChange={searchHandler}
+        onChange={debouncedSearchHandler}
         ref={searchRef}
       />
       {/* maps over results state and map over it */}
