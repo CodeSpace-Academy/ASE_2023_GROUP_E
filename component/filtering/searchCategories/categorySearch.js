@@ -14,12 +14,10 @@ const SearchBar = () => {
   useEffect(() => {
     fetch('/api/filtering/categories')
       .then(res => res.json())
-      .then(data => setCategories(data && data.categories[0].categories))
+      .then(data => setCategories(data.categories && data.categories[0].categories))
   })
 
-
   const router = useRouter()
-
 
   return (
     <>
