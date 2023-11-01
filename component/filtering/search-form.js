@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import PreviewList from "../Recipes/Preview/PreviewList";
+import { addItem } from "@/database/addToDatabase";
 
 export default function SearchForm() {
   const searchRef = useRef();
@@ -20,7 +21,7 @@ export default function SearchForm() {
      * {@link timeoutRef} set the delay to only display results after stopping to text
      */
     timeoutRef.current = setTimeout(() => {
-      fetch(`/api/filtering/search?title=${filterInput}`)
+      fetch(`/api/filtering/search/search?title=${filterInput}`)
         .then((res) => res.json())
         .then((data) => {
           setResults(data && data.results)
@@ -30,8 +31,17 @@ export default function SearchForm() {
 
   const checkResults =  results && results.length !== 0
 
+  async function addSearchHistory(){
+    try{
+      await addItem('/api/filtering/search/searchHistory', {username: 'bobo', searchHistoryInput: 'chicken too'})
+    } catch(error){
+      console.log(error)
+    }
+  }
+
   return (
     <div>
+      <button onClick={addSearchHistory}>add</button>
       <h1>Find recipes</h1>
       <input
         type="text"
