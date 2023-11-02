@@ -1,6 +1,6 @@
 import PreviewList from '@/component/Recipes/Preview/PreviewList';
 import getRecipes from '@/database/getData/getRecipes';
-
+import classes from './category.module.css'
 
 const Search = ({Result}) => {
 
@@ -11,7 +11,7 @@ const Search = ({Result}) => {
 
   return (
       <div>
-        <h1>Recipe Search</h1>
+        <h1 className={classes.title}>Category Results</h1>
         <PreviewList recipes={Result} />
       </div>
     );
