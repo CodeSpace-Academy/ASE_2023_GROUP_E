@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, {
   Fragment, useEffect, useRef, useState,
 } from 'react';
@@ -27,6 +28,7 @@ export default function SearchForm() {
   const searchRef = useRef();
   const [results, setResults] = useState(null);
   const [searchHistory, setSearchHistory] = useState(null);
+  const [filterSearchHistory, setFilterSearchHistory] = useState(null);
   const [addSearchHistory, setAddSearchHistory] = useState(false);
 
   /**
@@ -87,8 +89,22 @@ export default function SearchForm() {
          *  */}
         <div className={classes.searhHistory}>
           {
-            searchHistory && searchHistory.map((item) => {
-              return <li key={item} onClick={() => console.log(item)}>{item}</li>;
+            searchHistory && searchHistory.map((item, index) => {
+              return (
+                // eslint-disable-next-line jsx-a11y/click-events-have-key-events
+                <li
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={index}
+                  onClick={() => {
+                    console.log(index);
+                    setFilterSearchHistory(item);
+                    // eslint-disable-next-line no-unused-expressions
+                    searchHandler;
+                  }}
+                >
+                  {item}
+                </li>
+              );
             })
           }
         </div>
