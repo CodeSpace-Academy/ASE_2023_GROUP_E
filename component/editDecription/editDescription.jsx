@@ -3,7 +3,23 @@ import { useRouter } from 'next/router';
 import StateContext from '../../useContext/StateContext';
 import classes from './editDescription.module.css';
 import Button, { FormButton } from '../Button/button';
-import { addItem } from '../../database/addToDatabase';
+
+async function addItem(apiPath, item) {
+  const response = await fetch(apiPath, {
+    method: 'POST',
+    body: JSON.stringify(item),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || 'Something went wrong!');
+  }
+  return data;
+}
 
 function EditDescription({ info }) {
   const [newDescription, setNewDescription] = useState(info);

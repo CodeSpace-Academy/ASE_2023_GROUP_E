@@ -3,8 +3,24 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react';
 import classes from './editDescription.module.css'
 import Button, { FormButton } from '../Button/button';
-import { addItem } from '@/database/addToDatabase';
 import {TiEdit } from 'react-icons/ti'
+
+async function addItem(apiPath, item) {
+  const response = await fetch(apiPath, {
+    method: 'POST',
+    body: JSON.stringify(item),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || 'Something went wrong!');
+  }
+  return data;
+}
 
 function EditInstruction({info}) {
   const [newInstruction, setNewInstruction] = useState(info);

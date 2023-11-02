@@ -2,8 +2,24 @@ import React, { Fragment, useRef, useState } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { debounce } from 'lodash';
 import PreviewList from '../../Recipes/Preview/PreviewList';
-import { addItem } from '../../../database/addToDatabase';
 import classes from './search-from.module.css';
+
+async function addItem(apiPath, item) {
+  const response = await fetch(apiPath, {
+    method: 'POST',
+    body: JSON.stringify(item),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || 'Something went wrong!');
+  }
+  return data;
+}
 
 export default function SearchForm() {
   const searchRef = useRef();
