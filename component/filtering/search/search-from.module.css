@@ -33,3 +33,20 @@
 .results{
     padding: 15px;
 }
+
+.searhHistory{
+    background-color: white;
+    border-radius: 4px;
+    width: 60%;
+    transform: translateX(33.5%);
+    text-align: justify;
+}
+
+.searhHistory h4{
+    padding: 10px;
+    cursor: pointer;
+}
+
+.searhHistory h4:hover{
+    background-color: rgba(128, 128, 128, 0.146);
+}

@@ -17,7 +17,7 @@ export default function SearchForm() {
      * insert in inside a state, state is then mapped over to display results.
      */
     fetch(`/api/filtering/search/search?title=${filterInput}`)
-      .then((res) => res.json())
+      .then((res) => { return res.json(); })
       .then((data) => {
         setResults(data && data.results);
         setAddSearchHistory(true);
@@ -53,8 +53,12 @@ export default function SearchForm() {
           onChange={debouncedSearchHandler}
           ref={searchRef}
         />
-        {/* maps over results state and map over it */}
 
+        <div className={classes.searhHistory}>
+          <h4>what</h4>
+          <h4>what the</h4>
+        </div>
+        {/* maps over results state and map over it */}
       </div>
 
       <div className={classes.results}>
