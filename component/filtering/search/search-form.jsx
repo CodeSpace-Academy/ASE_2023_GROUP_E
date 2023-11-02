@@ -1,4 +1,6 @@
-import React, { Fragment, useRef, useState } from 'react';
+import React, {
+  Fragment, useEffect, useRef, useState,
+} from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { debounce } from 'lodash';
 import PreviewList from '../../Recipes/Preview/PreviewList';
@@ -24,7 +26,17 @@ async function addItem(apiPath, item) {
 export default function SearchForm() {
   const searchRef = useRef();
   const [results, setResults] = useState(null);
+  const [searchHistory, setSearchHistory] = useState(null);
   const [addSearchHistory, setAddSearchHistory] = useState(false);
+
+  /**
+   * fetch a specific user's history
+   */
+  useEffect(() => {
+    fetch('/api/filtering/search/searchHistory?username=bobA')
+      .then((res) => { return res.json(); })
+      .then((data) => setSearchHistory(data.searchhistory && data.searchhistory[0].input))
+  }, []);
 
   const searchHandler = () => {
     const filterInput = searchRef.current.value;
@@ -59,14 +71,6 @@ export default function SearchForm() {
     debouncedSearchHistoryHandler();
   }
 
-  const dummy = [
-    { data: 'what' },
-    { data: 'cookies' },
-    { data: 'bread' },
-    { data: 'scones' },
-    { data: 'chicken' },
-  ];
-
   return (
     <>
       <div className={classes.search}>
@@ -78,10 +82,13 @@ export default function SearchForm() {
           ref={searchRef}
         />
 
+        {/**
+         * maps over the history of the specific user
+         *  */}
         <div className={classes.searhHistory}>
           {
-            dummy.map((item) => {
-              return <li key={item.data} onClick={() => console.log(item.data)}>{item.data}</li>;
+            searchHistory && searchHistory.map((item) => {
+              return <li key={item} onClick={() => console.log(item)}>{item}</li>;
             })
           }
         </div>
