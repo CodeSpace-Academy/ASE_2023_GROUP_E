@@ -42,11 +42,13 @@
     text-align: justify;
 }
 
-.searhHistory h4{
+.searhHistory li{
+    font-weight: bolder;
+    list-style: none;
     padding: 10px;
     cursor: pointer;
 }
 
-.searhHistory h4:hover{
+.searhHistory li:hover{
     background-color: rgba(128, 128, 128, 0.146);
 }

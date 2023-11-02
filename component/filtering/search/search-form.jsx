@@ -43,6 +43,14 @@ export default function SearchForm() {
     debouncedSearchHistoryHandler();
   }
 
+  const dummy = [
+    { data: 'what' },
+    { data: 'cookies' },
+    { data: 'bread' },
+    { data: 'scones' },
+    { data: 'chicken' },
+  ];
+
   return (
     <>
       <div className={classes.search}>
@@ -55,8 +63,11 @@ export default function SearchForm() {
         />
 
         <div className={classes.searhHistory}>
-          <h4>what</h4>
-          <h4>what the</h4>
+          {
+            dummy.map((item) => {
+              return <li key={item.data}>{item.data}</li>;
+            })
+          }
         </div>
         {/* maps over results state and map over it */}
       </div>
