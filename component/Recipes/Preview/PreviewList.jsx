@@ -44,7 +44,7 @@ export default function PreviewList({ recipes, input, sortDate }) {
 
   return (
     <>
-      <div>
+      <div className='previewMain'>
         <button onClick={() => setShowFilter(!showFilter)}>Show Filter</button>
         {showFilter && <RecipeFilter sortDate={sortDate} onClose={() => setShowFilter(false)} />}
       </div>
