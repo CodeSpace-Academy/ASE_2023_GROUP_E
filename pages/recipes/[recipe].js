@@ -16,7 +16,7 @@ const RecipePage = () => {
     fetch('/api/recipes/allergens')
       .then((res) => res.json())
       .then((data) =>
-        setAllergens(data && data.allergens.allergens[0].allergens),
+        setAllergens(data.allergens.allergens[0] && data.allergens.allergens[0].allergens),
       );
     
   }, []);
