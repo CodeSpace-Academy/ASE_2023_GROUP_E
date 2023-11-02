@@ -1,0 +1,35 @@
+.search{
+    text-align: center;
+}
+
+.search{
+    padding: 40px;
+    height: 65vh;
+    background: url('https://images.pexels.com/photos/70497/pexels-photo-70497.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    background-size: cover;
+    background-position-y: 20%;
+}
+
+.search input {
+    height: 13vh;
+    width: 60%;
+    text-align: center;
+    font-size: larger;
+    border: none;
+    border-bottom: 1px solid ;
+    background-color: rgba(230, 227, 227, 0.753);
+    margin: 5px;
+}
+
+.search input:active{
+    border: none;
+    background-color: rgba(252, 252, 252, 0.253);
+}
+
+.search h1 {
+    font-size: 400%;
+}
+
+.results{
+    padding: 15px;
+}
