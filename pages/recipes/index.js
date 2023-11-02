@@ -30,8 +30,9 @@ export default function AllRecipes() {
   }
   return results ? (
     <main>
-      
+
       <SearchBar />
+      <div  className='previewMain'>
       <div className="sort-dropdown">
         <label> Sort by:</label>
         <select value={sortField} onChange={(e) => setSortField(e.target.value)}>
@@ -61,6 +62,7 @@ export default function AllRecipes() {
       {/* <button>Page: {pageNumber}</button> */}
       <PreviewList recipes={results} /*  click={loadMoreRecipes}  */
      />
+     </div>
     </main>
   ) : (
     <LoadingSpinner />

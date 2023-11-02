@@ -11,7 +11,7 @@ const Search = ({Result}) => {
 
   return (
       <div>
-        <h1 className={classes.title}>Recipe Search</h1>
+        <h1 className={classes.title}>Category Results</h1>
         <PreviewList recipes={Result} />
       </div>
     );

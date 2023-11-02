@@ -24,7 +24,7 @@ const SearchBar = () => {
 <div className={classes.background}>
 
  <div className={classes.text}>
-  Try a category
+  All Recipes
  </div>
 
 <div className={classes.search}>
