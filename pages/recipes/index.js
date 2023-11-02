@@ -30,6 +30,7 @@ export default function AllRecipes() {
   }
   return results ? (
     <main>
+      
       <SearchBar />
       <div className="sort-dropdown">
         <label> Sort by:</label>
