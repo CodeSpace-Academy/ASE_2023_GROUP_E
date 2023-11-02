@@ -33,7 +33,7 @@ export default function PreviewList({ recipes, input, sortDate }) {
     if (recipes) {
       setShowDescriptions(recipes.map(() => false));
     }
-  }, [recipes]);
+  }, []);
 
   function toggleDescription(index) {
     const newShowDescriptions = [...showDescriptions];

@@ -7,28 +7,10 @@ import { debounce } from 'lodash';
 import PreviewList from '../../Recipes/Preview/PreviewList';
 import classes from './search-from.module.css';
 
-async function addItem(apiPath, item) {
-  const response = await fetch(apiPath, {
-    method: 'POST',
-    body: JSON.stringify(item),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-
-  const data = await response.json();
-
-  if (!response.ok) {
-    throw new Error(data.message || 'Something went wrong!');
-  }
-  return data;
-}
-
 export default function SearchForm() {
   const searchRef = useRef();
   const [results, setResults] = useState(null);
   const [searchHistory, setSearchHistory] = useState(null);
-  const [filterSearchHistory, setFilterSearchHistory] = useState(null);
   const [displayHistory, setDisplayHistory] = useState(false);
   const [addSearchHistory, setAddSearchHistory] = useState(false);
 
@@ -36,9 +18,9 @@ export default function SearchForm() {
    * fetch a specific user's history
    */
   useEffect(() => {
-    fetch('/api/filtering/search/searchHistory?username=bobA')
+    fetch('/api/filtering/search/searchHistory?username=mike')
       .then((res) => { return res.json(); })
-      .then((data) => setSearchHistory(data.searchhistory && data.searchhistory[0].input))
+      .then((data) => setSearchHistory(data.searchhistory[0] ? [...new Set(data.searchhistory[0].input)] : []))
   }, []);
 
   const searchHandler = () => {
@@ -61,7 +43,7 @@ export default function SearchForm() {
   async function searchHistoryHandler() {
     try {
       setAddSearchHistory(false);
-      await addItem('/api/filtering/search/searchHistory', { username: 'bob', searchHistoryInput: results && searchRef.current.value });
+      await addItem('/api/filtering/search/searchHistory', { username: 'mike', searchHistoryInput: results && searchRef.current.value });
     } catch (error) {
       // console.log(error);
     }
@@ -74,6 +56,12 @@ export default function SearchForm() {
     debouncedSearchHistoryHandler();
   }
 
+  /**
+   * 
+   * @param {string} item - is the value from the history list.
+   * when the history item is clicked it fires the following function.
+   * which then triggers the search function
+   */
   const historyItemClickHandler = (item) => {
     const selectedValue = item;
     searchRef.current.value = selectedValue;
@@ -106,7 +94,6 @@ export default function SearchForm() {
                       key={index}
                       onClick={() => {
                         console.log(index);
-                        setFilterSearchHistory(item);
                         setDisplayHistory(false)
                         historyItemClickHandler(item);
                       }}
@@ -128,3 +115,21 @@ export default function SearchForm() {
     </>
   );
 }
+
+async function addItem(apiPath, item) {
+  const response = await fetch(apiPath, {
+    method: 'POST',
+    body: JSON.stringify(item),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || 'Something went wrong!');
+  }
+  return data;
+}
+

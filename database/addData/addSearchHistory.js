@@ -16,7 +16,10 @@ export default async function addSearchHistory(username, searchHistoryInput){
         user: username
       }, {
         $push:{
-          input: searchHistoryInput
+          input: {
+            $each: [searchHistoryInput],
+            $slice: -10
+          }
         }
       })
     }
