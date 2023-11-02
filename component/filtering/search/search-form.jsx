@@ -29,6 +29,7 @@ export default function SearchForm() {
   const [results, setResults] = useState(null);
   const [searchHistory, setSearchHistory] = useState(null);
   const [filterSearchHistory, setFilterSearchHistory] = useState(null);
+  const [displayHistory, setDisplayHistory] = useState(false);
   const [addSearchHistory, setAddSearchHistory] = useState(false);
 
   /**
@@ -82,36 +83,38 @@ export default function SearchForm() {
           placeholder="Search for recipes"
           onChange={debouncedSearchHandler}
           ref={searchRef}
+          // when search bar is clicked history appears
+          onClick={() => setDisplayHistory(true)}
         />
 
         {/**
+         * waits for input to be clicked then history pops up
          * maps over the history of the specific user
          *  */}
-        <div className={classes.searhHistory}>
-          {
-            searchHistory && searchHistory.map((item, index) => {
-              return (
-                // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-                <li
-                  // eslint-disable-next-line react/no-array-index-key
-                  key={index}
-                  onClick={() => {
-                    console.log(index);
-                    setFilterSearchHistory(item);
-                    // eslint-disable-next-line no-unused-expressions
-                    searchHandler;
-                  }}
-                >
-                  {item}
-                </li>
-              );
-            })
-          }
-        </div>
-        {/* maps over results state and map over it */}
+        {displayHistory
+          && <div className={classes.searhHistory}>
+              {
+                searchHistory && searchHistory.map((item, index) => {
+                  return (
+                    <li
+                      key={index}
+                      onClick={() => {
+                        console.log(index);
+                        setFilterSearchHistory(item);
+                        setDisplayHistory(false)
+                        searchHandler;
+                      }}
+                    >
+                      {item}
+                    </li>
+                  );
+                })
+              }
+            </div>
+        }
       </div>
 
-      <div className={classes.results}>
+      <div className={classes.results} onClick={() => { setDisplayHistory(false); }}>
         {checkResults
           ? <PreviewList recipes={results} input={results && searchRef.current.value} />
           : <p>No Matching Recipes</p>}
