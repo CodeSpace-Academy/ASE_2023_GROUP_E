@@ -5,7 +5,7 @@
   height: 100%; /* Make it cover the entire height of the viewport */
   /* width: 150px; */
   background-color: rgb(225, 222, 222);
-  color: black;
+  color: rgba(4, 61, 115, 0.896);
   overflow: hidden;
   transition: width 0.3s;
   border-left: 0px;
@@ -61,7 +61,7 @@
 }
 
 .link a {
-  color:  rgb(43, 42, 42);
+  color:#003153;
 }
 
 .links2 {
@@ -70,7 +70,7 @@
 }
 
 .links2 a {
-  color: rgb(43, 42, 42);
+  color:#003153;
 }
 
 .optionName{
@@ -78,6 +78,6 @@
 }
 
 .optionName a {
-  color: black;
+  color:#003153;
   text-decoration: none;
 }

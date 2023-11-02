@@ -13,6 +13,7 @@ import Info from './Info/info';
 const RecipeDetails = ({ recipe, allergens }) => {
   if (!recipe) return null;
   return (
+    <div className={styles.background}>
     <div className={styles.recipeCard}>
       <div className={styles.card}>
         <div className={styles.titleAndImage}>
@@ -42,6 +43,7 @@ const RecipeDetails = ({ recipe, allergens }) => {
       </div>
 
       <Instructions recipe={recipe} allergens={allergens} />
+    </div>
     </div>
   );
 };
