@@ -3,6 +3,9 @@ import { useState, useEffect } from 'react';
 import SearchBar from '@/component/filtering/searchCategories/categorySearch';
 import { GrChapterNext } from 'react-icons/gr';
 import LoadingSpinner from '@/component/ui/loadingSpinner/LoadingSpinner';
+import Typography from '@mui/material/Typography';
+import Skeleton from '@mui/material/Skeleton';
+import SkeletonTypography from '@/component/loading';
 
 export default function AllRecipes() {
   const [results, setResults] = useState(null);
@@ -28,11 +31,11 @@ export default function AllRecipes() {
       behavior: 'instant',
     });
   }
-  return results ? (
-    <main>
+  return  (
 
+    <Typography variant="circular"> {results ?
+    <main className='previewMain'>
       <SearchBar />
-      <div  className='previewMain'>
       <div className="sort-dropdown">
         <label> Sort by:</label>
         <select value={sortField} onChange={(e) => setSortField(e.target.value)}>
@@ -62,9 +65,12 @@ export default function AllRecipes() {
       {/* <button>Page: {pageNumber}</button> */}
       <PreviewList recipes={results} /*  click={loadMoreRecipes}  */
      />
-     </div>
-    </main>
-  ) : (
-    <LoadingSpinner />
+    </main>:  <div className='recipesLoading'>
+    <SkeletonTypography />
+    </div> } </Typography>
+ 
   );
 }
+
+ 
+
