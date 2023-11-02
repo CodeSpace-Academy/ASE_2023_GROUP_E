@@ -91,8 +91,8 @@ export default function PreviewList({ recipes, input, sortDate }) {
                             src={recipe.images[0]}
                             className={style.img}
                             alt={recipe.images[0]}
-                            width={250}
-                            height={250}
+                            width={200}
+                            height={100}
                           />
                         </div>
                         <div>
