@@ -1,19 +1,11 @@
-.background {
-    background-image: url('/images/marble-background.png'); /* Use the correct path to your image */
-    min-height: 100vh;
-  }
-  
-
-  .layout{
-    background-image: url('/images/marble-background.png'); /* Use the correct path to your image */
-    min-height: 100vh;
+.layout{
     display: flex;
     flex-direction: column;
 }
 
 .imgDiv{
     text-align: center;
-    background-color: rgba(197, 205, 246, 0.252); 
+    background-color: rgba(177, 190, 246, 0.277); 
     background-size:cover;
     background-position-y: -47em;
     padding: 5px;
