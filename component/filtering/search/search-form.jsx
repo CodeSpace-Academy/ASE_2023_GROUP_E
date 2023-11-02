@@ -74,6 +74,12 @@ export default function SearchForm() {
     debouncedSearchHistoryHandler();
   }
 
+  const historyItemClickHandler = (item) => {
+    const selectedValue = item;
+    searchRef.current.value = selectedValue;
+    searchHandler(selectedValue);
+  };
+
   return (
     <>
       <div className={classes.search}>
@@ -102,7 +108,7 @@ export default function SearchForm() {
                         console.log(index);
                         setFilterSearchHistory(item);
                         setDisplayHistory(false)
-                        searchHandler;
+                        historyItemClickHandler(item);
                       }}
                     >
                       {item}
