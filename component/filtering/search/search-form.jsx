@@ -65,7 +65,7 @@ export default function SearchForm() {
         <div className={classes.searhHistory}>
           {
             dummy.map((item) => {
-              return <li key={item.data}>{item.data}</li>;
+              return <li key={item.data} onClick={() => console.log(item.data)}>{item.data}</li>;
             })
           }
         </div>
