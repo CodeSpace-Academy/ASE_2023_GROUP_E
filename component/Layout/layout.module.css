@@ -9,6 +9,7 @@
     background-size:cover;
     background-position-y: -47em;
     padding: 5px;
+    cursor: pointer;
 } 
 
 .img{

@@ -50,9 +50,10 @@ export default function AllRecipes() {
         <option value="desc">Descending</option>
         </select>
       </div>
-    
 
-      <GrChapterNext
+      <PreviewList recipes={results} />
+
+     <GrChapterNext
         color="light gray"
         fontSize="24px"
         onClick={() => {
@@ -61,10 +62,7 @@ export default function AllRecipes() {
         }}
         disabled={false}
       />
-
-      {/* <button>Page: {pageNumber}</button> */}
-      <PreviewList recipes={results} /*  click={loadMoreRecipes}  */
-     />
+      
     </main>:  <div className='recipesLoading'>
     <SkeletonTypography />
     </div> } </Typography>
