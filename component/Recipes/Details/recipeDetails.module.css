@@ -1,9 +1,16 @@
 /* Default styles for recipeDetails.module.css */
+.background{
+  background-image: url('../../../public/images/marble-background.png');
+  padding: 10px;
+}
 
 .recipeCard {
   display: flex;
   flex-direction: column;
-  margin: 2em; /* Using em for margin */
+  background-color: #fff;
+  padding-left: 50px;
+  color:  #003153
+
 }
 
 
@@ -12,6 +19,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  padding-top: 30px;
 }
 
 .titleAndImage {
@@ -48,9 +56,8 @@
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
-  .card {
-    grid-template-columns: 1fr 2fr; /* Adjust for small screens */
-  }                                     
+  
+
 
   .listContainer {
     grid-template-columns: 1fr 1fr 1fr; /* Adjust for small screens */

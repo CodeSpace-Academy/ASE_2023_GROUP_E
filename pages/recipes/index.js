@@ -34,8 +34,11 @@ export default function AllRecipes() {
   return  (
 
     <Typography variant="circular"> {results ?
-    <main className='previewMain'>
+    <main>
       <SearchBar />
+
+      <div  className="previewMain">
+
       <div className="sort-dropdown">
         <label> Sort by:</label>
         <select value={sortField} onChange={(e) => setSortField(e.target.value)}>
@@ -49,6 +52,8 @@ export default function AllRecipes() {
         <option value="asc">Ascending</option>
         <option value="desc">Descending</option>
         </select>
+        </div>
+
       </div>
 
       <PreviewList recipes={results} />
