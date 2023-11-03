@@ -65,14 +65,15 @@ export default function AllRecipes() {
 
       </div>
 
-      <GrChapterNext
+      <PreviewList recipes={results} />
+
+     <GrChapterNext
         color="light gray"
         fontSize="24px"
         onClick={handleNextClick}
         disabled={false}
       />
 
-      <PreviewList recipes={results} />
     </main>:  <div className='recipesLoading'>
     <SkeletonTypography />
     </div> } </Typography>
