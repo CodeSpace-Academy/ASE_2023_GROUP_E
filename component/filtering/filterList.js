@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
-import styles from './filter.module.css';
+import React, { useState} from 'react';
+import { useRouter } from 'next/router';
+import styles from './filter.module.css'
 
-const RecipeFilter = ({ onClose, sortDate }) => {
+
+export default function RecipeFilter({ onClose, sortDate }) {
   const [categories, setCategories] = useState('');
   const [tags, setTags] = useState('');
   const [ingredients, setIngredients] = useState('');
   const [numOfInstructions, setNumOfInstructions] = useState('');
+
+
+  const router = useRouter();
+
 
   const clearFilters = () => {
     setCategories('');
@@ -14,9 +20,20 @@ const RecipeFilter = ({ onClose, sortDate }) => {
     setNumOfInstructions('');
   };
 
+
   const applyFilters = () => {
-   
+    const filter = {
+      categories: categories || undefined, // Set to undefined if empty
+      tags: tags || undefined, // Set to undefined if empty
+      ingredients: ingredients || undefined, // Set to undefined if empty
+      numOfInstructions: numOfInstructions || undefined, // Set to undefined if empty
+    };
+
+
+    // Redirect to the filtered page
+    router.push(`/filtering/${JSON.stringify(filter)}`);
   };
+
 
   return (
     <div className={styles.container}>
@@ -44,30 +61,27 @@ const RecipeFilter = ({ onClose, sortDate }) => {
         onChange={(e) => setIngredients(e.target.value)}
         className={styles.input}
       />
-      <input
+   <input
         type="number"
         placeholder="Number of Instructions"
         value={numOfInstructions}
-        onChange={(e) => setNumOfInstructions(e.target.value)}
+        onChange={(e) => {
+          const newValue = parseInt(e.target.value, 10);
+          setNumOfInstructions(isNaN(newValue) ? 0 : Math.max(0, newValue)); // Ensure the minimum value is 0
+        }}
         className={styles.input}
       />
-        <button onClick={sortDate}>
-          Sort by Date
-        </button>
-      <button onClick={clearFilters} className={styles.button}>
-
-        Clear All Filters
-
+      <button onClick={sortDate}>
+        Sort by Date
       </button>
-      <> 
-      alert('filter category has been cleared' )
-      </>
+      <button onClick={clearFilters} className={styles.button}>
+      clearFilters
+      </button>
       <button onClick={applyFilters} className={styles.button}>
         Apply
       </button>
-
-          </div>
+    </div>
   );
 };
 
-export default RecipeFilter;
+
