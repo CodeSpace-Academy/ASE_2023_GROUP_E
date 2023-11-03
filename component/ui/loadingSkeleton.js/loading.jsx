@@ -1,5 +1,4 @@
 import * as React from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
 import Skeleton from '@mui/material/Skeleton';
@@ -12,9 +11,9 @@ function TypographyDemo(props) {
 
   return (
     <div>
-      {variants.map((variant) => {
+      {variants.map((variant, index) => {
         return (
-          <Typography component="div" key={variant} variant={variant}>
+          <Typography component="div" key={`${variant}-${index}`} variant={variant}>
             {loading && <Skeleton />}
           </Typography>
         );
@@ -24,7 +23,6 @@ function TypographyDemo(props) {
 }
 
 TypographyDemo.propTypes = {
-  // eslint-disable-next-line react/require-default-props
   loading: PropTypes.bool,
 };
 

@@ -5,7 +5,7 @@ import { GrChapterNext } from 'react-icons/gr';
 import LoadingSpinner from '@/component/ui/loadingSpinner/LoadingSpinner';
 import Typography from '@mui/material/Typography';
 import Skeleton from '@mui/material/Skeleton';
-import SkeletonTypography from '@/component/loading';
+import SkeletonTypography from '@/component/ui/loadingSkeleton.js/loading';
 import StateContext from '@/useContext/StateContext';
 
 export default function AllRecipes() {
