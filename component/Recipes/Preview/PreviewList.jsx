@@ -89,7 +89,7 @@ export default function PreviewList({ recipes, input, sortDate }) {
                       <div className={style.recipe}>
                         <div>
                           <Image
-                            src={recipe.images[0] || "https://img.sndimg.com/food/image/upload/w_555,h_416,c_fit,fl_progressive,q_95/v1/img/recipes/38/YUeirxMLQaeE1h3v3qnM_229%20berry%20blue%20frzn%20dess.jpg"}
+                            src={recipe.images[0]}
                             className={style.img}
                             alt={recipe.images[0]}
                             width={200}
