@@ -13,7 +13,7 @@ import style from './previewList.module.css';
 import { PrepandCookTime } from '@/component/handlerTime/timeRead';
 import FavouritesButton from '../../Favourites/FavouritesButton/FavouritesButton';
 
-const Item = styled(Paper)(({ theme }) => ({
+const Item = styled(Paper)(({ theme }) => { return {
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
   padding: theme.spacing(1),
@@ -23,7 +23,7 @@ const Item = styled(Paper)(({ theme }) => ({
   borderRight: 'solid gray 2px',
   cursor: 'pointer',
   color:'#003153',
-}));
+}});
 
 export default function PreviewList({ recipes, input, sortDate }) {
   const [showDescriptions, setShowDescriptions] = useState([]);
@@ -94,6 +94,8 @@ export default function PreviewList({ recipes, input, sortDate }) {
                             alt={recipe.images[0]}
                             width={200}
                             height={100}
+                            loading='lazy'
+                            blurDataURL='https://images.pexels.com/photos/10977557/pexels-photo-10977557.jpeg'
                           />
                         </div>
                         <div>
