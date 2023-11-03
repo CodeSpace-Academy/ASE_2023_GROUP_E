@@ -94,6 +94,8 @@ export default function PreviewList({ recipes, input, sortDate }) {
                             alt={recipe.images[0]}
                             width={200}
                             height={100}
+                            loading='lazy'
+                            blurDataURL='https://images.pexels.com/photos/10977557/pexels-photo-10977557.jpeg'
                           />
                         </div>
                         <div>
