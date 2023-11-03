@@ -7,6 +7,7 @@ import classes from './search-from.module.css';
 export default function SearchForm() {
   const searchRef = useRef();
   const [results, setResults] = useState(null);
+  const [length, setLength] = useState(0)
   const [addSearchHistory, setAddSearchHistory] = useState(false);
 
   const searchHandler = () => {
@@ -18,7 +19,8 @@ export default function SearchForm() {
     fetch(`/api/filtering/search/search?title=${filterInput}`)
       .then((res) => res.json())
       .then((data) => {
-        setResults(data && data.results);
+        setResults(data && data.results[0]);
+        setLength(data && data.results[1])
         setAddSearchHistory(true);
       });
   };
@@ -44,7 +46,7 @@ export default function SearchForm() {
 
   return (
     <>
-      <div className={classes.search}>
+          <div className={classes.search}>
         <h1>Find recipes</h1>
         <input
           type="text"
@@ -55,7 +57,7 @@ export default function SearchForm() {
         {/* maps over results state and map over it */}
 
       </div>
-
+      <h4>Total Recipes Searched: {length}</h4>
       <div className={classes.results}>
         {checkResults
           ? <PreviewList recipes={results} input={results && searchRef.current.value} />
