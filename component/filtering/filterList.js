@@ -15,7 +15,7 @@ const RecipeFilter = ({ onClose, sortDate }) => {
   };
 
   const applyFilters = () => {
-    // Implement your filter logic here
+   
   };
 
   return (
@@ -55,8 +55,13 @@ const RecipeFilter = ({ onClose, sortDate }) => {
           Sort by Date
         </button>
       <button onClick={clearFilters} className={styles.button}>
+
         Clear All Filters
+
       </button>
+      <> 
+      alert('filter category has been cleared' )
+      </>
       <button onClick={applyFilters} className={styles.button}>
         Apply
       </button>
