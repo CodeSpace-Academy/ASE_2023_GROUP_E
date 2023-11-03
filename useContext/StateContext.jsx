@@ -12,6 +12,8 @@ export function ContextProvider({ children }) {
   const [editInstruction, setEditInstruction] = useState(false);
   const [instructionIndex, setInstructionIndex] = useState(null);
   const [addInstruction, setAddInstruction] = useState(false);
+  const [addSkip, setAddSkip] = useState(0);
+
   //   Favourite recipes list global state
   let favouriteRecipesInLocalStorage;
   if (typeof window !== 'undefined') {
@@ -25,6 +27,8 @@ export function ContextProvider({ children }) {
   return (
     <Context.Provider
       value={{
+        addSkip,
+        setAddSkip,
         addInstruction,
         setAddInstruction,
         instructionIndex,
