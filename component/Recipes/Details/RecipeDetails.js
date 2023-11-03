@@ -12,9 +12,9 @@ import Ingredients from './ingredients/ingredient';
 import Info from './Info/info';
 
 const RecipeDetails = ({ recipe, allergens }) => {
-
   if (!recipe) return null;
   return (
+    <div className={styles.background}>
     <div className={styles.recipeCard}>
       <div className={styles.card}>
         <div className={styles.titleAndImage}>
@@ -23,11 +23,15 @@ const RecipeDetails = ({ recipe, allergens }) => {
           </div>
         </div>
         {/* this display when we are on a desktop screen  */}
-        <div className={styles.infoDesktop}>{<Info recipe={recipe}/>}</div>
+        <div className={styles.infoDesktop}>
+          {<Info recipe={recipe} allergens={allergens} />}
+        </div>
       </div>
 
       {/* this display when we are only on a smaller screen  */}
-      <div className={styles.infoMobileView}>{<Info recipe={recipe} />}</div>
+      <div className={styles.infoMobileView}>
+        {<Info recipe={recipe} allergens={allergens} />}
+      </div>
       <div className={styles.tagsMobileView}>
         {' '}
         <SingleRecipeTags tags={recipe.tags} />
@@ -36,11 +40,11 @@ const RecipeDetails = ({ recipe, allergens }) => {
       <div className={`${styles.listContainer} list-container`}>
         <Ingredients recipe={recipe} />
         <Nutritions recipe={recipe} />
-        <PrepandCookTime  recipe={recipe}/>
+        <PrepandCookTime recipe={recipe} />
       </div>
 
       <Instructions recipe={recipe} allergens={allergens} />
-
+    </div>
     </div>
   );
 };

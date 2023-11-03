@@ -1,8 +1,9 @@
-.favButton {
-  padding: 0.3rem 0.7rem;
-  border-radius: 0.25rem;
-}
-
 .isFavourite {
-  background-color: red;
+  color: #003153;
+}
+.icon {
+  margin: 0.5rem 0;
+}
+.icon:hover {
+  transform: scale(1.4);
 }

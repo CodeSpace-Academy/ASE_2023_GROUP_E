@@ -17,8 +17,8 @@
 
 .ingredients button {
     /* Default styles for buttons */
-    background-color: #0074d9;
-    color: #fff;
+    /* background-color: rgb(181, 178, 178);
+    color: #fff; */
     border: none;
     padding: 0.625em 1.25em; /* Using em for padding */
     font-size: 1em; /* Using em for font size */
