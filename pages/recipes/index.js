@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import Skeleton from '@mui/material/Skeleton';
 import SkeletonTypography from '@/component/ui/loadingSkeleton.js/loading';
 import StateContext from '@/useContext/StateContext';
-import MultiSelectForm from '@/component/filtering/filtering/filterForm';
+import FilterbyTags from '@/component/filtering/filtering/filterbyTags';
 
 export default function AllRecipes() {
   const [results, setResults] = useState(null);
@@ -46,7 +46,7 @@ export default function AllRecipes() {
     <Typography variant="circular"> {results ?
     <main>
       <SearchBar />
-      <MultiSelectForm/>
+      <FilterbyTags />
 
       <div  className="previewMain">
 
