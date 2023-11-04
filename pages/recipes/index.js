@@ -13,7 +13,7 @@ export default function AllRecipes() {
   const [results, setResults] = useState(null);
   const [sortField, setSortField] = useState('_id'); // Default sort field
   const [sortOrder, setSortOrder] = useState(''); // Default sort order
-  const { addSkip, setAddSkip } = StateContext()
+  const { addSkip, setAddSkip, filteredResults } = StateContext()
 
   useEffect(() => {
     // eslint-disable-next-line radix
@@ -67,7 +67,7 @@ export default function AllRecipes() {
 
       </div>
 
-      <PreviewList recipes={results} />
+      <PreviewList recipes={filteredResults.length > 0 ? filteredResults : results } />
 
      <GrChapterNext
         color="light gray"
