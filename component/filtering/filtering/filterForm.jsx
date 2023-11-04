@@ -27,10 +27,14 @@ function CustomizedHook() {
   const y = ["Dessert", "Healthy", "Weeknight"]
 
   useEffect(() => {
-    fetch(`/api/filtering/filterOptions/filterTags?tags=${y.join(',')}`)
+    fetch(`/api/filtering/filterOptions/filterTags?tags=${selectedOptions.map((item) => item.value).join(',')}`)
       .then(res => res.json())
       .then(data => console.log(data.recipes))
   })
+
+  // useEffect(() => {
+  //   console.log(selectedOptions.map((item) => item.value))
+  // })
 
   return (
     <div>
