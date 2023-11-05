@@ -8,6 +8,7 @@ import StateContext from '@/useContext/StateContext';
 import FilterbyTags from '@/component/filtering/filtering/filterbyTags';
 import getRecipes from '@/database/getData/getRecipes';
 import { useRouter } from 'next/router';
+import FilterbyIngredients from '@/component/filtering/filtering/filterbyIngredients';
 
 
 export default function AllRecipes({Data, url}) {
@@ -32,6 +33,7 @@ export default function AllRecipes({Data, url}) {
       {Data ? <main>
         <SearchBar />
         <FilterbyTags />
+        <FilterbyIngredients />
 
         <div className="sort-dropdown">
           <label> Sort by:</label>

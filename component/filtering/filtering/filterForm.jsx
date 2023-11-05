@@ -1,10 +1,10 @@
 import Select from 'react-select';
 
-function CustomizedHook({options, handleSelectChange, selectedOptions}) {
+function CustomizedHook({options, handleSelectChange, selectedOptions, filter}) {
 
   return (
     <div>
-      <h2>Filter Tags</h2>
+      <h4>{filter}</h4>
       <Select
         options={ options && options.map((option) => ({ value: option, label: option }))}
         isMulti

@@ -7,8 +7,16 @@ export default function FilterbyTags(){
   const { setFilteredResults, filteredResults } = StateContext()
 
   const [tags, setTags] = useState([]);
+  
+  /**
+   * after fetching the tags which is an array of arrays
+   * it is  then combined into one array.
+   * This array is then checked to remove duplicates before insering it into a state.
+   * 
+   * This state hold the options of tags to select from.
+   */
   useEffect(() =>{
-    fetch('/api/filtering/tags')
+    fetch('/api/filtering/filterOptions/selectOptions?object=tags')
       .then(res => res.json())
       .then(data => {
         if (data) {
@@ -16,7 +24,7 @@ export default function FilterbyTags(){
             return tags.concat(recipe.tags);
           }, []);
     
-          const uniqueTags = [...new Set(allTags)]; 
+          const uniqueTags = [...new Set(allTags)];
           setTags(uniqueTags);
         }
       })
@@ -32,12 +40,19 @@ export default function FilterbyTags(){
   const selected = selectedOptions.map((item) => item.value).join(',')
 
   useEffect(() => {
-    fetch(`/api/filtering/filterOptions/filterTags?tags=${selected}`)
+    fetch(`/api/filtering/filterOptions/filterTags?selected=${selected}`)
       .then(res => res.json())
       .then(data => {
         setFilteredResults(data && data.recipes)
       })
   }, [filteredResults])
 
-  return <CustomizedHook options={tags} handleSelectChange={handleSelectChange} selectedOptions={selectedOptions} />
+  return (
+    <CustomizedHook 
+      options={tags} 
+      filter={'Filter Tags'} 
+      handleSelectChange={handleSelectChange} 
+      selectedOptions={selectedOptions} 
+    />
+  )
 }
