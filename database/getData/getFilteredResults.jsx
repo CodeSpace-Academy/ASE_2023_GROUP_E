@@ -10,7 +10,7 @@ export default async function getFilteredTags(input){
 export async function getFilteredIngredients(input) {
   const db = client.db('devdb');
 
-  const recipes = await db.collection('recipes').find({$and: input.map(key => ({ [`ingredients.${key}`]: { $exists: true } }))}).limit(100).toArray();
+  const recipes = await db.collection('recipes').find({$and: input.map(key => ({ [`ingredients.${key}`]: { $exists: true } }))}).limit(5).toArray();
 
   return recipes;
 }

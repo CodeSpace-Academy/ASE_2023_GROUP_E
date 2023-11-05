@@ -5,7 +5,8 @@ import CustomizedHook from "./filterForm";
 export default function FilterbyIngredients(){
 
   const { setFilteredResults, filteredResults } = StateContext()
-    const [ingredients, setIngredients] = useState([]);
+  const [ingredients, setIngredients] = useState([]);
+  const [selectedOptions, setSelectedOptions] = useState([]);
  
   useEffect(() =>{
     fetch('/api/filtering/filterOptions/selectOptions?object=ingredients')
@@ -35,9 +36,26 @@ export default function FilterbyIngredients(){
       })
   }, [ingredients])
 
+  const handleSelectChange = (selected) => {
+    setSelectedOptions(selected);
+  };
+
+  const selected = selectedOptions.map((item) => item.value).join(',')
+
+  useEffect(() => {
+    fetch(`/api/filtering/filterOptions/filterIngredients?selected=${selected}`)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data && data.recipes || [])
+      })
+  }, [filteredResults])
+
   return (
     <CustomizedHook 
       options={ingredients} 
-      filter={'Filter Ingredients'}/>
+      filter={'Filter Ingredients'}
+      handleSelectChange={handleSelectChange}
+      selectedOptions={selectedOptions} 
+    />
   )
 }
