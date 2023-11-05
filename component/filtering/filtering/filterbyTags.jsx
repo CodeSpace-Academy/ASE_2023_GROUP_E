@@ -35,7 +35,6 @@ export default function FilterbyTags(){
     fetch(`/api/filtering/filterOptions/filterTags?tags=${selected}`)
       .then(res => res.json())
       .then(data => {
-        console.log(filteredResults.length > 0)
         setFilteredResults(data && data.recipes)
       })
   }, [filteredResults])
