@@ -1,8 +1,8 @@
 import { client } from "../client";
 
-export default async function getFilteredResults(object, input){
+export default async function getFilteredTags(input){
   const db = client.db('devdb');
-  const documents = await db.collection('recipes').find({[object]: { $all: input }}).limit(5).toArray();
+  const documents = await db.collection('recipes').find({tags: { $all: input }}).limit(5).toArray();
 
   return documents;
 }

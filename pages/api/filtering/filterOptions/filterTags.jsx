@@ -1,4 +1,4 @@
-import getFilteredResults from "@/database/getData/getFilteredResults"
+import getFilteredTags from "@/database/getData/getFilteredResults"
 
 
 export default async function handler(req, res){
@@ -8,7 +8,7 @@ export default async function handler(req, res){
     const selected = req.query.selected ? req.query.selected.split(',') : [];
  
     try{
-      const results = await getFilteredResults("tags",selected)
+      const results = await getFilteredTags(selected)
       res.status(200).json({ recipes : results})
     } catch (error) {
       res.status(417).json({ message : error})
