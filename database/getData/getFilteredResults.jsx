@@ -7,6 +7,14 @@ export default async function getFilteredResults(object, input){
   return documents;
 }
 
+export async function getFilteredIngredients(input) {
+  const db = client.db('devdb');
+
+  const recipes = await db.collection('recipes').find({$and: input.map(key => ({ [`ingredients.${key}`]: { $exists: true } }))}).limit(100).toArray();
+
+  return recipes;
+}
+
 export async function getFilteredObjects(object) {
   const db = client.db('devdb');
   const results = await db.collection('recipes').find().limit(3).project(object).toArray();
