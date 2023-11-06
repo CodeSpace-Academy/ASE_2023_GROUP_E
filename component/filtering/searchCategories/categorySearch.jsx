@@ -17,19 +17,6 @@ function SearchBar() {
 
   return (
     <>
-      {/* Enables the user to search with category */}
-      <form>
-        <input
-          type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Enter category..."
-        />
-        <Link href={`/categories/${query}`}>
-          <button>Search</button>
-        </Link>
-      </form>
-
       <form onSubmit={(e) => {
         e.preventDefault();
         // console.log(optionRef && optionRef.current.value);

@@ -29,7 +29,7 @@ function skip(){
   const menuOptions = [
     { icon: Links('/',  <AiOutlineHome /> ) , name: Links('/', 'Home')},
     { icon: Links('/profile', <AiOutlineUser />) , name: Links('/profile', 'Profile') },
-    { icon: Links(`/recipes`, <MdOutlineFastfood />, skip ), name: Links(`recipes`, 'Recipes') },
+    { icon: Links(`/recipes-0-_id-asc`, <MdOutlineFastfood />, skip ), name: Links(`recipes`, 'Recipes') },
     { icon: Links('/tags', <AiOutlineTags/>) , name: Links('/tags', 'Tags')},
     { icon: Links('/favourites',  <AiOutlineHeart />), name: Links('/favourites', 'Favourites') },
     { icon: Links('/search',  <AiOutlineSearch />), name: Links('/search', 'Search') },
