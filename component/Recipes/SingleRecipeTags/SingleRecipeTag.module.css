@@ -8,6 +8,7 @@
   color: white;
 }
 .tagButton:hover {
-  background-color: rgb(143, 143, 143);
+  background-color: #fff;
   transform: scale(1.05);
+  color: #003153;
 }

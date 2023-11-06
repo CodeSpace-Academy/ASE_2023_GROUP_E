@@ -1,4 +1,4 @@
-import FavouritesContainer from '../../component/FavouritesContainer/FavouritesContainer';
+import FavouritesContainer from '../../component/Favourites/FavouritesContainer/FavouritesContainer';
 
 export default function Favourites() {
   return <FavouritesContainer />;

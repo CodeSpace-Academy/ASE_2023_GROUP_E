@@ -10,8 +10,8 @@ export default async function handler(req, res){
         
 
         try{
-            const results = await getRecipes({title : filter}, 0 )
-            res.status(200).json({ recipeDetails : results })
+            const {recipes} = await getRecipes({title : filter}, 0 )
+            res.status(200).json({ recipeDetails : recipes })
 
         }catch(error){
             return res.status(417).json({ message: 'failed to load Recipes'})
