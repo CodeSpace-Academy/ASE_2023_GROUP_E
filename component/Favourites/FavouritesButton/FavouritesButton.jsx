@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { FaHeart } from 'react-icons/fa';
+import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import classes from './FavouritesButton.module.css';
 import StateContext from '../../../useContext/StateContext';
 import FavouritesModal from '../FavouritesModal/FavouritesModal';
@@ -72,11 +72,15 @@ export default function FavouritesButton({ recipe }) {
         removeFromFavourites={removeFromFavourites}
         handleClose={handleClose}
       />
-      <button onClick={addToFavourites} type="button">
+      <button
+        onClick={addToFavourites}
+        type="button"
+        className={classes.favButton}
+      >
         {recipeIsInFavouritesList ? (
           <FaHeart className={`${classes.isFavourite} ${classes.icon}`} />
         ) : (
-          <FaHeart className={` ${classes.icon}`} />
+          <FaRegHeart className={` ${classes.icon}`} />
         )}
       </button>
     </div>

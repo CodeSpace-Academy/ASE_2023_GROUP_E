@@ -9,11 +9,14 @@ import SingleRecipeTag from './SingleRecipeTag';
  */
 const SingleRecipeTags = ({ tags }) => {
   return (
-    <ul className={classes.tagsList}>
-      {tags.map((tag, index) => {
-        return <SingleRecipeTag key={index} tag={tag} />;
-      })}
-    </ul>
+    <div className={classes.tagsContainer}>
+      <span className={classes.tagsLabel}>Tags: </span>
+      <ul className={classes.tagsList}>
+        {tags.map((tag, index) => {
+          return <SingleRecipeTag key={index} tag={tag} />;
+        })}
+      </ul>
+    </div>
   );
 };
 

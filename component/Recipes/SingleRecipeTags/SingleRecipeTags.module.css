@@ -1,6 +1,15 @@
+.tagsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
 .tagsList {
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
   padding: 0;
+}
+.tagsLabel {
+  font-weight: 700;
 }
