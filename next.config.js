@@ -12,6 +12,8 @@ const nextConfig = {
       'component/Favourites',
       'component/FavouritesContainer',
       'component/ui/loadingSpinner',
+      'components/Recipes/SingleRecipeTags',
+      'pages/recipes',
     ],
   },
 };
