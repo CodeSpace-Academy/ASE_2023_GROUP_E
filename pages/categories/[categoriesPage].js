@@ -13,7 +13,9 @@ const Search = ({Result}) => {
       <div>
         <h1 className={classes.title}>Category Results</h1>
         <PreviewList recipes={Result} />
+        <button>Back</button>
       </div>
+      
     );
   };
 

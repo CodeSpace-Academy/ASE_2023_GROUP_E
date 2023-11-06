@@ -65,6 +65,11 @@ const RecipeFilter = ({ onClose, sortDate }) => {
       <button onClick={applyFilters} className={styles.button}>
         Apply
       </button>
+      <button className={styles.button}>Reset Catgories</button>
+      <button className={styles.button}>Reset Tags</button>
+      <button className={styles.button}>Reset Ingredients</button>
+      <button className={styles.button}>Reset No. Of Ingredients</button>
+      <button className={styles.button}>Reset All Filters</button>
 
           </div>
   );
