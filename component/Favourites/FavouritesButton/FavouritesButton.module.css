@@ -7,3 +7,7 @@
 .icon:hover {
   transform: scale(1.4);
 }
+.favButton {
+  border: none;
+  background-color: transparent;
+}
