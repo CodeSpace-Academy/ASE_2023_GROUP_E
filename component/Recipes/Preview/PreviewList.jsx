@@ -118,10 +118,8 @@ export default function PreviewList({ recipes, input, sortDate }) {
                       </div>
 
                       {/* Recipe tags */}
-                      <div className={style.tagsContainer}>
-                        <span>Tags: </span>
-                        <SingleRecipeTags tags={recipe.tags} />
-                      </div>
+
+                      <SingleRecipeTags tags={recipe.tags} />
                     </Link>
                     <FavouritesButton recipe={recipe} />
                     <IoIosInformationCircle
