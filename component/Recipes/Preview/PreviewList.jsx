@@ -13,17 +13,19 @@ import style from './previewList.module.css';
 import { PrepandCookTime } from '@/component/handlerTime/timeRead';
 import FavouritesButton from '../../Favourites/FavouritesButton/FavouritesButton';
 
-const Item = styled(Paper)(({ theme }) => { return {
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  color: theme.palette.text.secondary,
-  boxShadow: 'none',
-  borderBottom: 'solid gray 2px',
-  borderRight: 'solid gray 2px',
-  cursor: 'pointer',
-  color:'#003153',
-}});
+const Item = styled(Paper)(({ theme }) => {
+  return {
+    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    color: theme.palette.text.secondary,
+    boxShadow: 'none',
+    borderBottom: 'solid gray 2px',
+    borderRight: 'solid gray 2px',
+    cursor: 'pointer',
+    color: '#003153',
+  };
+});
 
 export default function PreviewList({ recipes, input, sortDate }) {
   const [showDescriptions, setShowDescriptions] = useState([]);
@@ -44,9 +46,14 @@ export default function PreviewList({ recipes, input, sortDate }) {
 
   return (
     <>
-      <div className='previewMain'>
+      <div className="previewMain">
         <button onClick={() => setShowFilter(!showFilter)}>Show Filter</button>
-        {showFilter && <RecipeFilter sortDate={sortDate} onClose={() => setShowFilter(false)} />}
+        {showFilter && (
+          <RecipeFilter
+            sortDate={sortDate}
+            onClose={() => setShowFilter(false)}
+          />
+        )}
       </div>
       {/* <SearchBar onSearch={handleSearch} /> */}
       <Box sx={{ flexGrow: 1 }}>
@@ -94,8 +101,8 @@ export default function PreviewList({ recipes, input, sortDate }) {
                             alt={recipe.images[0]}
                             width={200}
                             height={100}
-                            loading='lazy'
-                            blurDataURL='https://images.pexels.com/photos/10977557/pexels-photo-10977557.jpeg'
+                            loading="lazy"
+                            blurDataURL="https://images.pexels.com/photos/10977557/pexels-photo-10977557.jpeg"
                           />
                         </div>
                         <div>
@@ -111,10 +118,17 @@ export default function PreviewList({ recipes, input, sortDate }) {
                       </div>
 
                       {/* Recipe tags */}
-                      <SingleRecipeTags tags={recipe.tags} />
+                      <div className={style.tagsContainer}>
+                        <span>Tags: </span>
+                        <SingleRecipeTags tags={recipe.tags} />
+                      </div>
                     </Link>
                     <FavouritesButton recipe={recipe} />
-                    <IoIosInformationCircle color='light gray' fontSize='20px' onClick={() => toggleDescription(index)} />
+                    <IoIosInformationCircle
+                      color="light gray"
+                      fontSize="20px"
+                      onClick={() => toggleDescription(index)}
+                    />
                   </Item>
                 </Grid>
               );
