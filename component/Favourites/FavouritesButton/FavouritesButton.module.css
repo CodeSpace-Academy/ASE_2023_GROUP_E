@@ -3,7 +3,12 @@
 }
 .icon {
   margin: 0.5rem 0;
+  font-size: 1rem;
 }
 .icon:hover {
   transform: scale(1.4);
+}
+.favButton {
+  border: none;
+  background-color: transparent;
 }
