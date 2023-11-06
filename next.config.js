@@ -8,12 +8,14 @@ const nextConfig = {
   },
   eslint: {
     dirs: [
-      'pages/favourites',
+      // components
       'component/Favourites',
       'component/FavouritesContainer',
       'component/ui/loadingSpinner',
       'components/Recipes/SingleRecipeTags',
+      // pages
       'pages/recipes',
+      'pages/favourites',
     ],
   },
 };
