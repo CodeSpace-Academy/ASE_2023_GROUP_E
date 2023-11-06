@@ -2,40 +2,10 @@ import { client } from "./client";
 
 export async function fetchAllergensFromDatabase() {
 
+  const db = client.db('devdb');
 
-  try {
-    // const client = await connectClient()
+  const collection = await db.collection('allergens').find().toArray();
 
-    if (!client) {
-      console.error('failed to connect');
-      return {
-        allergensDocuments: [],
-      };
-    }
-
-
-    const db = client.db('devdb');
-
-
-    const allergensCollection = db.collection('allergens');
-    const allergensDocuments = await allergensCollection.find().toArray();
-    // Remove the id and return the allergens
-    const allergens = allergensDocuments.map((doc) => {
-      const { _id, ...allergensList } = doc;
-      return allergensList;
-    });
-
-    return {
-      allergens,
-    };
-  } catch (error) {
-    console.error('Error connecting to the database:', error);
-    return {
-      allergens: [],
-    };
-  } finally {
-    if (client) {
-      await client.close();
-    }
-  }
+  return collection
+  
 }

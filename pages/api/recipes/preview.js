@@ -11,8 +11,8 @@ export default async function handler(req, res){
         const sortIn = req.query.sortIn || ''
 
         try{
-            const results = await getRecipes({}, skip, limit, {[sort]: sortIn})
-            res.status(200).json({ recipes: results })
+            const {recipes} = await getRecipes({}, skip, limit, {[sort]: sortIn})
+            res.status(200).json({ recipes: recipes })
 
         }catch(error){
             return res.status(417).json({ message: 'failed to load Recipes'})

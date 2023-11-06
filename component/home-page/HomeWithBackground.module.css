@@ -10,7 +10,7 @@
 }
 
 .menu a {
-  font-family:sans-serif;
+  font-family: sans-serif;
   display: block;
   margin: 10px 0;
   color: gray;
@@ -21,6 +21,10 @@
   text-align: center;
   background-color: rgba(218, 224, 250, 0.277);
   text-wrap: nowrap;
+
+}
+.menu a:hover{
+  text-decoration: underline;
 }
 
 .menu{
