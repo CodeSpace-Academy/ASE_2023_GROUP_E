@@ -10,7 +10,7 @@ import SingleRecipeTag from './SingleRecipeTag';
 const SingleRecipeTags = ({ tags }) => {
   return (
     <div className={classes.tagsContainer}>
-      <span>Tags: </span>
+      <span className={classes.tagsLabel}>Tags: </span>
       <ul className={classes.tagsList}>
         {tags.map((tag, index) => {
           return <SingleRecipeTag key={index} tag={tag} />;
