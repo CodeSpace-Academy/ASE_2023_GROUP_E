@@ -22,7 +22,7 @@ export default function SearchForm() {
       .then((res) => res.json())
       .then((data) => {
         setResults(data && data.results[0]);
-        setLength(data && data.results[1])
+        setLength(data && data.results[1]);
         setAddSearchHistory(true);
       });
   };
