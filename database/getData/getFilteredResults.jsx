@@ -14,11 +14,11 @@ export default async function getFilteredTags(input){
 }
 
 
-export async function getFilteredIngredients(input) {
+export async function getFilteredIngredients(input, andOr) {
   const db = client.db('devdb');
 
 
-  const filterIngredients = { $and: input.map(key => ({ [`ingredients.${key}`]: { $exists: true } })) };
+  const filterIngredients = { [andOr]: input.map(key => ({ [`ingredients.${key}`]: { $exists: true } })) };
   const recipes = await db.collection('recipes').find(filterIngredients).limit(5).toArray();
   const totalMatchingRecipes = await db.collection('recipes').countDocuments(filterIngredients);
 
