@@ -5,7 +5,7 @@ import SingleRecipeTags from '../../SingleRecipeTags/SingleRecipeTags';
 import SingleRecipeAllergens from '../../Allergens/SingleRecipeAllergens';
 import FavouritesButton from '@/component/Favourites/FavouritesButton/FavouritesButton';
 import StateContext from '@/useContext/StateContext';
-import {TiEdit} from 'react-icons/ti';
+import { TiEdit } from 'react-icons/ti';
 
 export default function Info({ recipe, allergens }) {
   const { edit, setEdit } = StateContext();
@@ -36,8 +36,11 @@ export default function Info({ recipe, allergens }) {
         {edit ? (
           <EditDescription info={recipe.description} />
         ) : (
-        
-          <Button color={'blue'}  text={<TiEdit fontSize={'25px'}/> } click={() => setEdit(!edit)} />
+          <Button
+            color={'blue'}
+            text={<TiEdit fontSize={'25px'} />}
+            click={() => setEdit(!edit)}
+          />
         )}
 
         <div>
@@ -55,12 +58,8 @@ export default function Info({ recipe, allergens }) {
             <SingleRecipeAllergens allergensList={allergenList} />
           ) : (
             <>
-            
-
               <p>No allergens</p>
-            
             </>
-
           )}
         </div>
       </div>

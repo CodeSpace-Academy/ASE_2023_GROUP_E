@@ -1,19 +1,33 @@
 import StateContext from '../../useContext/StateContext';
 import Button from '../Button/button';
-import EditInstruction, { GetSpecificInstruction, NewInstruction } from './editInstructions';
+import EditInstruction, {
+  GetSpecificInstruction,
+  NewInstruction,
+} from './editInstructions';
 import classes from './editandAdd.module.css';
 import ErrorMessage from '../Error/ErrorMessage';
 import IndividualRecipeIntruction from '../singleRecipe/instructions/individualRecipeIntruction';
 
 export function EditandAddInstruction({ recipe }) {
   // eslint-disable-next-line object-curly-newline
-  const { editInstruction, addInstruction, setAddInstruction, instructionIndex } = StateContext();
+  const {
+    editInstruction,
+    addInstruction,
+    setAddInstruction,
+    instructionIndex,
+  } = StateContext();
 
   return (
     <div className={classes.modifyInstruction}>
       <div className={classes.editInstruction}>
-        {editInstruction ? '' : <GetSpecificInstruction instructions={recipe.instructions} />}
-        {editInstruction && <EditInstruction info={recipe.instructions[instructionIndex]} />}
+        {editInstruction ? (
+          ''
+        ) : (
+          <GetSpecificInstruction instructions={recipe.instructions} />
+        )}
+        {editInstruction && (
+          <EditInstruction info={recipe.instructions[instructionIndex]} />
+        )}
       </div>
       {addInstruction ? (
         <NewInstruction />
@@ -37,8 +51,8 @@ export default function Instructions({ recipe }) {
       {recipe.instructions ? (
         <div className={classes.instructionContainer}>
           <ol>
-            {recipe.instructions
-              && recipe.instructions.map((instruction, index) => (
+            {recipe.instructions &&
+              recipe.instructions.map((instruction, index) => (
                 // eslint-disable-next-line react/no-array-index-key
                 <li key={index}>
                   <IndividualRecipeIntruction
