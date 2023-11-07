@@ -98,7 +98,7 @@ export default function PreviewList({ recipes, input, sortDate }) {
                           <Image
                             src={recipe.images[0]}
                             className={style.img}
-                            alt={recipe.images[0]}
+                            alt={'recipe Image'}
                             width={200}
                             height={100}
                             loading="lazy"
