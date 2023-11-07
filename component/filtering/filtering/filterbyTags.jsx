@@ -45,7 +45,7 @@ export default function FilterbyTags(){
       .then(data => {
         setFilteredResults(data && data.recipes)
       })
-  }, [filteredResults])
+  }, [selectedOptions])
 
   return (
     <CustomizedHook 

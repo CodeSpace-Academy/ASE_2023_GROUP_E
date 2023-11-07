@@ -53,7 +53,7 @@ export default function SearchForm() {
       fetch('/api/filtering/search/searchHistory?username=mike')
         .then((res) => { return res.json(); })
         .then((data) => setSearchHistory(data.searchhistory[0] ? [...new Set(data.searchhistory[0].input)] : []))
-    }, [searchHistory]);
+    }, []);
 
       /**
    *
