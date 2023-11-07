@@ -8,3 +8,22 @@
     padding-left: 80px;
     padding-right: 80px;
 }
+
+
+/*Load more button*/
+
+.loadMore{
+    padding: 10px;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+
+}
+
+
+
+
+.pNumber {
+    padding-top: 10px;
+    
+}
