@@ -41,9 +41,12 @@ export default function AllRecipes({Data, url, totalRecipes}) {
   }, [sortField, sortOrder])
 
   return (
+    <div>
+
     <Typography variant="circular">
       {Data ? <main>
         <SearchBar />
+        <div className='previewMain'>
         <FilterbyTags />
         <FilterbyIngredients />
 
@@ -87,6 +90,7 @@ export default function AllRecipes({Data, url, totalRecipes}) {
         </div> 
       }
     </Typography>
+    </div>
   )
 }
 

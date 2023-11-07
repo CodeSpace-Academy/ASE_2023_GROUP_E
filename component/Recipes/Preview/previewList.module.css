@@ -18,6 +18,12 @@
 .title {
   margin: 0;
   color: #003153;
+  visibility: hidden;
+}
+
+.heading {
+  margin: 0;
+  color: #003153;
 }
 
 .img {
@@ -64,6 +70,11 @@
     font-size: 20px;
     text-align: center;
   }
+  
+  .heading {
+    font-size: 20px;
+    padding-bottom: 20px;
+  }
 
   .recipe {
     display: flex;
@@ -107,6 +118,11 @@
     font-size: 25px;
   }
 
+  .heading {
+    font-size: 20px;
+    padding-bottom: 20px;
+  }
+
   .description {
     padding-left: 250px;
     padding-bottom: 5px;
@@ -131,8 +147,8 @@
 
 @media only screen and (min-width: 1280px) {
   .item {
-    padding-left: 80px;
-    padding-right: 80px;
+    padding-left: 10px;
+    padding-right: 10px;
     padding-top: 20px;
   }
 
@@ -155,6 +171,11 @@
 
   .title {
     padding-bottom: 10px;
+  }
+
+  .heading {
+    font-size: 20px;
+    padding-bottom: 20px;
   }
 
   .description {
