@@ -29,9 +29,12 @@ export default function AllRecipes({Data, url}) {
   }, [sortField, sortOrder])
 
   return (
+    <div>
+
     <Typography variant="circular">
       {Data ? <main>
         <SearchBar />
+        <div className='previewMain'>
         <FilterbyTags />
         <FilterbyIngredients />
 
@@ -57,6 +60,9 @@ export default function AllRecipes({Data, url}) {
           onClick={handleNextClick}
           disabled={false}
         />
+
+        </div>
+       
         </main>: 
 
         <div className='recipesLoading'>
@@ -64,6 +70,7 @@ export default function AllRecipes({Data, url}) {
         </div> 
       }
     </Typography>
+    </div>
   )
 }
 

@@ -1,5 +1,4 @@
 import ErrorMessage from '@/component/Error/ErrorMessage';
-import RecipeFilter from '@/component/filtering/filterList';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
@@ -29,7 +28,6 @@ const Item = styled(Paper)(({ theme }) => {
 
 export default function PreviewList({ recipes, input, sortDate }) {
   const [showDescriptions, setShowDescriptions] = useState([]);
-  const [showFilter, setShowFilter] = useState(false);
 
   useEffect(() => {
     // Initialize the showDescriptions array when the recipes prop is available
@@ -46,15 +44,6 @@ export default function PreviewList({ recipes, input, sortDate }) {
 
   return (
     <>
-      <div className="previewMain">
-        <button onClick={() => setShowFilter(!showFilter)}>Show Filter</button>
-        {showFilter && (
-          <RecipeFilter
-            sortDate={sortDate}
-            onClose={() => setShowFilter(false)}
-          />
-        )}
-      </div>
       {/* <SearchBar onSearch={handleSearch} /> */}
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={1}>
@@ -106,6 +95,9 @@ export default function PreviewList({ recipes, input, sortDate }) {
                           />
                         </div>
                         <div>
+                          <div className={style.heading}>
+                            <h3>{recipe.title}</h3>
+                          </div>
                           {showDescriptions[index] && recipe.description ? (
                             <p>{recipe.description}</p>
                           ) : showDescriptions[index] ? (
@@ -114,6 +106,12 @@ export default function PreviewList({ recipes, input, sortDate }) {
                             ''
                           )}
                           <PrepandCookTime recipe={recipe} />
+                          <FavouritesButton recipe={recipe} />
+                          <IoIosInformationCircle
+                            color="light gray"
+                            fontSize="20px"
+                            onClick={() => toggleDescription(index)}
+                          />
                         </div>
                       </div>
 
@@ -121,12 +119,6 @@ export default function PreviewList({ recipes, input, sortDate }) {
 
                       <SingleRecipeTags tags={recipe.tags} />
                     </Link>
-                    <FavouritesButton recipe={recipe} />
-                    <IoIosInformationCircle
-                      color="light gray"
-                      fontSize="20px"
-                      onClick={() => toggleDescription(index)}
-                    />
                   </Item>
                 </Grid>
               );
