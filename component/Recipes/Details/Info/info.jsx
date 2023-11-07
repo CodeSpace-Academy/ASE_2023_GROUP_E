@@ -1,12 +1,13 @@
-import EditDescription from '@/component/editDecription/editDescription';
+/* eslint-disable import/no-useless-path-segments */
+import { TiEdit } from 'react-icons/ti';
+import EditDescription from '../../../../component/editDecription/editDescription';
 import classes from './info.module.css';
-import Button from '@/component/Button/button';
+import Button from '../../../../component/Button/button';
 import SingleRecipeTags from '../../SingleRecipeTags/SingleRecipeTags';
 import SingleRecipeAllergens from '../../Allergens/SingleRecipeAllergens';
-import FavouritesButton from '@/component/Favourites/FavouritesButton/FavouritesButton';
-import StateContext from '@/useContext/StateContext';
-import { TiEdit } from 'react-icons/ti';
-import ErrorMessage from '@/component/Error/ErrorMessage';
+import FavouritesButton from '../../../../component/Favourites/FavouritesButton/FavouritesButton';
+import StateContext from '../../../../useContext/StateContext';
+import ErrorMessage from '../../../../component/Error/ErrorMessage';
 
 export default function Info({ recipe, allergens }) {
   const { edit, setEdit } = StateContext();
@@ -14,10 +15,10 @@ export default function Info({ recipe, allergens }) {
   /**
    * Contains the allergens present in this recipe
    */
-  let allergenList = [];
+  const allergenList = [];
 
   // If ingredient is present in allergen array, add it to the allergens list
-  for (let ingredient in recipe.ingredients) {
+  for (const ingredient in recipe.ingredients) {
     if (allergens?.includes(ingredient)) {
       allergenList.push(ingredient);
     }
