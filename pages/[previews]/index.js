@@ -82,6 +82,7 @@ export default function AllRecipes({Data, url, totalRecipes}) {
       </div>
         
       </div>
+      </div>
 
         </main>: 
 
