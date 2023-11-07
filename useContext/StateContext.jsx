@@ -14,6 +14,7 @@ export function ContextProvider({ children }) {
   const [addInstruction, setAddInstruction] = useState(false);
   const [addSkip, setAddSkip] = useState(0);
   const [filteredResults, setFilteredResults] = useState([]);
+  const [total, setTotal] = useState(0)
 
   //   Favourite recipes list global state
   let favouriteRecipesInLocalStorage;
@@ -28,6 +29,8 @@ export function ContextProvider({ children }) {
   return (
     <Context.Provider
       value={{
+        total, 
+        setTotal,
         filteredResults,
         setFilteredResults,
         addSkip,

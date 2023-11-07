@@ -10,29 +10,19 @@ import getRecipes from '@/database/getData/getRecipes';
 import { useRouter } from 'next/router';
 import FilterbyIngredients from '@/component/filtering/filtering/filterbyIngredients';
 
-
 export default function AllRecipes({Data, url, totalRecipes}) {
   const router = useRouter()
   // const [results, setResults] = useState(null);
   const [sortField, setSortField] = useState('_id'); // Default sort field
   const [sortOrder, setSortOrder] = useState(''); // Default sort order
-  const { filteredResults } = StateContext();
-
-
-  
-  
- 
+  const { filteredResults, total } = StateContext();
 
   const skipNo = parseInt(router.query.previews.split('-')[1])
   
   const page = (skipNo + 100)/100
 
   function handleNextClick() {
-    router.push(`recipes-${skipNo + 100}-${sortField}-${sortOrder}`)
- 
-  
-   
-   
+    router.push(`recipes-${skipNo + 100}-${sortField}-${sortOrder}`)   
   }
 
   useEffect(() => {
@@ -64,15 +54,11 @@ export default function AllRecipes({Data, url, totalRecipes}) {
             <option value="desc">Descending</option>
           </select>
         </div>
+        <h5>{total}</h5>
         <PreviewList recipes={filteredResults.length > 0 ? filteredResults: Data} />
-
 
        <div className="loadMore">
         
-      
-
-      
-
       <div className='pNumber'>  <h2>{page}</h2></div>
      
        <div>
@@ -95,7 +81,6 @@ export default function AllRecipes({Data, url, totalRecipes}) {
   )
 }
 
-
 export async function getServerSideProps({params}){
 
   const { previews } = params
@@ -106,7 +91,6 @@ export async function getServerSideProps({params}){
   const Data = data.recipes
   const totalRecipes = data.totalRecipes
 
-
   const url = [skipNo, sortBy]
   return {
     props: {
@@ -116,6 +100,3 @@ export async function getServerSideProps({params}){
     }
   }
 }
-
-
-
