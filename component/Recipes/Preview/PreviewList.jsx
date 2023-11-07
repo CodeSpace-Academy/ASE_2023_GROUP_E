@@ -44,86 +44,87 @@ export default function PreviewList({ recipes, input, sortDate }) {
 
   return (
     <>
-      <div className="previewMain">
-        {/* <SearchBar onSearch={handleSearch} /> */}
-        <Box sx={{ flexGrow: 1 }}>
-          <Grid container spacing={1}>
-            {recipes &&
-              recipes.map((recipe, index) => {
-                return (
-                  <Grid xs={12} md={12} key={index} className={style.item}>
-                    <Item key={recipe.id}>
-                      <Link
-                        href={`/recipes/${recipe.title}`}
-                        className={style.link}
-                      >
-                        {/**
-                         * Check if search bar has text
-                         * if true, no matter the case the text in the input is then highlighted on the title of the search results
-                         *
-                         */}
-                        {input ? (
-                          <div>
-                            {recipe.title
-                              .split(new RegExp(`(${input})`, 'i'))
-                              .map((title, index) => (
-                                <div
-                                  key={index}
-                                  style={
-                                    title.toLowerCase() === input.toLowerCase()
-                                      ? { color: 'orange' }
-                                      : {}
-                                  }
-                                >
-                                  <h3>{title}</h3>
-                                </div>
-                              ))}
-                          </div>
-                        ) : (
-                          <h3 className={style.title}>{recipe.title}</h3>
-                        )}
-
-                        <div className={style.recipe}>
-                          <div>
-                            <Image
-                              src={recipe.images[0]}
-                              className={style.img}
-                              alt={'recipe Image'}
-                              width={200}
-                              height={100}
-                              loading="lazy"
-                              blurDataURL="https://images.pexels.com/photos/10977557/pexels-photo-10977557.jpeg"
-                            />
-                          </div>
-                          <div>
-                            {showDescriptions[index] && recipe.description ? (
-                              <p>{recipe.description}</p>
-                            ) : showDescriptions[index] ? (
-                              <ErrorMessage message="Failed to load description" />
-                            ) : (
-                              ''
-                            )}
-                            <PrepandCookTime recipe={recipe} />
-                          </div>
+      {/* <SearchBar onSearch={handleSearch} /> */}
+      <Box sx={{ flexGrow: 1 }}>
+        <Grid container spacing={1}>
+          {recipes &&
+            recipes.map((recipe, index) => {
+              return (
+                <Grid xs={12} md={12} key={index} className={style.item}>
+                  <Item key={recipe.id}>
+                    <Link
+                      href={`/recipes/${recipe.title}`}
+                      className={style.link}
+                    >
+                      {/**
+                       * Check if search bar has text
+                       * if true, no matter the case the text in the input is then highlighted on the title of the search results
+                       *
+                       */}
+                      {input ? (
+                        <div>
+                          {recipe.title
+                            .split(new RegExp(`(${input})`, 'i'))
+                            .map((title, index) => (
+                              <div
+                                key={index}
+                                style={
+                                  title.toLowerCase() === input.toLowerCase()
+                                    ? { color: 'orange' }
+                                    : {}
+                                }
+                              >
+                                <h3>{title}</h3>
+                              </div>
+                            ))}
                         </div>
+                      ) : (
+                        <h3 className={style.title}>{recipe.title}</h3>
+                      )}
 
-                        {/* Recipe tags */}
+                      <div className={style.recipe}>
+                        <div>
+                          <Image
+                            src={recipe.images[0]}
+                            className={style.img}
+                            alt={'recipe Image'}
+                            width={200}
+                            height={100}
+                            loading="lazy"
+                            blurDataURL="https://images.pexels.com/photos/10977557/pexels-photo-10977557.jpeg"
+                          />
+                        </div>
+                        <div>
+                          <div className={style.heading}>
+                            <h3>{recipe.title}</h3>
+                          </div>
+                          {showDescriptions[index] && recipe.description ? (
+                            <p>{recipe.description}</p>
+                          ) : showDescriptions[index] ? (
+                            <ErrorMessage message="Failed to load description" />
+                          ) : (
+                            ''
+                          )}
+                          <PrepandCookTime recipe={recipe} />
+                          <FavouritesButton recipe={recipe} />
+                          <IoIosInformationCircle
+                            color="light gray"
+                            fontSize="20px"
+                            onClick={() => toggleDescription(index)}
+                          />
+                        </div>
+                      </div>
 
-                        <SingleRecipeTags tags={recipe.tags} />
-                      </Link>
-                      <FavouritesButton recipe={recipe} />
-                      <IoIosInformationCircle
-                        color="light gray"
-                        fontSize="20px"
-                        onClick={() => toggleDescription(index)}
-                      />
-                    </Item>
-                  </Grid>
-                );
-              })}
-          </Grid>
-        </Box>
-      </div>
+                      {/* Recipe tags */}
+
+                      <SingleRecipeTags tags={recipe.tags} />
+                    </Link>
+                  </Item>
+                </Grid>
+              );
+            })}
+        </Grid>
+      </Box>
     </>
   );
 }

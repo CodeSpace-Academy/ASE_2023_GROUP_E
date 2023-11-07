@@ -7,7 +7,7 @@ function CustomizedHook({
   filter,
 }) {
   return (
-    <div className="previewMain">
+    <div>
       <h4>{filter}</h4>
       <Select
         options={

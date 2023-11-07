@@ -11,7 +11,7 @@ import { useRouter } from 'next/router';
 import FilterbyIngredients from '@/component/filtering/filtering/filterbyIngredients';
 
 
-export default function AllRecipes({ Data, url }) {
+export default function AllRecipes({Data, url}) {
   const router = useRouter()
   // const [results, setResults] = useState(null);
   const [sortField, setSortField] = useState('_id'); // Default sort field
@@ -29,55 +29,59 @@ export default function AllRecipes({ Data, url }) {
   }, [sortField, sortOrder])
 
   return (
-    <div className="previewMain">
+    <div>
 
-      <Typography variant="circular">
-        {Data ? <main>
-          <SearchBar />
-          <FilterbyTags />
-          <FilterbyIngredients />
+    <Typography variant="circular">
+      {Data ? <main>
+        <SearchBar />
+        <div className='previewMain'>
+        <FilterbyTags />
+        <FilterbyIngredients />
 
-          <div className="sort-dropdown">
-            <label> Sort by:</label>
-            <select value={sortField} onChange={(e) => setSortField(e.target.value)}>
-              <option value="_id">default</option>
-              <option value="prep">Prep time</option>
-              <option value="cook">Cook time</option>
-              <option value="published">Date</option>
-            </select>
+        <div className="sort-dropdown">
+          <label> Sort by:</label>
+          <select value={sortField} onChange={(e) => setSortField(e.target.value)}>
+            <option value="_id">default</option>
+            <option value="prep">Prep time</option>
+            <option value="cook">Cook time</option>
+            <option value="published">Date</option>
+          </select>
 
-            <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
-              <option value="asc">Ascending</option>
-              <option value="desc">Descending</option>
-            </select>
-          </div>
-          <PreviewList recipes={filteredResults.length > 0 ? filteredResults : Data} />
+          <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+          </select>
+        </div>
+        <PreviewList recipes={filteredResults.length > 0 ? filteredResults: Data} />
 
-          <GrChapterNext
-            color="light gray"
-            fontSize="24px"
-            onClick={handleNextClick}
-            disabled={false}
-          />
-        </main> :
+        <GrChapterNext
+          color="light gray"
+          fontSize="24px"
+          onClick={handleNextClick}
+          disabled={false}
+        />
 
-          <div className='recipesLoading'>
-            <SkeletonTypography />
-          </div>
-        }
-      </Typography>
+        </div>
+       
+        </main>: 
+
+        <div className='recipesLoading'>
+          <SkeletonTypography />
+        </div> 
+      }
+    </Typography>
     </div>
   )
 }
 
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps({params}){
 
   const { previews } = params
   const skipNo = parseInt(previews.split('-')[1])
   const sortBy = previews.split('-')[2]
-  const sortOrder = previews.split('-')[3] === 'asc' ? 1 : -1
-  const data = await getRecipes({}, skipNo, 100, { [sortBy]: sortOrder })
+  const sortOrder = previews.split('-')[3] === 'asc'? 1 : -1
+  const data = await getRecipes({}, skipNo, 100, {[sortBy]: sortOrder})
   const Data = data.recipes
 
 
