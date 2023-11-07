@@ -43,12 +43,15 @@ export default function FilterbyIngredients(){
   const selected = selectedOptions.map((item) => item.value).join(',')
 
   useEffect(() => {
-    fetch(`/api/filtering/filterOptions/filterIngredients?selected=${selected}`)
+    if(selectedOptions.length > 0){
+      fetch(`/api/filtering/filterOptions/filterIngredients?selected=${selected}`)
       .then(res => res.json())
       .then(data => {
+        setFilteredResults(data && data.recipes)
         console.log(data && data.recipes || [])
       })
-  }, [filteredResults])
+    }
+  }, [selectedOptions])
 
   return (
     <CustomizedHook 
