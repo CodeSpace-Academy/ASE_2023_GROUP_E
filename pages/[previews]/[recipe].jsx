@@ -21,7 +21,9 @@ const RecipePage = () => {
 
   return (
     <Fragment>
-      {recipe && <RecipeDetails recipe={recipe && recipe} allergens={allergens}/>}
+      {recipe && (
+        <RecipeDetails recipe={recipe && recipe} allergens={allergens} />
+      )}
     </Fragment>
   );
 };

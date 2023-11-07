@@ -23,9 +23,7 @@ function LayoutAll({ children }) {
         </div>
 
         <div className={toggleMenu ? classes.expanded : classes.expand}>
-          <div className={classes.children}>
-            {children}
-          </div>
+          <div className={classes.children}>{children}</div>
         </div>
       </div>
     </div>
