@@ -55,7 +55,7 @@ export default function FilterbyIngredients() {
           setTotal(total + data && data.recipes[1]);
         });
     }
-  }, [selectedOptions, andOr]);
+  }, [selectedOptions, andOr, selected, setFilteredResults, setTotal, total]);
 
   return (
     <>
