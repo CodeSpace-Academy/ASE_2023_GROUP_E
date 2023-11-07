@@ -6,6 +6,7 @@ import SingleRecipeAllergens from '../../Allergens/SingleRecipeAllergens';
 import FavouritesButton from '@/component/Favourites/FavouritesButton/FavouritesButton';
 import StateContext from '@/useContext/StateContext';
 import { TiEdit } from 'react-icons/ti';
+import ErrorMessage from '@/component/Error/ErrorMessage';
 
 export default function Info({ recipe, allergens }) {
   const { edit, setEdit } = StateContext();
@@ -27,7 +28,9 @@ export default function Info({ recipe, allergens }) {
       <div className={classes.info1}>
         <h2>{recipe.title}</h2>
         <div>
-          <strong>Description:</strong> {recipe.description}
+          <strong>Description:</strong>
+          { recipe.description
+            ? <p>{recipe.description}</p> : <ErrorMessage message="Failed to load description." />}
         </div>
 
         {/**
@@ -37,18 +40,18 @@ export default function Info({ recipe, allergens }) {
           <EditDescription info={recipe.description} />
         ) : (
           <Button
-            color={'blue'}
-            text={<TiEdit fontSize={'25px'} />}
-            click={() => setEdit(!edit)}
+            color="blue"
+            text={<TiEdit fontSize="25px" />}
+            click={() => { setEdit(!edit); }}
           />
         )}
 
         <div>
-          <strong>Category:</strong> {recipe.category}
+          <strong>Category:</strong>
+          {recipe.category}
         </div>
 
         <div className={classes.tagsDesktop}>
-          {' '}
           <SingleRecipeTags tags={recipe.tags} />
         </div>
 
@@ -57,9 +60,9 @@ export default function Info({ recipe, allergens }) {
           {allergenList.length !== 0 ? (
             <SingleRecipeAllergens allergensList={allergenList} />
           ) : (
-            <>
+            <div>
               <p>No allergens</p>
-            </>
+            </div>
           )}
         </div>
       </div>
