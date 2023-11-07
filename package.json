@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint --file component/filtering/filtering/filterbyIngredients.jsx"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
