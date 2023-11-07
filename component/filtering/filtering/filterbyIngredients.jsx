@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import StateContext from '../../../useContext/StateContext';
 import CustomizedHook from './filterForm';
-import {BlueButton} from '../../Button/button';
+import { BlueButton } from '../../Button/button';
 
 export default function FilterbyIngredients() {
   const { setFilteredResults, total, setTotal } = StateContext();
