@@ -19,7 +19,7 @@ const HomeWithBackground = () => {
         {/*Links to the pages on the menu lists */}
         <div className={classes.menu}>
           <Link
-            href={`/recipes`}
+            href={`/recipes-0-_id-asc`}
             onClick={() => localStorage.setItem('skipNo', 0)}
           >
             All Recipes

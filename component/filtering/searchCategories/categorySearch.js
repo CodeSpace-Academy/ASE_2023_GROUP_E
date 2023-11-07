@@ -22,23 +22,7 @@ const SearchBar = () => {
     <>
       {/* Enables the user to search with category*/}
       <div className={classes.background}>
-        <div className={classes.text}>All Recipes</div>
 
-        <div className={classes.search}>
-          <form>
-            <input
-              className={classes.input}
-              type="text"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Enter category..."
-            />
-
-            <Link href={`/categories/${query}`}>
-              <button className={classes.button}>Search</button>
-            </Link>
-          </form>
-        </div>
       </div>
 
       <div>

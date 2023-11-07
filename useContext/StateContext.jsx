@@ -13,6 +13,7 @@ export function ContextProvider({ children }) {
   const [instructionIndex, setInstructionIndex] = useState(null);
   const [addInstruction, setAddInstruction] = useState(false);
   const [addSkip, setAddSkip] = useState(0);
+  const [filteredResults, setFilteredResults] = useState([]);
 
   //   Favourite recipes list global state
   let favouriteRecipesInLocalStorage;
@@ -27,6 +28,8 @@ export function ContextProvider({ children }) {
   return (
     <Context.Provider
       value={{
+        filteredResults,
+        setFilteredResults,
         addSkip,
         setAddSkip,
         addInstruction,
