@@ -4,7 +4,7 @@ import StateContext from "@/useContext/StateContext";
 
 export default function FilterbyTags(){
 
-  const { setFilteredResults, filteredResults } = StateContext()
+  const { setFilteredResults, filteredResults, total, setTotal } = StateContext()
 
   const [tags, setTags] = useState([]);
   
@@ -40,12 +40,13 @@ export default function FilterbyTags(){
   const selected = selectedOptions.map((item) => item.value).join(',')
 
   useEffect(() => {
-    fetch(`/api/filtering/filterOptions/filterTags?selected=${selected}`)
-      .then(res => res.json())
-      .then(data => {
-        setFilteredResults(data && data.recipes)
-      })
-  }, [filteredResults])
+      fetch(`/api/filtering/filterOptions/filterTags?selected=${selected}`)
+        .then(res => res.json())
+        .then(data => {
+          setFilteredResults(data && data.recipes[0])
+          setTotal(total + data && data.recipes[1])
+        })
+  }, [selectedOptions])
 
   return (
     <CustomizedHook 
