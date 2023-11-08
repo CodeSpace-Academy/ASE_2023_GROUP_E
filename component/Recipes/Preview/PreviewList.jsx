@@ -18,9 +18,9 @@ const Item = styled(Paper)(({ theme }) => {
     ...theme.typography.body2,
     padding: theme.spacing(1),
     color: theme.palette.text.secondary,
-    boxShadow: 'none',
-    borderBottom: 'solid gray 2px',
-    borderRight: 'solid gray 2px',
+    boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
+    // borderBottom: 'solid gray 2px',
+    // borderRight: 'solid gray 2px',
     cursor: 'pointer',
     color: '#003153',
   };
