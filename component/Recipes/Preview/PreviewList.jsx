@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import { IoIosInformationCircle } from 'react-icons/io';
 import SingleRecipeTags from '../SingleRecipeTags/SingleRecipeTags';
 import style from './previewList.module.css';
-import { PrepandCookTime } from '@/component/handlerTime/timeRead';
+import { RecipePreviewTimes } from '@/component/handlerTime/timeRead';
 import FavouritesButton from '../../Favourites/FavouritesButton/FavouritesButton';
 
 const Item = styled(Paper)(({ theme }) => {
@@ -85,7 +85,7 @@ export default function PreviewList({ recipes, input, sortDate }) {
                           ) : (
                             ''
                           )}
-                          <PrepandCookTime recipe={recipe} />
+                          <RecipePreviewTimes recipe={recipe} />
                         </div>
                       </div>
 
@@ -98,6 +98,7 @@ export default function PreviewList({ recipes, input, sortDate }) {
                         <IoIosInformationCircle
                           color="light gray"
                           fontSize="20px"
+                          className={style.infoIcon}
                           onClick={() => toggleDescription(index)}
                         />
                       </div>
