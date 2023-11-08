@@ -4,7 +4,7 @@ const SearchAndFilterHero = ({ children }) => {
   return (
     <div className={classes.background}>
       <div className={classes.inputsContainer}>
-        <h2 className={classes.heading}>Customize your recipe</h2>
+        <h2 className={classes.heading}>Customize your recipes</h2>
         {children}
       </div>
     </div>
