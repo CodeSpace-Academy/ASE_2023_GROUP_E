@@ -4,7 +4,7 @@
       rgba(27, 27, 27, 0.142),
       rgba(180, 180, 180, 0.331)
     ),
-    url('../../../public/images/allRecipesPage.png');
+    url('../../../public/images/landing.png');
   background-position: 60%;
   background-size: cover;
   min-height: 50vh;
@@ -12,4 +12,30 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+
+.inputsContainer {
+  background-color: #66cd67;
+  padding: 1rem 0rem;
+  border-radius: 0.7rem;
+  color: #4b4b4b;
+  width: 40rem;
+  font-size: 0.9rem;
+}
+
+.heading {
+  text-align: center;
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .inputsContainer {
+    width: 80%;
+  }
+  .heading {
+    font-size: 1.5rem;
+  }
 }
