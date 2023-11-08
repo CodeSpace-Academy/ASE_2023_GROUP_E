@@ -1,8 +1,25 @@
-.times{
-    display: flex;
-    flex-direction: row;
-    gap: 1%;
-    margin: 0;
-    font-weight: 400;
-    /* justify-content: space-between; */
+.times {
+  display: flex;
+  flex-direction: row;
+  gap: 1%;
+  margin: 0;
+  font-weight: 400;
+  /* justify-content: space-between; */
+}
+
+.recipePreviewTimes {
+  font-size: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.recipePreviewTimes div {
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+}
+.icon {
+  color: #cdb266;
+  /* color: #efd17f; */
+  font-size: 1.3rem;
 }
