@@ -18,9 +18,13 @@ export default function Info({ recipe, allergens }) {
   const allergenList = [];
 
   // If ingredient is present in allergen array, add it to the allergens list
-  for (const ingredient in recipe.ingredients) {
-    if (allergens?.includes(ingredient)) {
-      allergenList.push(ingredient);
+
+  for (let ingredient in recipe.ingredients) {
+    for (let allergen in allergens) {
+      if (ingredient.toLowerCase()?.includes(allergens[allergen])) {
+        allergenList.push(allergens[allergen]);
+      }
+
     }
   }
 
