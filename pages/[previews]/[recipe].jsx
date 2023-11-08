@@ -10,7 +10,7 @@ const RecipePage = () => {
     fetch(`/api/recipes/recipeDetails?filter=${router.query.recipe}`)
       .then((res) => res.json())
       .then((data) => setRecipe(data.recipeDetails && data.recipeDetails[0]));
-  });
+  }, []);
   useEffect(() => {
     fetch('/api/recipes/allergens')
       .then((res) => res.json())
