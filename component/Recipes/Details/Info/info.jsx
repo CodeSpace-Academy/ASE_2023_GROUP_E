@@ -20,7 +20,7 @@ export default function Info({ recipe, allergens }) {
   for (let ingredient in recipe.ingredients) {
     for (let allergen in allergens) {
       if (ingredient.toLowerCase()?.includes(allergens[allergen])) {
-        allergenList.push(ingredient.toLocaleLowerCase());
+        allergenList.push(allergens[allergen]);
       }
     }
   }
