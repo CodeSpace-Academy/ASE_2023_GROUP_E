@@ -5,6 +5,7 @@ import { LinkButton } from '@/component/Button/button';
 
 const Search = ({recipes}) => {
 
+ 
 
   if (recipes.length == 0){
     return <p>No results</p>
@@ -17,6 +18,7 @@ const Search = ({recipes}) => {
           <div className={classes.buttonClear}>
           <LinkButton path={'/recipes-0-_id-asc'} text='Clear applied filter' />
           </div>
+          
         </div>
         
      
