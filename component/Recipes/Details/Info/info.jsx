@@ -51,7 +51,7 @@ export default function Info({ recipe, allergens }) {
         </div>
 
         <div className={classes.tagsDesktop}>
-          {' '}
+          <strong>Tags:</strong>
           <SingleRecipeTags tags={recipe.tags} />
         </div>
 
