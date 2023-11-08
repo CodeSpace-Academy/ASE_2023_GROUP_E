@@ -24,22 +24,21 @@ const SearchBar = () => {
     setSelectedCategory(selectedOption);
   };
 
+  useEffect(() => {
+    if (selectedCategory) {
+      const categoryValue = selectedCategory.value;
+      router.replace(`/categories/${categoryValue}`);
+      console.log('re-rendering')
+    }
+  })
+
   return (
     <>
       <div className={classes.background}></div>
 
       <div>
         <form
-          className="previewMain"
-          onSubmit={(e) => {
-            e.preventDefault();
-            if (selectedCategory) {
-              const categoryValue = selectedCategory.value;
-              router.replace(`/categories/${categoryValue}`);
-              console.log('sent');
-            }
-          }}
-        >
+          className="previewMain">
           <Select
             options={
               categories &&
@@ -48,10 +47,6 @@ const SearchBar = () => {
             value={selectedCategory}
             onChange={handleCategoryChange}
             placeholder="Select a category"
-          />
-
-          <BlueButton
-            text='Filter categories'
           />
         </form>
       </div>
