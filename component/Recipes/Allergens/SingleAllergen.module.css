@@ -1,9 +1,8 @@
 .listItem {
   list-style: none;
-  /* text-transform: capitalize; */
+  text-transform: capitalize;
   color: rgb(255, 156, 156);
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
   background-color: rgba(255, 140, 125, 0.094);
-  /* border: 1px solid black; */
 }
