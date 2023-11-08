@@ -91,15 +91,17 @@ export default function PreviewList({ recipes, input, sortDate }) {
 
                       {/* Recipe tags */}
                     </Link>
-                    <div className={style.favAndInfoIconContainer}>
-                      <FavouritesButton recipe={recipe} />
-                      <IoIosInformationCircle
-                        color="light gray"
-                        fontSize="20px"
-                        onClick={() => toggleDescription(index)}
-                      />
+                    <div className={style.tagAndIconsContainer}>
+                      <SingleRecipeTags tags={recipe.tags} />
+                      <div className={style.favAndInfoIconContainer}>
+                        <FavouritesButton recipe={recipe} />
+                        <IoIosInformationCircle
+                          color="light gray"
+                          fontSize="20px"
+                          onClick={() => toggleDescription(index)}
+                        />
+                      </div>
                     </div>
-                    <SingleRecipeTags tags={recipe.tags} />
                   </Item>
                 </Grid>
               );
