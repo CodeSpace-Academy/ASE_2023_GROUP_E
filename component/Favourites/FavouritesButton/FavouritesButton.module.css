@@ -1,9 +1,10 @@
 .isFavourite {
-  color: #003153;
+  color: #cdb266;
 }
 .icon {
   margin: 0.5rem 0;
   font-size: 1rem;
+  color: #cdb266;
 }
 .icon:hover {
   transform: scale(1.4);
