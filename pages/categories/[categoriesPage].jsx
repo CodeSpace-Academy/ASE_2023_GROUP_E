@@ -12,8 +12,14 @@ const Search = ({recipes}) => {
 
   return (
       <div>
-        <h1 className={classes.title}>Category Results</h1>
-        <LinkButton path={'/recipes-0-_id-asc'} text='Clear applied filter' />
+        <div className={classes.backgroundImage}>
+          <h1 className={classes.title}>Category Results</h1>
+          <div className={classes.buttonClear}>
+          <LinkButton path={'/recipes-0-_id-asc'} text='Clear applied filter' />
+          </div>
+        </div>
+        
+     
         <PreviewList recipes={recipes}/>
       </div>
 
