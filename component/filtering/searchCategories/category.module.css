@@ -1,38 +1,39 @@
 .background {
-    
-    background-image: url('../../../public/images/landing.png');
-    background-position: 60%;
-    background-size: cover;
-    min-height: 50vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    
+  background-image: linear-gradient(
+      90deg,
+      rgba(27, 27, 27, 0.142),
+      rgba(180, 180, 180, 0.331)
+    ),
+    url('../../../public/images/allRecipesPage.png');
+  background-position: 60%;
+  background-size: cover;
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
-
-.text{
-    color:#003153;
-    background-color: rgba(255, 255, 255, 0.508);
-    font-size: 50px;
-    font-weight: bold;
+.text {
+  color: #003153;
+  background-color: rgba(255, 255, 255, 0.508);
+  font-size: 50px;
+  font-weight: bold;
 }
 
-.search{
-    padding: 10px;
+.search {
+  padding: 10px;
 }
 
-.input{
-    padding: 5px;
-    background-color: rgba(255, 255, 255, 0.508);
-    color: #003153;
-    border-color:rgba(255, 255, 255, 0.508) ;
-
+.input {
+  padding: 5px;
+  background-color: rgba(255, 255, 255, 0.508);
+  color: #003153;
+  border-color: rgba(255, 255, 255, 0.508);
 }
-.button{
-    background-color:#003153;
-    color: white;
-    padding: 5px;
-    border-radius: 1.5px;
+.button {
+  background-color: #003153;
+  color: white;
+  padding: 5px;
+  border-radius: 1.5px;
 }
