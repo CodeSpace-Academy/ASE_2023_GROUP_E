@@ -1,7 +1,6 @@
-
 .backgroundImage {
   margin-top: 0%;
-  background-image: url('../../public/images/backgroundImage.png'); 
+  background-image: url('../../public/images/backgroundImage.png');
   background-size: cover;
   background-position: center;
   width: 100%;
@@ -13,40 +12,40 @@
   font-family: sans-serif;
   display: block;
   margin: 10px 0;
-  color: gray;
+  color: #fff;
   text-decoration: none;
   padding: 10px;
   width: 200px;
   border-radius: 5px;
   text-align: center;
-  background-color: rgba(218, 224, 250, 0.277);
+  background-color: #70f173;
   text-wrap: nowrap;
-
 }
-.menu a:hover{
-  text-decoration: underline;
+.menu a:hover {
+  transform: scale(1.03);
+  background-color: #66cd67;
 }
 
-.menu{
+.menu {
   margin: 10%;
 }
 
-@media only screen and (max-width: 759px){
- .backgroundImage{
-  background-position: 70%;
- }
+@media only screen and (max-width: 759px) {
+  .backgroundImage {
+    background-position: 70%;
+  }
 }
 
-@media only screen and (min-width: 770px){
- .menu{
-  display: grid;
-  grid-template-columns: 20% 20%;
-  gap: 12%;
- }
+@media only screen and (min-width: 770px) {
+  .menu {
+    display: grid;
+    grid-template-columns: 20% 20%;
+    gap: 12%;
+  }
 
- .menu a{
-  padding: 15px;
-  width: 156px;
-  text-wrap: nowrap;
- }
+  .menu a {
+    padding: 15px;
+    width: 156px;
+    text-wrap: nowrap;
+  }
 }
