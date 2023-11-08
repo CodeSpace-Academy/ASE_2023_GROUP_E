@@ -4,17 +4,16 @@
   left: 0; /* Position it at the left */
   height: 100%; /* Make it cover the entire height of the viewport */
   /* width: 150px; */
-  background-color: rgb(225, 222, 222);
-  color: rgba(4, 61, 115, 0.896);
+  background-color: #4fbc5c;
+  color: #fff;
   overflow: hidden;
   transition: width 0.3s;
   border-left: 0px;
-  box-shadow:10%;
+  box-shadow: 10%;
   border-top: 1px;
   border-right: 1%;
   padding: 1%;
   text-align: center;
-  
 }
 
 .menuToggle {
@@ -22,6 +21,9 @@
   text-align: center;
   padding: 10px;
   font-size: 1.5rem;
+}
+.menuToggle:hover {
+  transform: scale(1.1);
 }
 
 .menuToggle.expanded {
@@ -31,7 +33,6 @@
 .menuOptions {
   list-style: none;
   padding: 0;
-  
 }
 
 .menuOptions.expanded li {
@@ -49,11 +50,11 @@
 
 .content {
   /* flex-grow: 1;  Make the content area grow to fill the remaining space */
-  padding-left:px; /* Add padding to the left to accommodate the navigation bar */
+  padding-left: px; /* Add padding to the left to accommodate the navigation bar */
 }
 
 .contentClose {
-  margin-left:50px; /* Adjust the value to your preference */
+  margin-left: 50px; /* Adjust the value to your preference */
 }
 
 .link {
@@ -61,23 +62,26 @@
 }
 
 .link a {
-  color:#003153;
+  color: #fff;
 }
 
 .links2 {
   font-size: 30px;
   margin-bottom: 15px;
 }
-
-.links2 a {
-  color:#003153;
+.links2:hover {
+  transform: scale(1.1);
 }
 
-.optionName{
+.links2 a {
+  color: #fff;
+}
+
+.optionName {
   cursor: pointer;
 }
 
 .optionName a {
-  color:#003153;
+  color: #fff;
   text-decoration: none;
 }
