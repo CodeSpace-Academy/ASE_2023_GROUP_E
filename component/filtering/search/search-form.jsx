@@ -22,7 +22,7 @@ export default function SearchForm() {
       .then((res) => res.json())
       .then((data) => {
         setResults(data && data.results[0]);
-        setLength(data && data.results[1])
+        setLength(data && data.results[1]);
         setAddSearchHistory(true);
       });
   };
@@ -53,7 +53,7 @@ export default function SearchForm() {
       fetch('/api/filtering/search/searchHistory?username=mike')
         .then((res) => { return res.json(); })
         .then((data) => setSearchHistory(data.searchhistory[0] ? [...new Set(data.searchhistory[0].input)] : []))
-    }, [searchHistory]);
+    }, []);
 
       /**
    *

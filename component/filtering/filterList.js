@@ -76,3 +76,4 @@ const RecipeFilter = ({ onClose, sortDate }) => {
 };
 
 export default RecipeFilter;
+
