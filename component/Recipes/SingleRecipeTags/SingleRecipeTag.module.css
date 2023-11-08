@@ -2,13 +2,14 @@
   list-style: none;
 }
 .tagButton {
-  background-color: #003153;
+  background-color: #91ec93;
   border-radius: 0.25rem;
   padding: 0.35rem 0.5rem;
   color: white;
+  border: 1px solid #91ec93;
 }
 .tagButton:hover {
-  background-color: #fff;
+  background-color: #66cd67;
   transform: scale(1.05);
-  color: #003153;
+  color: #66cd67;
 }
