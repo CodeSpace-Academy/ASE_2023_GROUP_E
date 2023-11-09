@@ -18,12 +18,12 @@
   width: 200px;
   border-radius: 5px;
   text-align: center;
-  background-color: #70f173;
+  background-color: rgb(129, 121, 30);
   text-wrap: nowrap;
 }
 .menu a:hover {
   transform: scale(1.03);
-  background-color: #66cd67;
+  background-color: rgb(104, 97, 24);
 }
 
 .menu {
