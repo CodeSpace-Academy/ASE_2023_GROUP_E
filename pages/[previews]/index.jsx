@@ -9,6 +9,7 @@ import FilterbyTags from '@/component/filtering/filtering/filterbyTags';
 import getRecipes from '@/database/getData/getRecipes';
 import { useRouter } from 'next/router';
 import FilterbyIngredients from '@/component/filtering/filtering/filterbyIngredients';
+import { GrPowerReset } from "react-icons/gr"
 
 export default function AllRecipes({Data, url, totalRecipes}) {
   const router = useRouter()
@@ -38,7 +39,12 @@ export default function AllRecipes({Data, url, totalRecipes}) {
         <SearchBar />
         <div className='previewMain'>
         <FilterbyTags />
+        <GrPowerReset /> 
         <FilterbyIngredients />
+        <GrPowerReset /> 
+        
+      
+
 
         <div className="sort-dropdown">
           <label> Sort by:</label>
@@ -48,6 +54,8 @@ export default function AllRecipes({Data, url, totalRecipes}) {
             <option value="cook">Cook time</option>
             <option value="published">Date</option>
           </select>
+
+        
 
           <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
             <option value="asc">Ascending</option>
