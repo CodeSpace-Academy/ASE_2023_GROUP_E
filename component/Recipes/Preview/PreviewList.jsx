@@ -78,7 +78,7 @@ export default function PreviewList({ recipes, input, sortDate }) {
                           <p className={style.category}>{recipe.category}</p>
                           <div className={style.heading}>
                             <h3>{recipe.title}</h3>
-                            {input ? (
+                            {/* {input ? (
                               <div>
                                 {recipe.title
                                   .split(new RegExp(`(${input})`, 'i'))
@@ -100,7 +100,7 @@ export default function PreviewList({ recipes, input, sortDate }) {
                               </div>
                             ) : (
                               <h3 className={style.title}>{recipe.title}</h3>
-                            )}
+                            )} */}
                           </div>
                           {showDescriptions[index] && recipe.description ? (
                             <p>{recipe.description}</p>
