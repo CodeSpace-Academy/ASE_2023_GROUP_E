@@ -1,21 +1,22 @@
 /* Default styles for recipeDetails.module.css */
-.background{
+.background {
   background-image: url('../../../public/images/marble-background.png');
-  padding: 10px;
+  display: grid;
+  place-items: center;
 }
 
 .recipeCard {
   display: flex;
   flex-direction: column;
   background-color: #fff;
+  border-radius: 0.5rem;
   padding-left: 50px;
-  color:  #003153
-
+  color: #4b4b4b;
+  width: 95%;
+  margin: 0 auto;
 }
 
-
-
-.card{
+.card {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -36,9 +37,7 @@
 }
 
 .imageRow {
- 
   margin-bottom: 20px;
-
 }
 
 .listContainer {
@@ -51,14 +50,13 @@
   /* Default styles for each section */
   padding: 1em; /* Using em for padding */
 }
-
+.instructions {
+  width: 80%;
+}
 /* Media Queries for Responsiveness */
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
-  
-
-
   .listContainer {
     grid-template-columns: 1fr 1fr 1fr; /* Adjust for small screens */
   }
@@ -78,36 +76,34 @@
   }
 }
 
-@media only screen and (min-width: 972px){
-  .tagsMobileView{
+@media only screen and (min-width: 972px) {
+  .tagsMobileView {
     display: none;
   }
 }
 
-@media only screen and (max-width: 759px){
-  .infoDesktop{
+@media only screen and (max-width: 759px) {
+  .infoDesktop {
     display: none;
   }
 
-  .imageRow{
+  .imageRow {
     width: 0em;
   }
 
-  .info{
+  .info {
     margin: 0;
   }
 }
 
-@media only screen and (min-width: 759px){
-  .infoMobileView{
+@media only screen and (min-width: 759px) {
+  .infoMobileView {
     display: none;
   }
 }
-@media only screen and (max-width: 850px){
-
-  .recipeCard{
+@media only screen and (max-width: 850px) {
+  .recipeCard {
     padding: 0;
     margin: 10px;
   }
-
 }
