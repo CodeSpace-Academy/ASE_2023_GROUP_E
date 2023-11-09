@@ -77,7 +77,26 @@ export default function PreviewList({ recipes, input, sortDate }) {
                         <div>
                           <p className={style.category}>{recipe.category}</p>
                           <div className={style.heading}>
-                            <h3>{recipe.title}</h3>
+                          {input ? (
+                            <div>
+                              {recipe.title
+                                .split(new RegExp(`(${input})`, 'i'))
+                                .map((title, index) => (
+                                  <span
+                                    key={index}
+                                    style={
+                                      title.toLowerCase() === input.toLowerCase()
+                                        ? { color: 'orange' }
+                                        : {}
+                                    }
+                                  >
+                                    <h3 style={{ display: 'inline' }}>{title}</h3>
+                                  </span>
+                                ))}
+                            </div>
+                          ) : (
+                            <h3 className={style.title}>{recipe.title}</h3>
+                          )}
                           </div>
                           {showDescriptions[index] && recipe.description ? (
                             <p>{recipe.description}</p>

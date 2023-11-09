@@ -1,11 +1,13 @@
-import EditDescription from '@/component/editDecription/editDescription';
+/* eslint-disable import/no-useless-path-segments */
+import { TiEdit } from 'react-icons/ti';
+import EditDescription from '../../../../component/editDecription/editDescription';
 import classes from './info.module.css';
-import Button from '@/component/Button/button';
+import Button from '../../../../component/Button/button';
 import SingleRecipeTags from '../../SingleRecipeTags/SingleRecipeTags';
 import SingleRecipeAllergens from '../../Allergens/SingleRecipeAllergens';
-import FavouritesButton from '@/component/Favourites/FavouritesButton/FavouritesButton';
-import StateContext from '@/useContext/StateContext';
-import { TiEdit } from 'react-icons/ti';
+import FavouritesButton from '../../../../component/Favourites/FavouritesButton/FavouritesButton';
+import StateContext from '../../../../useContext/StateContext';
+import ErrorMessage from '../../../../component/Error/ErrorMessage';
 import { PrepandCookTime } from '@/component/handlerTime/timeRead';
 
 export default function Info({ recipe, allergens }) {
@@ -14,7 +16,7 @@ export default function Info({ recipe, allergens }) {
   /**
    * Contains the allergens present in this recipe
    */
-  let allergenList = [];
+  const allergenList = [];
 
   // If ingredient is present in allergen array, add it to the allergens list
 
@@ -23,6 +25,7 @@ export default function Info({ recipe, allergens }) {
       if (ingredient.toLowerCase()?.includes(allergens[allergen])) {
         allergenList.push(ingredient);
       }
+
     }
   }
 
@@ -49,7 +52,8 @@ export default function Info({ recipe, allergens }) {
           )}
         </div>
         <FavouritesButton recipe={recipe} />
-        <div className={classes.description}>{recipe.description}</div>
+        <div className={classes.description}>{ recipe.description
+            ? <p>{recipe.description}</p> : <ErrorMessage message="Failed to load description." />}</div>
 
         {/**
          * {@link info} is a props that hold the current descripton that will get modified
@@ -58,9 +62,9 @@ export default function Info({ recipe, allergens }) {
           <EditDescription info={recipe.description} />
         ) : (
           <Button
-            color={'blue'}
-            text={<TiEdit fontSize={'25px'} />}
-            click={() => setEdit(!edit)}
+            color="blue"
+            text={<TiEdit fontSize="25px" />}
+            click={() => { setEdit(!edit); }}
           />
         )}
 
