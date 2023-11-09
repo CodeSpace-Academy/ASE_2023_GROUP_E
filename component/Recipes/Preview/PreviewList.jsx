@@ -61,26 +61,7 @@ export default function PreviewList({ recipes, input, sortDate }) {
                        * if true, no matter the case the text in the input is then highlighted on the title of the search results
                        *
                        */}
-                      {input ? (
-                        <div>
-                          {recipe.title
-                            .split(new RegExp(`(${input})`, 'i'))
-                            .map((title, index) => (
-                              <div
-                                key={index}
-                                style={
-                                  title.toLowerCase() === input.toLowerCase()
-                                    ? { color: 'orange' }
-                                    : {}
-                                }
-                              >
-                                <h3>{title}</h3>
-                              </div>
-                            ))}
-                        </div>
-                      ) : (
-                        <h3 className={style.title}>{recipe.title}</h3>
-                      )}
+=
 
                       <div className={style.recipe}>
                         <div>
@@ -95,9 +76,29 @@ export default function PreviewList({ recipes, input, sortDate }) {
                           />
                         </div>
                         <div>
-                          <div className={style.heading}>
-                            <h3>{recipe.title}</h3>
-                          </div>
+                        <div className={style.heading}>
+                          {input ? (
+                            <div>
+                              {recipe.title
+                                .split(new RegExp(`(${input})`, 'i'))
+                                .map((title, index) => (
+                                  <span
+                                    key={index}
+                                    style={
+                                      title.toLowerCase() === input.toLowerCase()
+                                        ? { color: 'orange' }
+                                        : {}
+                                    }
+                                  >
+                                    <h3 style={{ display: 'inline' }}>{title}</h3>
+                                  </span>
+                                ))}
+                            </div>
+                          ) : (
+                            <h3 className={style.title}>{recipe.title}</h3>
+                          )}
+                        </div>
+
                           {showDescriptions[index] && recipe.description ? (
                             <p>{recipe.description}</p>
                           ) : showDescriptions[index] ? (
