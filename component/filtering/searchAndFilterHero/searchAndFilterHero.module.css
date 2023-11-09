@@ -15,10 +15,10 @@
 }
 
 .inputsContainer {
-  background-color: #66cd67;
+  background-color: rgba(45, 63, 13, 0.45);
   padding: 1rem 0rem;
   border-radius: 0.7rem;
-  color: #4b4b4b;
+  color: #f0f0f0;
   width: 40rem;
   font-size: 0.9rem;
 }

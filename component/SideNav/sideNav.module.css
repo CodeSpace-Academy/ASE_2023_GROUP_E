@@ -4,7 +4,8 @@
   left: 0; /* Position it at the left */
   height: 100%; /* Make it cover the entire height of the viewport */
   /* width: 150px; */
-  background-color: #4fbc5c;
+  /* background-color: rgb(171, 177, 41); */
+  background-color: #a98614;
   color: #fff;
   overflow: hidden;
   transition: width 0.3s;

@@ -2,11 +2,11 @@
   list-style: none;
 }
 .tagButton {
-  background-color: #91ec93;
+  background-color: rgb(129, 121, 30);
   border-radius: 0.25rem;
   padding: 0.35rem 0.5rem;
   color: white;
-  border: 1px solid #91ec93;
+  border: none;
 }
 .tagButton:hover {
   background-color: #66cd67;

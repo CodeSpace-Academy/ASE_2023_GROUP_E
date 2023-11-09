@@ -1,60 +1,57 @@
 .background {
-    background-image: url('/images/marble-background.png'); /* Use the correct path to your image */
-    min-height: 100vh;
-  }
-  
-
-  .layout{
-    background-image: url('/images/marble-background.png'); /* Use the correct path to your image */
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+  background-image: url('/images/marble-background.png'); /* Use the correct path to your image */
+  min-height: 100vh;
 }
 
-.imgDiv{
-    text-align: center;
-    background-color: rgba(197, 205, 246, 0.252); 
-    background-size:cover;
-    background-position-y: -47em;
-    padding: 5px;
-    cursor: pointer;
-} 
-
-.img{
-    width: 13em;
-    margin-left: 2em;
+.layout {
+  background-image: url('/images/marble-background.png'); /* Use the correct path to your image */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-.children{
-    padding: 0;
+.imgDiv {
+  text-align: center;
+  background-color: #a7a7a040;
+  background-size: cover;
+  background-position-y: -47em;
+  padding: 5px;
+  cursor: pointer;
 }
 
-.expanded{
-    margin-left: 144px;
+.img {
+  width: 13em;
+  margin-left: 2em;
+}
+
+.children {
+  padding: 0;
+}
+
+.expanded {
+  margin-left: 144px;
 }
 
 .expand {
-    margin-left: 66px;
+  margin-left: 66px;
 }
 
-@media only screen and (max-width: 1040px){
-    
-    .expanded{
-        margin-left: 133px;
-    }
-    
-    .expand {
-        margin-left: 55px;
-    }
+@media only screen and (max-width: 1040px) {
+  .expanded {
+    margin-left: 133px;
+  }
+
+  .expand {
+    margin-left: 55px;
+  }
 }
 
-@media only screen and (max-width: 445px){
-    
-    .expanded{
-        margin-left: 47px;
-    }
-    
-    .expand {
-        margin-left: 46px;
-    }
+@media only screen and (max-width: 445px) {
+  .expanded {
+    margin-left: 47px;
+  }
+
+  .expand {
+    margin-left: 46px;
+  }
 }
