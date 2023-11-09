@@ -72,13 +72,13 @@ export default function AllRecipes({ Data, url, totalRecipes }) {
                 {' '}
                 <h2>{page}</h2>
               </div>
-
-              <div>
+    
+              {totalRecipes - skipNo >= 100?<div>
                 <button onClick={handleNextClick} disabled={false}>
                   {' '}
                   Load more {totalRecipes - skipNo - 100} recipes remaining{' '}
                 </button>
-              </div>
+              </div>: ''}
             </div>
           </main>
         ) : (
