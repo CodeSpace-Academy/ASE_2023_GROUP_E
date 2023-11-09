@@ -29,6 +29,12 @@
   font-weight: 800;
   color: #4b4b4b;
 }
+.category {
+  margin: 0;
+  margin-bottom: 0.2rem;
+  text-transform: uppercase;
+  color: #b2b2b2;
+}
 .img {
   width: 100px;
   height: 80px;

@@ -75,6 +75,7 @@ export default function PreviewList({ recipes, input, sortDate }) {
                           />
                         </div>
                         <div>
+                          <p className={style.category}>{recipe.category}</p>
                           <div className={style.heading}>
                             <h3>{recipe.title}</h3>
                           </div>
