@@ -70,13 +70,13 @@ export default function AllRecipes({ Data, url, totalRecipes }) {
             <div className="loadMore">
               <div className="pNumber">
                 {' '}
-                <h2>{page}</h2>
+                <h2 className='loadMoreButton'>{page}</h2>
               </div>
     
-              {totalRecipes - skipNo >= 100?<div>
-                <button onClick={handleNextClick} disabled={false}>
+              {totalRecipes - skipNo >= 100?<div >
+                <button  className='loadMoreButton' onClick={handleNextClick} disabled={false}>
                   {' '}
-                  Load more {totalRecipes - skipNo - 100} recipes remaining{' '}
+                   {totalRecipes - skipNo - 100} {' '} remaining
                 </button>
               </div>: ''}
             </div>
