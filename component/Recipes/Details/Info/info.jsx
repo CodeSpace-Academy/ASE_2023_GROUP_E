@@ -6,6 +6,7 @@ import SingleRecipeAllergens from '../../Allergens/SingleRecipeAllergens';
 import FavouritesButton from '@/component/Favourites/FavouritesButton/FavouritesButton';
 import StateContext from '@/useContext/StateContext';
 import { TiEdit } from 'react-icons/ti';
+import { PrepandCookTime } from '@/component/handlerTime/timeRead';
 
 export default function Info({ recipe, allergens }) {
   const { edit, setEdit } = StateContext();
@@ -20,7 +21,7 @@ export default function Info({ recipe, allergens }) {
   for (let ingredient in recipe.ingredients) {
     for (let allergen in allergens) {
       if (ingredient.toLowerCase()?.includes(allergens[allergen])) {
-        allergenList.push(allergens[allergen]);
+        allergenList.push(ingredient);
       }
     }
   }
@@ -28,10 +29,27 @@ export default function Info({ recipe, allergens }) {
   return (
     <div className={classes.info}>
       <div className={classes.info1}>
-        <h2>{recipe.title}</h2>
+        <p className={classes.category}>{recipe.category}</p>
+        <h2 className={classes.title}>{recipe.title}</h2>
         <div>
-          <strong>Description:</strong> {recipe.description}
+          {/* <strong>Tags:</strong> */}
+          <SingleRecipeTags tags={recipe.tags} />
         </div>
+        <div className={classes.times}>
+          <PrepandCookTime recipe={recipe} />
+        </div>
+        <div className={classes.allergensContainer}>
+          <strong>Allergens:</strong>
+          {allergenList.length !== 0 ? (
+            <SingleRecipeAllergens allergensList={allergenList} />
+          ) : (
+            <>
+              <p>No allergens</p>
+            </>
+          )}
+        </div>
+        <FavouritesButton recipe={recipe} />
+        <div className={classes.description}>{recipe.description}</div>
 
         {/**
          * {@link info} is a props that hold the current descripton that will get modified
@@ -46,27 +64,10 @@ export default function Info({ recipe, allergens }) {
           />
         )}
 
-        <div>
+        {/* <div>
           <strong>Category:</strong> {recipe.category}
-        </div>
-
-        <div className={classes.tagsDesktop}>
-          <strong>Tags:</strong>
-          <SingleRecipeTags tags={recipe.tags} />
-        </div>
-
-        <div>
-          <strong>Allergens:</strong>
-          {allergenList.length !== 0 ? (
-            <SingleRecipeAllergens allergensList={allergenList} />
-          ) : (
-            <>
-              <p>No allergens</p>
-            </>
-          )}
-        </div>
+        </div> */}
       </div>
-      <FavouritesButton recipe={recipe} />
     </div>
   );
 }
