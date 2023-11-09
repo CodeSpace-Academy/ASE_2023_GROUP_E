@@ -28,17 +28,16 @@ const SearchBar = () => {
     if (selectedCategory) {
       const categoryValue = selectedCategory.value;
       router.replace(`/categories/${categoryValue}`);
-      console.log('re-rendering')
+      console.log('re-rendering');
     }
-  })
+  });
 
   return (
     <>
-      <div className={classes.background}></div>
+      {/* <div className={classes.background}></div> */}
 
       <div>
-        <form
-          className="previewMain">
+        <form className="previewMain">
           <Select
             options={
               categories &&
