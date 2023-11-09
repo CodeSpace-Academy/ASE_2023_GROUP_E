@@ -11,6 +11,7 @@ import SingleRecipeTags from '../SingleRecipeTags/SingleRecipeTags';
 import style from './previewList.module.css';
 import { RecipePreviewTimes } from '@/component/handlerTime/timeRead';
 import FavouritesButton from '../../Favourites/FavouritesButton/FavouritesButton';
+import { useRouter } from 'next/router';
 
 const Item = styled(Paper)(({ theme }) => {
   return {
@@ -40,6 +41,14 @@ export default function PreviewList({ recipes, input, sortDate }) {
     const newShowDescriptions = [...showDescriptions];
     newShowDescriptions[index] = !newShowDescriptions[index];
     setShowDescriptions(newShowDescriptions);
+  }
+
+  const router = useRouter()
+
+  if(router.pathname === '/search'){
+    console.log('highlight')
+  }else{
+    console.log('none')
   }
 
   return (
@@ -77,8 +86,8 @@ export default function PreviewList({ recipes, input, sortDate }) {
                         <div>
                           <p className={style.category}>{recipe.category}</p>
                           <div className={style.heading}>
-                            <h3>{recipe.title}</h3>
-                            {/* {input ? (
+                            {router.pathname === '/search' ? '' :<h3>{recipe.title}</h3>}
+                            {router.pathname === '/search' && input ? (
                               <div>
                                 {recipe.title
                                   .split(new RegExp(`(${input})`, 'i'))
@@ -86,8 +95,7 @@ export default function PreviewList({ recipes, input, sortDate }) {
                                     <span
                                       key={index}
                                       style={
-                                        title.toLowerCase() ===
-                                        input.toLowerCase()
+                                        title.toLowerCase() === input.toLowerCase()
                                           ? { color: 'orange' }
                                           : {}
                                       }
@@ -100,7 +108,7 @@ export default function PreviewList({ recipes, input, sortDate }) {
                               </div>
                             ) : (
                               <h3 className={style.title}>{recipe.title}</h3>
-                            )} */}
+                            )}
                           </div>
                           {showDescriptions[index] && recipe.description ? (
                             <p>{recipe.description}</p>

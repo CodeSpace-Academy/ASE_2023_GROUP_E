@@ -23,12 +23,9 @@
 
 .heading {
   margin: 0;
-  color: #003153;
-}
-.heading h3 {
-  font-weight: 800;
   color: #4b4b4b;
 }
+
 .category {
   margin: 0;
   margin-bottom: 0.2rem;
