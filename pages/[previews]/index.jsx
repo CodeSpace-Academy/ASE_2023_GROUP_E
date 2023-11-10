@@ -70,6 +70,7 @@ export default function AllRecipes({ Data, url, totalRecipes }) {
                   setSelectedTagsOptions([])
                   setFilteredResults(0)
                 }}
+                text= 'Clear filter'
               />
             </SearchAndFilterHero>
             <PreviewList
