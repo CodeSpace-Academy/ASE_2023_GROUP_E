@@ -23,7 +23,7 @@ export default function FilterbyIngredients(){
            * Fetches the ingredients which is an array objects.
            * maps over this array to abstracts the object keys
            */
-          const allIngredients = data.recipes.map((item) => {
+          const allIngredients = data &&  data.recipes.map((item) => {
               return Object.keys(item.ingredients)
           })
           /**

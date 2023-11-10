@@ -67,15 +67,23 @@ export default function PreviewList({ recipes, input, sortDate }) {
 
                       <div className={style.recipe}>
                         <div>
-                          <Image
-                            src={recipe.images[0]}
+                          {recipe.images[0] ? <Image
+                            src={recipe.images && recipe.images[0]}
                             className={style.img}
                             alt={'recipe Image'}
                             width={200}
                             height={100}
                             loading="lazy"
                             blurDataURL="https://images.pexels.com/photos/10977557/pexels-photo-10977557.jpeg"
+                          /> :
+                          <Image 
+                            src={"https://images.pexels.com/photos/10977557/pexels-photo-10977557.jpeg"}
+                            className={style.img}
+                            alt={'recipe Image'}
+                            width={200}
+                            height={100}
                           />
+                          }
                         </div>
                         <div>
                           <p className={style.category}>{recipe.category}</p>
