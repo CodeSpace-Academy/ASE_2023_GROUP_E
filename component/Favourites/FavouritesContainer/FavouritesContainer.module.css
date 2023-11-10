@@ -1,13 +1,14 @@
 .container h1 {
   font-size: 3rem;
+  font-weight: 700;
+  font-family: sans-serif;
   text-align: center;
-  margin-top: 2rem;
-  color:  #003153;
+  margin: 3rem 0;
+  color: #003153;
 }
 
 .message {
   text-align: center;
   margin-top: 8rem;
   font-size: 2rem;
-  
 }

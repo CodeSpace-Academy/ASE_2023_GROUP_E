@@ -13,6 +13,8 @@ const nextConfig = {
       'component/FavouritesContainer',
       'component/ui/loadingSpinner',
       'components/Recipes/SingleRecipeTags',
+      'components/Recipes/Allergens',
+      'components/Recipes/Details/Info',
       // pages
       'pages/recipes',
       'pages/favourites',
