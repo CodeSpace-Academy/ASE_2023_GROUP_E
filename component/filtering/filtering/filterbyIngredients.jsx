@@ -5,9 +5,8 @@ import { BlueButton } from "@/component/Button/button";
 
 export default function FilterbyIngredients(){
 
-  const { setFilteredResults, filteredResults, total, setTotal  } = StateContext()
+  const { setFilteredResults, filteredResults, total, setTotal, selectedInggredientsOptions, setSelectedIngredientsOptions  } = StateContext()
   const [ingredients, setIngredients] = useState([]);
-  const [selectedOptions, setSelectedOptions] = useState([]);
   
   /**
    * Used to swicth filtering with $and and with $or using a boolean
@@ -43,13 +42,13 @@ export default function FilterbyIngredients(){
   }, [ingredients])
 
   const handleSelectChange = (selected) => {
-    setSelectedOptions(selected);
+    setSelectedIngredientsOptions(selected);
   };
 
-  const selected = selectedOptions.map((item) => item.value).join(',')
+  const selected = selectedInggredientsOptions.map((item) => item.value).join(',')
 
   useEffect(() => {
-    if(selectedOptions.length > 0){
+    if(selectedInggredientsOptions.length > 0){
       fetch(`/api/filtering/filterOptions/filterIngredients?selected=${selected}&andOr=${andOr ? '$or' : '$and'}`)
       .then(res => res.json())
       .then(data => {
@@ -57,7 +56,7 @@ export default function FilterbyIngredients(){
         setTotal(total + data && data.recipes[1])
       })
     }
-  }, [selectedOptions, andOr])
+  }, [selectedInggredientsOptions, andOr, total, selected])
 
   return (
 
@@ -71,7 +70,7 @@ export default function FilterbyIngredients(){
       options={ingredients} 
       filter={'Filter Ingredients'}
       handleSelectChange={handleSelectChange}
-      selectedOptions={selectedOptions} 
+      selectedOptions={selectedInggredientsOptions} 
     />
   </>
   )
