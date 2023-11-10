@@ -5,7 +5,7 @@ import { BlueButton } from "@/component/Button/button";
 
 export default function FilterbyIngredients(){
 
-  const { setFilteredResults, filteredResults, total, setTotal, selectedInggredientsOptions, setSelectedIngredientsOptions  } = StateContext()
+  const { setFilteredResults, filteredResults, total, setTotal, selectedIngredientsOptions, setSelectedIngredientsOptions  } = StateContext()
   const [ingredients, setIngredients] = useState([]);
   
   /**
@@ -45,10 +45,10 @@ export default function FilterbyIngredients(){
     setSelectedIngredientsOptions(selected);
   };
 
-  const selected = selectedInggredientsOptions.map((item) => item.value).join(',')
+  const selected = selectedIngredientsOptions.map((item) => item.value).join(',')
 
   useEffect(() => {
-    if(selectedInggredientsOptions.length > 0){
+    if(selectedIngredientsOptions.length > 0){
       fetch(`/api/filtering/filterOptions/filterIngredients?selected=${selected}&andOr=${andOr ? '$or' : '$and'}`)
       .then(res => res.json())
       .then(data => {
@@ -56,7 +56,7 @@ export default function FilterbyIngredients(){
         setTotal(total + data && data.recipes[1])
       })
     }
-  }, [selectedInggredientsOptions, andOr, total, selected])
+  }, [selectedIngredientsOptions, andOr, total, selected])
 
   return (
 
@@ -70,7 +70,7 @@ export default function FilterbyIngredients(){
       options={ingredients} 
       filter={'Filter Ingredients'}
       handleSelectChange={handleSelectChange}
-      selectedOptions={selectedInggredientsOptions} 
+      selectedOptions={selectedIngredientsOptions} 
     />
   </>
   )

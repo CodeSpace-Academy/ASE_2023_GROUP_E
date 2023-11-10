@@ -16,7 +16,7 @@ export function ContextProvider({ children }) {
   const [filteredResults, setFilteredResults] = useState([]);
   const [total, setTotal] = useState(0)
   const [clearfilter, setClearFilter] = useState([])
-  const [selectedInggredientsOptions, setSelectedIngredientsOptions] = useState([])
+  const [selectedIngredientsOptions, setSelectedIngredientsOptions] = useState([])
   const [selectedTagsOptions, setSelectedTagsOptions] = useState([]);
 
   //   Favourite recipes list global state
@@ -34,7 +34,7 @@ export function ContextProvider({ children }) {
       value={{
         selectedTagsOptions,
         setSelectedTagsOptions,
-        selectedInggredientsOptions,
+        selectedIngredientsOptions,
         setSelectedIngredientsOptions,
         clearfilter,
         total, 
