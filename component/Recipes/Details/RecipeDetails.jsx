@@ -39,10 +39,10 @@ const RecipeDetails = ({ recipe, allergens }) => {
         <div className={`${styles.listContainer} list-container`}>
           <Ingredients recipe={recipe} />
           <Nutritions recipe={recipe} />
-          <PrepandCookTime recipe={recipe} />
         </div>
-
-        <Instructions recipe={recipe} allergens={allergens} />
+        <div className={styles.instructions}>
+          <Instructions recipe={recipe} allergens={allergens} />
+        </div>
       </div>
     </div>
   );
