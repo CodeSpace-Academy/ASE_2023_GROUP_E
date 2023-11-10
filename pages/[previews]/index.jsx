@@ -39,9 +39,10 @@ export default function AllRecipes({Data, url, totalRecipes}) {
         <SearchBar />
         <div className='previewMain'>
         <FilterbyTags />
-        <GrPowerReset /> 
+        <GrPowerReset/>
         <FilterbyIngredients />
-        <GrPowerReset /> 
+        <GrPowerReset/>
+        
         
       
 

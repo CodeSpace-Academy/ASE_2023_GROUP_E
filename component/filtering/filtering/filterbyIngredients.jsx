@@ -60,5 +60,5 @@ export default function FilterbyIngredients(){
       handleSelectChange={handleSelectChange}
       selectedOptions={selectedOptions} 
     />
-  )
+      )
 }
