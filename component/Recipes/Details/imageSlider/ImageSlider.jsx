@@ -30,7 +30,21 @@ const ImageSlider = ({ imageUrls }) => {
   return (
     <div className="image-slider">
       <div className="image-container">
-        <Image src={imageUrls[currentIndex]} alt="Recipe" width={400} height={200} className={classes.img}/>
+        {imageUrls ? 
+          <Image src={imageUrls[currentIndex]} 
+          alt="Recipe"
+          width={400} 
+          height={200} 
+          className={classes.img}
+        />:
+
+        <imageUrls
+          Image src={'https://images.pexels.com/photos/10977557/pexels-photo-10977557.jpeg'} 
+          alt="Recipe"
+          width={400} 
+          height={200} 
+          className={classes.img}
+        />}
       </div>
     </div>
   );
