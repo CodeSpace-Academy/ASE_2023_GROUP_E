@@ -68,6 +68,7 @@ export default function AllRecipes({ Data, url, totalRecipes }) {
                   setFilteredResults(0)
                   setSelectedIngredientsOptions([])
                   setSelectedTagsOptions([])
+                  setFilteredResults(0)
                 }}
               />
             </SearchAndFilterHero>
