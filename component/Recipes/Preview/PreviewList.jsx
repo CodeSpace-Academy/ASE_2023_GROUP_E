@@ -9,8 +9,9 @@ import { useEffect, useState } from 'react';
 import { IoIosInformationCircle } from 'react-icons/io';
 import SingleRecipeTags from '../SingleRecipeTags/SingleRecipeTags';
 import style from './previewList.module.css';
-import { PrepandCookTime } from '@/component/handlerTime/timeRead';
+import { RecipePreviewTimes } from '@/component/handlerTime/timeRead';
 import FavouritesButton from '../../Favourites/FavouritesButton/FavouritesButton';
+import { useRouter } from 'next/router';
 
 const Item = styled(Paper)(({ theme }) => {
   return {
@@ -18,9 +19,9 @@ const Item = styled(Paper)(({ theme }) => {
     ...theme.typography.body2,
     padding: theme.spacing(1),
     color: theme.palette.text.secondary,
-    boxShadow: 'none',
-    borderBottom: 'solid gray 2px',
-    borderRight: 'solid gray 2px',
+    boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
+    // borderBottom: 'solid gray 2px',
+    // borderRight: 'solid gray 2px',
     cursor: 'pointer',
     color: '#003153',
   };
@@ -42,6 +43,14 @@ export default function PreviewList({ recipes, input, sortDate }) {
     setShowDescriptions(newShowDescriptions);
   }
 
+  const router = useRouter()
+
+  if(router.pathname === '/search'){
+    console.log('highlight')
+  }else{
+    console.log('none')
+  }
+
   return (
     <>
       {/* <SearchBar onSearch={handleSearch} /> */}
@@ -61,26 +70,6 @@ export default function PreviewList({ recipes, input, sortDate }) {
                        * if true, no matter the case the text in the input is then highlighted on the title of the search results
                        *
                        */}
-                      {input ? (
-                        <div>
-                          {recipe.title
-                            .split(new RegExp(`(${input})`, 'i'))
-                            .map((title, index) => (
-                              <div
-                                key={index}
-                                style={
-                                  title.toLowerCase() === input.toLowerCase()
-                                    ? { color: 'orange' }
-                                    : {}
-                                }
-                              >
-                                <h3>{title}</h3>
-                              </div>
-                            ))}
-                        </div>
-                      ) : (
-                        <h3 className={style.title}>{recipe.title}</h3>
-                      )}
 
                       <div className={style.recipe}>
                         <div>
@@ -95,8 +84,31 @@ export default function PreviewList({ recipes, input, sortDate }) {
                           />
                         </div>
                         <div>
+                          <p className={style.category}>{recipe.category}</p>
                           <div className={style.heading}>
-                            <h3>{recipe.title}</h3>
+                            {router.pathname === '/search' ? '' :<h3>{recipe.title}</h3>}
+                            {router.pathname === '/search' && input ? (
+                              <div>
+                                {recipe.title
+                                  .split(new RegExp(`(${input})`, 'i'))
+                                  .map((title, index) => (
+                                    <span
+                                      key={index}
+                                      style={
+                                        title.toLowerCase() === input.toLowerCase()
+                                          ? { color: 'orange' }
+                                          : {}
+                                      }
+                                    >
+                                      <h3 style={{ display: 'inline' }}>
+                                        {title}
+                                      </h3>
+                                    </span>
+                                  ))}
+                              </div>
+                            ) : (
+                              <h3 className={style.title}>{recipe.title}</h3>
+                            )}
                           </div>
                           {showDescriptions[index] && recipe.description ? (
                             <p>{recipe.description}</p>
@@ -105,20 +117,24 @@ export default function PreviewList({ recipes, input, sortDate }) {
                           ) : (
                             ''
                           )}
-                          <PrepandCookTime recipe={recipe} />
-                          <FavouritesButton recipe={recipe} />
-                          <IoIosInformationCircle
-                            color="light gray"
-                            fontSize="20px"
-                            onClick={() => toggleDescription(index)}
-                          />
+                          <RecipePreviewTimes recipe={recipe} />
                         </div>
                       </div>
 
                       {/* Recipe tags */}
-
-                      <SingleRecipeTags tags={recipe.tags} />
                     </Link>
+                    <div className={style.tagAndIconsContainer}>
+                      <SingleRecipeTags tags={recipe.tags} />
+                      <div className={style.favAndInfoIconContainer}>
+                        <FavouritesButton recipe={recipe} />
+                        <IoIosInformationCircle
+                          color="light gray"
+                          fontSize="20px"
+                          className={style.infoIcon}
+                          onClick={() => toggleDescription(index)}
+                        />
+                      </div>
+                    </div>
                   </Item>
                 </Grid>
               );
