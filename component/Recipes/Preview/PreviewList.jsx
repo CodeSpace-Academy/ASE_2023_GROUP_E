@@ -45,12 +45,6 @@ export default function PreviewList({ recipes, input, sortDate }) {
 
   const router = useRouter()
 
-  if(router.pathname === '/search'){
-    console.log('highlight')
-  }else{
-    console.log('none')
-  }
-
   return (
     <>
       {/* <SearchBar onSearch={handleSearch} /> */}

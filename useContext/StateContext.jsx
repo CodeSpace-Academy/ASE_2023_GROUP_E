@@ -15,6 +15,9 @@ export function ContextProvider({ children }) {
   const [addSkip, setAddSkip] = useState(0);
   const [filteredResults, setFilteredResults] = useState([]);
   const [total, setTotal] = useState(0)
+  const [clearfilter, setClearFilter] = useState([])
+  const [selectedIngredientsOptions, setSelectedIngredientsOptions] = useState([])
+  const [selectedTagsOptions, setSelectedTagsOptions] = useState([]);
 
   //   Favourite recipes list global state
   let favouriteRecipesInLocalStorage;
@@ -29,6 +32,11 @@ export function ContextProvider({ children }) {
   return (
     <Context.Provider
       value={{
+        selectedTagsOptions,
+        setSelectedTagsOptions,
+        selectedIngredientsOptions,
+        setSelectedIngredientsOptions,
+        clearfilter,
         total, 
         setTotal,
         filteredResults,
