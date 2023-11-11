@@ -15,6 +15,7 @@ const RecipeDetails = ({ recipe, allergens }) => {
   return (
     <div className={styles.background}>
       <div className={styles.recipeCard}>
+      <h3 className={styles.title}>{recipe.title}</h3>
         <div className={styles.card}>
           <div className={styles.titleAndImage}>
             <div className={styles.imageRow}>

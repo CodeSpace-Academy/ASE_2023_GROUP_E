@@ -35,7 +35,6 @@ export default function Info({ recipe, allergens }) {
     <div className={classes.info}>
       <div className={classes.info1}>
         <p className={classes.category}>{recipe.category}</p>
-        <h2 className={classes.title}>{recipe.title}</h2>
         <div>
           {/* <strong>Tags:</strong> */}
           <SingleRecipeTags tags={recipe.tags} />
