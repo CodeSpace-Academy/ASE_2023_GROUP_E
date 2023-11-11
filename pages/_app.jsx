@@ -8,7 +8,7 @@ export default function App({ Component, pageProps }) {
   return (
     <ContextProvider>
       <LayoutAll>
-        <NextNProgress />
+        <NextNProgress startPosition={0.3} stopDelayMs={200} height={5} showOnShallow={true}  />
         <Component {...pageProps} />
       </LayoutAll>
     </ContextProvider>
