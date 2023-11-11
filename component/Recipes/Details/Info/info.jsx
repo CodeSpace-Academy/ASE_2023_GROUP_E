@@ -9,9 +9,11 @@ import FavouritesButton from '../../../../component/Favourites/FavouritesButton/
 import StateContext from '../../../../useContext/StateContext';
 import ErrorMessage from '../../../../component/Error/ErrorMessage';
 import { PrepandCookTime } from '@/component/handlerTime/timeRead';
+import { useState } from 'react';
 
 export default function Info({ recipe, allergens }) {
   const { edit, setEdit } = StateContext();
+  const [loadmore, setLoadmore] = useState(false)
 
   /**
    * Contains the allergens present in this recipe
@@ -53,7 +55,9 @@ export default function Info({ recipe, allergens }) {
         </div>
         <FavouritesButton recipe={recipe} />
         <div className={classes.description}>{ recipe.description
-            ? <p>{recipe.description}</p> : <ErrorMessage message="Failed to load description." />}</div>
+            ? <p>{loadmore ? recipe.description : recipe.description.substring(0, 180)}
+                <span className={classes.loadmore} onClick={() => setLoadmore(!loadmore)}>Load more</span>
+              </p> : <ErrorMessage message="Failed to load description." />}</div>
 
         {/**
          * {@link info} is a props that hold the current descripton that will get modified

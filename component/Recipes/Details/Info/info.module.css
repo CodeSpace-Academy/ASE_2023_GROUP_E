@@ -10,39 +10,51 @@
 
 .title {
   font-weight: 900;
-  font-size: 4rem;
+  font-size: 2rem;
   margin-bottom: 1rem;
   margin-top: 0;
 }
+
 .category {
   text-transform: uppercase;
   margin: 0;
   font-size: 1.5rem;
   color: #b2b2b2;
 }
+
 .info1 strong {
   font-size: 1.1rem;
 }
+
 .allergensContainer {
   display: flex;
   align-items: flex-start;
   gap: 1rem;
 }
+
 .times {
   font-size: 1.1rem;
   margin-bottom: 0.2rem;
 }
+
 .description {
   font-size: 1.1rem;
-  width: 85%;
 }
+
+.loadmore{
+  color:  #a98614;
+  cursor: pointer;
+}
+
 @media only screen and (max-width: 768px) {
   .title {
     font-size: 2.5rem;
   }
+
   .category {
     font-size: 1.3rem;
   }
+
   .times,
   .description {
     font-size: 1rem;
