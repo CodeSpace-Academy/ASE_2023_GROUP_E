@@ -45,6 +45,8 @@ export default function FilterbyTags(){
         .then(data => {
           setFilteredResults(data && data.recipes[0])
           setTotal(total + data && data.recipes[1])
+          const newUrl = `/findstay?tags=${selected}`; // Use the 'page' variable
+          window.history.replaceState({ ...window.history.state, as: newUrl, url: newUrl }, '', newUrl);
         })
   }, [selectedOptions])
 
