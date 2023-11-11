@@ -36,3 +36,11 @@
     padding-top: 10px;
     
 }
+
+.previewSort{
+    color: black;
+    height: 5vh;
+    margin: 10px;
+    font-size: 120%;
+    border-radius: 3px;
+}

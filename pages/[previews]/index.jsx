@@ -57,6 +57,7 @@ export default function AllRecipes({ Data, url, totalRecipes }) {
                 <div className="sort-dropdown">
                   <label> Sort by:</label>
                   <select
+                    className='previewSort'
                     value={sortField}
                     onChange={(e) => setSortField(e.target.value)}
                   >
@@ -67,10 +68,10 @@ export default function AllRecipes({ Data, url, totalRecipes }) {
                   </select>
 
                   <select
+                    className='previewSort'
                     value={sortOrder}
                     onChange={(e) => setSortOrder(e.target.value)}
                   >
-                    <option></option>
                     <option value="asc">Ascending</option>
                     <option value="desc">Descending</option>
                   </select>
@@ -118,7 +119,7 @@ export async function getServerSideProps({ params }) {
   const { previews } = params;
   const skipNo = parseInt(previews.split('-')[1]);
   const sortBy = previews.split('-')[2];
-  const sortOrder = previews.split('-')[3] === 'asc' ? 1 : -1;
+  const sortOrder = previews.split('-')[3] === 'desc' ? -1 : 1
   const data = await getRecipes({}, skipNo, 100, { [sortBy]: sortOrder });
   const Data = data.recipes;
   const totalRecipes = data.totalRecipes;
