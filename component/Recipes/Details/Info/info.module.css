@@ -1,6 +1,6 @@
 .info {
   /* Default styles for the info */
-  margin: 2em;
+  margin: 6px;
   order: 2; /* Put info on the right */
   display: flex;
   flex-direction: column;
