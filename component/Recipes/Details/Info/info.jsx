@@ -33,14 +33,14 @@ export default function Info({ recipe, allergens }) {
 
   return (
     <div className={classes.info}>
+
       <div className={classes.info1}>
         <p className={classes.category}>{recipe.category}</p>
-        <div>
-          {/* <strong>Tags:</strong> */}
-        </div>
+
         <div className={classes.times}>
           <PrepandCookTime recipe={recipe} />
         </div>
+
         <div className={classes.allergensContainer}>
           <strong>Allergens:</strong>
           {allergenList.length !== 0 ? (
@@ -51,7 +51,9 @@ export default function Info({ recipe, allergens }) {
             </>
           )}
         </div>
+
         <FavouritesButton recipe={recipe} />
+
         <div className={classes.description}>{ recipe.description
             ? <p>{loadmore ? recipe.description : recipe.description.substring(0, 180)}
                 <span className={classes.loadmore} onClick={() => setLoadmore(!loadmore)}>{loadmore ? 'Load less' : 'Load more'}</span>
@@ -70,10 +72,6 @@ export default function Info({ recipe, allergens }) {
             click={() => { setEdit(!edit); }}
           />
         )}
-
-        {/* <div>
-          <strong>Category:</strong> {recipe.category}
-        </div> */}
       </div>
     </div>
   );

@@ -33,7 +33,7 @@ const RecipeDetails = ({ recipe, allergens }) => {
           {<Info recipe={recipe} allergens={allergens} />}
         </div>
         <div>
-          {' '}
+          <h5>Tags: </h5>
           <SingleRecipeTags tags={recipe.tags} />
         </div>
 
