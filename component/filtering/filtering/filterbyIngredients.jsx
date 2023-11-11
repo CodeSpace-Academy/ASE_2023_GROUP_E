@@ -3,76 +3,58 @@ import { useEffect, useState } from "react";
 import CustomizedHook from "./filterForm";
 import { BlueButton } from "@/component/Button/button";
 
-export default function FilterbyIngredients(){
-
-  const { setFilteredResults, filteredResults, total, setTotal  } = StateContext()
+export default function FilterbyIngredients() {
+  const { setFilteredResults, filteredResults, total, setTotal } = StateContext();
   const [ingredients, setIngredients] = useState([]);
   const [selectedOptions, setSelectedOptions] = useState([]);
-  
-  /**
-   * Used to swicth filtering with $and and with $or using a boolean
-   */
-  const [andOr, setAndOr] = useState(false)
- 
-  useEffect(() =>{
+  const [andOr, setAndOr] = useState(false);
+  const [page, setPage] = useState(1);
+
+  useEffect(() => {
     fetch('/api/filtering/filterOptions/selectOptions?object=ingredients')
       .then(res => res.json())
       .then(data => {
         if (data) {
-
-          /**
-           * Fetches the ingredients which is an array objects.
-           * maps over this array to abstracts the object keys
-           */
-          const allIngredients = data.recipes.map((item) => {
-              return Object.keys(item.ingredients)
-          })
-          /**
-           * {@link allIngredients} is an array of arrays
-           * which is then combined
-           */
-          const slitIngredients = allIngredients.join().split(',')
-          /**
-           * The combined array is then checked to remove any duplicates
-           * then sent into a state 
-           */
+          const allIngredients = data.recipes.map((item) => Object.keys(item.ingredients));
+          const slitIngredients = allIngredients.join().split(',');
           const uniqueIngredients = [...new Set(slitIngredients)];
           setIngredients(uniqueIngredients);
         }
-      })
-  }, [ingredients])
+      });
+  }, [ingredients]);
 
   const handleSelectChange = (selected) => {
     setSelectedOptions(selected);
   };
 
-  const selected = selectedOptions.map((item) => item.value).join(',')
+  const selected = selectedOptions.map((item) => item.value).join(',');
 
   useEffect(() => {
-    if(selectedOptions.length > 0){
+    if (selectedOptions.length > 0) {
       fetch(`/api/filtering/filterOptions/filterIngredients?selected=${selected}&andOr=${andOr ? '$or' : '$and'}`)
-      .then(res => res.json())
-      .then(data => {
-        setFilteredResults(data && data.recipes[0])
-        setTotal(total + data && data.recipes[1])
-      })
+        .then(res => res.json())
+        .then(data => {
+          setFilteredResults(data && data.recipes[0]);
+          setTotal(total + data && data.recipes[1]);
+          const newUrl = `/findstay?Ingredients=${selected}`; // to change the url
+          window.history.replaceState({ ...window.history.state, as: newUrl, url: newUrl }, '', newUrl);
+        });
     }
-  }, [selectedOptions, andOr])
+  }, [selectedOptions, andOr]);
 
   return (
+    <>
+      <BlueButton
+        click={() => setAndOr(!andOr)}
+        text={andOr ? 'Includes all' : 'Includes one'}
+      />
 
-  <>
-    <BlueButton  
-      click={() => setAndOr(!andOr)}
-      text={andOr ? 'Includes all' : 'Includes one'}
-    />
-
-    <CustomizedHook 
-      options={ingredients} 
-      filter={'Filter Ingredients'}
-      handleSelectChange={handleSelectChange}
-      selectedOptions={selectedOptions} 
-    />
-  </>
-  )
+      <CustomizedHook
+        options={ingredients}
+        filter={'Filter Ingredients'}
+        handleSelectChange={handleSelectChange}
+        selectedOptions={selectedOptions}
+      />
+    </>
+  );
 }
