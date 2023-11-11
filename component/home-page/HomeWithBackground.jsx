@@ -25,7 +25,7 @@ const HomeWithBackground = () => {
           />
 
           <WhiteButton 
-            text='favourites'
+            text='Favourites'
             click={() => router.push(`/favourites`)}
           />
 
