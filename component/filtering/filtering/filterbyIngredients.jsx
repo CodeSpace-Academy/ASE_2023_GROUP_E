@@ -61,16 +61,18 @@ export default function FilterbyIngredients(){
   return (
 
   <>
-    <BlueButton  
-      click={() => setAndOr(!andOr)}
-      text={andOr ? 'Includes all' : 'Includes one'}
-    />
 
     <CustomizedHook 
       options={ingredients} 
       filter={'Filter Ingredients'}
       handleSelectChange={handleSelectChange}
       selectedOptions={selectedIngredientsOptions} 
+    />
+    <br/>
+
+    <BlueButton  
+      click={() => setAndOr(!andOr)}
+      text={andOr ? 'Includes all' : 'Includes one'}
     />
   </>
   )
