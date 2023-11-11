@@ -54,7 +54,7 @@ export default function Info({ recipe, allergens }) {
         <FavouritesButton recipe={recipe} />
         <div className={classes.description}>{ recipe.description
             ? <p>{loadmore ? recipe.description : recipe.description.substring(0, 180)}
-                <span className={classes.loadmore} onClick={() => setLoadmore(!loadmore)}>Load more</span>
+                <span className={classes.loadmore} onClick={() => setLoadmore(!loadmore)}>{loadmore ? 'Load less' : 'Load more'}</span>
               </p> : <ErrorMessage message="Failed to load description." />}
         </div>
 
