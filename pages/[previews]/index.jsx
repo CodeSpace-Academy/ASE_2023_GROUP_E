@@ -1,3 +1,4 @@
+'use client';
 import PreviewList from '@/component/Recipes/Preview/PreviewList';
 import { useState, useEffect, useMemo } from 'react';
 import SearchBar from '@/component/filtering/searchCategories/categorySearch';
@@ -11,6 +12,8 @@ import { useRouter } from 'next/router';
 import FilterbyIngredients from '@/component/filtering/filtering/filterbyIngredients';
 import SearchAndFilterHero from '@/component/filtering/searchAndFilterHero/searchAndFilterHero';
 import { BlueButton } from '@/component/Button/button';
+import { Pagination } from 'flowbite-react';
+
 export default function AllRecipes({ Data, url, totalRecipes }) {
   const router = useRouter();
   // const [results, setResults] = useState(null);
@@ -21,10 +24,20 @@ export default function AllRecipes({ Data, url, totalRecipes }) {
   const skipNo = parseInt(router.query.previews.split('-')[1]);
 
   const page = (skipNo + 100) / 100;
+  const [currentPage, setCurrentPage] = useState(page);
+
+
+  function onPageChange(page){
+    setCurrentPage(page)
+    console.log(page * 100 - 100)
+    router.push(`recipes-${page * 100 - 100}-${sortField}-${sortOrder}`);
+  }
 
   function handleNextClick() {
     router.push(`recipes-${skipNo + 100}-${sortField}-${sortOrder}`);
   }
+
+  const totalPages = Math.ceil(totalRecipes/100)
 
   useEffect(() => {
     router.push(`recipes-${skipNo}-${sortField}-${sortOrder}`);
@@ -57,6 +70,7 @@ export default function AllRecipes({ Data, url, totalRecipes }) {
                     value={sortOrder}
                     onChange={(e) => setSortOrder(e.target.value)}
                   >
+                    <option></option>
                     <option value="asc">Ascending</option>
                     <option value="desc">Descending</option>
                   </select>
@@ -78,10 +92,9 @@ export default function AllRecipes({ Data, url, totalRecipes }) {
             />
 
             <div className="loadMore">
-              <div className="pNumber">
-                {' '}
-                <h2 className='loadMoreButton'>{page}</h2>
-              </div>
+            <div className="flex overflow-x-auto sm:justify-center">
+              <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={onPageChange} />
+            </div>
     
               {totalRecipes - skipNo >= 100?<div >
                 <button  className='loadMoreButton' onClick={handleNextClick} disabled={false}>
