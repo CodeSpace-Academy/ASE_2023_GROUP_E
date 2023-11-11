@@ -37,7 +37,6 @@ export default function Info({ recipe, allergens }) {
         <p className={classes.category}>{recipe.category}</p>
         <div>
           {/* <strong>Tags:</strong> */}
-          <SingleRecipeTags tags={recipe.tags} />
         </div>
         <div className={classes.times}>
           <PrepandCookTime recipe={recipe} />
@@ -56,7 +55,8 @@ export default function Info({ recipe, allergens }) {
         <div className={classes.description}>{ recipe.description
             ? <p>{loadmore ? recipe.description : recipe.description.substring(0, 180)}
                 <span className={classes.loadmore} onClick={() => setLoadmore(!loadmore)}>Load more</span>
-              </p> : <ErrorMessage message="Failed to load description." />}</div>
+              </p> : <ErrorMessage message="Failed to load description." />}
+        </div>
 
         {/**
          * {@link info} is a props that hold the current descripton that will get modified

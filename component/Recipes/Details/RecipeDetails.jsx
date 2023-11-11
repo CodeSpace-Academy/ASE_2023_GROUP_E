@@ -32,7 +32,7 @@ const RecipeDetails = ({ recipe, allergens }) => {
         <div className={styles.infoMobileView}>
           {<Info recipe={recipe} allergens={allergens} />}
         </div>
-        <div className={styles.tagsMobileView}>
+        <div>
           {' '}
           <SingleRecipeTags tags={recipe.tags} />
         </div>
