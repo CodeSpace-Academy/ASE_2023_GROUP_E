@@ -1,0 +1,30 @@
+.button{
+    padding: 1%;
+    padding-left: 10px;
+    padding-right:10px ;
+    /* width: 140px; */
+    border-radius: 5px;
+    border: none;
+    color: white;
+    background:#003153;
+    font-size: large;
+}
+
+.linkbutton {
+    cursor: pointer;
+    font: inherit;
+    color: white;
+    background-color:#003153;
+    border:none;
+    border-radius: 4px;
+    padding: 0.5rem 2.5rem;
+    text-decoration: none;
+}
+
+.linkbutton:hover{
+    background-color: #003153;
+}
+
+.linkbutton:active{
+    background-color: #003153
+}
