@@ -11,7 +11,7 @@ import getRecipes from '@/database/getData/getRecipes';
 import { useRouter } from 'next/router';
 import FilterbyIngredients from '@/component/filtering/filtering/filterbyIngredients';
 import SearchAndFilterHero from '@/component/filtering/searchAndFilterHero/searchAndFilterHero';
-import { BlueButton } from '@/component/Button/button';
+import { BlueButton, WhiteButton } from '@/component/Button/button';
 import { Pagination } from 'flowbite-react';
 
 export default function AllRecipes({ Data, url, totalRecipes }) {
@@ -78,7 +78,7 @@ export default function AllRecipes({ Data, url, totalRecipes }) {
                 </div>
                 <h5>{total}</h5>
               </div>
-              <BlueButton
+              <WhiteButton
                 click={() => {
                   setFilteredResults(0)
                   setSelectedIngredientsOptions([])
@@ -97,11 +97,11 @@ export default function AllRecipes({ Data, url, totalRecipes }) {
               <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={onPageChange} />
             </div>
     
-              {totalRecipes - skipNo >= 100?<div >
-                <button  className='loadMoreButton' onClick={handleNextClick} disabled={false}>
-                  {' '}
-                   {totalRecipes - skipNo - 100} {' '} remaining
-                </button>
+              {totalRecipes - skipNo >= 100 ? <div >
+                <WhiteButton 
+                  click={handleNextClick} 
+                  text={totalRecipes - skipNo - 100+ ' '+ 'remaining'}
+                />
               </div>: ''}
             </div>
           </main>

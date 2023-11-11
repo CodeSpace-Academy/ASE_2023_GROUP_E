@@ -71,7 +71,7 @@ export default function SearchForm() {
 
   return (
     <>
-          <div className={classes.search}>
+      <div className={classes.search}>
         <h1>Find recipes</h1>
         <input
           type="text"
@@ -109,11 +109,11 @@ export default function SearchForm() {
         }
 
       </div>
-      <h4>Total Recipes Searched: {length}</h4>
+      <h4 className={classes.total}>Total Recipes: {length}</h4>
       <div className={classes.results} onClick={() => { setDisplayHistory(false)}} >
         {checkResults
           ? <PreviewList recipes={results} input={results && searchRef.current.value} />
-          : <p>No Matching Recipes</p>}
+          : <p className={classes.noRecipes}>No Matching Recipes</p>}
       </div>
     </>
   );

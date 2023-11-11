@@ -1,7 +1,7 @@
 import StateContext from "@/useContext/StateContext";
 import { useEffect, useState } from "react";
 import CustomizedHook from "./filterForm";
-import { BlueButton } from "@/component/Button/button";
+import { WhiteButton } from "@/component/Button/button";
 
 export default function FilterbyIngredients(){
 
@@ -70,7 +70,7 @@ export default function FilterbyIngredients(){
     />
     <br/>
 
-    <BlueButton  
+    <WhiteButton  
       click={() => setAndOr(!andOr)}
       text={andOr ? 'Includes all' : 'Includes one'}
     />

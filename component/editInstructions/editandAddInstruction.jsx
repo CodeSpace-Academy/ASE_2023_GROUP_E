@@ -1,5 +1,5 @@
 import StateContext from '../../useContext/StateContext';
-import Button from '../Button/button';
+import Button, { WhiteButton } from '../Button/button';
 import EditInstruction, {
   GetSpecificInstruction,
   NewInstruction,
@@ -33,9 +33,8 @@ export function EditandAddInstruction({ recipe }) {
         <NewInstruction />
       ) : (
         <div className={classes.addButton}>
-          <Button
-            text="Add Instruction"
-            color="success"
+          <WhiteButton 
+            text='Add Instruction'
             click={() => setAddInstruction(!addInstruction)}
           />
         </div>

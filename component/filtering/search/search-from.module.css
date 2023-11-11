@@ -57,3 +57,8 @@
     cursor: pointer;
     margin-left: 5px;
 }
+
+.total,
+.noRecipes{
+    text-align: center;
+}
