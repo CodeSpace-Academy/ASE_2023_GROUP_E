@@ -11,6 +11,7 @@ import { useRouter } from 'next/router';
 import FilterbyIngredients from '@/component/filtering/filtering/filterbyIngredients';
 import SearchAndFilterHero from '@/component/filtering/searchAndFilterHero/searchAndFilterHero';
 import { BlueButton } from '@/component/Button/button';
+
 export default function AllRecipes({ Data, url, totalRecipes }) {
   const router = useRouter();
   // const [results, setResults] = useState(null);
