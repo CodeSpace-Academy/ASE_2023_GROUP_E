@@ -10,6 +10,7 @@ import getRecipes from '@/database/getData/getRecipes';
 import { useRouter } from 'next/router';
 import FilterbyIngredients from '@/component/filtering/filtering/filterbyIngredients';
 import SearchAndFilterHero from '@/component/filtering/searchAndFilterHero/searchAndFilterHero';
+import FilterbyInstructions from '@/component/filtering/filtering/filterbyInstructions';
 import { BlueButton } from '@/component/Button/button';
 
 export default function AllRecipes({ Data, url, totalRecipes }) {
@@ -17,7 +18,7 @@ export default function AllRecipes({ Data, url, totalRecipes }) {
   // const [results, setResults] = useState(null);
   const [sortField, setSortField] = useState('_id'); // Default sort field
   const [sortOrder, setSortOrder] = useState(''); // Default sort order
-  const { filteredResults, total, setSelectedIngredientsOptions, setSelectedTagsOptions, setFilteredResults } = StateContext();
+  const { filteredResults, total, setSelectedIngredientsOptions, setSelectedTagsOptions,setSelectedInstructionsOptions,  setFilteredResults } = StateContext();
 
   const skipNo = parseInt(router.query.previews.split('-')[1]);
 
@@ -41,6 +42,7 @@ export default function AllRecipes({ Data, url, totalRecipes }) {
               <div className="previewMain">
                 <FilterbyTags />
                 <FilterbyIngredients />
+                <FilterbyInstructions />
 
                 <div className="sort-dropdown">
                   <label> Sort by:</label>
@@ -69,6 +71,7 @@ export default function AllRecipes({ Data, url, totalRecipes }) {
               <BlueButton
                 click={() => {
                   setFilteredResults(0)
+                  setSelectedInstructionsOptions([])
                   setSelectedIngredientsOptions([])
                   setSelectedTagsOptions([])
                   setFilteredResults(0)
