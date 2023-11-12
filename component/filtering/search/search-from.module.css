@@ -12,7 +12,7 @@
 
 .search input {
     height: 13vh;
-    width: 60%;
+    min-width: 60%;
     text-align: center;
     font-size: larger;
     border: none;
@@ -56,4 +56,15 @@
 .searhHistory p {
     cursor: pointer;
     margin-left: 5px;
+}
+
+@media only screen and (max-width: 508px){
+    .searhHistory{
+        width: 105%;
+        transform: translateX(0%);
+    }
+
+    .search input {
+        width: 105%;
+    }
 }

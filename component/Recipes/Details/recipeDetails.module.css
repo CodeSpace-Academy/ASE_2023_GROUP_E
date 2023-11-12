@@ -30,10 +30,12 @@
 }
 
 .title {
-  /* Default styles for the title */
-  font-size: 1.1em; /* Using em for font size */
-  font-weight: bold;
-  order: 1; /* Put the title at the top */
+  font-weight: 900;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  margin-top: 0;
+  margin-top: 3%;
+  text-align: center;
 }
 
 .imageRow {
@@ -62,12 +64,6 @@
   }
 }
 
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-  .title {
-    font-size: 1.75em; /* Increase title font size for medium screens */
-  }
-}
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
