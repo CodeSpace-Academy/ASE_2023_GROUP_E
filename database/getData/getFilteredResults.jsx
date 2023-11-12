@@ -24,6 +24,22 @@ export async function getFilteredIngredients(input, andOr) {
   return { recipes, totalMatchingRecipes };
 }
 
+export async function getFilteredInstructions(input) {
+  const db = client.db('devdb');
+
+  const filterInstructions = {
+    instructions: {
+      $size: parseInt(input, 10),
+    },
+  };
+
+  const recipes = await db.collection('recipes').find(filterInstructions).limit(50).toArray();
+  const totalMatchingRecipes = await db.collection('recipes').countDocuments(filterInstructions);
+
+  return { recipes, totalMatchingRecipes };
+}
+
+
 
 export async function getFilteredObjects(object) {
   const db = client.db('devdb');
