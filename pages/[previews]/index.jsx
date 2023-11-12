@@ -62,7 +62,9 @@ export default function AllRecipes({ Data, url, totalRecipes }) {
                     <option value="desc">Descending</option>
                   </select>
                 </div>
+
                 <h5>{total}</h5>
+                <h6>{total == 0 ? "No filters have been applied" : ''}</h6>
               </div>
               <BlueButton
                 click={() => {
