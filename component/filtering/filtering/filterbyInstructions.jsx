@@ -11,7 +11,7 @@ export default function FilterbyInstructions() {
 
   const [instructions, setInstructions] = useState([]);
 
-  // Fetches instructions data from the server on component mount
+  // Fetches instructions data from the server 
   useEffect(() => {
     fetch('/api/filtering/filterOptions/selectOptions?object=instructions')
       .then((res) => res.json())
