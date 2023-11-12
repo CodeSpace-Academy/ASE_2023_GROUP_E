@@ -9,8 +9,8 @@
 }
 
 .previewMain{
-    padding-left: 80px;
-    padding-right: 80px;
+    padding-left: 8px;
+    padding-right: 8px;
 }
 
 
@@ -31,6 +31,7 @@
     color: white;
     border: none;
   }
+
 
 .pNumber {
     padding-top: 10px;
