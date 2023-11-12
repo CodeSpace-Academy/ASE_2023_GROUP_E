@@ -1,9 +1,9 @@
-import { getFilteredInstructions } from "@/database/getData/getFilteredResults";
+import { getFilteredInstructions } from "../../../../database/getData/getFilteredResults";
 
 export default async function handler(req, res) {
   if (req.method === 'GET') {
     const selected = req.query.selected ? req.query.selected : null;
-    
+
     try {
       if (selected !== null) {
         const { recipes, totalMatchingRecipes } = await getFilteredInstructions(selected);
