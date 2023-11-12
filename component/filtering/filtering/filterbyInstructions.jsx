@@ -15,10 +15,15 @@ export default function FilterbyInstructions() {
       })
   }, []);
 
+  const handleInputChange = (event) => {
+    const selectedValue = parseInt(event.target.value, 10); 
+    setSelectedInstructionsOptions([{ value: selectedValue, label: selectedValue }]);
+  };
+
 
   useEffect(() => {
     const selectedValue = selectedInstructionsOptions.length > 0 ? selectedInstructionsOptions[0].value : null;
-    
+
     if (selectedValue !== null) {
       fetch(`/api/filtering/filterOptions/filterInstructions?selected=${selectedValue}`)
         .then(res => res.json())
@@ -40,8 +45,11 @@ export default function FilterbyInstructions() {
     <div>
       <h4>Filter Instructions:</h4>
       <input
-        type="number"
-        
+      type="number"
+      id="instruction"
+      value={selectedInstructionsOptions.length > 0 ? selectedInstructionsOptions[0].value : ''}
+      onChange={handleInputChange}
+      min={0}
       />
     </div>
   );
