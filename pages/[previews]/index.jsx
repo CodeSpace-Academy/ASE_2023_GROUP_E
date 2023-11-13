@@ -14,8 +14,21 @@ import SearchAndFilterHero from '@/component/filtering/searchAndFilterHero/searc
 import { BlueButton, WhiteButton } from '@/component/Button/button';
 import { Pagination } from 'flowbite-react';
 import FilterbyInstructions from '@/component/filtering/filtering/filterbyInstructions';
+import { Spinner } from 'flowbite-react';
+import ErrorMessage from '@/component/Error/ErrorMessage';
 
-export default function AllRecipes({ Data, url, totalRecipes }) {
+export default function AllRecipes({ Data, url, totalRecipes, error }) {
+
+  if(error){
+    console.log('missing env file')
+    return (
+      <div style={{ textAlign: 'center', marginTop:'100px'}}>
+        <Spinner />
+        <ErrorMessage message={'.env file is missing or has no values'}/>
+      </div>
+    )
+  }
+
   const router = useRouter();
   // const [results, setResults] = useState(null);
   const [sortField, setSortField] = useState('_id'); // Default sort field
@@ -121,20 +134,28 @@ export default function AllRecipes({ Data, url, totalRecipes }) {
 }
 
 export async function getServerSideProps({ params }) {
-  const { previews } = params;
-  const skipNo = parseInt(previews.split('-')[1]);
-  const sortBy = previews.split('-')[2];
-  const sortOrder = previews.split('-')[3] === 'desc' ? -1 : 1
-  const data = await getRecipes({}, skipNo, 100, { [sortBy]: sortOrder });
-  const Data = data.recipes;
-  const totalRecipes = data.totalRecipes;
-
-  const url = [skipNo, sortBy];
-  return {
-    props: {
-      Data,
-      url,
-      totalRecipes,
-    },
-  };
+  try{
+    const { previews } = params;
+    const skipNo = parseInt(previews.split('-')[1]);
+    const sortBy = previews.split('-')[2];
+    const sortOrder = previews.split('-')[3] === 'desc' ? -1 : 1
+    const data = await getRecipes({}, skipNo, 100, { [sortBy]: sortOrder });
+    const Data = data.recipes;
+    const totalRecipes = data.totalRecipes;
+  
+    const url = [skipNo, sortBy];
+    return {
+      props: {
+        Data,
+        url,
+        totalRecipes,
+      },
+    };
+  }catch(error){
+    return{
+      props: {
+        error : 'error'
+      }
+    }
+  }
 }
