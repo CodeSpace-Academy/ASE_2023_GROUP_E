@@ -20,11 +20,10 @@ import ErrorMessage from '@/component/Error/ErrorMessage';
 export default function AllRecipes({ Data, url, totalRecipes, error }) {
 
   if(error){
-    console.log('missing env file')
     return (
       <div style={{ textAlign: 'center', marginTop:'100px'}}>
         <Spinner />
-        <ErrorMessage message={'.env file is missing or has no values'}/>
+        <ErrorMessage message={error}/>
       </div>
     )
   }
@@ -152,9 +151,10 @@ export async function getServerSideProps({ params }) {
       },
     };
   }catch(error){
+    const errorMessage = error.message || 'OOPS!!! Something went wrong.';
     return{
       props: {
-        error : 'error'
+        error : errorMessage
       }
     }
   }

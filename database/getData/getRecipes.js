@@ -2,7 +2,7 @@ import { client } from "../client"
 
 export default async function getRecipes(filter, skip, limit, sort) {
     try{
-        const db = client().db('devdb');
+        const db = client.db('devdb');
         const recipesCollection = db.collection('recipes');
     
         /**
@@ -29,6 +29,7 @@ export default async function getRecipes(filter, skip, limit, sort) {
             recipes: results,
         };
     }catch(error){
-        console.log('failed to load data')
+        console.error('failed to load data')
+        throw 'error'
     }
 }
