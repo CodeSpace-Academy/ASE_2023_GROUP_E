@@ -1,9 +1,6 @@
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
-import classes from './category.module.css';
 import Select from 'react-select'; // Import react-select
-import { BlueButton } from '@/component/Button/button';
 
 const SearchBar = () => {
   const [query, setQuery] = useState('');

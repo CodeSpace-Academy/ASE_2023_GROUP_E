@@ -9,7 +9,5 @@
   border: none;
 }
 .tagButton:hover {
-  background-color: #66cd67;
-  transform: scale(1.05);
-  color: #66cd67;
+  cursor: auto;
 }
