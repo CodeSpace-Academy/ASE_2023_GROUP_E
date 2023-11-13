@@ -20,7 +20,7 @@ export default function FilterbyTags(){
       .then(res => res.json())
       .then(data => {
         if (data) {
-          const allTags = data.recipes.reduce((tags, recipe) => {
+          const allTags = data.recipes && data.recipes.reduce((tags, recipe) => {
             return tags.concat(recipe.tags);
           }, []);
     
@@ -40,8 +40,8 @@ export default function FilterbyTags(){
       fetch(`/api/filtering/filterOptions/filterTags?selected=${selected}`)
         .then(res => res.json())
         .then(data => {
-          setFilteredResults(data && data.recipes[0])
-          setTotal(total + data && data.recipes[1])
+          setFilteredResults(data.recipes && data.recipes[0])
+          setTotal(total + data.recipes && data.recipes[1])
         })
   }, [selectedTagsOptions])
 

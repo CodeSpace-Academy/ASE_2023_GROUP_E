@@ -29,7 +29,10 @@ export default async function getRecipes(filter, skip, limit, sort) {
             recipes: results,
         };
     }catch(error){
-        console.error('failed to load data')
-        throw 'error'
+       if(error.message !== '.env file is missing or has no values'){
+        throw new Error('OOPS!!! Something went wrong.')
+       }
+
+       throw error
     }
 }
