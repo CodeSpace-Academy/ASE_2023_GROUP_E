@@ -45,6 +45,12 @@ export default function PreviewList({ recipes, input, sortDate }) {
 
   const router = useRouter()
 
+  const handleImageError = (event) => {
+    // Set the src attribute to a placeholder or alternative image URL
+    event.target.src = '../../../public/images/greensald.jpg';
+  };
+
+
   return (
     <>
       {/* <SearchBar onSearch={handleSearch} /> */}
@@ -69,7 +75,7 @@ export default function PreviewList({ recipes, input, sortDate }) {
                         <div>
                           <Image
                             src={recipe.images[0]}
-                            onError="https://images.pexels.com/photos/10977557/pexels-photo-10977557.jpeg"
+                            onError={handleImageError}
                             className={style.img}
                             alt={'recipe Image'}
                             width={200}
