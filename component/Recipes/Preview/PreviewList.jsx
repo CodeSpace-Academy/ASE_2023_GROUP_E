@@ -45,6 +45,12 @@ export default function PreviewList({ recipes, input, sortDate }) {
 
   const router = useRouter()
 
+  const handleImageError = (event) => {
+    // Set the src attribute to a placeholder or alternative image URL
+    event.target.src = '../../../public/images/greensald.jpg';
+  };
+
+
   return (
     <>
       {/* <SearchBar onSearch={handleSearch} /> */}
@@ -69,19 +75,17 @@ export default function PreviewList({ recipes, input, sortDate }) {
                         <div>
                           <Image
                             src={recipe.images[0]}
+                            onError={handleImageError}
                             className={style.img}
                             alt={'recipe Image'}
                             width={200}
                             height={100}
-                            loading="lazy"
-                            blurDataURL="https://images.pexels.com/photos/10977557/pexels-photo-10977557.jpeg"
                           />
                         </div>
                         <div>
                           <p className={style.category}>{recipe.category}</p>
                           <div className={style.heading}>
-                            {router.pathname === '/search' ? '' :<h3>{recipe.title}</h3>}
-                            {router.pathname === '/search' && input ? (
+                            {router.pathname === '/search' ? input ? (
                               <div>
                                 {recipe.title
                                   .split(new RegExp(`(${input})`, 'i'))
@@ -102,7 +106,7 @@ export default function PreviewList({ recipes, input, sortDate }) {
                               </div>
                             ) : (
                               <h3 className={style.title}>{recipe.title}</h3>
-                            )}
+                            ) : <h3>{recipe.title}</h3>}
                           </div>
                           {showDescriptions[index] && recipe.description ? (
                             <p>{recipe.description}</p>

@@ -3,6 +3,7 @@ import React, { Fragment, useRef, useState, useEffect } from 'react';
 import { debounce } from 'lodash';
 import PreviewList from '../../Recipes/Preview/PreviewList';
 import classes from './search-from.module.css';
+import ErrorMessage from '@/component/Error/ErrorMessage';
 
 export default function SearchForm() {
   const searchRef = useRef();
@@ -11,6 +12,7 @@ export default function SearchForm() {
   const [displayHistory, setDisplayHistory] = useState(false);
   const [length, setLength] = useState(0)
   const [addSearchHistory, setAddSearchHistory] = useState(false);
+  const [errorhandler, setErrorHandler] = useState(null)
 
   const searchHandler = () => {
     const filterInput = searchRef.current.value;
@@ -21,11 +23,17 @@ export default function SearchForm() {
     fetch(`/api/filtering/search/search?title=${filterInput}`)
       .then((res) => res.json())
       .then((data) => {
-        setResults(data && data.results[0]);
-        setLength(data && data.results[1]);
-        setAddSearchHistory(true);
+        if(data.message){
+          setErrorHandler(data.message)
+        }else{
+          setResults(data.results && data.results[0] || []);
+          setLength(data.results && data.results[1] || 0);
+          setAddSearchHistory(true);
+        }
+
       });
   };
+
   const debouncedSearchHandler = debounce(searchHandler, 1300);
 
   const checkResults = results && results.length !== 0;
@@ -35,7 +43,6 @@ export default function SearchForm() {
       setAddSearchHistory(false);
       await addItem('/api/filtering/search/searchHistory', { username: 'mike', searchHistoryInput: results && searchRef.current.value });
     } catch (error) {
-      // console.log(error);
     }
   }
 
@@ -52,10 +59,14 @@ export default function SearchForm() {
     useEffect(() => {
       fetch('/api/filtering/search/searchHistory?username=mike')
         .then((res) => { return res.json(); })
-        .then((data) => setSearchHistory(data.searchhistory[0] ? [...new Set(data.searchhistory[0].input)] : []))
-    }, []);
+        .then((data) => {
+          if(data.searchhistory){
+            setSearchHistory(data.searchhistory[0] ? [...new Set(data.searchhistory[0].input)] : [])
+          }
+        })
+    }, [setSearchHistory]);
 
-      /**
+  /**
    *
    * @param {string} item - is the value from the history list.
    * when the history item is clicked it fires the following function.
@@ -67,11 +78,17 @@ export default function SearchForm() {
     searchHandler(selectedValue);
   };
 
-  
+  if(errorhandler){
+    return (
+      <div style={{ textAlign: 'center', marginTop:'100px'}}>
+        <ErrorMessage message={[errorhandler, ', ', 'check your internet connection']}/>
+      </div>
+    )
+  }
 
   return (
     <>
-          <div className={classes.search}>
+      <div className={classes.search}>
         <h1>Find recipes</h1>
         <input
           type="text"
@@ -109,11 +126,11 @@ export default function SearchForm() {
         }
 
       </div>
-      <h4>Total Recipes Searched: {length}</h4>
+      <h4 className={classes.total}>Total Recipes: {length}</h4>
       <div className={classes.results} onClick={() => { setDisplayHistory(false)}} >
         {checkResults
           ? <PreviewList recipes={results} input={results && searchRef.current.value} />
-          : <p>No Matching Recipes</p>}
+          : <p className={classes.noRecipes}>No Matching Recipes</p>}
       </div>
     </>
   );

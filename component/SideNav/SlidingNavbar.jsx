@@ -60,14 +60,6 @@ function skip(){
           ))}
         </ul>
       </div>
-
-      <div className={`${classes.content} ${toggleMenu ? '' : classes.contentClose}`}>
-        {/* Add your page content here */}
-        
-        
-      </div>
-
-
     </div>
   );
 };

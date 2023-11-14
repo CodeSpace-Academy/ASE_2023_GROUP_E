@@ -13,14 +13,13 @@
   box-shadow: 10%;
   border-top: 1px;
   border-right: 1%;
-  padding: 1%;
-  text-align: center;
+  padding: 23px;
+  z-index: 1;
 }
 
 .menuToggle {
   cursor: pointer;
   text-align: center;
-  padding: 10px;
   font-size: 1.5rem;
 }
 .menuToggle:hover {
@@ -34,11 +33,13 @@
 .menuOptions {
   list-style: none;
   padding: 0;
+  margin-top: 10px;
 }
 
 .menuOptions.expanded li {
   display: flex;
-  align-items: center;
+  flex-direction: row;
+  text-align: center;
   padding: 10px;
 }
 
@@ -49,17 +50,8 @@
   display: flex;
 }
 
-.content {
-  /* flex-grow: 1;  Make the content area grow to fill the remaining space */
-  padding-left: px; /* Add padding to the left to accommodate the navigation bar */
-}
-
-.contentClose {
-  margin-left: 50px; /* Adjust the value to your preference */
-}
-
 .link {
-  font-size: 24px;
+  font-size: 28px;
 }
 
 .link a {
@@ -68,18 +60,15 @@
 
 .links2 {
   font-size: 30px;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
 }
+
 .links2:hover {
   transform: scale(1.1);
 }
 
 .links2 a {
   color: #fff;
-}
-
-.optionName {
-  cursor: pointer;
 }
 
 .optionName a {

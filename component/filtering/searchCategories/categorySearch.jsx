@@ -57,6 +57,8 @@
 
 // export default SearchBar;
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import Select from 'react-select'; // Import react-select
 import Select from 'react-select';
 import StateContext from '@/useContext/StateContext';
 
