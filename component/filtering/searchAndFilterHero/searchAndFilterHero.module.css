@@ -15,12 +15,13 @@
 }
 
 .inputsContainer {
-  background-color: rgba(45, 63, 13, 0.45);
+  background-color: rgba(45, 63, 13, 0.318);
   padding: 1rem 0rem;
   border-radius: 0.7rem;
   color: #f0f0f0;
   width: 40rem;
   font-size: 0.9rem;
+  margin: 15px;
 }
 
 .heading {

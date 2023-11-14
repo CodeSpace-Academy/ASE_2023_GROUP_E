@@ -58,6 +58,11 @@
     margin-left: 5px;
 }
 
+.total,
+.noRecipes{
+  text-align: center;
+}
+
 @media only screen and (max-width: 508px){
     .searhHistory{
         width: 105%;
@@ -67,4 +72,5 @@
     .search input {
         width: 105%;
     }
+
 }
