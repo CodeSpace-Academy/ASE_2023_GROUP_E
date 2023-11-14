@@ -10,14 +10,14 @@ import getRecipes from '@/database/getData/getRecipes';
 import { useRouter } from 'next/router';
 import FilterbyIngredients from '@/component/filtering/filtering/filterbyIngredients';
 import SearchAndFilterHero from '@/component/filtering/searchAndFilterHero/searchAndFilterHero';
-export default function AllRecipes({ Data, url, totalRecipes }) {
+export default function AllRecipes({ Data, totalRecipes }) {
   const router = useRouter();
   // const [results, setResults] = useState(null);
   const [sortField, setSortField] = useState('_id'); // Default sort field
   const [sortOrder, setSortOrder] = useState(''); // Default sort order
   const { filteredResults, total } = StateContext();
 
-  const skipNo = parseInt(router.query.previews.split('-')[1]);
+  const skipNo = parseInt(router.query.previews.split('-')[1]) || 0;
 
   const page = (skipNo + 100) / 100;
 
@@ -100,11 +100,11 @@ export async function getServerSideProps({ params }) {
   const Data = data.recipes;
   const totalRecipes = data.totalRecipes;
 
-  const url = [skipNo, sortBy];
+  // const url = [skipNo, sortBy];
   return {
     props: {
       Data,
-      url,
+    
       totalRecipes,
     },
   };
