@@ -2,7 +2,7 @@ import { client } from '../client'
 
 
 export default async function addSearchHistory(username, searchHistoryInput){
-  const db = client.db('devdb')
+  const db = client().db('devdb')
 
 
   //checks if user has any history
