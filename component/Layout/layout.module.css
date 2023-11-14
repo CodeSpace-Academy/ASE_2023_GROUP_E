@@ -27,6 +27,7 @@
 
 .children {
   padding: 0;
+  margin-bottom: 60px;
 }
 
 .expanded {
@@ -55,4 +56,20 @@
   .expand {
     margin-left: 46px;
   }
+}
+
+@media only screen and (max-width: 426px){
+  .imgDiv, .img{
+    margin: 3px;
+    padding: 0;
+  }
+
+  .expanded {
+    margin: 12px;
+  }
+  
+  .expand {
+    margin: 12px;
+  }
+  
 }

@@ -5,6 +5,7 @@ import classes from './sideNav.module.css';
 import { MdOutlineFastfood,} from 'react-icons/md'
 import StateContext from '@/useContext/StateContext';
 import Link from 'next/link';
+import { IoMdClose } from "react-icons/io";
 
 function Links(link, text, click){
   return (
@@ -30,7 +31,6 @@ function skip(){
     { icon: Links('/',  <AiOutlineHome /> ) , name: Links('/', 'Home')},
     { icon: Links('/profile', <AiOutlineUser />) , name: Links('/profile', 'Profile') },
     { icon: Links(`/recipes-0-_id-asc`, <MdOutlineFastfood />, skip ), name: Links(`recipes`, 'Recipes') },
-    { icon: Links('/tags', <AiOutlineTags/>) , name: Links('/tags', 'Tags')},
     { icon: Links('/favourites',  <AiOutlineHeart />), name: Links('/favourites', 'Favourites') },
     { icon: Links('/search',  <AiOutlineSearch />), name: Links('/search', 'Search') },
     { icon: Links('/', <AiOutlineSetting />) , name: Links('/', 'Settings')  },
@@ -40,7 +40,7 @@ function skip(){
     <div className={classes.pageContainer}>
       <div className={classes.expandableMenu}>
         <div className={`${classes.menuToggle}`} onClick={toggleExpand}>
-          <AiOutlineMenu />
+          {toggleMenu ?  <IoMdClose /> : <AiOutlineMenu />}
         </div>
 
         <ul className={`${classes.menuOptions} ${toggleMenu ? classes.expanded : ''}`}>
@@ -59,6 +59,14 @@ function skip(){
             </li>
           ))}
         </ul>
+      </div>
+      
+      <div className={classes.mobileMenu}>
+          {
+            menuOptions.map((option) => (
+              <p>{option.icon}</p>
+            ))
+          }
       </div>
     </div>
   );
