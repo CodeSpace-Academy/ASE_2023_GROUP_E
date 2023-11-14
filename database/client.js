@@ -1,7 +1,7 @@
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = process.env.MONGODB_URI;
+const uri = process.env.MONGODB_UI;
 
-export function client(){
+function Createclient(){
 
   if (!uri) {
     throw new Error(".env file is missing or has no values");
@@ -16,5 +16,10 @@ export function client(){
     maxIdleTimeMS: 500,
   });
 
+  return client
+}
+
+export default function client(){
+  const client = Createclient()
   return client
 }

@@ -1,4 +1,4 @@
-import { client } from "../client"
+import client from "../client"
 
 export default async function getRecipes(filter, skip, limit, sort) {
     try{
