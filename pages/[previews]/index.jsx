@@ -11,7 +11,7 @@ import getRecipes from '@/database/getData/getRecipes';
 import { useRouter } from 'next/router';
 import FilterbyIngredients from '@/component/filtering/filtering/filterbyIngredients';
 import SearchAndFilterHero from '@/component/filtering/searchAndFilterHero/searchAndFilterHero';
-import { BlueButton, WhiteButton } from '@/component/Button/button';
+import { WhiteButton } from '@/component/Button/button';
 import { Pagination } from 'flowbite-react';
 import FilterbyInstructions from '@/component/filtering/filtering/filterbyInstructions';
 
@@ -45,78 +45,67 @@ export default function AllRecipes({ Data, url, totalRecipes }) {
   }, [sortField, sortOrder]);
 
   return (
-    <div>
-      <Typography variant="circular">
-        {Data ? (
-          <main>
-            <SearchAndFilterHero>
-              <SearchBar />
-              <div className="previewMain">
-                <FilterbyTags />
-                <FilterbyIngredients />
-                <FilterbyInstructions />
+    <main>
+      <SearchAndFilterHero>
+        <SearchBar />
+        <div className="previewMain">
+          <FilterbyTags />
+          <FilterbyIngredients />
+          <FilterbyInstructions />
 
-                <div className="sort-dropdown">
-                  <label> Sort by:</label>
-                  <select
-                    className='previewSort'
-                    value={sortField}
-                    onChange={(e) => setSortField(e.target.value)}
-                  >
-                    <option value="_id">default</option>
-                    <option value="prep">Prep time</option>
-                    <option value="cook">Cook time</option>
-                    <option value="published">Date</option>
-                  </select>
+          <div className="sort-dropdown">
+            <label> Sort by:</label>
+            <select
+              className='previewSort'
+              value={sortField}
+              onChange={(e) => setSortField(e.target.value)}
+            >
+              <option value="_id">default</option>
+              <option value="prep">Prep time</option>
+              <option value="cook">Cook time</option>
+              <option value="published">Date</option>
+            </select>
 
-                  <select
-                    className='previewSort'
-                    value={sortOrder}
-                    onChange={(e) => setSortOrder(e.target.value)}
-                  >
-                    <option value="asc">Ascending</option>
-                    <option value="desc">Descending</option>
-                  </select>
-                </div>
-
-                <h5>{total}</h5>
-                <h6>{total == 0 ? "No filters have been applied" : ''}</h6>
-              </div>
-              <WhiteButton
-                click={() => {
-                  setFilteredResults(0)
-                  setSelectedInstructionsOptions([])
-                  setSelectedIngredientsOptions([])
-                  setSelectedTagsOptions([])
-                  setFilteredResults(0)
-                }}
-                text= 'Clear filters'
-              />
-            </SearchAndFilterHero>
-            <PreviewList
-              recipes={filteredResults.length > 0 ? filteredResults : Data}
-            />
-
-            <div className="loadMore">
-            <div className="flex overflow-x-auto sm:justify-center">
-              <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={onPageChange} />
-            </div>
-    
-              {totalRecipes - skipNo >= 100 ? <div >
-                <WhiteButton 
-                  click={handleNextClick} 
-                  text={totalRecipes - skipNo - 100+ ' '+ 'remaining'}
-                />
-              </div>: ''}
-            </div>
-          </main>
-        ) : (
-          <div className="recipesLoading">
-            <SkeletonTypography />
+            <select
+              className='previewSort'
+              value={sortOrder}
+              onChange={(e) => setSortOrder(e.target.value)}
+            >
+              <option value="asc">Ascending</option>
+              <option value="desc">Descending</option>
+            </select>
           </div>
-        )}
-      </Typography>
-    </div>
+
+          <h5>{total}</h5>
+          <h6>{total == 0 ? "No filters have been applied" : ''}</h6>
+        </div>
+        <WhiteButton
+          click={() => {
+            setFilteredResults(0)
+            setSelectedInstructionsOptions([])
+            setSelectedIngredientsOptions([])
+            setSelectedTagsOptions([])
+            setFilteredResults(0)
+          }}
+          text= 'Clear filters'
+        />
+      </SearchAndFilterHero>
+      <PreviewList
+        recipes={filteredResults.length > 0 ? filteredResults : Data}
+      />
+
+      <div className="loadMore">
+      <div className="flex overflow-x-auto sm:justify-center">
+        <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={onPageChange} />
+      </div>
+        {totalRecipes - skipNo >= 100 ? <div >
+          <WhiteButton 
+            click={handleNextClick} 
+            text={totalRecipes - skipNo - 100+ ' '+ 'remaining'}
+          />
+        </div>: ''}
+      </div>
+    </main>
   );
 }
 
