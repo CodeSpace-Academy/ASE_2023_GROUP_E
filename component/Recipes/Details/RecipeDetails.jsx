@@ -9,6 +9,7 @@ import Instructions from '@/component/editInstructions/editandAddInstruction';
 import Nutritions from './nutritions/nutrition';
 import Ingredients from './ingredients/ingredient';
 import Info from './Info/info';
+import ErrorMessage from '@/component/Error/ErrorMessage';
 
 const RecipeDetails = ({ recipe, allergens }) => {
   if (!recipe) return null;
@@ -34,7 +35,7 @@ const RecipeDetails = ({ recipe, allergens }) => {
         </div>
         <div>
           <h5>Tags: </h5>
-          <SingleRecipeTags tags={recipe.tags} />
+          {recipe.tags ? <SingleRecipeTags tags={recipe.tags} /> : <ErrorMessage message='Failed to load tags' />}
         </div>
 
         <div className={`${styles.listContainer} list-container`}>
