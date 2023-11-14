@@ -59,7 +59,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Select from 'react-select'; // Import react-select
-import Select from 'react-select';
 import StateContext from '@/useContext/StateContext';
 
 const SearchBar = () => {
@@ -95,7 +94,7 @@ const SearchBar = () => {
         `/api/filtering/filterOptions/filteredCategories?category=${selectedCategory.label}`
       )
         .then((res) => res.json())
-        .then((data) => setFilteredResults(data.categories.recipes));
+        .then((data) => setFilteredResults(data.categories.recipes || []));
     }
   }, [selectedCategory]);
 
