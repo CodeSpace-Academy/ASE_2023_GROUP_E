@@ -12,6 +12,7 @@ import FilterbyIngredients from '@/component/filtering/filtering/filterbyIngredi
 import SearchAndFilterHero from '@/component/filtering/searchAndFilterHero/searchAndFilterHero';
 import FilterbyInstructions from '@/component/filtering/filtering/filterbyInstructions';
 import { BlueButton } from '@/component/Button/button';
+import { BiReset } from 'react-icons/bi';
 
 export default function AllRecipes({ Data, url, totalRecipes }) {
   const router = useRouter();
@@ -27,11 +28,13 @@ export default function AllRecipes({ Data, url, totalRecipes }) {
   function handleNextClick() {
     router.push(`recipes-${skipNo + 100}-${sortField}-${sortOrder}`);
   }
-
   useEffect(() => {
     router.push(`recipes-${skipNo}-${sortField}-${sortOrder}`);
   }, [sortField, sortOrder]);
-
+  
+  function applyFilters() {
+    setFiltersApplied(true);
+  }
   return (
     <div>
       <Typography variant="circular">
@@ -40,7 +43,7 @@ export default function AllRecipes({ Data, url, totalRecipes }) {
             <SearchAndFilterHero>
               <SearchBar />
               <div className="previewMain">
-                <FilterbyTags />
+                <FilterbyTags onclick/>
                 <FilterbyIngredients />
                 <FilterbyInstructions />
 
@@ -70,14 +73,18 @@ export default function AllRecipes({ Data, url, totalRecipes }) {
               </div>
               <BlueButton
                 click={() => {
-                  setFilteredResults(0)
-                  setSelectedInstructionsOptions([])
-                  setSelectedIngredientsOptions([])
-                  setSelectedTagsOptions([])
-                  setFilteredResults(0)
+                  setFilteredResults(0);
+                  if(total==0){
+                    alert("No filters have been applied")
+                  }
+                  setSelectedInstructionsOptions([]);
+                  setSelectedIngredientsOptions([]);
+                  setSelectedTagsOptions([]);
+                  setFilteredResults(0);
                 }}
                 text= 'Clear filters'
               />
+              
             </SearchAndFilterHero>
             <PreviewList
               recipes={filteredResults.length > 0 ? filteredResults : Data}
