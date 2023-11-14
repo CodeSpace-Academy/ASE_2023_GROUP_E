@@ -14,7 +14,7 @@ export default function FilterbyIngredients() {
     fetch('/api/filtering/filterOptions/selectOptions?object=ingredients')
       .then(res => res.json())
       .then(data => {
-        if (data) {
+        if (data.recipes) {
           const allIngredients = data.recipes.map((item) => Object.keys(item.ingredients));
           const slitIngredients = allIngredients.join().split(',');
           const uniqueIngredients = [...new Set(slitIngredients)];
@@ -36,8 +36,7 @@ export default function FilterbyIngredients() {
         .then(data => {
           setFilteredResults(data && data.recipes[0]);
           setTotal(total + data && data.recipes[1]);
-          const newUrl = `/findstay?Ingredients=${selected}`; // to change the url
-          window.history.replaceState({ ...window.history.state, as: newUrl, url: newUrl }, '', newUrl);
+      
         });
     }
   }, [selectedOptions, andOr]);

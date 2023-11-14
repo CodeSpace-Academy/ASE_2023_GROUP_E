@@ -56,26 +56,17 @@
 // };
 
 // export default SearchBar;
-
-
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import classes from './category.module.css';
 import Select from 'react-select';
-import { BlueButton } from '@/component/Button/button';
 import StateContext from '@/useContext/StateContext';
 
 const SearchBar = () => {
-  const [query, setQuery] = useState('');
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [noRecipesMessage, setNoRecipesMessage] = useState('');
-  const router = useRouter();
-  const { setFilteredResults, filteredResults } = StateContext();
+  const { setFilteredResults } = StateContext();
 
-  // Fetch categories on component mount
   useEffect(() => {
+    // Fetch categories on component mount
     fetch('/api/filtering/categories')
       .then((res) => res.json())
       .then((data) =>
@@ -83,50 +74,58 @@ const SearchBar = () => {
       );
   }, []);
 
-  // Handle category change
   const handleCategoryChange = (selectedOption) => {
-    setSelectedCategory(selectedOption);
+    if (selectedOption) {
+      const newUrl = `/findstay?category=${selectedOption.label}`;
+  
+      // Update the URL with the selected category
+      window.history.pushState({ category: selectedOption.label }, '', newUrl);
+  
+      // Update the state with the selected category
+      setSelectedCategory(selectedOption);
+    }
   };
 
-  // Fetch filtered results when selected category changes
   useEffect(() => {
+    // Fetch filtered results when selected category changes
     if (selectedCategory && selectedCategory.label) {
       fetch(
-        `/api/filtering/filterOptions/filteredCategories?category=${selectedCategory && selectedCategory.label}`
+        `/api/filtering/filterOptions/filteredCategories?category=${selectedCategory.label}`
       )
         .then((res) => res.json())
         .then((data) => setFilteredResults(data.categories.recipes));
     }
   }, [selectedCategory]);
 
-  // Update the URL when the selected category changes
   useEffect(() => {
-    if (selectedCategory) {
-      const newUrl = `/findstay?category=${selectedCategory.label}`;
-      window.history.replaceState(
-        { ...window.history.state, as: newUrl, url: newUrl },
-        '',
-        newUrl
-      );
+    // Read the URL parameters on page load
+    const urlParams = new URLSearchParams(window.location.search);
+    const categoryParam = urlParams.get('category');
+
+    // Update the state with the category from URL
+    if (categoryParam) {
+      const selectedOption = categories.find((item) => item === categoryParam);
+  
+      if (selectedOption) {
+        setSelectedCategory({ value: categoryParam, label: categoryParam });
+      }
     }
-  }, [selectedCategory]);
+  }, [categories]);
 
   return (
-    <>
-      <div>
-        <form className="previewMain">
-          <Select
-            options={
-              categories &&
-              categories.map((item) => ({ value: item, label: item }))
-            }
-            value={selectedCategory}
-            onChange={handleCategoryChange}
-            placeholder="Select a category"
-          />
-        </form>
-      </div>
-    </>
+    <div>
+      <form className="previewMain">
+        <Select
+          options={
+            categories &&
+            categories.map((item) => ({ value: item, label: item }))
+          }
+          value={selectedCategory}
+          onChange={handleCategoryChange}
+          placeholder="Select a category"
+        />
+      </form>
+    </div>
   );
 };
 
