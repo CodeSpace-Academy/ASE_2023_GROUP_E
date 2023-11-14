@@ -1,30 +1,38 @@
 import { client } from "../client"
 
 export default async function getRecipes(filter, skip, limit, sort) {
-    const db = client.db('devdb');
-    const recipesCollection = db.collection('recipes');
+    try{
+        const db = client().db('devdb');
+        const recipesCollection = db.collection('recipes');
+    
+        /**
+         * Create a query object with the filter, sort, and skip
+         */
+        const query = recipesCollection.find(filter).sort(sort).skip(skip);
+    
+        /**
+         * check if limit is defined, if not, when the function is used the will be no limit set
+         */
+        if (limit !== undefined) {
+            query.limit(limit);
+        }
+    
+        /**
+         * Use the countDocuments method to get the total number of recipes that match the filter
+         */
+        const totalRecipes = await recipesCollection.countDocuments(filter);
+    
+        const results = await query.toArray();
+    
+        return {
+            totalRecipes,
+            recipes: results,
+        };
+    }catch(error){
+       if(error.message !== '.env file is missing or has no values'){
+        throw new Error('OOPS!!! Something went wrong.')
+       }
 
-    /**
-     * Create a query object with the filter, sort, and skip
-     */
-    const query = recipesCollection.find(filter).sort(sort).skip(skip);
-
-    /**
-     * check if limit is defined, if not, when the function is used the will be no limit set
-     */
-    if (limit !== undefined) {
-        query.limit(limit);
+       throw error
     }
-
-    /**
-     * Use the countDocuments method to get the total number of recipes that match the filter
-     */
-    const totalRecipes = await recipesCollection.countDocuments(filter);
-
-    const results = await query.toArray();
-
-    return {
-        totalRecipes,
-        recipes: results,
-    };
 }

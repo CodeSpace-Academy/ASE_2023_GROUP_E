@@ -8,26 +8,12 @@
   overflow: hidden;
 }
 
-.menu a {
-  font-family: sans-serif;
-  display: block;
-  margin: 10px 0;
-  color: #fff;
-  text-decoration: none;
-  padding: 10px;
-  width: 200px;
-  border-radius: 5px;
-  text-align: center;
-  background-color: rgb(129, 121, 30);
-  text-wrap: nowrap;
-}
-.menu a:hover {
-  transform: scale(1.03);
-  background-color: rgb(104, 97, 24);
+.menu {
+  margin-top: 10%;
 }
 
-.menu {
-  margin: 10%;
+.menu button{
+  margin-bottom: 3%;
 }
 
 @media only screen and (max-width: 759px) {
@@ -39,13 +25,28 @@
 @media only screen and (min-width: 770px) {
   .menu {
     display: grid;
-    grid-template-columns: 20% 20%;
-    gap: 12%;
-  }
-
-  .menu a {
-    padding: 15px;
-    width: 156px;
-    text-wrap: nowrap;
+    grid-template-columns: 25% 25%;
+    justify-content: center;
+    gap: 5%;
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .menu {
+    display: grid;
+    grid-template-columns: 40% 40%;
+    justify-content: center;
+    gap: 5%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .menu {
+    display: grid;
+    grid-template-columns: 80%;
+    justify-content: center;
+    gap: 5%;
+  }
+}
+
+

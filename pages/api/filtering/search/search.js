@@ -12,7 +12,7 @@ export default async function handler(req, res){
             const {recipes, totalRecipes} = await getRecipes({ title : { $regex: new RegExp(title, 'i') }}, 0 , 50)
             res.status(200).json({ results: [recipes, totalRecipes]})
         }catch(error){
-            return res.status(417).json({ message:  'failed to load results', error })
+            return res.status(417).json({ message:  'failed to load results' })
         }
     }
 }

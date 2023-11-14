@@ -2,7 +2,7 @@ import { client } from "../client";
 
 
 export default async function getFilteredTags(input){
-  const db = client.db('devdb');
+  const db = client().db('devdb');
 
 
   const countQuery = { tags: { $all: input } };
@@ -15,7 +15,7 @@ export default async function getFilteredTags(input){
 
 
 export async function getFilteredIngredients(input, andOr) {
-  const db = client.db('devdb');
+  const db = client().db('devdb');
 
   const filterIngredients = { [andOr]: input.map((key) => { return ({ [`ingredients.${key}`]: { $exists: true } }); }) };
   const recipes = await db.collection('recipes').find(filterIngredients).limit(50).toArray();
@@ -25,7 +25,7 @@ export async function getFilteredIngredients(input, andOr) {
 }
 
 export async function getFilteredInstructions(input) {
-  const db = client.db('devdb');
+  const db = client().db('devdb');
 
   const filterInstructions = {
     instructions: {
@@ -42,7 +42,7 @@ export async function getFilteredInstructions(input) {
 
 
 export async function getFilteredObjects(object) {
-  const db = client.db('devdb');
+  const db = client().db('devdb');
   const results = await db.collection('recipes').find().limit(100).project(object).toArray();
 
 

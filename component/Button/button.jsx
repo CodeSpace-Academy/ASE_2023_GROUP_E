@@ -33,3 +33,7 @@ export function LinkButton({ path, text, click }) {
 export function BlueButton({ click, text }) {
   return <button onClick={click} className={classes.linkbutton}>{text}</button>;
 }
+
+export function WhiteButton({ click, text }) {
+  return <button onClick={click} class={classes.whitebutton} role="button">{text}</button>;
+}

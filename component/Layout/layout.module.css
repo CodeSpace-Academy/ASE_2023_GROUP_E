@@ -11,12 +11,13 @@
 }
 
 .imgDiv {
-  text-align: center;
-  background-color: #a7a7a040;
+  align-self: center;
+  /* background-color: #a7a7a040; */
   background-size: cover;
   background-position-y: -47em;
   padding: 5px;
   cursor: pointer;
+  margin-left: 25px;
 }
 
 .img {

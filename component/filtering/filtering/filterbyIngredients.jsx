@@ -1,7 +1,7 @@
 import StateContext from "@/useContext/StateContext";
 import { useEffect, useState } from "react";
 import CustomizedHook from "./filterForm";
-import { BlueButton } from "@/component/Button/button";
+import { WhiteButton } from "@/component/Button/button";
 
 export default function FilterbyIngredients(){
 
@@ -23,14 +23,14 @@ export default function FilterbyIngredients(){
            * Fetches the ingredients which is an array objects.
            * maps over this array to abstracts the object keys
            */
-          const allIngredients = data.recipes.map((item) => {
+          const allIngredients = data.recipes && data.recipes.map((item) => {
               return Object.keys(item.ingredients)
           })
           /**
            * {@link allIngredients} is an array of arrays
            * which is then combined
            */
-          const slitIngredients = allIngredients.join().split(',')
+          const slitIngredients = allIngredients && allIngredients.join().split(',')
           /**
            * The combined array is then checked to remove any duplicates
            * then sent into a state 
@@ -61,16 +61,18 @@ export default function FilterbyIngredients(){
   return (
 
   <>
-    <BlueButton  
-      click={() => setAndOr(!andOr)}
-      text={andOr ? 'Includes all' : 'Includes one'}
-    />
 
     <CustomizedHook 
       options={ingredients} 
       filter={'Filter Ingredients'}
       handleSelectChange={handleSelectChange}
       selectedOptions={selectedIngredientsOptions} 
+    />
+    <br/>
+
+    <WhiteButton  
+      click={() => setAndOr(!andOr)}
+      text={andOr ? 'Includes all' : 'Includes one'}
     />
   </>
   )
