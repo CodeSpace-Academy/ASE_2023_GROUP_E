@@ -1,5 +1,5 @@
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = process.env.MONGODB_UI;
+const uri = process.env.MONGODB_URI;
 
 function Createclient(){
 
