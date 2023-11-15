@@ -9,5 +9,5 @@ export default async function getFilteredRecipes(skip,filter){
         .limit(100)
         .toArray()
 
-        return results
+        return results,
 }
