@@ -8,5 +8,14 @@
         "allow": ["_id"]
       }
     ]
-  }
+  },
+  "overrides": [
+    {
+      "files":["components/SideNav/SlidingNavbar.jsx"],
+      "rules": {
+        "react/jsx-uses-react": 2,
+        "react/jsx-uses-vars": 2
+      }
+    }
+  ]
 }
