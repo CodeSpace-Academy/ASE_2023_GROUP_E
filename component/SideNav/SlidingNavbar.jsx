@@ -1,46 +1,31 @@
-import React from 'react';
-
-import { AiOutlineMenu,AiOutlineTags, AiOutlineHome, AiOutlineSetting, AiOutlineUser, AiOutlineHeart, AiOutlineSearch } from 'react-icons/ai';
+import React, { useState } from 'react';
+import { AiOutlineMenu, AiOutlineHome, AiOutlineHeart, AiOutlineUser, AiOutlineSetting, AiOutlineClose } from 'react-icons/ai';
 import classes from './sideNav.module.css';
-import { MdOutlineFastfood,} from 'react-icons/md'
 import StateContext from '@/useContext/StateContext';
 import Link from 'next/link';
 
-function Links(link, text, click){
-  return (
-    <Link href={link} onClick={click}>{text}</Link>
-  )
-}
-
-
 const ExpandableMenu = () => {
-  const {setToggleMenu, toggleMenu, setAddSkip} = StateContext()
-
-function skip(){
-  localStorage.setItem("skipNo", 0)
-  setAddSkip(0)
-}
-
+  const { setToggleMenu, toggleMenu } = StateContext();
+  const [isNavBarOpen, setIsNavBarOpen] = useState(false);
 
   const toggleExpand = () => {
     setToggleMenu(!toggleMenu);
+    setIsNavBarOpen(!isNavBarOpen);
   };
 
   const menuOptions = [
-    { icon: Links('/',  <AiOutlineHome /> ) , name: Links('/', 'Home')},
-    { icon: Links('/profile', <AiOutlineUser />) , name: Links('/profile', 'Profile') },
-    { icon: Links(`/recipes-0-_id-asc`, <MdOutlineFastfood />, skip ), name: Links(`recipes`, 'Recipes') },
-    { icon: Links('/tags', <AiOutlineTags/>) , name: Links('/tags', 'Tags')},
-    { icon: Links('/favourites',  <AiOutlineHeart />), name: Links('/favourites', 'Favourites') },
-    { icon: Links('/search',  <AiOutlineSearch />), name: Links('/search', 'Search') },
-    { icon: Links('/', <AiOutlineSetting />) , name: Links('/', 'Settings')  },
+    { icon: <AiOutlineMenu />, href: '/', text: 'Home' },
+    { icon: <AiOutlineHome />, href: '/', text: 'All Recipes' },
+    { icon: <AiOutlineHeart />, href: '/favourites', text: 'Favourites' },
+    { icon: <AiOutlineUser />, href: '/profile', text: 'User' },
+    { icon: <AiOutlineSetting />, href: '/', text: 'Settings' },
   ];
 
   return (
     <div className={classes.pageContainer}>
       <div className={classes.expandableMenu}>
         <div className={`${classes.menuToggle}`} onClick={toggleExpand}>
-          <AiOutlineMenu />
+          {isNavBarOpen ? <AiOutlineClose className={classes.whiteIcon} /> : <AiOutlineMenu />}
         </div>
 
         <ul className={`${classes.menuOptions} ${toggleMenu ? classes.expanded : ''}`}>
@@ -48,13 +33,13 @@ function skip(){
             <li key={index} onClick={() => setToggleMenu(false)}>
               {toggleMenu ? (
                 <>
-                  <div className={classes.link}>{option.icon}</div> {/* Increase the font size */}
-                  <p className={classes.optionName}>{option.name}</p>
+                  <Link href={option.href}>
+                    <div className={classes.link}>{option.icon}</div>
+                    <p className={`${classes.optionName} ${classes.optionNameBold}`}>{option.text}</p>
+                  </Link>
                 </>
               ) : (
-                <div className={classes.links2}>
-                  {option.icon}
-                </div>
+                <div className={classes.links2}>{option.icon}</div>
               )}
             </li>
           ))}

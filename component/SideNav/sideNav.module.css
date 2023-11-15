@@ -75,3 +75,12 @@
   color: #fff;
   text-decoration: none;
 }
+.optionNameBold {
+  font-weight: bold;
+  color: #003153;
+  /* Add any other styles as needed */
+}
+.whiteIcon {
+  color: #fff; /* Change icon color to white */
+}
+
