@@ -43,7 +43,20 @@
   }
 
   .expand {
-    margin-left: 55px;
+    margin-left: 10%;
+  }
+}
+
+@media only screen and (max-width: 727px) {
+
+  .expand {
+    margin-left: 13%;
+  }
+}
+@media only screen and (max-width: 537px) {
+
+  .expand {
+    margin-left: 16%;
   }
 }
 
@@ -53,6 +66,12 @@
   }
 
   .expand {
-    margin-left: 46px;
+    margin-left: 20%;
   }
 }
+@media only screen and (max-width: 354px) {
+  .expand {
+    margin-left: 23%;
+  }
+}
+
