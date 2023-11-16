@@ -11,6 +11,15 @@ import {
 } from 'react-icons/ai';
 import classes from './sideNav.module.css';
 import StateContext from '@/useContext/StateContext';
+import Link from 'next/link';
+import { IoMdClose } from "react-icons/io";
+
+function Links(link, text, click){
+  return (
+    <Link href={link} onClick={click}>{text}</Link>
+  )
+}
+
 
 const ExpandableMenu = () => {
   const { setToggleMenu, toggleMenu, setAddSkip } = StateContext();
@@ -31,41 +40,19 @@ const ExpandableMenu = () => {
   );
 
   const menuOptions = [
-    {
-      icon: Links({ link: '/', text: <AiOutlineHome /> }),
-      name: Links({ link: '/', text: 'Home' }),
-    },
-    {
-      icon: Links({
-        link: `/recipes-0-_id-asc`,
-        text: <MdOutlineFastfood />,
-        click: skip,
-      }),
-      name: Links({ link: `recipes`, text: 'Recipes' }),
-    },
-    {
-      icon: Links({ link: '/favourites', text: <AiOutlineHeart /> }),
-      name: Links({ link: '/favourites', text: 'Favourites' }),
-    },
-    {
-      icon: Links({ link: '/profile', text: <AiOutlineUser /> }),
-      name: Links({ link: '/profile', text: 'Profile' }),
-    },
-    {
-      icon: Links({ link: '/', text: <AiOutlineSetting /> }),
-      name: Links({ link: '/', text: 'Settings' }),
-    },
-    {
-      icon: Links({ link: '/search', text: <AiOutlineSearch /> }),
-      name: Links({ link: '/search', text: 'Search' }),
-    },
+    { icon: Links('/',  <AiOutlineHome /> ) , name: Links('/', 'Home')},
+    { icon: Links('/profile', <AiOutlineUser />) , name: Links('/profile', 'Profile') },
+    { icon: Links(`/recipes-0-_id-asc`, <MdOutlineFastfood />, skip ), name: Links(`recipes`, 'Recipes') },
+    { icon: Links('/favourites',  <AiOutlineHeart />), name: Links('/favourites', 'Favourites') },
+    { icon: Links('/search',  <AiOutlineSearch />), name: Links('/search', 'Search') },
+    { icon: Links('/', <AiOutlineSetting />) , name: Links('/', 'Settings')  },
   ];
 
   return (
     <div className={classes.pageContainer}>
       <div className={classes.expandableMenu}>
         <div className={`${classes.menuToggle}`} onClick={toggleExpand}>
-          <AiOutlineMenu />
+          {toggleMenu ?  <IoMdClose /> : <AiOutlineMenu />}
         </div>
 
         <ul
@@ -87,6 +74,14 @@ const ExpandableMenu = () => {
             </li>
           ))}
         </ul>
+      </div>
+      
+      <div className={classes.mobileMenu}>
+          {
+            menuOptions.map((option) => (
+              <p>{option.icon}</p>
+            ))
+          }
       </div>
     </div>
   );
