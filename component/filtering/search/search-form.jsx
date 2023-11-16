@@ -88,8 +88,8 @@ export default function SearchForm() {
 
   return (
     <>
-      <div className={classes.search}>
-        <h1>Find recipes</h1>
+      <div >
+        
         <input
           type="text"
           placeholder="Search for recipes"

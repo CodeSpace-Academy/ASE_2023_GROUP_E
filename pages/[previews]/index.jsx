@@ -16,6 +16,7 @@ import { Pagination } from 'flowbite-react';
 import FilterbyInstructions from '@/component/filtering/filtering/filterbyInstructions';
 import { Spinner } from 'flowbite-react';
 import ErrorMessage from '@/component/Error/ErrorMessage';
+import SearchForm from '@/component/filtering/search/search-form';
 
 export default function AllRecipes({ Data, url, totalRecipes, error }) {
 
@@ -59,6 +60,7 @@ export default function AllRecipes({ Data, url, totalRecipes, error }) {
   return (
     <main>
       <SearchAndFilterHero>
+        
         <SearchBar />
         <div className="previewMain">
           <FilterbyTags />

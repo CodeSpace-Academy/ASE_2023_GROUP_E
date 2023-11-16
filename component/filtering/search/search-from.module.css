@@ -2,13 +2,13 @@
     text-align: center;
 }
 
-.search{
+/* .search{
     padding: 40px;
     height: 65vh;
     background: url('../../../public/images/stew.jpeg'); 
     background-size: cover;
     background-position-y: 20%;
-}
+} */
 
 .search input {
     height: 13vh;
