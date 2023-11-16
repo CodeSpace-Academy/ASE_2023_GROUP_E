@@ -14,7 +14,7 @@ export default function NumToTime(num) {
   // Puts a zero before the minute value if it is
   // less than 10
   if (minutes + ''.length < 2) {
-    minutes = `0 + ${minutes}`;
+    minutes = `0${minutes}`;
   }
   // returns string that seperates the hours and minutes
   // with a :  return hours + ':' + minutes;
