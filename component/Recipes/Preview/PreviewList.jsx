@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import { IoIosInformationCircle } from 'react-icons/io';
 import SingleRecipeTags from '../SingleRecipeTags/SingleRecipeTags';
 import style from './previewList.module.css';
-import { RecipePreviewTimes } from '@/component/handlerTime/timeRead';
+import { PrepandCookTime } from '@/component/handlerTime/timeRead';
 import FavouritesButton from '../../Favourites/FavouritesButton/FavouritesButton';
 import { useRouter } from 'next/router';
 
@@ -43,13 +43,12 @@ export default function PreviewList({ recipes, input, sortDate }) {
     setShowDescriptions(newShowDescriptions);
   }
 
-  const router = useRouter()
+  const router = useRouter();
 
   const handleImageError = (event) => {
     // Set the src attribute to a placeholder or alternative image URL
     event.target.src = '../../../public/images/greensald.jpg';
   };
-
 
   return (
     <>
@@ -85,28 +84,33 @@ export default function PreviewList({ recipes, input, sortDate }) {
                         <div>
                           <p className={style.category}>{recipe.category}</p>
                           <div className={style.heading}>
-                            {router.pathname === '/search' ? input ? (
-                              <div>
-                                {recipe.title
-                                  .split(new RegExp(`(${input})`, 'i'))
-                                  .map((title, index) => (
-                                    <span
-                                      key={index}
-                                      style={
-                                        title.toLowerCase() === input.toLowerCase()
-                                          ? { color: 'orange' }
-                                          : {}
-                                      }
-                                    >
-                                      <h3 style={{ display: 'inline' }}>
-                                        {title}
-                                      </h3>
-                                    </span>
-                                  ))}
-                              </div>
+                            {router.pathname === '/search' ? (
+                              input ? (
+                                <div>
+                                  {recipe.title
+                                    .split(new RegExp(`(${input})`, 'i'))
+                                    .map((title, index) => (
+                                      <span
+                                        key={index}
+                                        style={
+                                          title.toLowerCase() ===
+                                          input.toLowerCase()
+                                            ? { color: 'orange' }
+                                            : {}
+                                        }
+                                      >
+                                        <h3 style={{ display: 'inline' }}>
+                                          {title}
+                                        </h3>
+                                      </span>
+                                    ))}
+                                </div>
+                              ) : (
+                                <h3 className={style.title}>{recipe.title}</h3>
+                              )
                             ) : (
-                              <h3 className={style.title}>{recipe.title}</h3>
-                            ) : <h3>{recipe.title}</h3>}
+                              <h3>{recipe.title}</h3>
+                            )}
                           </div>
                           {showDescriptions[index] && recipe.description ? (
                             <p>{recipe.description}</p>
@@ -115,7 +119,7 @@ export default function PreviewList({ recipes, input, sortDate }) {
                           ) : (
                             ''
                           )}
-                          <RecipePreviewTimes recipe={recipe} />
+                          <PrepandCookTime recipe={recipe} />
                         </div>
                       </div>
 
