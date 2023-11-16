@@ -19,9 +19,12 @@ export default function NumToTime(num) {
   if (minutes + ''.length < 2) {
     minutes = '0' + minutes;
   }
-  // returns string that seperates the hours and minutes
+ // returns string that seperates the hours and minutes
   // with a :  return hours + ':' + minutes;
+  return hours + ':' + minutes;
 }
+
+
 
 export function PrepandCookTime({ recipe }) {
   return (
