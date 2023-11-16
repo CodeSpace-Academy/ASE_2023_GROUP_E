@@ -1,14 +1,14 @@
 /* eslint-disable import/no-useless-path-segments */
 import { useState } from 'react';
 import { TiEdit } from 'react-icons/ti';
-import EditDescription from '../../../../component/editDecription/editDescription';
 import classes from './info.module.css';
+import EditDescription from '../../../../component/editDecription/editDescription';
 import Button from '../../../../component/Button/button';
 import SingleRecipeAllergens from '../../Allergens/SingleRecipeAllergens';
 import FavouritesButton from '../../../../component/Favourites/FavouritesButton/FavouritesButton';
 import StateContext from '../../../../useContext/StateContext';
 import ErrorMessage from '../../../../component/Error/ErrorMessage';
-import { PrepandCookTime } from '@/component/handlerTime/timeRead';
+import { PrepandCookTime } from '../../../handlerTime/timeRead';
 
 export default function Info({ recipe, allergens }) {
   const { edit, setEdit } = StateContext();
@@ -21,8 +21,8 @@ export default function Info({ recipe, allergens }) {
 
   // If ingredient is present in allergen array, add it to the allergens list
 
-  for (let ingredient in recipe.ingredients) {
-    for (let allergen in allergens) {
+  for (const ingredient in recipe.ingredients) {
+    for (const allergen in allergens) {
       if (ingredient.toLowerCase()?.includes(allergens[allergen])) {
         allergenList.push(ingredient);
       }
@@ -43,9 +43,9 @@ export default function Info({ recipe, allergens }) {
           {allergenList.length !== 0 ? (
             <SingleRecipeAllergens allergensList={allergenList} />
           ) : (
-            <>
+            <div>
               <p>No allergens</p>
-            </>
+            </div>
           )}
         </div>
 
@@ -57,12 +57,15 @@ export default function Info({ recipe, allergens }) {
               {loadmore
                 ? recipe.description
                 : recipe.description.substring(0, 180)}
-              <span
+              <button
+                type="button"
                 className={classes.loadmore}
-                onClick={() => setLoadmore(!loadmore)}
+                onClick={() => {
+                  return setLoadmore(!loadmore);
+                }}
               >
                 {loadmore ? 'Load less' : 'Load more'}
-              </span>
+              </button>
             </p>
           ) : (
             <ErrorMessage message="Failed to load description." />

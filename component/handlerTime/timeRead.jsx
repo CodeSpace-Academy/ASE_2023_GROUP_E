@@ -1,6 +1,5 @@
-import { PiKnifeBold } from 'react-icons/pi';
+import { PiKnifeBold, PiCookingPotBold } from 'react-icons/pi';
 import { LuAlarmClock } from 'react-icons/lu';
-import { PiCookingPotBold } from 'react-icons/pi';
 import classes from './timeRead.module.css';
 
 /**
@@ -10,12 +9,12 @@ import classes from './timeRead.module.css';
  */
 
 export default function NumToTime(num) {
-  let hours = Math.floor(num / 60);
+  const hours = Math.floor(num / 60);
   let minutes = num % 60;
   // Puts a zero before the minute value if it is
   // less than 10
   if (minutes + ''.length < 2) {
-    minutes = '0' + minutes;
+    minutes = `0 + ${minutes}`;
   }
   // returns string that seperates the hours and minutes
   // with a :  return hours + ':' + minutes;
@@ -31,15 +30,19 @@ export function PrepandCookTime({ recipe }) {
   return (
     <div className={classes.times}>
       <div className={classes.IconTimeContainer}>
-        <PiKnifeBold className={classes.icon} /> Prep: {NumToTime(recipe.prep)}
+        <PiKnifeBold className={classes.icon} />
+        Prep:
+        {NumToTime(recipe.prep)}
       </div>
 
       <div className={classes.IconTimeContainer}>
-        <PiCookingPotBold className={classes.icon} /> Cook:
+        <PiCookingPotBold className={classes.icon} />
+        Cook:
         {NumToTime(recipe.cook)}
       </div>
       <div className={classes.IconTimeContainer}>
-        <LuAlarmClock className={classes.icon} /> Total Time:
+        <LuAlarmClock className={classes.icon} />
+        Total Time:
         {NumToTime(recipe.prep + recipe.cook)}
       </div>
     </div>
