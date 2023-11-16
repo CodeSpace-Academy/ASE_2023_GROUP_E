@@ -36,16 +36,20 @@
   margin-top: 50px;
 }
 
+
 .menuOptions.expanded li {
   display: flex;
   flex-direction: row;
   text-align: center;
   padding: 10px;
+  color:#fff
 }
 
 .menuOptions.expanded svg {
   margin-right: 10px;
+  color: #ffff;
 }
+
 .pageContainer {
   display: flex;
 }
