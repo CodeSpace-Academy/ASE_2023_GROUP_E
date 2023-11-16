@@ -47,21 +47,3 @@ export function PrepandCookTime({ recipe }) {
     </div>
   );
 }
-export function RecipePreviewTimes({ recipe }) {
-  return (
-    <div className={classes.recipePreviewTimes}>
-      <div>
-        <PiKnifeBold className={classes.icon} /> Prep: {NumToTime(recipe.prep)}
-      </div>
-
-      <div>
-        <LuAlarmClock className={classes.icon} /> Cook: {NumToTime(recipe.cook)}
-      </div>
-
-      <div>
-        <BsPerson className={classes.icon} />
-        Servings: {recipe.servings ? recipe.servings : 'n/a'}
-      </div>
-    </div>
-  );
-}
