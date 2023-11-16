@@ -1,4 +1,4 @@
-
+// Import React and necessary components/styles
 import ErrorMessage from '@/component/Error/ErrorMessage';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -15,6 +15,16 @@ import FavouritesButton from '../../Favourites/FavouritesButton/FavouritesButton
 import { useRouter } from 'next/router';
 
 /**
+ * @function PreviewList
+ * @description The main functional component that renders a list of recipe previews.
+ * @param {Object} props - The component's properties.
+ * @param {Array} props.recipes - An array of recipe objects to be displayed.
+ * @param {string} props.input - The input text for highlighting in search results.
+ * @param {boolean} props.sortDate - A flag indicating whether to sort recipes by date.
+ * @returns {React.Component}  React component displaying a list of recipe previews.
+ */
+
+/**
  * @constant {React.Component} Item - A styled component using Material-UI styling.
  */
 const Item = styled(Paper)(({ theme }) => {
@@ -28,16 +38,6 @@ const Item = styled(Paper)(({ theme }) => {
     color: '#003153',
   };
 });
-
-/**
- * @function PreviewList
- * @description The main functional component that renders a list of recipe previews.
- * @param {Object} props - The component's properties.
- * @param {Array} props.recipes - An array of recipe objects to be displayed.
- * @param {string} props.input - The input text for highlighting in search results.
- * @param {boolean} props.sortDate - A flag indicating whether to sort recipes by date.
- * @returns {React.Component} A React component displaying a list of recipe previews.
- */
 export default function PreviewList({ recipes, input, sortDate }) {
   /**
    * @constant {Array} showDescriptions - State variable to manage the visibility of recipe descriptions.
@@ -187,4 +187,3 @@ export default function PreviewList({ recipes, input, sortDate }) {
       </Box>
     </>
   );
-  
