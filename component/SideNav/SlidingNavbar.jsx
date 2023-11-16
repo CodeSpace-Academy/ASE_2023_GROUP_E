@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AiOutlineMenu, AiOutlineHome, AiOutlineHeart, AiOutlineUser, AiOutlineSetting, AiOutlineClose } from 'react-icons/ai';
+import { AiOutlineMenu, AiOutlineHome, AiOutlineHeart, AiOutlineUser, AiOutlineSetting, AiOutlineSearch } from 'react-icons/ai';
 import classes from './sideNav.module.css';
 import StateContext from '@/useContext/StateContext';
 import Link from 'next/link';
@@ -15,12 +15,10 @@ const ExpandableMenu = () => {
   };
 
   const menuOptions = [
-    { icon: Links('/',  <AiOutlineHome /> ) , name: Links('/', 'Home')},
-    { icon: Links('/profile', <AiOutlineUser />) , name: Links('/profile', 'Profile') },
-    { icon: Links(`/recipes-0-_id-asc`, <MdOutlineFastfood />, skip ), name: Links(`recipes`, 'Recipes') },
-    { icon: Links('/favourites',  <AiOutlineHeart />), name: Links('/favourites', 'Favourites') },
-    { icon: Links('/search',  <AiOutlineSearch />), name: Links('/search', 'Search') },
-    { icon: Links('/', <AiOutlineSetting />) , name: Links('/', 'Settings')  },
+    { icon: <AiOutlineHome />, href: '/', text: 'Home' },
+    { icon: <AiOutlineUser />, href: '/profile', text: 'Profile' },
+    { icon: <AiOutlineHeart />, href: '/favourites', text: 'Favourites' },
+    { icon: <AiOutlineSetting />, href: '/', text: 'Settings' },
   ];
 
   return (
@@ -49,11 +47,9 @@ const ExpandableMenu = () => {
       </div>
       
       <div className={classes.mobileMenu}>
-          {
-            menuOptions.map((option) => (
-              <p>{option.icon}</p>
-            ))
-          }
+        {menuOptions.map((option, index) => (
+          <p key={index}>{option.icon}</p>
+        ))}
       </div>
     </div>
   );
