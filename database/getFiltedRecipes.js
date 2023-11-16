@@ -1,4 +1,4 @@
-import { client } from "./client"
+import { client } from "./client";
 
 export default async function getFilteredRecipes(skip,filter){
 
@@ -9,5 +9,5 @@ export default async function getFilteredRecipes(skip,filter){
         .limit(100)
         .toArray()
 
-        return results
+        return results,
 }
