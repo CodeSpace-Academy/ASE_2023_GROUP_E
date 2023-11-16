@@ -12,9 +12,10 @@ const nextConfig = {
       'component/Favourites',
       'component/FavouritesContainer',
       'component/ui/loadingSpinner',
-      'components/Recipes/SingleRecipeTags',
-      'components/Recipes/Allergens',
-      'components/Recipes/Details/Info',
+      'component/Recipes/SingleRecipeTags',
+      'component/Recipes/Allergens',
+      'component/Recipes/Details/Info',
+      'component/handlerTime',
       // pages
       'pages/recipes',
       'pages/favourites',
