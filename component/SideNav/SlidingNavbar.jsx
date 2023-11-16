@@ -1,87 +1,55 @@
 import React from 'react';
-import { MdOutlineFastfood } from 'react-icons/md';
-import Link from 'next/link';
 import {
   AiOutlineMenu,
   AiOutlineHome,
   AiOutlineSetting,
   AiOutlineUser,
-  AiOutlineHeart,
-  AiOutlineSearch,
 } from 'react-icons/ai';
+import { MdOutlineFastfood } from 'react-icons/md';
 import classes from './sideNav.module.css';
 import StateContext from '@/useContext/StateContext';
 import Link from 'next/link';
-import { IoMdClose } from "react-icons/io";
-
-function Links(link, text, click){
-  return (
-    <Link href={link} onClick={click}>{text}</Link>
-  )
-}
-
+import { IoMdClose } from 'react-icons/io';
 
 const ExpandableMenu = () => {
-  const { setToggleMenu, toggleMenu, setAddSkip } = StateContext();
-
-  function skip() {
-    localStorage.setItem('skipNo', 0);
-    setAddSkip(0);
-  }
-
-  const toggleExpand = () => {
-    setToggleMenu(!toggleMenu);
-  };
-
-  const Links = ({ link, text, click }) => (
-    <Link href={link} onClick={click}>
-      {text}
-    </Link>
-  );
+  const { setToggleMenu, toggleMenu } = StateContext();
 
   const menuOptions = [
-    { icon: Links('/',  <AiOutlineHome /> ) , name: Links('/', 'Home')},
-    { icon: Links('/profile', <AiOutlineUser />) , name: Links('/profile', 'Profile') },
-    { icon: Links(`/recipes-0-_id-asc`, <MdOutlineFastfood />, skip ), name: Links(`recipes`, 'Recipes') },
-    { icon: Links('/favourites',  <AiOutlineHeart />), name: Links('/favourites', 'Favourites') },
-    { icon: Links('/search',  <AiOutlineSearch />), name: Links('/search', 'Search') },
-    { icon: Links('/', <AiOutlineSetting />) , name: Links('/', 'Settings')  },
+    { link: '/', text: 'Nav bar expanded/closed', icon: toggleMenu ? <IoMdClose /> : <AiOutlineMenu /> },
+    { link: '/', text: 'Home', icon: <AiOutlineHome /> },
+    { link: '/recipes', text: 'All Recipes', icon: <MdOutlineFastfood /> },
+    { link: '/favourites', text: 'Favourites', icon: <AiOutlineUser /> },
+    { link: '/', text: 'User', icon: <AiOutlineUser /> },
+    { link: '/', text: 'Settings', icon: <AiOutlineSetting /> },
   ];
+
+  // Filtering menuOptions based on the specified icons and their order
+  const filteredMenuOptions = menuOptions.filter(
+    option =>
+      option.text === 'Nav bar expanded/closed' ||
+      option.text === 'Home' ||
+      option.text === 'All Recipes' ||
+      option.text === 'Favourites' ||
+      option.text === 'User' ||
+      option.text === 'Settings'
+  );
 
   return (
     <div className={classes.pageContainer}>
       <div className={classes.expandableMenu}>
-        <div className={`${classes.menuToggle}`} onClick={toggleExpand}>
-          {toggleMenu ?  <IoMdClose /> : <AiOutlineMenu />}
-        </div>
+        {/* Render the toggle button */}
+        {filteredMenuOptions[0].icon}
 
-        <ul
-          className={`${classes.menuOptions} ${
-            toggleMenu ? classes.expanded : ''
-          }`}
-        >
-          {menuOptions.map((option, index) => (
+        <ul className={`${classes.menuOptions} ${toggleMenu ? classes.expanded : ''}`}>
+          {filteredMenuOptions.slice(1).map((option, index) => (
             <li key={index} onClick={() => setToggleMenu(false)}>
-              {toggleMenu ? (
-                <>
-                  <div className={classes.link}>{option.icon}</div>
-                  {/* Increase the font size */}
-                  <p className={classes.optionName}>{option.name}</p>
-                </>
-              ) : (
-                <div className={classes.links2}>{option.icon}</div>
-              )}
+              <div className={classes.link}>{option.icon}</div>
+              <Link href={option.link}>
+                <p className={classes.optionName}>{option.text}</p>
+              </Link>
             </li>
           ))}
         </ul>
-      </div>
-      
-      <div className={classes.mobileMenu}>
-          {
-            menuOptions.map((option) => (
-              <p>{option.icon}</p>
-            ))
-          }
       </div>
     </div>
   );
