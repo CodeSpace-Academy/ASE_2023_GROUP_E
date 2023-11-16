@@ -1,19 +1,18 @@
 /* eslint-disable import/no-useless-path-segments */
+import { useState } from 'react';
 import { TiEdit } from 'react-icons/ti';
 import EditDescription from '../../../../component/editDecription/editDescription';
 import classes from './info.module.css';
 import Button from '../../../../component/Button/button';
-import SingleRecipeTags from '../../SingleRecipeTags/SingleRecipeTags';
 import SingleRecipeAllergens from '../../Allergens/SingleRecipeAllergens';
 import FavouritesButton from '../../../../component/Favourites/FavouritesButton/FavouritesButton';
 import StateContext from '../../../../useContext/StateContext';
 import ErrorMessage from '../../../../component/Error/ErrorMessage';
 import { PrepandCookTime } from '@/component/handlerTime/timeRead';
-import { useState } from 'react';
 
 export default function Info({ recipe, allergens }) {
   const { edit, setEdit } = StateContext();
-  const [loadmore, setLoadmore] = useState(false)
+  const [loadmore, setLoadmore] = useState(false);
 
   /**
    * Contains the allergens present in this recipe
@@ -27,13 +26,11 @@ export default function Info({ recipe, allergens }) {
       if (ingredient.toLowerCase()?.includes(allergens[allergen])) {
         allergenList.push(ingredient);
       }
-
     }
   }
 
   return (
     <div className={classes.info}>
-
       <div className={classes.info1}>
         <p className={classes.category}>{recipe.category}</p>
 
@@ -54,10 +51,22 @@ export default function Info({ recipe, allergens }) {
 
         <FavouritesButton recipe={recipe} />
 
-        <div className={classes.description}>{ recipe.description
-            ? <p>{loadmore ? recipe.description : recipe.description.substring(0, 180)}
-                <span className={classes.loadmore} onClick={() => setLoadmore(!loadmore)}>{loadmore ? 'Load less' : 'Load more'}</span>
-              </p> : <ErrorMessage message="Failed to load description." />}
+        <div className={classes.description}>
+          {recipe.description ? (
+            <p>
+              {loadmore
+                ? recipe.description
+                : recipe.description.substring(0, 180)}
+              <span
+                className={classes.loadmore}
+                onClick={() => setLoadmore(!loadmore)}
+              >
+                {loadmore ? 'Load less' : 'Load more'}
+              </span>
+            </p>
+          ) : (
+            <ErrorMessage message="Failed to load description." />
+          )}
         </div>
 
         {/**
@@ -69,7 +78,9 @@ export default function Info({ recipe, allergens }) {
           <Button
             color="blue"
             text={<TiEdit fontSize="25px" />}
-            click={() => { setEdit(!edit); }}
+            click={() => {
+              setEdit(!edit);
+            }}
           />
         )}
       </div>

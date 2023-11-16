@@ -1,10 +1,7 @@
-import { FcClock, FcAlarmClock } from 'react-icons/fc';
-import { TfiTimer } from 'react-icons/tfi';
 import { PiKnifeBold } from 'react-icons/pi';
 import { LuAlarmClock } from 'react-icons/lu';
-import { BsPerson } from 'react-icons/bs';
-import classes from './timeRead.module.css';
 import { PiCookingPotBold } from 'react-icons/pi';
+import classes from './timeRead.module.css';
 
 /**
  * Changes the time from seconds to an hours and minutes format
