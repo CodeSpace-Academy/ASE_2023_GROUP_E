@@ -22,7 +22,7 @@ export default function NumToTime(num) {
   }
   // returns string that seperates the hours and minutes
   // with a :  return hours + ':' + minutes;
-  return hours + ':' + minutes;
+  return `${hours} hr : ${minutes} min`;
 }
 /**
  * Displays preparation, cook and total time as string with
@@ -33,15 +33,16 @@ export default function NumToTime(num) {
 export function PrepandCookTime({ recipe }) {
   return (
     <div className={classes.times}>
-      <div>
+      <div className={classes.IconTimeContainer}>
         <PiKnifeBold className={classes.icon} /> Prep: {NumToTime(recipe.prep)}
       </div>
 
-      <div>
-        <FcAlarmClock className={classes.icon} /> Cook: {NumToTime(recipe.cook)}
+      <div className={classes.IconTimeContainer}>
+        <PiCookingPotBold className={classes.icon} /> Cook:
+        {NumToTime(recipe.cook)}
       </div>
-      <div>
-        <PiCookingPotBold className={classes.icon} /> Total Time:{' '}
+      <div className={classes.IconTimeContainer}>
+        <LuAlarmClock className={classes.icon} /> Total Time:
         {NumToTime(recipe.prep + recipe.cook)}
       </div>
     </div>
