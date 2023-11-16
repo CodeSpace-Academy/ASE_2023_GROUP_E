@@ -1,4 +1,5 @@
 import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import classes from './SingleRecipeTags.module.css';
 import SingleRecipeTag from './SingleRecipeTag';
 /**
@@ -7,16 +8,14 @@ import SingleRecipeTag from './SingleRecipeTag';
  * @param {array} tags
  * @returns
  */
-const SingleRecipeTags = ({ tags }) => {
+export default function SingleRecipeTags({ tags }) {
   return (
     <div className={classes.tagsContainer}>
       <ul className={classes.tagsList}>
-        {tags.map((tag, index) => {
-          return <SingleRecipeTag key={index} tag={tag} />;
+        {tags.map((tag) => {
+          return <SingleRecipeTag key={uuidv4()} tag={tag} />;
         })}
       </ul>
     </div>
   );
-};
-
-export default SingleRecipeTags;
+}
