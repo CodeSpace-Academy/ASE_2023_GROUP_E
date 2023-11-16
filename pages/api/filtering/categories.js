@@ -11,3 +11,15 @@ export default async function handler(req, res){
         res.status(417).json({ message: 'failed to load categories'})
     }
 }
+
+// export default async function handler(req, res){
+
+  
+//       try{
+//         const {documents,totalMatchingRecipes} = await getCategories(selected)
+//         res.status(200).json({ recipes : [documents, totalMatchingRecipes]})
+//       } catch (error) {
+//         res.status(417).json({ message: 'failed to load categories'})
+//       }
+//     }
+  

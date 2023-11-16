@@ -8,7 +8,7 @@ function CustomizedHook({
 }) {
   return (
     <div>
-      <h4>{filter}</h4>
+      <h4 style={{color:'white'}}>{filter}</h4>
       <Select
         options={
           options && options.map((option) => ({ value: option, label: option }))

@@ -3,6 +3,7 @@ import { AiOutlineMenu, AiOutlineHome, AiOutlineHeart, AiOutlineUser, AiOutlineS
 import classes from './sideNav.module.css';
 import StateContext from '@/useContext/StateContext';
 import Link from 'next/link';
+import { IoMdClose } from "react-icons/io";
 
 const ExpandableMenu = () => {
   const { setToggleMenu, toggleMenu } = StateContext();
@@ -14,18 +15,19 @@ const ExpandableMenu = () => {
   };
 
   const menuOptions = [
-    { icon: <AiOutlineMenu />, href: '/', text: 'Home' },
-    { icon: <AiOutlineHome />, href: '/', text: 'All Recipes' },
-    { icon: <AiOutlineHeart />, href: '/favourites', text: 'Favourites' },
-    { icon: <AiOutlineUser />, href: '/profile', text: 'User' },
-    { icon: <AiOutlineSetting />, href: '/', text: 'Settings' },
+    { icon: Links('/',  <AiOutlineHome /> ) , name: Links('/', 'Home')},
+    { icon: Links('/profile', <AiOutlineUser />) , name: Links('/profile', 'Profile') },
+    { icon: Links(`/recipes-0-_id-asc`, <MdOutlineFastfood />, skip ), name: Links(`recipes`, 'Recipes') },
+    { icon: Links('/favourites',  <AiOutlineHeart />), name: Links('/favourites', 'Favourites') },
+    { icon: Links('/search',  <AiOutlineSearch />), name: Links('/search', 'Search') },
+    { icon: Links('/', <AiOutlineSetting />) , name: Links('/', 'Settings')  },
   ];
 
   return (
     <div className={classes.pageContainer}>
       <div className={classes.expandableMenu}>
         <div className={`${classes.menuToggle}`} onClick={toggleExpand}>
-          {isNavBarOpen ? <AiOutlineClose className={classes.whiteIcon} /> : <AiOutlineMenu />}
+          {toggleMenu ?  <IoMdClose /> : <AiOutlineMenu />}
         </div>
 
         <ul className={`${classes.menuOptions} ${toggleMenu ? classes.expanded : ''}`}>
@@ -44,6 +46,14 @@ const ExpandableMenu = () => {
             </li>
           ))}
         </ul>
+      </div>
+      
+      <div className={classes.mobileMenu}>
+          {
+            menuOptions.map((option) => (
+              <p>{option.icon}</p>
+            ))
+          }
       </div>
     </div>
   );

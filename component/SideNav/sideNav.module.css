@@ -33,7 +33,7 @@
 .menuOptions {
   list-style: none;
   padding: 0;
-  margin-top: 10px;
+  margin-top: 50px;
 }
 
 .menuOptions.expanded li {
@@ -75,12 +75,34 @@
   color: #fff;
   text-decoration: none;
 }
-.optionNameBold {
-  font-weight: bold;
-  color: #003153;
-  /* Add any other styles as needed */
-}
-.whiteIcon {
-  color: #fff; /* Change icon color to white */
+
+.mobileNav{
+  font-size: 30px;
 }
 
+.mobileMenu{
+  display: none;
+}
+
+@media only screen and (max-width: 426px){
+  .expandableMenu{
+    display: none;
+  }
+
+  .mobileMenu{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    background-color: #a98614;
+    padding: 10px;
+  
+    position: fixed;
+    bottom: 0;
+  }
+  
+  .mobileMenu a{
+    font-size: 30px;
+    color: white;
+  }
+}
