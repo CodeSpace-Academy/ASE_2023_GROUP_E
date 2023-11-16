@@ -20,15 +20,16 @@ export default function Info({ recipe, allergens }) {
   const allergenList = [];
 
   // If ingredient is present in allergen array, add it to the allergens list
-
-  for (const ingredient in recipe.ingredients) {
-    for (const allergen in allergens) {
-      if (ingredient.toLowerCase()?.includes(allergens[allergen])) {
+  // Put ingredient object keys (ingredient text) into array and loop over them
+  // loop over allegens and check if the ingredient includes
+  // the allergen
+  Object.values(recipe.ingredients).forEach((ingredient) => {
+    allergens.forEach((allergen) => {
+      if (ingredient.toLowerCase()?.includes(allergen)) {
         allergenList.push(ingredient);
       }
-    }
-  }
-
+    });
+  });
   return (
     <div className={classes.info}>
       <div className={classes.info1}>
