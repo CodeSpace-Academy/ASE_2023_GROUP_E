@@ -1,6 +1,7 @@
 .times {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   gap: 1%;
   margin: 0;
   font-weight: 400;
