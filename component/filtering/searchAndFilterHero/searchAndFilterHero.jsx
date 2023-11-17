@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import classes from './searchAndFilterHero.module.css';
+import { WhiteButton } from '@/component/Button/button';
 
 const SearchAndFilterHero = ({ children }) => {
   const [isOverlayVisible, setIsOverlayVisible] = useState(false);
@@ -14,8 +15,7 @@ const SearchAndFilterHero = ({ children }) => {
 
   return (
     <div>
-
-      <button onClick={toggleOverlay}>Show Filter</button>
+      <WhiteButton click={toggleOverlay} text={isOverlayVisible ? "hide filter" : 'Show Filter'} />
       {isOverlayVisible && (
         <div className={classes.overlay}>
           <div className={classes.background}>
