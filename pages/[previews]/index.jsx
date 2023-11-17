@@ -33,7 +33,7 @@ export default function AllRecipes({ Data, totalRecipes, error }) {
   const router = useRouter();
   // const [results, setResults] = useState(null);
   const [sortField, setSortField] = useState('_id'); // Default sort field
-  const [sortOrder, setSortOrder] = useState(''); // Default sort order
+  const [sortOrder, setSortOrder] = useState('asc'); // Default sort order
   const { searchInput, filteredResults, total, setSelectedIngredientsOptions, setSelectedTagsOptions,setSelectedInstructionsOptions,  setFilteredResults } = StateContext();
 
   const skipNo = parseInt(router.query.previews.split('-')[1]) || 0;
