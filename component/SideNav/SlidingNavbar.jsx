@@ -22,10 +22,10 @@ function skip(){
   };
   const menuOptions = [
     { icon: Links('/',  <AiOutlineHome /> ) , name: Links('/', 'Home')},
-    { icon: Links(`/recipes-0-_id-asc`, <MdOutlineFastfood />, skip ), name: Links(`recipes`, 'Recipes') },
+    { icon: Links(`/recipes-0-_id-asc`, <MdOutlineFastfood />, skip ), name: Links(`recipes`, 'All Recipes') },
     { icon: Links('/favourites',  <AiOutlineHeart />), name: Links('/favourites', 'Favourites') },
     { icon: Links('/recipes-0-_id-asc',  <AiOutlineSearch />), name: Links('/recipes-0-_id-asc', 'Search') },
-    { icon: Links('/profile', <AiOutlineUser />) , name: Links('/profile', 'user') },
+    { icon: Links('/profile', <AiOutlineUser />) , name: Links('/profile', 'User') },
     { icon: Links('/', <AiOutlineSetting />) , name: Links('/', 'Settings')  },
   ];
   return (
