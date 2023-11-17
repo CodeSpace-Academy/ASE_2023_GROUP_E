@@ -3,18 +3,6 @@ import { AiOutlineMenu, AiOutlineTags, AiOutlineHome, AiOutlineSetting, AiOutlin
 import classes from './sideNav.module.css';
 import { MdOutlineFastfood } from 'react-icons/md';
 import StateContext from '@/useContext/StateContext';
-import Link from 'next/link';
-import { IoMdClose } from 'react-icons/io';
-
-// const MenuItem = ({ icon, name, href }) => {
-//   return (
-//     <Link href={href}>
-//       <div classname={classes.a}>
-//         {icon} {name}
-//       </div>
-//     </Link>
-//   );
-// };
 
 const ExpandableMenu = () => {
   const { setToggleMenu, toggleMenu, setAddSkip } = StateContext();
