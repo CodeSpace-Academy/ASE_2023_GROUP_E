@@ -1,7 +1,6 @@
 // Import React and necessary components/styles
 import React from 'react';
 import styles from './recipeDetails.module.css';
-import { PrepandCookTime } from '@/component/handlerTime/timeRead';
 import ImageSlider from './imageSlider/ImageSlider';
 import SingleRecipeTags from '../SingleRecipeTags/SingleRecipeTags';
 import Instructions from '@/component/editInstructions/editandAddInstruction';
