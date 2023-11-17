@@ -1,5 +1,6 @@
 'use client';
 import PreviewList from '@/component/Recipes/Preview/PreviewList';
+
 import { useState, useEffect, useMemo } from 'react';
 import SearchBar from '@/component/filtering/searchCategories/categorySearch';
 import { GrChapterNext } from 'react-icons/gr';
@@ -62,11 +63,13 @@ export default function AllRecipes({ Data, url, totalRecipes, error }) {
       <SearchAndFilterHero>
         
         <SearchBar />
+
         <div className="previewMain">
+          <SearchForm />
           <FilterbyTags />
           <FilterbyIngredients />
           <FilterbyInstructions />
-
+    
           <div className="sort-dropdown">
             <label> Sort by:</label>
             <select
