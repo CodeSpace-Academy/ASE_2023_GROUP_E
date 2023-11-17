@@ -5,6 +5,12 @@ import StateContext from '@/useContext/StateContext';
 import Link from 'next/link';
 import { IoMdClose } from "react-icons/io";
 
+function Links(link, text, click){
+  return (
+    <Link href={link} onClick={click}>{text}</Link>
+  )
+}
+
 const ExpandableMenu = () => {
   const { setToggleMenu, toggleMenu } = StateContext();
   const [isNavBarOpen, setIsNavBarOpen] = useState(false);
@@ -14,12 +20,23 @@ const ExpandableMenu = () => {
     setIsNavBarOpen(!isNavBarOpen);
   };
 
+  function skip(){
+    localStorage.setItem("skipNo", 0)
+    setAddSkip(0)
+  }
+  
+
   const menuOptions = [
-    { icon: <AiOutlineHome />, href: '/', text: 'Home' },
-    { icon: <AiOutlineUser />, href: '/profile', text: 'Profile' },
-    { icon: <AiOutlineHeart />, href: '/favourites', text: 'Favourites' },
-    { icon: <AiOutlineSetting />, href: '/', text: 'Settings' },
+    
+    { icon: Links('/',  <AiOutlineHome /> ) , name: Links('/', 'Home')},
+    { icon: Links('/profile', <AiOutlineUser />) , name: Links('/profile', 'Profile') },
+    { icon: Links('/recipes', <MdOutlineFastfood />, skip ), name: Links('/recipes', 'Recipes') },
+    { icon: Links('/tags', <AiOutlineTags/>) , name: Links('/tags', 'Tags')},
+    { icon: Links('/favourites',  <AiOutlineHeart />), name: Links('/favourites', 'Favourites') },
+    { icon: Links('/search',  <AiOutlineSearch />), name: Links('/search', 'Search') },
+    { icon: Links('/', <AiOutlineSetting />) , name: Links('/', 'Settings')  },
   ];
+
 
   return (
     <div className={classes.pageContainer}>
