@@ -18,7 +18,9 @@ const SearchAndFilterHero = ({ children }) => {
       <WhiteButton click={toggleOverlay} text={isOverlayVisible ? "hide filter" : 'Show Filter'} />
       {isOverlayVisible && (
         <div className={classes.overlay}>
+         
           <div className={classes.background}>
+          <h1 style={{color:'white'}}> Filters</h1>
             <div className={classes.inputsContainer}>
               <button className={classes.closeButton} onClick={closeOverlay}>
                 Close
