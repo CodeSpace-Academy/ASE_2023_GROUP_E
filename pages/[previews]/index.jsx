@@ -2,9 +2,6 @@
 import PreviewList from '@/component/Recipes/Preview/PreviewList';
 import { useState, useEffect, useMemo } from 'react';
 import SearchBar from '@/component/filtering/searchCategories/categorySearch';
-import { GrChapterNext } from 'react-icons/gr';
-import Typography from '@mui/material/Typography';
-import SkeletonTypography from '@/component/ui/loadingSkeleton.js/loading';
 import StateContext from '@/useContext/StateContext';
 import FilterbyTags from '@/component/filtering/filtering/filterbyTags';
 import getRecipes from '@/database/getData/getRecipes';
