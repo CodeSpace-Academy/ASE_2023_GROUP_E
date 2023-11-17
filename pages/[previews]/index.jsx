@@ -3,9 +3,6 @@ import PreviewList from '@/component/Recipes/Preview/PreviewList';
 
 import { useState, useEffect, useMemo } from 'react';
 import SearchBar from '@/component/filtering/searchCategories/categorySearch';
-import { GrChapterNext } from 'react-icons/gr';
-import Typography from '@mui/material/Typography';
-import SkeletonTypography from '@/component/ui/loadingSkeleton.js/loading';
 import StateContext from '@/useContext/StateContext';
 import FilterbyTags from '@/component/filtering/filtering/filterbyTags';
 import getRecipes from '@/database/getData/getRecipes';
@@ -60,53 +57,56 @@ export default function AllRecipes({ Data, totalRecipes, error }) {
 
   return (
     <main>
-      <SearchForm />
-      <SearchAndFilterHero>
         
-        <SearchBar />
+      <div className='previewBackgroundImage'>
 
-        <div className="previewMain">
-          <FilterbyTags />
-          <FilterbyIngredients />
-          <FilterbyInstructions />
-    
-          <div className="sort-dropdown">
-            <label> Sort by:</label>
-            <select
-              className='previewSort'
-              value={sortField}
-              onChange={(e) => setSortField(e.target.value)}
-            >
-              <option value="_id">default</option>
-              <option value="prep">Prep time</option>
-              <option value="cook">Cook time</option>
-              <option value="published">Date</option>
-            </select>
+      <SearchForm />
+        <SearchAndFilterHero>
+          <SearchBar />
+          <div className="previewMain">
+            <FilterbyTags />
+            <FilterbyIngredients />
+            <FilterbyInstructions />
 
-            <select
-              className='previewSort'
-              value={sortOrder}
-              onChange={(e) => setSortOrder(e.target.value)}
-            >
-              <option value="asc">Ascending</option>
-              <option value="desc">Descending</option>
-            </select>
+            <div className="sort-dropdown">
+              <label> Sort by:</label>
+              <select
+                className='previewSort'
+                value={sortField}
+                onChange={(e) => setSortField(e.target.value)}
+              >
+                <option value="_id">default</option>
+                <option value="prep">Prep time</option>
+                <option value="cook">Cook time</option>
+                <option value="published">Date</option>
+              </select>
+
+              <select
+                className='previewSort'
+                value={sortOrder}
+                onChange={(e) => setSortOrder(e.target.value)}
+              >
+                <option value="asc">Ascending</option>
+                <option value="desc">Descending</option>
+              </select>
+            </div>
+
+            <h5>{total}</h5>
+            <h6>{total == 0 ? "No filters have been applied" : ''}</h6>
           </div>
-
-          <h5>{total}</h5>
-          <h6>{total == 0 ? "No filters have been applied" : ''}</h6>
-        </div>
-        <WhiteButton
-          click={() => {
-            setFilteredResults(0)
-            setSelectedInstructionsOptions([])
-            setSelectedIngredientsOptions([])
-            setSelectedTagsOptions([])
-            setFilteredResults(0)
-          }}
-          text= 'Clear filters'
-        />
-      </SearchAndFilterHero>
+          <WhiteButton
+            click={() => {
+              setFilteredResults(0)
+              setSelectedInstructionsOptions([])
+              setSelectedIngredientsOptions([])
+              setSelectedTagsOptions([])
+              setFilteredResults(0)
+            }}
+            text= 'Clear filters'
+          />
+        </SearchAndFilterHero>
+      </div>
+      
       <PreviewList
       input={searchInput}
         recipes={filteredResults.length > 0 ? filteredResults : Data}
