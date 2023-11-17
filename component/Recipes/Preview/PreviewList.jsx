@@ -83,8 +83,9 @@ export default function PreviewList({ recipes, input, sortDate }) {
   return (
     <>
         <div>
-      <Image src={'../../../public/images/stew.jpeg'} width={100} height={200}/>
-    </div>
+          <Image src={'/../../../public/images/playBack.jpg'} width={200} height={200}/>
+       
+      </div>
       {/* Container for the entire component */}
       <Box sx={{ flexGrow: 1 }}>
         {/* Grid container for displaying recipe previews */}
