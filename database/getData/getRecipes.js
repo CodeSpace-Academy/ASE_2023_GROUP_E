@@ -2,7 +2,7 @@ import { client } from "../client"
 
 export default async function getRecipes(filter, skip, limit, sort) {
     try{
-        const db = client().db('devdb');
+        const db = client.db('devdb');
         const recipesCollection = db.collection('recipes');
     
         /**

@@ -3,7 +3,7 @@ import hashPassword from "./protectPassword";
 
 export default async function signUpData(username, email, password){
 
-    const db = client().db('authentication')
+    const db = client.db('authentication')
 
     /** 
      * checks if the email and Or username is already used.

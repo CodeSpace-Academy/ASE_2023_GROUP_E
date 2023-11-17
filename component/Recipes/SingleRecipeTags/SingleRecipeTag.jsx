@@ -5,12 +5,12 @@ import classes from './SingleRecipeTag.module.css';
  * @param {string} tag
  * @returns
  */
-const SingleRecipeTag = ({ tag }) => {
+export default function SingleRecipeTag({ tag }) {
   return (
     <li className={classes.tagItem}>
-      <button className={classes.tagButton}>{tag}</button>
+      <button className={classes.tagButton} type="button">
+        {tag}
+      </button>
     </li>
   );
-};
-
-export default SingleRecipeTag;
+}

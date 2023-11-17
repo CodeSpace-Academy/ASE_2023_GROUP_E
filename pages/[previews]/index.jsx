@@ -19,7 +19,7 @@ import { Spinner } from 'flowbite-react';
 import ErrorMessage from '@/component/Error/ErrorMessage';
 import SearchForm from '@/component/filtering/search/search-form';
 
-export default function AllRecipes({ Data, url, totalRecipes, error }) {
+export default function AllRecipes({ Data, totalRecipes, error }) {
 
   if(error){
     return (
@@ -36,7 +36,7 @@ export default function AllRecipes({ Data, url, totalRecipes, error }) {
   const [sortOrder, setSortOrder] = useState(''); // Default sort order
   const { filteredResults, total, setSelectedIngredientsOptions, setSelectedTagsOptions,setSelectedInstructionsOptions,  setFilteredResults } = StateContext();
 
-  const skipNo = parseInt(router.query.previews.split('-')[1]);
+  const skipNo = parseInt(router.query.previews.split('-')[1]) || 0;
 
   const page = (skipNo + 100) / 100;
   const [currentPage, setCurrentPage] = useState(page);
@@ -135,12 +135,10 @@ export async function getServerSideProps({ params }) {
     const data = await getRecipes({}, skipNo, 100, { [sortBy]: sortOrder });
     const Data = data.recipes;
     const totalRecipes = data.totalRecipes;
-  
-    const url = [skipNo, sortBy];
+    
     return {
       props: {
         Data,
-        url,
         totalRecipes,
       },
     };

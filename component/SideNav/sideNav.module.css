@@ -33,19 +33,23 @@
 .menuOptions {
   list-style: none;
   padding: 0;
-  margin-top: 10px;
+  margin-top: 50px;
 }
+
 
 .menuOptions.expanded li {
   display: flex;
   flex-direction: row;
   text-align: center;
   padding: 10px;
+  color:#fff
 }
 
 .menuOptions.expanded svg {
   margin-right: 10px;
+  color: #ffff;
 }
+
 .pageContainer {
   display: flex;
 }
@@ -74,4 +78,35 @@
 .optionName a {
   color: #fff;
   text-decoration: none;
+}
+
+.mobileNav{
+  font-size: 30px;
+}
+
+.mobileMenu{
+  display: none;
+}
+
+@media only screen and (max-width: 426px){
+  .expandableMenu{
+    display: none;
+  }
+
+  .mobileMenu{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    background-color: #a98614;
+    padding: 10px;
+  
+    position: fixed;
+    bottom: 0;
+  }
+  
+  .mobileMenu a{
+    font-size: 30px;
+    color: white;
+  }
 }
