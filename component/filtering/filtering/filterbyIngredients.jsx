@@ -38,8 +38,8 @@ export default function FilterbyIngredients(){
           const uniqueIngredients = [...new Set(slitIngredients)];
           setIngredients(uniqueIngredients);
         }
-      })
-  }, [ingredients])
+      });
+  }, [ingredients]);
 
   const handleSelectChange = (selected) => {
     setSelectedIngredientsOptions(selected);
@@ -50,11 +50,12 @@ export default function FilterbyIngredients(){
   useEffect(() => {
     if(selectedIngredientsOptions.length > 0){
       fetch(`/api/filtering/filterOptions/filterIngredients?selected=${selected}&andOr=${andOr ? '$or' : '$and'}`)
-      .then(res => res.json())
-      .then(data => {
-        setFilteredResults(data && data.recipes[0])
-        setTotal(total + data && data.recipes[1])
-      })
+        .then(res => res.json())
+        .then(data => {
+          setFilteredResults(data && data.recipes[0]);
+          setTotal(total + data && data.recipes[1]);
+      
+        });
     }
   }, [selectedIngredientsOptions, andOr, total, selected])
 
