@@ -13,6 +13,13 @@
     padding-right: 8px;
 }
 
+.previewBackgroundImage{
+    background: url('https://images.pexels.com/photos/2313686/pexels-photo-2313686.jpeg?auto=compress&cs=tinysrgb&w=600');
+    height: 66vh;
+    background-position: center;
+    background-size: cover;
+}
+
 
 /*Load more button*/
 
