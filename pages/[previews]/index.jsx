@@ -59,52 +59,58 @@ export default function AllRecipes({ Data, totalRecipes, error }) {
     <main>
         
       <div className='previewBackgroundImage'>
+        <div>
+          <SearchForm />
+        </div>
 
-      <SearchForm />
-        <SearchAndFilterHero>
-          <SearchBar />
-          <div className="previewMain">
-            <FilterbyTags />
-            <FilterbyIngredients />
-            <FilterbyInstructions />
+        <div>
+          <SearchAndFilterHero>
+            <SearchBar />
+            <div className="previewMain">
+              <FilterbyTags />
+              <FilterbyIngredients />
+              <FilterbyInstructions />
 
-            <div className="sort-dropdown">
-              <label> Sort by:</label>
-              <select
-                className='previewSort'
-                value={sortField}
-                onChange={(e) => setSortField(e.target.value)}
-              >
-                <option value="_id">default</option>
-                <option value="prep">Prep time</option>
-                <option value="cook">Cook time</option>
-                <option value="published">Date</option>
-              </select>
+              <div className="sort-dropdown">
+                <label> Sort by:</label>
+                <select
+                  className='previewSort'
+                  value={sortField}
+                  onChange={(e) => setSortField(e.target.value)}
+                >
+                  <option value="_id">default</option>
+                  <option value="prep">Prep time</option>
+                  <option value="cook">Cook time</option>
+                  <option value="published">Date</option>
+                </select>
 
-              <select
-                className='previewSort'
-                value={sortOrder}
-                onChange={(e) => setSortOrder(e.target.value)}
-              >
-                <option value="asc">Ascending</option>
-                <option value="desc">Descending</option>
-              </select>
+                <select
+                  className='previewSort'
+                  value={sortOrder}
+                  onChange={(e) => setSortOrder(e.target.value)}
+                >
+                  <option value="asc">Ascending</option>
+                  <option value="desc">Descending</option>
+                </select>
+              </div>
+
+              <h5>{total}</h5>
+              <h6>{total == 0 ? "No filters have been applied" : ''}</h6>
             </div>
+            <WhiteButton
+              click={() => {
+                setFilteredResults(0)
+                setSelectedInstructionsOptions([])
+                setSelectedIngredientsOptions([])
+                setSelectedTagsOptions([])
+                setFilteredResults(0)
+              }}
+              text= 'Clear filters'
+            />
+          </SearchAndFilterHero>
+        </div>
+        
 
-            <h5>{total}</h5>
-            <h6>{total == 0 ? "No filters have been applied" : ''}</h6>
-          </div>
-          <WhiteButton
-            click={() => {
-              setFilteredResults(0)
-              setSelectedInstructionsOptions([])
-              setSelectedIngredientsOptions([])
-              setSelectedTagsOptions([])
-              setFilteredResults(0)
-            }}
-            text= 'Clear filters'
-          />
-        </SearchAndFilterHero>
       </div>
       
       <PreviewList

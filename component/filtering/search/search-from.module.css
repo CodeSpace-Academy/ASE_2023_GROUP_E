@@ -17,7 +17,8 @@
     font-size: larger;
     border: none;
      border-bottom: 1px solid ; 
-    background-color: rgba(230, 227, 227, 0.753);
+    background-color: rgba(227, 230, 230, 0.368);
+    border-radius: 10px;
 }
 
 .search input:active{
@@ -28,6 +29,7 @@
 .search h1 {
     font-size: 400%;
     margin: 10px;
+    color: white;
 }
 
 .results{
