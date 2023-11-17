@@ -14,10 +14,11 @@
 }
 
 .previewBackgroundImage{
-    background: url('https://images.pexels.com/photos/2313686/pexels-photo-2313686.jpeg?auto=compress&cs=tinysrgb&w=600');
-    height: 66vh;
+    background: url('../public/images/backPic.jpg');
+    height: 62vh;
     background-position: center;
-    background-size: cover;
+    background-size:1500px;
+    background-repeat: no-repeat;
 }
 
 

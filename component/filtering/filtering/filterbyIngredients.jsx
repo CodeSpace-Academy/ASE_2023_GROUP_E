@@ -65,7 +65,7 @@ export default function FilterbyIngredients(){
 
     <CustomizedHook 
       options={ingredients} 
-      filter={'Filter Ingredients'}
+      filter={'Ingredients'}
       handleSelectChange={handleSelectChange}
       selectedOptions={selectedIngredientsOptions} 
     />
