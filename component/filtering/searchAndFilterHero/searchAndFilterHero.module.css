@@ -27,7 +27,7 @@
 
 .heading {
   text-align: center;
-  color: #f3f1f1;
+  color: #1d1b1b;
   font-size: 2rem;
   font-weight: 900;
   margin-bottom: 1rem;
@@ -42,7 +42,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #fff; /* Set your desired text color for the overlay content */
+  color: #262222; /* Set your desired text color for the overlay content */
   z-index: 1; /* Ensure the overlay is above other elements */
 }
 
