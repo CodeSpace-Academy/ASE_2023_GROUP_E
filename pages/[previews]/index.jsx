@@ -34,7 +34,7 @@ export default function AllRecipes({ Data, totalRecipes, error }) {
   // const [results, setResults] = useState(null);
   const [sortField, setSortField] = useState('_id'); // Default sort field
   const [sortOrder, setSortOrder] = useState(''); // Default sort order
-  const { filteredResults, total, setSelectedIngredientsOptions, setSelectedTagsOptions,setSelectedInstructionsOptions,  setFilteredResults } = StateContext();
+  const { searchInput, filteredResults, total, setSelectedIngredientsOptions, setSelectedTagsOptions,setSelectedInstructionsOptions,  setFilteredResults } = StateContext();
 
   const skipNo = parseInt(router.query.previews.split('-')[1]) || 0;
 
@@ -60,12 +60,12 @@ export default function AllRecipes({ Data, totalRecipes, error }) {
 
   return (
     <main>
+      <SearchForm />
       <SearchAndFilterHero>
         
         <SearchBar />
 
         <div className="previewMain">
-          <SearchForm />
           <FilterbyTags />
           <FilterbyIngredients />
           <FilterbyInstructions />
@@ -108,6 +108,7 @@ export default function AllRecipes({ Data, totalRecipes, error }) {
         />
       </SearchAndFilterHero>
       <PreviewList
+      input={searchInput}
         recipes={filteredResults.length > 0 ? filteredResults : Data}
       />
 
