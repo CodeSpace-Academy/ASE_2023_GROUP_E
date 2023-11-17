@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { AiOutlineMenu, AiOutlineHome, AiOutlineHeart, AiOutlineUser, AiOutlineSetting, AiOutlineSearch } from 'react-icons/ai';
+import React from 'react';
+import { AiOutlineMenu, AiOutlineTags, AiOutlineHome, AiOutlineSetting, AiOutlineUser, AiOutlineHeart, AiOutlineSearch } from 'react-icons/ai';
 import classes from './sideNav.module.css';
+import { MdOutlineFastfood } from 'react-icons/md';
 import StateContext from '@/useContext/StateContext';
 import Link from 'next/link';
 import { IoMdClose } from 'react-icons/io';
@@ -16,48 +17,59 @@ import { IoMdClose } from 'react-icons/io';
 // };
 
 const ExpandableMenu = () => {
-  const { setToggleMenu, toggleMenu } = StateContext();
-  const [isNavBarOpen, setIsNavBarOpen] = useState(false);
+  const { setToggleMenu, toggleMenu, setAddSkip } = StateContext();
 
-  const toggleExpand = () => {
-    setToggleMenu(!toggleMenu);
-    setIsNavBarOpen(!isNavBarOpen);
+  function skip() {
+    localStorage.setItem('skipNo', 0);
+    setAddSkip(0);
+  }
+
+  const navigateTo = (path, clickFunction) => {
+    setToggleMenu(false);
+    if (clickFunction) clickFunction();
+    // Navigate to path here, e.g., using router.push or window.location.href
+    // Example with window.location.href:
+    window.location.href = path;
   };
 
   const menuOptions = [
-    { icon: <AiOutlineHome />, name: 'Home', href: '/' },
-    { icon: <AiOutlineUser />, name: 'User', href: '/user' },
-    { icon: <AiOutlineHeart />, name: 'Favourites', href: '/favourites' },
-    { icon: <AiOutlineSearch />, name: 'Search', href: '/search' },
-    { icon: <AiOutlineSetting />, name: 'Settings', href: '/settings' },
+    { icon: <AiOutlineHome onClick={() => navigateTo('/')} />, name: 'Home' },
+    { icon: <MdOutlineFastfood onClick={() => navigateTo('/recipes-0-_id-asc', skip)} />, name: 'All Recipes' },
+    { icon: <AiOutlineHeart onClick={() => navigateTo('/favourites')} />, name: 'Favourites' },
+    { icon: <AiOutlineUser onClick={() => navigateTo('/user')} />, name: 'User' },
+    { icon: <AiOutlineSearch onClick={() => navigateTo('/search')} />, name: 'Search' },
+    { icon: <AiOutlineSetting onClick={() => navigateTo('/')} />, name: 'Settings' },
   ];
+
+  const toggleExpand = () => {
+    setToggleMenu(!toggleMenu);
+  };
 
   return (
     <div className={classes.pageContainer}>
       <div className={classes.expandableMenu}>
         <div className={`${classes.menuToggle}`} onClick={toggleExpand}>
-          {toggleMenu ? <IoMdClose /> : <AiOutlineMenu />}
+          <AiOutlineMenu />
         </div>
 
         <ul className={`${classes.menuOptions} ${toggleMenu ? classes.expanded : ''}`}>
           {menuOptions.map((option, index) => (
             <li key={index} onClick={() => setToggleMenu(false)}>
-              <Link href={option.href}>
-                <MenuItem icon={option.icon} name={option.name} href={option.href} />
-              </Link>
+              {toggleMenu ? (
+                <>
+                  <div className={classes.link}>{option.icon}</div>
+                  <p className={classes.optionName}>{option.name}</p>
+                </>
+              ) : (
+                <div className={classes.links2}>{option.icon}</div>
+              )}
             </li>
           ))}
         </ul>
       </div>
 
-      <div className={classes.mobileMenu}>
-        {menuOptions.map((option, index) => (
-          <p key={index}>
-            <Link href={option.href}>
-              <div>{option.icon}</div>
-            </Link>
-          </p>
-        ))}
+      <div className={`${classes.content} ${toggleMenu ? '' : classes.contentClose}`}>
+        {/* Add your page content here */}
       </div>
     </div>
   );
