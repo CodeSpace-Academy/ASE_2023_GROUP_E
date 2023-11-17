@@ -66,7 +66,7 @@ export default function AllRecipes({ Data, totalRecipes, error }) {
             <FilterbyInstructions />
 
             <div className="sort-dropdown">
-              <label> Sort by:</label>
+              <label style={{color:'white'}}> Sort by:</label>
               <select
                 className='previewSort'
                 value={sortField}
@@ -88,8 +88,8 @@ export default function AllRecipes({ Data, totalRecipes, error }) {
               </select>
             </div>
 
-            <h5>{total}</h5>
-            <h6>{total == 0 ? "No filters have been applied" : ''}</h6>
+            <h5 style={{color:'white'}}>{total}</h5>
+            <h6 style={{color:'white'}}>{total == 0 ? "No filters have been applied" : ''}</h6>
           </div>
           <WhiteButton
             click={() => {
@@ -103,7 +103,7 @@ export default function AllRecipes({ Data, totalRecipes, error }) {
           />
         </SearchAndFilterHero>
       </div>
-      
+
       <PreviewList
         recipes={filteredResults.length > 0 ? filteredResults : Data}
       />
