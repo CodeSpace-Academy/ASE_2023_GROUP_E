@@ -3,7 +3,15 @@ import { AiOutlineMenu, AiOutlineHome, AiOutlineHeart, AiOutlineUser, AiOutlineS
 import classes from './sideNav.module.css';
 import StateContext from '@/useContext/StateContext';
 import Link from 'next/link';
-import { IoMdClose } from "react-icons/io";
+import { IoMdClose } from 'react-icons/io';
+
+function Links(link, text, click) {
+  return (
+    <Link href={link} onClick={click}>
+      {text}
+    </Link>
+  );
+}
 
 const ExpandableMenu = () => {
   const { setToggleMenu, toggleMenu } = StateContext();
@@ -15,17 +23,18 @@ const ExpandableMenu = () => {
   };
 
   const menuOptions = [
-    { icon: <AiOutlineHome />, href: '/', text: 'Home' },
-    { icon: <AiOutlineUser />, href: '/profile', text: 'Profile' },
-    { icon: <AiOutlineHeart />, href: '/favourites', text: 'Favourites' },
-    { icon: <AiOutlineSetting />, href: '/', text: 'Settings' },
+    { icon: <AiOutlineHome />, name: Links('/', 'Home') },
+    { icon: <AiOutlineUser />, name: Links('/user', 'User') },
+    { icon: <AiOutlineHeart />, name: Links('/favourites', 'Favourites') },
+    { icon: <AiOutlineSearch />, name: Links('/search', 'Search') },
+    { icon: <AiOutlineSetting />, name: Links('/settings', 'Settings') },
   ];
 
   return (
     <div className={classes.pageContainer}>
       <div className={classes.expandableMenu}>
         <div className={`${classes.menuToggle}`} onClick={toggleExpand}>
-          {toggleMenu ?  <IoMdClose /> : <AiOutlineMenu />}
+          {toggleMenu ? <IoMdClose /> : <AiOutlineMenu />}
         </div>
 
         <ul className={`${classes.menuOptions} ${toggleMenu ? classes.expanded : ''}`}>
@@ -33,10 +42,8 @@ const ExpandableMenu = () => {
             <li key={index} onClick={() => setToggleMenu(false)}>
               {toggleMenu ? (
                 <>
-                  <Link href={option.href}>
-                    <div className={classes.link}>{option.icon}</div>
-                    <p className={`${classes.optionName} ${classes.optionNameBold}`}>{option.text}</p>
-                  </Link>
+                  <div className={classes.link}>{option.icon}</div>
+                  <p className={`${classes.optionName} ${classes.optionNameBold}`}>{option.name}</p>
                 </>
               ) : (
                 <div className={classes.links2}>{option.icon}</div>
@@ -45,7 +52,7 @@ const ExpandableMenu = () => {
           ))}
         </ul>
       </div>
-      
+
       <div className={classes.mobileMenu}>
         {menuOptions.map((option, index) => (
           <p key={index}>{option.icon}</p>
