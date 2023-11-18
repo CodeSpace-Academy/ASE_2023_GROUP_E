@@ -16,7 +16,7 @@ import ErrorMessage from '@/component/Error/ErrorMessage';
 import Image from 'next/image';
 import { getRecipe } from '@/database/getData/getFilteredResults';
 
-export default function AllRecipes({ Data, totalRecipes, error, recipes, totalRecipe, ingredients }) {
+export default function AllRecipes({ Data, totalRecipes, error, recipes, totalRecipe }) {
 
   if(error){
     return (
@@ -31,7 +31,7 @@ export default function AllRecipes({ Data, totalRecipes, error, recipes, totalRe
   // const [results, setResults] = useState(null);
   const [sortField, setSortField] = useState('id'); // Default sort field
   const [sortOrder, setSortOrder] = useState('asc'); // Default sort order
-  const { filteredResults, total, setSelectedIngredientsOptions, setSelectedTagsOptions,setSelectedInstructionsOptions,  setFilteredResults, selecteTags, selectedIngredients } = StateContext();
+  const { filteredResults, total, setSelectedIngredientsOptions, setSelectedTagsOptions,setSelectedInstructionsOptions,  setFilteredResults, selecteTags, selectedIngredients, selectedCategory } = StateContext();
 
   const skipNo = parseInt(router.query.previews.split('-')[1]) || 0;
 
@@ -42,21 +42,21 @@ export default function AllRecipes({ Data, totalRecipes, error, recipes, totalRe
   function onPageChange(page){
     setCurrentPage(page)
     console.log(page * 100 - 100)
-    router.push(`recipes-${page * 100 - 100}-${sortField}-${sortOrder}_${selecteTags.map((item) => item.label).join(',')}_${selectedIngredients.map((item) => item.label).join(',')}`);
+    router.push(`recipes-${page * 100 - 100}-${sortField}-${sortOrder}_${selecteTags.map((item) => item.label).join(',')}_${selectedIngredients.map((item) => item.label).join(',')}_${selectedCategory.value}`);
   }
 
   function handleNextClick() {
-    router.push(`recipes-${skipNo + 100}-${sortField}-${sortOrder}_${selecteTags.map((item) => item.label).join(',')}_${selectedIngredients.map((item) => item.label).join(',')}`);
+    router.push(`recipes-${skipNo + 100}-${sortField}-${sortOrder}_${selecteTags.map((item) => item.label).join(',')}_${selectedIngredients.map((item) => item.label).join(',')}_${selectedCategory.value}`);
   }
 
   const totalPages = Math.ceil(totalRecipes/100)
 
   useEffect(() => {
-    router.push(`recipes-${skipNo}-${sortField}-${sortOrder}_${selecteTags.map((item) => item.label).join(',')}_${selectedIngredients.map((item) => item.label).join(',')}`);
-  }, [sortField, sortOrder, selecteTags, selectedIngredients]);
+    router.push(`recipes-${skipNo}-${sortField}-${sortOrder}_${selecteTags.map((item) => item.label).join(',')}_${selectedIngredients.map((item) => item.label).join(',')}_${selectedCategory == '' ? selectedCategory : selectedCategory.value}`);
+  }, [sortField, sortOrder, selecteTags, selectedIngredients, selectedCategory]);
 
   useEffect(() => {
-    console.log(recipes, totalRecipe, ingredients)
+    console.log(recipes, totalRecipe)
   })
 
   return (
@@ -140,7 +140,8 @@ export async function getServerSideProps({ params }) {
 
     const tags = previews.split('_')[1].split(',')
     const ingredients = previews.split('_')[2].split(',')
-    const { recipes, totalRecipe } = await getRecipe(skipNo, 100,  { [sortBy == 'id'? '_id' : sortBy]: sortOrder }, tags, ingredients)
+    const category = previews.split('_')[3]
+    const { recipes, totalRecipe } = await getRecipe(skipNo, 100,  { [sortBy == 'id'? '_id' : sortBy]: sortOrder }, tags, ingredients, category)
 
     return {
       props: {
@@ -148,8 +149,6 @@ export async function getServerSideProps({ params }) {
         totalRecipes,
         recipes,
         totalRecipe,
-        ingredients
-        
       },
     };
   }catch(error){
