@@ -19,6 +19,7 @@ export function ContextProvider({ children }) {
   const [selectedIngredientsOptions, setSelectedIngredientsOptions] = useState([])
   const [selectedTagsOptions, setSelectedTagsOptions] = useState([]);
   const [selectedInstructionsOptions, setSelectedInstructionsOptions] = useState([]);
+  const [selecteTags, setSelectedTags] = useState([]);
 
   //   Favourite recipes list global state
   let favouriteRecipesInLocalStorage;
@@ -33,6 +34,8 @@ export function ContextProvider({ children }) {
   return (
     <Context.Provider
       value={{
+        selecteTags,
+        setSelectedTags,
         selectedTagsOptions,
         setSelectedTagsOptions,
         selectedIngredientsOptions,

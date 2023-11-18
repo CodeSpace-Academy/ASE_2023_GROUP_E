@@ -14,8 +14,9 @@ import FilterbyInstructions from '@/component/filtering/filtering/filterbyInstru
 import { Spinner } from 'flowbite-react';
 import ErrorMessage from '@/component/Error/ErrorMessage';
 import Image from 'next/image';
+import { getRecipe } from '@/database/getData/getFilteredResults';
 
-export default function AllRecipes({ Data, totalRecipes, error }) {
+export default function AllRecipes({ Data, totalRecipes, error, recipes }) {
 
   if(error){
     return (
@@ -29,8 +30,8 @@ export default function AllRecipes({ Data, totalRecipes, error }) {
   const router = useRouter();
   // const [results, setResults] = useState(null);
   const [sortField, setSortField] = useState('_id'); // Default sort field
-  const [sortOrder, setSortOrder] = useState(''); // Default sort order
-  const { filteredResults, total, setSelectedIngredientsOptions, setSelectedTagsOptions,setSelectedInstructionsOptions,  setFilteredResults } = StateContext();
+  const [sortOrder, setSortOrder] = useState('asc'); // Default sort order
+  const { filteredResults, total, setSelectedIngredientsOptions, setSelectedTagsOptions,setSelectedInstructionsOptions,  setFilteredResults, selecteTags } = StateContext();
 
   const skipNo = parseInt(router.query.previews.split('-')[1]) || 0;
 
@@ -41,18 +42,22 @@ export default function AllRecipes({ Data, totalRecipes, error }) {
   function onPageChange(page){
     setCurrentPage(page)
     console.log(page * 100 - 100)
-    router.push(`recipes-${page * 100 - 100}-${sortField}-${sortOrder}`);
+    router.push(`recipes-${page * 100 - 100}-${sortField}-${sortOrder}_${selecteTags.map((item) => item.label).join(',')}`);
   }
 
   function handleNextClick() {
-    router.push(`recipes-${skipNo + 100}-${sortField}-${sortOrder}`);
+    router.push(`recipes-${skipNo + 100}-${sortField}-${sortOrder}_${selecteTags.map((item) => item.label).join(',')}`);
   }
 
   const totalPages = Math.ceil(totalRecipes/100)
 
   useEffect(() => {
-    router.push(`recipes-${skipNo}-${sortField}-${sortOrder}`);
-  }, [sortField, sortOrder]);
+    router.push(`recipes-${skipNo}-${sortField}-${sortOrder}_${selecteTags.map((item) => item.label).join(',')}`);
+  }, [sortField, sortOrder, selecteTags]);
+
+  useEffect(() => {
+    console.log(recipes)
+  })
 
   return (
     <main>
@@ -132,11 +137,15 @@ export async function getServerSideProps({ params }) {
     const data = await getRecipes({}, skipNo, 100, { [sortBy]: sortOrder });
     const Data = data.recipes;
     const totalRecipes = data.totalRecipes;
-    
+
+    const tags = previews.split('_')[2].split(',')
+    const recipes = await getRecipe(skipNo, tags)
+
     return {
       props: {
         Data,
         totalRecipes,
+        recipes,
       },
     };
   }catch(error){

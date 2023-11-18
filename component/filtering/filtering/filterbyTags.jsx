@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import CustomizedHook from "./filterForm";
+import { useRouter } from "next/router";
 import StateContext from "@/useContext/StateContext";
 
 export default function FilterbyTags(){
 
-  const { setFilteredResults, filteredResults, total, setTotal, setSelectedTagsOptions, selectedTagsOptions } = StateContext()
+  // const { setFilteredResults, filteredResults, total, setTotal, setSelectedTagsOptions, selectedTagsOptions } = StateContext()
+  const { setSelectedTags, selecteTags} = StateContext()
 
   const [tags, setTags] = useState([]);
+  const {push} = useRouter()
   
   /**
    * after fetching the tags which is an array of arrays
@@ -31,26 +34,30 @@ export default function FilterbyTags(){
   }, [tags])
 
   const handleSelectChange = (selected) => {
-    setSelectedTagsOptions(selected);
+
+    setSelectedTags(selected)
+    console.log(selected.map((item) => item.label))
+    // setSelectedTagsOptions(selected);
   };
 
-  const selected = selectedTagsOptions.map((item) => item.value).join(',')
+  // const selected = selectedTagsOptions.map((item) => item.value).join(',')
 
-  useEffect(() => {
-      fetch(`/api/filtering/filterOptions/filterTags?selected=${selected}`)
-        .then(res => res.json())
-        .then(data => {
-          setFilteredResults(data.recipes && data.recipes[0])
-          setTotal(total + data.recipes && data.recipes[1])
-        })
-  }, [selectedTagsOptions])
+  // useEffect(() => {
+  //     fetch(`/api/filtering/filterOptions/filterTags?selected=${selected}`)
+  //       .then(res => res.json())
+  //       .then(data => {
+  //         setFilteredResults(data.recipes && data.recipes[0])
+  //         setTotal(total + data.recipes && data.recipes[1])
+  //       })
+  // }, [selectedTagsOptions])
 
   return (
     <CustomizedHook 
       options={tags} 
       filter={'Tags'} 
       handleSelectChange={handleSelectChange} 
-      selectedOptions={selectedTagsOptions} 
+      // selectedOptions={selectedTagsOptions} 
+      selectedOptions={selecteTags} 
     />
   )
 }
