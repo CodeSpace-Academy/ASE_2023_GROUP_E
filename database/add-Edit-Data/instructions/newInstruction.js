@@ -1,11 +1,11 @@
 import { client } from "../../client"
 
-export default async function newInstructions(recipeTitle, recipeInstruction){
+export default async function newInstructions(recipeId, recipeInstruction){
 
     const db = client.db('devdb')
 
     await db.collection('recipes').updateOne({
-        title: recipeTitle,
+        _id: recipeId,
     }, {
         $push: {
             instructions : recipeInstruction

@@ -5,10 +5,10 @@ export default async function handler( req, res){
 
     if( req.method === 'POST'){
        
-        const { recipeTitle, recipeInstruction } = req.body      
+        const { recipeId, recipeInstruction } = req.body      
 
         try{
-            await newInstructions(recipeTitle, recipeInstruction)
+            await newInstructions(recipeId, recipeInstruction)
             res.status(201).json({message: 'instruction added'})
 
         }catch(error){

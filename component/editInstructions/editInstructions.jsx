@@ -76,13 +76,13 @@ export function NewInstruction() {
   const { addInstruction, setAddInstruction }= StateContext()
 
   const router = useRouter()
-  const titleRouter = router.query.recipe
+  const idRouter = router.query.recipe
 
   async function addItemHandler(e) {
     e.preventDefault()
 
     try {
-      await addItem('/api/addNewInstruction', { recipeTitle: titleRouter, recipeInstruction: newInstruction });
+      await addItem('/api/addNewInstruction', { recipeId: idRouter, recipeInstruction: newInstruction });
       setAddInstruction(!addInstruction)
     } catch (error) {
       console.log('Error adding item');
