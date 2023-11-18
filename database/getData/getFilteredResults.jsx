@@ -17,7 +17,7 @@ export async function getRecipe(skipNo, limit, sort, tags, ingredients, category
   const IngredientsInput = ingredients
   const categoryInput = category
   const instructionsLength = instructions
-  
+
   const getRecipesbyTags = tagsInput.length > 0 && tags != '' ? {tags: { $all: tagsInput}} : {}
   const getRecipesbyIngredients = IngredientsInput.length > 0 && ingredients != '' ? { $or: IngredientsInput.map((key) => { return ({ [`ingredients.${key}`]: { $exists: true } }); }) } : {}
   const getRecipesbyCategory = categoryInput.split('').length > 1 ?  {category: categoryInput} : {}
@@ -42,29 +42,6 @@ export async function getRecipe(skipNo, limit, sort, tags, ingredients, category
     recipes,
     totalRecipe 
   }
-}
-
-
-
-
-
-
-
-
-
-
-export async function getFilteredInstructions(input) {
-
-  const filterInstructions = {
-    instructions: {
-      $size: parseInt(input, 10),
-    },
-  };
-
-  const recipes = await db.collection('recipes').find(filterInstructions).limit(50).toArray();
-  const totalMatchingRecipes = await db.collection('recipes').countDocuments(filterInstructions);
-
-  return { recipes, totalMatchingRecipes };
 }
 
 export async function getFilteredObjects(object) {
