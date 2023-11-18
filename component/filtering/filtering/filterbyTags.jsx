@@ -9,7 +9,6 @@ export default function FilterbyTags(){
   const { setSelectedTags, selecteTags} = StateContext()
 
   const [tags, setTags] = useState([]);
-  const {push} = useRouter()
   
   /**
    * after fetching the tags which is an array of arrays
@@ -36,7 +35,6 @@ export default function FilterbyTags(){
   const handleSelectChange = (selected) => {
 
     setSelectedTags(selected)
-    console.log(selected.map((item) => item.label))
     // setSelectedTagsOptions(selected);
   };
 
