@@ -9,7 +9,7 @@ function EditDescription({ info }) {
   const { edit, setEdit } = StateContext();
 
   const router = useRouter();
-  const titleRouter = router.query.recipe;
+  const idRouter = router.query.recipe;
 
   async function addItemHandler(e) {
     e.preventDefault();
@@ -17,7 +17,7 @@ function EditDescription({ info }) {
     setEdit(!edit);
 
     try {
-      await addItem('/api/editDescription', { recipeTitle: titleRouter, recipeDescription: newDescription });
+      await addItem('/api/editDescription', { recipeId: idRouter, recipeDescription: newDescription });
     } catch (error) {
       console.log('Error adding item');
     }

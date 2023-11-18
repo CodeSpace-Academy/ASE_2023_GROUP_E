@@ -4,10 +4,10 @@ export default async function handler( req, res){
 
     if( req.method === 'POST'){
        
-        const { recipeTitle, recipeDescription } = req.body
+        const { recipeId, recipeDescription } = req.body
 
         try{
-            await editDecription(recipeTitle, recipeDescription)
+            await editDecription(recipeId, recipeDescription)
             res.status(201).json({message: 'data has been modified'})
 
         }catch(error){

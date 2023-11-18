@@ -1,11 +1,11 @@
 import { client } from "../client";
 
-export default async function editDecription(recipeTitle, recipeDescription){
+export default async function editDecription(recipeId, recipeDescription){
 
     const db = client.db('devdb')
 
     await db.collection('recipes').updateOne({
-        title: recipeTitle
+        _id: recipeId
     }, {
         $set: {
             description: recipeDescription,
