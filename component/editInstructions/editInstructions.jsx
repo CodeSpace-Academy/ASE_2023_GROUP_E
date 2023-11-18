@@ -9,19 +9,14 @@ function EditInstruction({info}) {
   const [newInstruction, setNewInstruction] = useState(info);
   const { editInstruction, setEditInstruction, instructionIndex }= StateContext()
 
-
   const router = useRouter()
-  const titleRouter = router.query.recipe
-
+  const idRouter = router.query.recipe
 
   async function addItemHandler(e) {
     e.preventDefault()
 
-
-
-
     try {
-      await addItem('/api/editInstructions', { recipeTitle: titleRouter, recipeInstruction: newInstruction, selectInstruction: instructionIndex });
+      await addItem('/api/editInstructions', { recipeId: idRouter, recipeInstruction: newInstruction, selectInstruction: instructionIndex });
       //hides form after editing
       setEditInstruction(!editInstruction)
     } catch (error) {
@@ -43,7 +38,6 @@ function EditInstruction({info}) {
   );
 }
 
-
 export default EditInstruction;
 
 /**
@@ -53,7 +47,6 @@ export default EditInstruction;
  * 
  * the selected option is the set inside {@link setInstructionIndex} which is a global state, that will then be used to target a specific recipe to edit by using its index
  */
-
 export function GetSpecificInstruction({instructions}){
 
   const option = useRef()
@@ -82,14 +75,11 @@ export function NewInstruction() {
   const [newInstruction, setNewInstruction] = useState('');
   const { addInstruction, setAddInstruction }= StateContext()
 
-
   const router = useRouter()
   const titleRouter = router.query.recipe
 
-
   async function addItemHandler(e) {
     e.preventDefault()
-
 
     try {
       await addItem('/api/addNewInstruction', { recipeTitle: titleRouter, recipeInstruction: newInstruction });
@@ -114,7 +104,6 @@ export function NewInstruction() {
     </form>
   );
 }
-
 
 /**
  * Asynchronously adds an item to a specified API endpoint using a POST request.
