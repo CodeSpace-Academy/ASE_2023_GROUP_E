@@ -10,7 +10,7 @@ export default async function handler(req, res){
         
 
         try{
-            const {recipes} = await getRecipes({title : filter}, 0 )
+            const {recipes} = await getRecipes({_id : filter}, 0 )
             res.status(200).json({ recipeDetails : recipes })
 
         }catch(error){
