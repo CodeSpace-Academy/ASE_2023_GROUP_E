@@ -2,16 +2,6 @@ import { client } from "../client";
 
 const db = client.db('devdb');
 
-export default async function getFilteredTags(input){
-
-
-  const countQuery = { tags: { $all: input } };
-  const documents = await db.collection('recipes').find(countQuery).limit(50).toArray();
-  const totalMatchingRecipes = await db.collection('recipes').countDocuments(countQuery);
-
-  return { documents, totalMatchingRecipes };
-}
-
 export async function getFilteredIngredients(input, andOr) {
 
   const filterIngredients = { [andOr]: input.map((key) => { return ({ [`ingredients.${key}`]: { $exists: true } }); }) };
@@ -27,7 +17,7 @@ export async function getRecipe(skipNo, limit, sort, tags, ingredients, category
   const IngredientsInput = ingredients
   const categoryInput = category
   const instructionsLength = instructions
-//Frozen Desserts
+  
   const getRecipesbyTags = tagsInput.length > 0 && tags != '' ? {tags: { $all: tagsInput}} : {}
   const getRecipesbyIngredients = IngredientsInput.length > 0 && ingredients != '' ? { $or: IngredientsInput.map((key) => { return ({ [`ingredients.${key}`]: { $exists: true } }); }) } : {}
   const getRecipesbyCategory = categoryInput.split('').length > 1 ?  {category: categoryInput} : {}

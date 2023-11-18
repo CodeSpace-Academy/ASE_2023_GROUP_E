@@ -17,7 +17,6 @@ export function ContextProvider({ children }) {
   const [total, setTotal] = useState(0)
   const [clearfilter, setClearFilter] = useState([])
   const [selectedIngredientsOptions, setSelectedIngredientsOptions] = useState([])
-  const [selectedTagsOptions, setSelectedTagsOptions] = useState([]);
   const [selectedInstructionsOptions, setSelectedInstructionsOptions] = useState(0);
   const [selecteTags, setSelectedTags] = useState([]);
   const [selectedIngredients, setSelectedIngredients] = useState([]);
@@ -42,8 +41,6 @@ export function ContextProvider({ children }) {
         setSelectedIngredients,
         selecteTags,
         setSelectedTags,
-        selectedTagsOptions,
-        setSelectedTagsOptions,
         selectedIngredientsOptions,
         setSelectedIngredientsOptions,
         selectedInstructionsOptions,

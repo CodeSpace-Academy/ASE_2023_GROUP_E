@@ -32,7 +32,7 @@ export default function AllRecipes({ Data, totalRecipes, error, recipes, totalRe
   // const [results, setResults] = useState(null);
   const [sortField, setSortField] = useState('id'); // Default sort field
   const [sortOrder, setSortOrder] = useState('asc'); // Default sort order
-  const { filteredResults, total, setSelectedIngredientsOptions, setSelectedTagsOptions,setSelectedInstructionsOptions,  setFilteredResults, selecteTags, selectedIngredients, selectedCategory, selectedInstructionsOptions } = StateContext();
+  const { filteredResults, total, setSelectedIngredientsOptions, setSelectedTags, setSelectedInstructionsOptions,  setFilteredResults, selecteTags, selectedIngredients, selectedCategory, selectedInstructionsOptions } = StateContext();
 
   const skipNo = parseInt(router.query.previews.split('-')[1]) || 0;
 
@@ -102,7 +102,7 @@ export default function AllRecipes({ Data, totalRecipes, error, recipes, totalRe
               setFilteredResults(0)
               setSelectedInstructionsOptions([])
               setSelectedIngredientsOptions([])
-              setSelectedTagsOptions([])
+              setSelectedTags([])
               setFilteredResults(0)
             }}
             text= 'Clear filters'
