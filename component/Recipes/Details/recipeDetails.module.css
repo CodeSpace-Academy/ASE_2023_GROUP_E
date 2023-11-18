@@ -29,15 +29,6 @@
   /* Add default styles for the title and image container */
 }
 
-.title {
-  font-weight: 900;
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  margin-top: 0;
-  margin-top: 3%;
-  text-align: center;
-}
-
 .imageRow {
   margin-bottom: 20px;
 }

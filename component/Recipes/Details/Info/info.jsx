@@ -47,6 +47,9 @@ export default function Info({ recipe, allergens }) {
   return (
     <div className={classes.info}>
       <div className={classes.info1}>
+
+        {/* Display the recipe title */}
+        <h3 className={classes.title}>{recipe.title}</h3>
         {/* Display recipe category */}
         <p className={classes.category}>{recipe.category}</p>
 

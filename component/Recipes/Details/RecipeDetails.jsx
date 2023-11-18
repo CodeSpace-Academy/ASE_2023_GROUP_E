@@ -26,8 +26,6 @@ const RecipeDetails = ({ recipe, allergens }) => {
     // Container for the entire RecipeDetails component
     <div className={styles.background}>
       <div className={styles.recipeCard}>
-        {/* Display the recipe title */}
-        <h3 className={styles.title}>{recipe.title}</h3>
         <div className={styles.card}>
           <div className={styles.titleAndImage}>
             <div className={styles.imageRow}>
