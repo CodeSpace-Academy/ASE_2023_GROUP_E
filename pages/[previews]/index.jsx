@@ -16,7 +16,7 @@ import ErrorMessage from '@/component/Error/ErrorMessage';
 import Image from 'next/image';
 import { getRecipe } from '@/database/getData/getFilteredResults';
 
-export default function AllRecipes({ Data, totalRecipes, error, recipes }) {
+export default function AllRecipes({ Data, totalRecipes, error, recipes, totalRecipe }) {
 
   if(error){
     return (
@@ -56,7 +56,7 @@ export default function AllRecipes({ Data, totalRecipes, error, recipes }) {
   }, [sortField, sortOrder, selecteTags]);
 
   useEffect(() => {
-    console.log(recipes)
+    console.log(recipes, totalRecipe)
   })
 
   return (
@@ -139,13 +139,15 @@ export async function getServerSideProps({ params }) {
     const totalRecipes = data.totalRecipes;
 
     const tags = previews.split('_')[1].split(',')
-    const recipes = await getRecipe(skipNo, 100,  { [sortBy == 'id'? '_id' : sortBy]: sortOrder }, tags)
+    const { recipes, totalRecipe } = await getRecipe(skipNo, 100,  { [sortBy == 'id'? '_id' : sortBy]: sortOrder }, tags)
 
     return {
       props: {
         Data,
         totalRecipes,
         recipes,
+        totalRecipe
+        
       },
     };
   }catch(error){

@@ -28,19 +28,28 @@ export async function getRecipe(skipNo, limit, sort, tags){
   let category = ""
 //Frozen Desserts
   const getRecipesbyTags = tagsInput.length > 0 && tags != '' ? {tags: { $all: tagsInput}} : {}
-  const getRecipesbyIngredients = IngredientsInput.length > 0 ?{ $or: IngredientsInput.map((key) => { return ({ [`ingredients.${key}`]: { $exists: true } }); }) } : {}
+  const getRecipesbyIngredients = IngredientsInput.length > 0 ? { $or: IngredientsInput.map((key) => { return ({ [`ingredients.${key}`]: { $exists: true } }); }) } : {}
   const getRecipesbyCategory = category.split('').length > 1 ?  {category: category} : {}
+  const total = {$and: [getRecipesbyTags, getRecipesbyIngredients, getRecipesbyCategory]}
   
-  const results = await db.collection('recipes').aggregate([
+  const recipes = await db.collection('recipes').aggregate([
 
-    {$match: {$and: [getRecipesbyTags, getRecipesbyIngredients, getRecipesbyCategory]}},
+    {$match: total},
     {$skip: skipNo},
     {$limit: limit},
     {$sort: sort}
 
   ]).toArray()
 
-  return results
+  const totalR = await db.collection('recipes').aggregate( [{$match: total}, {$count: 'total'} ]).toArray()
+  const totalRecipe = totalR[0].total
+  // console.log(tagsInput.length > 0 && tags != '' || )
+
+  return {
+    recipes,
+    totalRecipe
+    
+  }
 }
 
 
