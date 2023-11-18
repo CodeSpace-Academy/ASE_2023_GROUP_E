@@ -100,7 +100,7 @@ export default function AllRecipes({ Data, totalRecipes, error, recipes, totalRe
           <WhiteButton
             click={() => {
               setFilteredResults(0)
-              setSelectedInstructionsOptions([])
+              setSelectedInstructionsOptions(0)
               setSelectedIngredientsOptions([])
               setSelectedTags([])
               setFilteredResults(0)
