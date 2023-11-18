@@ -21,7 +21,7 @@ export async function getFilteredIngredients(input, andOr) {
   return { recipes, totalMatchingRecipes };
 }
 
-export async function getRecipe(skipNo, tags){
+export async function getRecipe(skipNo, limit, sort, tags){
 
   const tagsInput = tags 
   const IngredientsInput = [/* 'blueberries' */]
@@ -35,7 +35,8 @@ export async function getRecipe(skipNo, tags){
 
     {$match: {$and: [getRecipesbyTags, getRecipesbyIngredients, getRecipesbyCategory]}},
     {$skip: skipNo},
-    {$limit: 100},
+    {$limit: limit},
+    {$sort: sort}
 
   ]).toArray()
 

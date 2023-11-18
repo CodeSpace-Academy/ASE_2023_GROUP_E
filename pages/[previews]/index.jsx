@@ -29,7 +29,7 @@ export default function AllRecipes({ Data, totalRecipes, error, recipes }) {
 
   const router = useRouter();
   // const [results, setResults] = useState(null);
-  const [sortField, setSortField] = useState('_id'); // Default sort field
+  const [sortField, setSortField] = useState('id'); // Default sort field
   const [sortOrder, setSortOrder] = useState('asc'); // Default sort order
   const { filteredResults, total, setSelectedIngredientsOptions, setSelectedTagsOptions,setSelectedInstructionsOptions,  setFilteredResults, selecteTags } = StateContext();
 
@@ -77,7 +77,7 @@ export default function AllRecipes({ Data, totalRecipes, error, recipes }) {
                 value={sortField}
                 onChange={(e) => setSortField(e.target.value)}
               >
-                <option value="_id">default</option>
+                <option value="id">default</option>
                 <option value="prep">Prep time</option>
                 <option value="cook">Cook time</option>
                 <option value="published">Date</option>
@@ -134,12 +134,12 @@ export async function getServerSideProps({ params }) {
     const skipNo = parseInt(previews.split('-')[1]);
     const sortBy = previews.split('-')[2];
     const sortOrder = previews.split('-')[3] === 'desc' ? -1 : 1
-    const data = await getRecipes({}, skipNo, 100, { [sortBy]: sortOrder });
+    const data = await getRecipes({}, skipNo, 100, { [sortBy == 'id'? '_id' : sortBy]: sortOrder });
     const Data = data.recipes;
     const totalRecipes = data.totalRecipes;
 
-    const tags = previews.split('_')[2].split(',')
-    const recipes = await getRecipe(skipNo, tags)
+    const tags = previews.split('_')[1].split(',')
+    const recipes = await getRecipe(skipNo, 100,  { [sortBy == 'id'? '_id' : sortBy]: sortOrder }, tags)
 
     return {
       props: {
