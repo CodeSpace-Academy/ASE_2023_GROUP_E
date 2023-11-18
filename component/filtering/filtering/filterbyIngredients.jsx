@@ -5,7 +5,8 @@ import { WhiteButton } from "@/component/Button/button";
 
 export default function FilterbyIngredients(){
 
-  const { setFilteredResults, filteredResults, total, setTotal, selectedIngredientsOptions, setSelectedIngredientsOptions  } = StateContext()
+  // const { setFilteredResults, filteredResults, total, setTotal, selectedIngredientsOptions, setSelectedIngredientsOptions  } = StateContext()
+  const { selectedIngredients, setSelectedIngredients  } = StateContext()
   const [ingredients, setIngredients] = useState([]);
   
   /**
@@ -42,22 +43,23 @@ export default function FilterbyIngredients(){
   }, [ingredients]);
 
   const handleSelectChange = (selected) => {
-    setSelectedIngredientsOptions(selected);
+    // setSelectedIngredientsOptions(selected); 
+    setSelectedIngredients(selected); 
   };
 
-  const selected = selectedIngredientsOptions.map((item) => item.value).join(',')
+  // const selected = selectedIngredientsOptions.map((item) => item.value).join(',')
 
-  useEffect(() => {
-    if(selectedIngredientsOptions.length > 0){
-      fetch(`/api/filtering/filterOptions/filterIngredients?selected=${selected}&andOr=${andOr ? '$or' : '$and'}`)
-        .then(res => res.json())
-        .then(data => {
-          setFilteredResults(data && data.recipes[0]);
-          setTotal(total + data && data.recipes[1]);
+  // useEffect(() => {
+  //   if(selectedIngredientsOptions.length > 0){
+  //     fetch(`/api/filtering/filterOptions/filterIngredients?selected=${selected}&andOr=${andOr ? '$or' : '$and'}`)
+  //       .then(res => res.json())
+  //       .then(data => {
+  //         setFilteredResults(data && data.recipes[0]);
+  //         setTotal(total + data && data.recipes[1]);
       
-        });
-    }
-  }, [selectedIngredientsOptions, andOr, total, selected])
+  //       });
+  //   }
+  // }, [selectedIngredientsOptions, andOr, total, selected])
 
   return (
 
@@ -67,7 +69,8 @@ export default function FilterbyIngredients(){
       options={ingredients} 
       filter={'Ingredients'}
       handleSelectChange={handleSelectChange}
-      selectedOptions={selectedIngredientsOptions} 
+      selectedOptions={selectedIngredients} 
+      // selectedOptions={selectedIngredientsOptions} 
     />
     <br/>
 

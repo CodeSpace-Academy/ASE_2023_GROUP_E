@@ -21,14 +21,14 @@ export async function getFilteredIngredients(input, andOr) {
   return { recipes, totalMatchingRecipes };
 }
 
-export async function getRecipe(skipNo, limit, sort, tags){
+export async function getRecipe(skipNo, limit, sort, tags, ingredients){
 
   const tagsInput = tags 
-  const IngredientsInput = [/* 'blueberries' */]
+  const IngredientsInput = ingredients
   let category = ""
 //Frozen Desserts
   const getRecipesbyTags = tagsInput.length > 0 && tags != '' ? {tags: { $all: tagsInput}} : {}
-  const getRecipesbyIngredients = IngredientsInput.length > 0 ? { $or: IngredientsInput.map((key) => { return ({ [`ingredients.${key}`]: { $exists: true } }); }) } : {}
+  const getRecipesbyIngredients = IngredientsInput.length > 0 && ingredients != '' ? { $or: IngredientsInput.map((key) => { return ({ [`ingredients.${key}`]: { $exists: true } }); }) } : {}
   const getRecipesbyCategory = category.split('').length > 1 ?  {category: category} : {}
   const total = {$and: [getRecipesbyTags, getRecipesbyIngredients, getRecipesbyCategory]}
   
