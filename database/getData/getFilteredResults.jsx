@@ -21,16 +21,18 @@ export async function getFilteredIngredients(input, andOr) {
   return { recipes, totalMatchingRecipes };
 }
 
-export async function getRecipe(skipNo, limit, sort, tags, ingredients, category){
+export async function getRecipe(skipNo, limit, sort, tags, ingredients, category, instructions){
 
   const tagsInput = tags 
   const IngredientsInput = ingredients
-  let categoryInput = category
+  const categoryInput = category
+  const instructionsLength = instructions
 //Frozen Desserts
   const getRecipesbyTags = tagsInput.length > 0 && tags != '' ? {tags: { $all: tagsInput}} : {}
   const getRecipesbyIngredients = IngredientsInput.length > 0 && ingredients != '' ? { $or: IngredientsInput.map((key) => { return ({ [`ingredients.${key}`]: { $exists: true } }); }) } : {}
   const getRecipesbyCategory = categoryInput.split('').length > 1 ?  {category: categoryInput} : {}
-  const total = {$and: [getRecipesbyTags, getRecipesbyIngredients, getRecipesbyCategory]}
+  const getRecipesbyInstructionsLength = instructionsLength > 0 ? { instructions: { $size: instructionsLength }} : {}
+  const total = {$and: [getRecipesbyTags, getRecipesbyIngredients, getRecipesbyCategory, getRecipesbyInstructionsLength]}
   
   const recipes = await db.collection('recipes').aggregate([
 
