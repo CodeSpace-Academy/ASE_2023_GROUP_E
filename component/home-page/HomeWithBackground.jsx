@@ -23,7 +23,7 @@ const HomeWithBackground = () => {
         <div className={classes.menu}>
           <WhiteButton 
             text='View Recipes'
-            click={() => router.push(`/recipes-0-_id-asc_${selecteTags.map((item) => item.label).join(',')}`)}
+            click={() => router.push(`/recipes-0-id-asc_${selecteTags.map((item) => item.label).join(',')}`)}
           />
 
           <WhiteButton 
