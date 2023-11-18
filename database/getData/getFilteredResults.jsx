@@ -11,7 +11,7 @@ export async function getFilteredIngredients(input, andOr) {
   return { recipes, totalMatchingRecipes };
 }
 
-export async function getRecipe(skipNo, limit, sort, tags, ingredients, category, instructions){
+export async function getRecipes(skipNo, limit, sort, tags, ingredients, category, instructions){
 
   const tagsInput = tags 
   const IngredientsInput = ingredients
@@ -36,11 +36,11 @@ export async function getRecipe(skipNo, limit, sort, tags, ingredients, category
   const totalR = await db.collection('recipes').aggregate( [{$match: total}, {$count: 'total'} ]).toArray()
 
   //If total recipe is undefined return 0
-  const totalRecipe = totalR[0] ? totalR[0].total : 0
+  const totalRecipes = totalR[0] ? totalR[0].total : 0
 
   return {
     recipes,
-    totalRecipe 
+    totalRecipes
   }
 }
 
