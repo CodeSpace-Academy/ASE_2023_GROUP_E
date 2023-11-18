@@ -11,18 +11,14 @@ export async function getFilteredIngredients(input, andOr) {
   return { recipes, totalMatchingRecipes };
 }
 
-export async function getRecipes(skipNo, limit, sort, tags, ingredients, category, instructions){
-
-  const tagsInput = tags 
-  const IngredientsInput = ingredients
-  const categoryInput = category
-  const instructionsLength = instructions
-
-  const getRecipesbyTags = tagsInput.length > 0 && tags != '' ? {tags: { $all: tagsInput}} : {}
-  const getRecipesbyIngredients = IngredientsInput.length > 0 && ingredients != '' ? { $or: IngredientsInput.map((key) => { return ({ [`ingredients.${key}`]: { $exists: true } }); }) } : {}
-  const getRecipesbyCategory = categoryInput.split('').length > 1 ?  {category: categoryInput} : {}
-  const getRecipesbyInstructionsLength = instructionsLength > 0 ? { instructions: { $size: instructionsLength }} : {}
-  const total = {$and: [getRecipesbyTags, getRecipesbyIngredients, getRecipesbyCategory, getRecipesbyInstructionsLength]}
+export async function getRecipes(skipNo, limit, sort, tags, ingredients, category, instructions, viewRecipe){
+  
+  const getRecipesbyTags = tags.length > 0 && tags != '' ? {tags: { $all: tags}} : {}
+  const getRecipesbyIngredients = ingredients.length > 0 && ingredients != '' ? { $or: ingredients.map((key) => { return ({ [`ingredients.${key}`]: { $exists: true } }); }) } : {}
+  const getRecipesbyCategory = category.split('').length > 1 ?  {category: category} : {}
+  const getRecipesbyInstructionsLength = instructions > 0 ? { instructions: { $size: instructions }} : {}
+  const getSpecificRecipebyId = viewRecipe ?  {_id : viewRecipe } : {}
+  const total = {$and: [getRecipesbyTags, getRecipesbyIngredients, getRecipesbyCategory, getRecipesbyInstructionsLength, getSpecificRecipebyId]}
   
   const recipes = await db.collection('recipes').aggregate([
 

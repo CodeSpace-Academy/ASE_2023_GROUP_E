@@ -136,7 +136,7 @@ export async function getServerSideProps({ params }) {
     const ingredients = previews.split('_')[2].split(',')
     const category = previews.split('_')[3]
     const instruction = parseInt(previews.split('_')[4])
-    const { recipes, totalRecipes } = await getRecipes(skipNo, 100,  { [sortBy == 'id'? '_id' : sortBy]: sortOrder }, tags, ingredients, category, instruction)
+    const { recipes, totalRecipes } = await getRecipes(skipNo, 100, { [sortBy == 'id'? '_id' : sortBy]: sortOrder }, tags, ingredients, category, instruction)
 
     return {
       props: {
