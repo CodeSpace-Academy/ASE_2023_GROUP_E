@@ -30,8 +30,8 @@ export default function SkeletonTypography() {
   return (
     <Grid container spacing={0} style={{ padding: '15px' }}>
       <Grid item xs>
-    {/* First Grid item containing TypographyDemo with loading prop */}  
-    <Grid item xs>
+      {/* First Grid item containing TypographyDemo with loading prop */}
+      <Grid item xs>
         <TypographyDemo loading />
       </Grid>
       <Grid item xs>
