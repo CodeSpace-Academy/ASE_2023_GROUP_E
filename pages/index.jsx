@@ -2,10 +2,10 @@ import HomeWithBackground from '@/component/home-page/HomeWithBackground';
 import { getRecipes } from '@/database/getData/getRecipesData';
 import { useEffect } from 'react';
 
-export default function Home({recipes}) {
+export default function Home({removeId}) {
 
   useEffect(() => {
-    console.log(recipes)
+    console.log(removeId)
   })
   return (
     <main>
@@ -16,10 +16,10 @@ export default function Home({recipes}) {
 
 export async function getServerSideProps(){
 
-  const { recipes } = await getRecipes('recipes', 0, 5, {createdAt: 1}, [], [], '', 0 , null, '', 'tags' )
+  const { removeId } = await getRecipes('searchHistory', 0, 5, {createdAt: 1}, [], [], '', 0 , null, '', '', 'bob' )
   return{
     props:{
-      recipes
+      removeId
     }
   }
 }

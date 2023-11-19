@@ -2,10 +2,10 @@ import { client } from "../client";
 
 const db = client.db('devdb');
 
-export async function getRecipes(collection, skipNo, limit, sort, tags, ingredients, category, instructions, andOr, viewRecipe, expressionInput){
+export async function getRecipes(collection, skipNo, limit, sort, tags, ingredients, category, instructions, andOr, viewRecipe, expressionInput, username){
 
   /**
-   * These are condition, so that this database module can be reusable 
+   * These condition, are used so that this database module can be reusable 
    */
   const getRecipesbyTags = tags.length > 0 && tags != '' ? {tags: { $all: tags}} : {}
   const getRecipesbyIngredients = ingredients.length > 0 && ingredients != '' ? { [andOr]: ingredients.map((key) => { return ({ [`ingredients.${key}`]: { $exists: true } }); }) } : {}
@@ -15,9 +15,18 @@ export async function getRecipes(collection, skipNo, limit, sort, tags, ingredie
   const expression = expressionInput
 
   /**
+   * This filters the user, to fetch the search history of a specific user.
+   * 
+   * firstly we check we are on the searchHistory collection
+   * if true this object is pushed into the matchby array if not we push an empty object,
+   * empty object means we dont user this filter
+   */
+  const user = collection === 'searchHistory' ? { user: username } : {}
+
+  /**
    * This is mainly used to filter data, when the condition above are met, results will then be filtered by that expression.
    */
-  const matchby = {$and: [getRecipesbyTags, getRecipesbyIngredients, getRecipesbyCategory, getRecipesbyInstructionsLength, getSpecificRecipebyId]}
+  const matchby = {$and: [getRecipesbyTags, getRecipesbyIngredients, getRecipesbyCategory, getRecipesbyInstructionsLength, getSpecificRecipebyId, user]}
   
   const recipes = await db.collection(collection).aggregate([
 
