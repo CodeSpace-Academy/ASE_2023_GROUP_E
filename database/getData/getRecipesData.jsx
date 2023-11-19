@@ -2,7 +2,7 @@ import { client } from "../client";
 
 const db = client.db('devdb');
 
-export async function getRecipes(skipNo, limit, sort, tags, ingredients, category, instructions, andOr, viewRecipe){
+export async function getRecipes(collection, skipNo, limit, sort, tags, ingredients, category, instructions, andOr, viewRecipe){
   
   const getRecipesbyTags = tags.length > 0 && tags != '' ? {tags: { $all: tags}} : {}
   const getRecipesbyIngredients = ingredients.length > 0 && ingredients != '' ? { [andOr]: ingredients.map((key) => { return ({ [`ingredients.${key}`]: { $exists: true } }); }) } : {}
@@ -11,7 +11,7 @@ export async function getRecipes(skipNo, limit, sort, tags, ingredients, categor
   const getSpecificRecipebyId = viewRecipe ?  {_id : viewRecipe } : {}
   const total = {$and: [getRecipesbyTags, getRecipesbyIngredients, getRecipesbyCategory, getRecipesbyInstructionsLength, getSpecificRecipebyId]}
   
-  const recipes = await db.collection('recipes').aggregate([
+  const recipes = await db.collection(collection).aggregate([
 
     {$match: total},
     {$skip: skipNo},

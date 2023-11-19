@@ -7,7 +7,7 @@ export default async function handler(req, res){
         const filter = req.query.filter || '';
 
         try{
-            const {recipes} = await getRecipes(0, 2, {title: 1}, [], [], '', 0,'$or', filter)
+            const {recipes} = await getRecipes('recipes', 0, 2, {title: 1}, [], [], '', 0,'$or', filter)
             res.status(200).json({ recipeDetails : recipes })
 
         }catch(error){
