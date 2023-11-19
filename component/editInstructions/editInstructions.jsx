@@ -17,7 +17,7 @@ function EditInstruction({info}) {
     e.preventDefault()
 
     try {
-      await addItem('/api/editRecipe', { recipeId: idRouter, recipeValue: newInstruction, key: instructionKey });
+      await addItem('/api/editRecipe', { recipeId: idRouter, recipeValue: newInstruction, key: instructionKey, stage: '$set' });
       //hides form after editing
       setEditInstruction(!editInstruction)
     } catch (error) {
@@ -83,7 +83,7 @@ export function NewInstruction() {
     e.preventDefault()
 
     try {
-      await addItem('/api/addNewInstruction', { recipeId: idRouter, recipeInstruction: newInstruction });
+      await addItem('/api/editRecipe', { recipeId: idRouter, recipeValue: newInstruction, key: 'instructions', stage: '$push' });
       setAddInstruction(!addInstruction)
     } catch (error) {
       console.log('Error adding item');

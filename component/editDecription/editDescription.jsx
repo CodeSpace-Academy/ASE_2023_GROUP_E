@@ -17,7 +17,7 @@ function EditDescription({ info }) {
     setEdit(!edit);
 
     try {
-      await addItem('/api/editRecipe', { recipeId: idRouter, recipeValue: newDescription, key: 'description' });
+      await addItem('/api/editRecipe', { recipeId: idRouter, recipeValue: newDescription, key: 'description', stage: '$set' });
     } catch (error) {
       console.log('Error adding item');
     }
