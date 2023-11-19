@@ -1,5 +1,6 @@
 .search{
     text-align: center;
+    
 }
 
 /* .search{
@@ -11,37 +12,51 @@
 } */
 
 .search input {
-    height: 13vh;
-    min-width: 60%;
+    height: 48px;;
+    width: 500px;
     text-align: center;
     font-size: larger;
     border: none;
-     border-bottom: 1px solid ; 
-    background-color: rgba(227, 230, 230, 0.368);
-    border-radius: 10px;
+    border-bottom: 1px solid ; 
+    background-color: rgba(255, 255, 255, 0.566);
+    border-radius: 10px 0px 0px 10px;
+    position: relative;
+    font-weight: 500;
+    color: blue;
+    
+   
+
+   
 }
+.search input::placeholder {
+    color: rgb(34, 34, 107);
+  }
 
 .search input:active{
     border: none;
-    background-color: rgba(252, 252, 252, 0.253);
+    background-color: rgba(208, 198, 198, 0.248);
 }
 
 .search h1 {
     font-size: 400%;
     margin: 10px;
-    color: white;
+    color: black;
 }
 
 .results{
     padding: 15px;
 }
 
+
+
 .searhHistory{
-    background-color: white;
+    position: absolute;
+    background-color:white;
     border-radius: 4px;
-    width: 60%;
-    transform: translateX(33.5%);
+    min-width: 235px;
+    transform: translateX(0%); 
     text-align: justify;
+    color: black;
 }
 
 .searhHistory li{
@@ -53,9 +68,9 @@
 
 .searhHistory li:hover{
     background-color: rgba(128, 128, 128, 0.146);
-}
+} 
 
-.searhHistory p {
+ .searhHistory p {
     cursor: pointer;
     margin-left: 5px;
 }
@@ -66,13 +81,16 @@
 }
 
 @media only screen and (max-width: 508px){
-    .searhHistory{
-        width: 105%;
-        transform: translateX(0%);
-    }
+    
+.search input {
+    height: 48px;;
+    width: 200px;
+   }
 
-    .search input {
-        width: 105%;
-    }
-
+   .searhHistory{
+  
+    min-width: 200px;
+    
+}
+   
 }
