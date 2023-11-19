@@ -8,7 +8,7 @@ const RecipePage = () => {
   const [allergens, setAllergens] = useState([]);
   
   useEffect(() => {
-    fetch(`/api/filtering/filterOptions/selectOptions?filter=${router.query.recipe}`)
+    fetch(`/api/getData?filter=${router.query.recipe}`)
       .then((res) => res.json())
       .then((data) => setRecipe(data.recipes && data.recipes[0]));
   }, [recipe]);
