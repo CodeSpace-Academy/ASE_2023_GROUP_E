@@ -1,4 +1,4 @@
-import editRecipe from "@/database/add-Edit-Data/instructions/editRecipe"
+import editRecipe from "@/database/editData/editRecipe"
 
 export default async function handler( req, res){
 
