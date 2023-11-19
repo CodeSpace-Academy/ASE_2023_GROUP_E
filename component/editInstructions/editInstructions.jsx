@@ -8,6 +8,7 @@ import {TiEdit } from 'react-icons/ti'
 function EditInstruction({info}) {
   const [newInstruction, setNewInstruction] = useState(info);
   const { editInstruction, setEditInstruction, instructionIndex }= StateContext()
+  const instructionKey = `instructions.${instructionIndex}`
 
   const router = useRouter()
   const idRouter = router.query.recipe
@@ -16,7 +17,7 @@ function EditInstruction({info}) {
     e.preventDefault()
 
     try {
-      await addItem('/api/editInstructions', { recipeId: idRouter, recipeInstruction: newInstruction, selectInstruction: instructionIndex });
+      await addItem('/api/editRecipe', { recipeId: idRouter, recipeValue: newInstruction, key: instructionKey });
       //hides form after editing
       setEditInstruction(!editInstruction)
     } catch (error) {
