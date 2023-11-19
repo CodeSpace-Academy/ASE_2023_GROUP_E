@@ -21,6 +21,7 @@ export function ContextProvider({ children }) {
   const [selecteTags, setSelectedTags] = useState([]);
   const [selectedIngredients, setSelectedIngredients] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
+  const [andOr, setAndOr] = useState(false);
 
   //   Favourite recipes list global state
   let favouriteRecipesInLocalStorage;
@@ -35,6 +36,8 @@ export function ContextProvider({ children }) {
   return (
     <Context.Provider
       value={{
+        andOr, 
+        setAndOr,
         selectedCategory, 
         setSelectedCategory,
         selectedIngredients,

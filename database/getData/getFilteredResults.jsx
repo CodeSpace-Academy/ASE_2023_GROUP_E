@@ -2,19 +2,10 @@ import { client } from "../client";
 
 const db = client.db('devdb');
 
-export async function getFilteredIngredients(input, andOr) {
-
-  const filterIngredients = { [andOr]: input.map((key) => { return ({ [`ingredients.${key}`]: { $exists: true } }); }) };
-  const recipes = await db.collection('recipes').find(filterIngredients).limit(50).toArray();
-  const totalMatchingRecipes = await db.collection('recipes').countDocuments(filterIngredients);
-
-  return { recipes, totalMatchingRecipes };
-}
-
-export async function getRecipes(skipNo, limit, sort, tags, ingredients, category, instructions, viewRecipe){
+export async function getRecipes(skipNo, limit, sort, tags, ingredients, category, instructions, andOr, viewRecipe){
   
   const getRecipesbyTags = tags.length > 0 && tags != '' ? {tags: { $all: tags}} : {}
-  const getRecipesbyIngredients = ingredients.length > 0 && ingredients != '' ? { $or: ingredients.map((key) => { return ({ [`ingredients.${key}`]: { $exists: true } }); }) } : {}
+  const getRecipesbyIngredients = ingredients.length > 0 && ingredients != '' ? { [andOr]: ingredients.map((key) => { return ({ [`ingredients.${key}`]: { $exists: true } }); }) } : {}
   const getRecipesbyCategory = category.split('').length > 1 ?  {category: category} : {}
   const getRecipesbyInstructionsLength = instructions > 0 ? { instructions: { $size: instructions }} : {}
   const getSpecificRecipebyId = viewRecipe ?  {_id : viewRecipe } : {}
