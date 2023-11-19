@@ -14,10 +14,10 @@ const RecipePage = () => {
   }, [recipe]);
 
   useEffect(() => {
-    fetch('/api/recipes/allergens')
+    fetch('/api/recipes/allergensAndCategoryOptions?collection=allergens')
       .then((res) => res.json())
       .then((data) =>
-        setAllergens(data.allergens && data.allergens[0].allergens),
+        setAllergens(data.results && data.results[0].allergens),
       );
   }, []);
 
