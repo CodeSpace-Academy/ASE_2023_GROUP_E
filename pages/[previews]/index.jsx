@@ -145,7 +145,7 @@ export async function getServerSideProps({ params }) {
     const category = previews.split('_')[3]
     const instruction = parseInt(previews.split('_')[4])
     const andOr = previews.split('_')[5] === 'false' ? "$and" : "$or"
-    const { recipes, totalRecipes } = await getRecipes('recipes', skipNo, 100, { [sortBy == 'id'? '_id' : sortBy]: sortOrder }, tags, ingredients, category, instruction, andOr)
+    const { recipes, totalRecipes } = await getRecipes('recipes', skipNo, 100, { [sortBy == 'id'? '_id' : sortBy]: sortOrder }, tags, ingredients, category, instruction, andOr,'', '')
 
     return {
       props: {

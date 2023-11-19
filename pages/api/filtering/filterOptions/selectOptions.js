@@ -1,12 +1,12 @@
-import { getFilteredObjects } from "@/database/getData/getRecipesData";
+import { getRecipes } from "@/database/getData/getRecipesData";
 
 export default async function handler(req, res){
   if (req.method === "GET") {
 
-    const object = req.query.object || ''
+    const project = req.query.project || ''
     try {
-      const results = await getFilteredObjects({[object]: 1, _id: 0 })
-      res.status(200).json({ recipes: results })
+      const { recipes } = await getRecipes('recipes', 0, 5, {createdAt: 1}, [], [], '', 0 , null, '', project )
+      res.status(200).json({ recipes: recipes })
 
     } catch (error) {
        return res.status(417).json({ message: 'failed to load Recipes'})

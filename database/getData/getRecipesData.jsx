@@ -2,7 +2,7 @@ import { client } from "../client";
 
 const db = client.db('devdb');
 
-export async function getRecipes(collection, skipNo, limit, sort, tags, ingredients, category, instructions, andOr, viewRecipe){
+export async function getRecipes(collection, skipNo, limit, sort, tags, ingredients, category, instructions, andOr, viewRecipe, expressionInput){
 
   /**
    * These are condition, so that this database module can be reusable 
@@ -12,6 +12,7 @@ export async function getRecipes(collection, skipNo, limit, sort, tags, ingredie
   const getRecipesbyCategory = category.split('').length > 1 ?  {category: category} : {}
   const getRecipesbyInstructionsLength = instructions > 0 ? { instructions: { $size: instructions }} : {}
   const getSpecificRecipebyId = viewRecipe ?  {_id : viewRecipe } : {}
+  const expression = expressionInput
 
   /**
    * This is mainly used to filter data, when the condition above are met, results will then be filtered by that expression.
@@ -20,7 +21,13 @@ export async function getRecipes(collection, skipNo, limit, sort, tags, ingredie
   
   const recipes = await db.collection(collection).aggregate([
 
-    {$match: matchby},
+    
+    /**
+     * This condition checks if we want to use the project stage by checking if we have value on the {@link expression} variable.
+     * At the moment we do not us both match and project stage at the same time, 
+     * so if expression has value we use the project stage then leave out the match stage.
+     */
+    expression.split('').length > 1 ? {$project: { [expression]: 1, _id: 0 }} : {$match: matchby},
     {$skip: skipNo},
     {$limit: limit},
     {$sort: sort}
@@ -49,10 +56,4 @@ export async function getRecipes(collection, skipNo, limit, sort, tags, ingredie
     totalRecipes,
     removeId
   }
-}
-
-export async function getFilteredObjects(object) {
-  const results = await db.collection('recipes').find().limit(100).project(object).toArray();
-
-  return results;
 }
