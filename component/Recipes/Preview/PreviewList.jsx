@@ -127,7 +127,7 @@ export default function PreviewList({ recipes, input, sortDate }) {
                                         style={
                                           title.toLowerCase() ===
                                           input.toLowerCase()
-                                            ? { color: 'orange' }
+                                            ? { color: '#a98614' }
                                             : {}
                                         }
                                       >
