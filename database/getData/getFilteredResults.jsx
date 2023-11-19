@@ -36,16 +36,3 @@ export async function getFilteredObjects(object) {
 
   return results;
 }
-
-export async  function getTagsOptionsList(expression){
-
-  const results = await db.collection('recipes').aggregate([
-
-    {$limit: 100 },
-    {$unwind: expression},
-    {$group: {_id : expression}},
-
-  ]).toArray()
-
-  return results
-}
