@@ -6,10 +6,11 @@ import classes from './search-from.module.css';
 import ErrorMessage from '@/component/Error/ErrorMessage';
 import StateContext from '@/useContext/StateContext';
 
+
 export default function SearchForm() {
   const searchRef = useRef();
   const [results, setResults] = useState(null);
-  const {setFilteredResults, setSearchInput} = StateContext(null)
+  const {setFilteredResults, setSearchInput, total, setTotal} = StateContext(null)
   const [searchHistory, setSearchHistory] = useState(null);
   const [displayHistory, setDisplayHistory] = useState(false);
   const [length, setLength] = useState(0)
@@ -30,7 +31,7 @@ export default function SearchForm() {
         }else{
           setFilteredResults(data.results && data.results[0] || [])
           setResults(data.results && data.results[0] || []);
-          setLength(data.results && data.results[1] || 0);
+          setTotal(total + data.results && data.results[1] || 0);
           setAddSearchHistory(true);
         }
 
@@ -92,7 +93,7 @@ export default function SearchForm() {
   return (
     <>
       <div className={classes.search}>
-        <h1>Find recipes</h1>
+       
         <input
           type="text"
           placeholder="Search for recipes"
@@ -129,7 +130,7 @@ export default function SearchForm() {
         }
 
       </div>
-      <h4 className={classes.total}>Total Recipes: {length}</h4>
+     
     </>
   );
 }
