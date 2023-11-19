@@ -8,7 +8,7 @@ import StateContext from '@/useContext/StateContext';
 
 const HomeWithBackground = () => {
   const router = useRouter(); // Initialize the router for navigation.
-  const { selecteTags, selectedIngredients, selectedCategory, selectedInstructionsOptions } = StateContext()
+  const { selecteTags, selectedIngredients, selectedCategory, selectedInstructionsOptions, andOr } = StateContext()
 
   return (
     <div>
@@ -23,7 +23,7 @@ const HomeWithBackground = () => {
         <div className={classes.menu}>
           <WhiteButton 
             text='View Recipes'
-            click={() => router.push(`/recipes-0-id-asc_${selecteTags.map((item) => item.label).join(',')}_${selectedIngredients.map((item) => item.label).join(',')}_${selectedCategory.value}_${selectedInstructionsOptions}`)}
+            click={() => router.push(`/recipes-0-id-asc_${selecteTags.map((item) => item.label).join(',')}_${selectedIngredients.map((item) => item.label).join(',')}_${selectedCategory == '' ? selectedCategory : selectedCategory.value}_${selectedInstructionsOptions}_${!andOr}`)}
           />
 
           <WhiteButton 

@@ -31,28 +31,33 @@ export default function AllRecipes({error, recipes, totalRecipes}) {
   // const [results, setResults] = useState(null);
   const [sortField, setSortField] = useState('id'); // Default sort field
   const [sortOrder, setSortOrder] = useState('asc'); // Default sort order
-  const { filteredResults, total, setSelectedIngredients, setSelectedTags, setSelectedInstructionsOptions,  setFilteredResults, selecteTags, selectedIngredients, selectedCategory, selectedInstructionsOptions, setSelectedCategory, andOr } = StateContext();
+  const { filteredResults, setSelectedIngredients, setSelectedTags, setSelectedInstructionsOptions,  setFilteredResults, selecteTags, selectedIngredients, selectedCategory, selectedInstructionsOptions, setSelectedCategory, andOr } = StateContext();
 
   const skipNo = parseInt(router.query.previews.split('-')[1]) || 0;
 
   const page = (skipNo + 100) / 100;
   const [currentPage, setCurrentPage] = useState(page);
 
+  function path(skip){
+    const path = `recipes-${skip}-${sortField}-${sortOrder}_${selecteTags.map((item) => item.label).join(',')}_${selectedIngredients.map((item) => item.label).join(',')}_${selectedCategory == '' ? selectedCategory : selectedCategory.value}_${selectedInstructionsOptions}_${andOr}`
+    return path
+  }
 
   function onPageChange(page){
     setCurrentPage(page)
-    router.push(`recipes-${page * 100 - 100}-${sortField}-${sortOrder}_${selecteTags.map((item) => item.label).join(',')}_${selectedIngredients.map((item) => item.label).join(',')}_${selectedCategory == '' ? selectedCategory : selectedCategory.value}_${selectedInstructionsOptions}_${andOr}`);
+    router.push(path(page * 100 - 100));
   }
 
   function handleNextClick() {
-    router.push(`recipes-${skipNo + 100}-${sortField}-${sortOrder}_${selecteTags.map((item) => item.label).join(',')}_${selectedIngredients.map((item) => item.label).join(',')}_${selectedCategory == '' ? selectedCategory : selectedCategory.value}_${selectedInstructionsOptions}_${andOr}`);
+    router.push(path(skipNo + 100));
 
   }
 
   const totalPages = Math.ceil(totalRecipes/100)
 
   useEffect(() => {
-    router.push(`recipes-${skipNo}-${sortField}-${sortOrder}_${selecteTags.map((item) => item.label).join(',')}_${selectedIngredients.map((item) => item.label).join(',')}_${selectedCategory == '' ? selectedCategory : selectedCategory.value}_${selectedInstructionsOptions}_${andOr}`);
+    
+    router.push(path(skipNo));
   }, [sortField, sortOrder, selecteTags, selectedIngredients, selectedCategory, selectedInstructionsOptions]);
 
   return (
