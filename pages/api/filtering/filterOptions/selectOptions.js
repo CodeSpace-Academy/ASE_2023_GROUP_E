@@ -1,4 +1,4 @@
-import { getFilteredObjects } from "@/database/getData/getFilteredResults";
+import { getFilteredObjects } from "@/database/getData/getRecipesData";
 
 export default async function handler(req, res){
   if (req.method === "GET") {

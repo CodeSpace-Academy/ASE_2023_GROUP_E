@@ -13,7 +13,7 @@ import FilterbyInstructions from '@/component/filtering/filtering/filterbyInstru
 import { Spinner } from 'flowbite-react';
 import ErrorMessage from '@/component/Error/ErrorMessage';
 import Image from 'next/image';
-import { getRecipes } from '@/database/getData/getFilteredResults';
+import { getRecipes } from '@/database/getData/getRecipesData';
 import { parseInt } from 'lodash';
 
 export default function AllRecipes({error, recipes, totalRecipes}) {
