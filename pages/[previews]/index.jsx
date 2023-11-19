@@ -1,6 +1,5 @@
-'use client';
-import PreviewList from '@/component/Recipes/Preview/PreviewList';
 
+import PreviewList from '@/component/Recipes/Preview/PreviewList';
 import { useState, useEffect, useMemo } from 'react';
 import SearchBar from '@/component/filtering/searchCategories/categorySearch';
 import StateContext from '@/useContext/StateContext';
@@ -59,7 +58,13 @@ export default function AllRecipes({ Data, totalRecipes, error }) {
     <main>
         
       <div className='previewBackgroundImage'>
+       <div className='allRecipesTitle'>
+       <h1>All Recipes</h1>
+       </div>
+
+       <div className='searchAndFilters'>
         <div>
+    
           <SearchForm />
         </div>
 
@@ -94,7 +99,7 @@ export default function AllRecipes({ Data, totalRecipes, error }) {
                 </select>
               </div>
 
-            <h5 style={{color:'white'}}>{total}</h5>
+            {/* <h5 style={{color:'white'}}>{total}</h5> */}
             <h6 style={{color:'white'}}>{total == 0 ? "No filters have been applied" : ''}</h6>
           </div>
           <WhiteButton
@@ -109,6 +114,14 @@ export default function AllRecipes({ Data, totalRecipes, error }) {
           />
         </SearchAndFilterHero>
       </div>
+      </div>
+    
+    </div>
+    
+    {total === 0 || total === 164959 ? '' : <div className='totalRecipes'><h2>{total} results</h2></div>}
+ 
+
+
 
       <PreviewList
       input={searchInput}
@@ -129,6 +142,7 @@ export default function AllRecipes({ Data, totalRecipes, error }) {
     </main>
   );
 }
+
 
 export async function getServerSideProps({ params }) {
   try{
