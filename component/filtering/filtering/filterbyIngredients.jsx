@@ -11,7 +11,7 @@ export default function FilterbyIngredients({skipNo, sortField, sortOrder}){
   const { setSelectedIngredients, selecteTags, selectedIngredients, selectedCategory, selectedInstructionsOptions, andOr, setAndOr } = StateContext();
  
   useEffect(() =>{
-    fetch('/api/getData?project=ingredients')
+    fetch('/api/getData?project=ingredients&collection=recipes')
       .then(res => res.json())
       .then(data => {
         if (data) {

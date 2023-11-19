@@ -16,7 +16,7 @@ export default function FilterbyTags(){
    * This state hold the options of tags to select from.
    */
   useEffect(() =>{
-    fetch('/api/getData?project=tags')
+    fetch('/api/getData?project=tags&collection=recipes')
       .then(res => res.json())
       .then(data => {
         if (data) {

@@ -10,10 +10,10 @@ const SearchBar = () => {
 
   useEffect(() => {
     // Fetch categories on component mount
-    fetch('/api/recipes/allergensAndCategoryOptions?collection=categories')
+    fetch('/api/getData?collection=categories')
       .then((res) => res.json())
       .then((data) =>
-        setCategories(data.results && data.results[0].categories)
+        setCategories(data.recipes && data.recipes[0].categories)
       );
   }, []);
 
