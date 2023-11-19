@@ -118,7 +118,7 @@ export default function AllRecipes({ Data, totalRecipes, error }) {
     
     </div>
     
-    {total === 0 || total === 164959 ? '' : <div className='totalRecipes'><h2>{total} results</h2></div>}
+    {total === 0 || total === 164959 ? '' : <div className='totalRecipes'><h3>{total} results</h3></div>}
  
 
 

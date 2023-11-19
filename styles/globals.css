@@ -78,5 +78,7 @@
 
 
 .totalRecipes{
-    padding-left: 80px;
+    padding-left: 20px;
+    padding-top: 20px;
+    color: rgba(45, 43, 43, 0.848);
 }
