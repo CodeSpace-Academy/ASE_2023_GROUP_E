@@ -20,7 +20,7 @@ export default function FilterbyTags(){
       .then(res => res.json())
       .then(data => {
         if (data) {
-          const allTags = data.recipes && data.recipes.reduce((tags, recipe) => {
+          const allTags = data.results && data.results.reduce((tags, recipe) => {
             return tags.concat(recipe.tags);
           }, []);
     

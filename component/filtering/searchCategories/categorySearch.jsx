@@ -13,7 +13,7 @@ const SearchBar = () => {
     fetch('/api/getData?collection=categories')
       .then((res) => res.json())
       .then((data) =>
-        setCategories(data.recipes && data.recipes[0].categories)
+        setCategories(data.results && data.results[0].categories)
       );
   }, []);
 

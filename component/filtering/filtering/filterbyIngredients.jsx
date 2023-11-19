@@ -20,7 +20,7 @@ export default function FilterbyIngredients({skipNo, sortField, sortOrder}){
            * Fetches the ingredients which is an array objects.
            * maps over this array to abstracts the object keys
            */
-          const allIngredients = data.recipes && data.recipes.map((item) => {
+          const allIngredients = data.results && data.results.map((item) => {
               return Object.keys(item.ingredients)
           })
           /**
