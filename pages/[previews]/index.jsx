@@ -12,7 +12,6 @@ import { Pagination } from 'flowbite-react';
 import FilterbyInstructions from '@/component/filtering/filtering/filterbyInstructions';
 import { Spinner } from 'flowbite-react';
 import ErrorMessage from '@/component/Error/ErrorMessage';
-import Image from 'next/image';
 import { getRecipes } from '@/database/getData/getRecipesData';
 import { parseInt } from 'lodash';
 

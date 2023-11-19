@@ -6,8 +6,6 @@ import StateContext from '@/useContext/StateContext';
 
 const SearchBar = () => {
   const [categories, setCategories] = useState([]);
-  // const [selectedCategory, setSelectedCategory] = useState(null);
-  // const { setFilteredResults } = StateContext();
   const { selectedCategory, setSelectedCategory } = StateContext();
 
   useEffect(() => {
@@ -31,17 +29,6 @@ const SearchBar = () => {
     // }
     setSelectedCategory(selectedOption)
   };
-
-  // useEffect(() => {
-  //   // Fetch filtered results when selected category changes
-  //   if (selectedCategory && selectedCategory.label) {
-  //     fetch(
-  //       `/api/filtering/filterOptions/filteredCategories?category=${selectedCategory.label}`
-  //     )
-  //       .then((res) => res.json())
-  //       .then((data) => setFilteredResults(data.categories.recipes || []));
-  //   }
-  // }, [selectedCategory]);
 
   // useEffect(() => {
   //   // Read the URL parameters on page load
