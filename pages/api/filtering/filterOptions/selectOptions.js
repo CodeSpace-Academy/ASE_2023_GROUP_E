@@ -4,8 +4,10 @@ export default async function handler(req, res){
   if (req.method === "GET") {
 
     const project = req.query.project || ''
+    const filter = req.query.filter || '';
+
     try {
-      const { recipes } = await getRecipes('recipes', 0, 5, {createdAt: 1}, [], [], '', 0 , null, '', project )
+      const { recipes } = await getRecipes('recipes', 0, 5, {createdAt: 1}, [], [], '', 0 , null, filter, project )
       res.status(200).json({ recipes: recipes })
 
     } catch (error) {
