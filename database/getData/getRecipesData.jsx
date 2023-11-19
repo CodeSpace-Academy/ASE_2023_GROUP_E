@@ -17,9 +17,9 @@ export async function getRecipes(collection, skipNo, limit, sort, tags, ingredie
   /**
    * This filters the user, to fetch the search history of a specific user.
    * 
-   * firstly we check we are on the searchHistory collection
+   * firstly we check if we are on the searchHistory collection
    * if true this object is pushed into the matchby array if not we push an empty object,
-   * empty object means we dont user this filter
+   * empty object means we dont use this filter
    */
   const user = collection === 'searchHistory' ? { user: username } : {}
 
