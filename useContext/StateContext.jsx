@@ -23,6 +23,7 @@ export function ContextProvider({ children }) {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [andOr, setAndOr] = useState(false);
   const [searchInput, setSearchInput] = useState(null);
+  const [searchText, setSearchText] = useState(null);
 
   //   Favourite recipes list global state
   let favouriteRecipesInLocalStorage;
@@ -37,6 +38,8 @@ export function ContextProvider({ children }) {
   return (
     <Context.Provider
       value={{
+        searchText, 
+        setSearchText,
         searchInput,
         setSearchInput,
         andOr, 
