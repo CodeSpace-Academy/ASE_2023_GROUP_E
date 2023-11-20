@@ -1,10 +1,10 @@
 import React from 'react';
-import { AiOutlineMenu,AiOutlineTags, AiOutlineHome, AiOutlineSetting, AiOutlineUser, AiOutlineHeart, AiOutlineSearch } from 'react-icons/ai';
+import { AiOutlineMenu, AiOutlineTags, AiOutlineHome, AiOutlineSetting, AiOutlineUser, AiOutlineHeart, AiOutlineSearch } from 'react-icons/ai';
 import classes from './sideNav.module.css';
 import { MdOutlineFastfood,} from 'react-icons/md'
 import StateContext from '@/useContext/StateContext';
 import Link from 'next/link';
-import { IoMdClose } from "react-icons/io";
+import { IoIosArrowDropleft, IoIosArrowForward } from "react-icons/io";
 
 /**
  * Function to create Links using the Link component from Next.js
@@ -42,7 +42,10 @@ function skip(){
     setToggleMenu(!toggleMenu);
   };
 
+
   // Array of menu options with corresponding icons and names
+  const arrowIcon = toggleMenu ? <IoIosArrowForward /> : <IoIosArrowDropleft />;
+  
   const menuOptions = [
     { icon: Links('/',  <AiOutlineHome /> ) , name: Links('/', 'Home')},
     { icon: Links(path, <MdOutlineFastfood />, skip ), name: Links(path, 'All Recipes') },
@@ -55,7 +58,7 @@ function skip(){
     <div className={classes.pageContainer}>
       <div className={classes.expandableMenu}>
         <div className={`${classes.menuToggle}`} onClick={toggleExpand}>
-          {toggleMenu ?  <IoMdClose /> : <AiOutlineMenu />}
+        {toggleMenu ? <IoIosArrowDropleft /> : <IoIosArrowForward />}
         </div>
  {/* List of menu options */}
         <ul className={`${classes.menuOptions} ${toggleMenu ? classes.expanded : ''}`}>
