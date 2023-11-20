@@ -7,45 +7,19 @@ import StateContext from '@/useContext/StateContext';
 
 export default function SearchForm() {
   const searchRef = useRef();
-  // const [results, setResults] = useState(null);
-  // const {setFilteredResults, setSearchInput, total, setTotal} = StateContext(null)
   const {searchText, setSearchText, setSearchInput} = StateContext(null)
   const [searchHistory, setSearchHistory] = useState(null);
   const [displayHistory, setDisplayHistory] = useState(false);
-  // const [length, setLength] = useState(0)
   const [addSearchHistory, setAddSearchHistory] = useState(false);
-  // const [errorhandler, setErrorHandler] = useState(null)
 
   const searchHandler = () => {
     const filterInput = searchRef.current.value;
 
     setSearchText(filterInput)
     setAddSearchHistory(true);
-
-    /**
-     * fetches results from the api folder.
-     * insert in inside a state, state is then mapped over to display results.
-     */
-    // fetch(`/api/filtering/search/search?title=${filterInput}`)
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     if(data.message){
-    //       setErrorHandler(data.message)
-    //     }else{
-    //       setFilteredResults(data.results && data.results[0] || [])
-    //       setResults(data.results && data.results[0] || []);
-    //       setTotal(total + data.results && data.results[1] || 0);
-    //       setAddSearchHistory(true);
-    //     }
-
-    //   });
-
-
   };
 
   const debouncedSearchHandler = debounce(searchHandler, 1300);
-
-  // const checkResults = results && results.length !== 0;
 
   async function searchHistoryHandler() {
     try {
@@ -73,7 +47,7 @@ export default function SearchForm() {
             setSearchHistory(data.searchhistory[0] ? [...new Set(data.searchhistory[0].input)] : [])
           }
         })
-    }, [setSearchHistory]);
+    }, []);
 
   /**
    *
