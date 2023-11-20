@@ -64,7 +64,7 @@ export default function AllRecipes({error, recipes, totalRecipes}) {
         
       <div className='previewBackgroundImage'>
        <div className='allRecipesTitle'>
-       <h1>All Recipes</h1>
+       <h1 className='allRecipes'>All Recipes</h1>
        </div>
 
        <div className='searchAndFilters'>
@@ -109,7 +109,7 @@ export default function AllRecipes({error, recipes, totalRecipes}) {
               </div>
 
             {/* <h5 style={{color:'white'}}>{total}</h5> */}
-            <h6 style={{color:'white'}}>{total == 0 ? "No filters have been applied" : ''}</h6>
+            {/* <h6 style={{color:'white'}}>{total == 0 ? "No filters have been applied" : ''}</h6> */}
           </div>
           <WhiteButton
             click={() => {
@@ -128,7 +128,7 @@ export default function AllRecipes({error, recipes, totalRecipes}) {
     
     </div>
     
-    {total === 0 || total === 164959 ? '' : <div className='totalRecipes'><h3>{total} results</h3></div>}
+    {totalRecipes === 0 || totalRecipes === 164959 ? '' : <div className='totalRecipes'><h3>{totalRecipes} results</h3></div>}
  
 
 
