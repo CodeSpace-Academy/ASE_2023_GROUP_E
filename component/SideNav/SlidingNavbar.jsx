@@ -26,7 +26,7 @@ function skip(){
     { icon: Links('/',  <AiOutlineHome /> ) , name: Links('/', 'Home')},
     { icon: Links(path, <MdOutlineFastfood />, skip ), name: Links(path, 'All Recipes') },
     { icon: Links('/favourites',  <AiOutlineHeart />), name: Links('/favourites', 'Favourites') },
-    { icon: Links(path,  <AiOutlineSearch />), name: Links(path, 'Search') },
+    { icon: Links(path,  <AiOutlineSearch />), name: Links('/recipes-0-id-asc____0_true', 'Search') },
     { icon: Links('/profile', <AiOutlineUser />) , name: Links('/profile', 'User') },
     { icon: Links('/', <AiOutlineSetting />) , name: Links('/', 'Settings')  },
   ];

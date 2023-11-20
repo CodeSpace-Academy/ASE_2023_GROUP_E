@@ -33,7 +33,7 @@ const HomeWithBackground = () => {
 
           <WhiteButton 
             text='Search'
-            click={() => router.push(`/search`)}
+            click={() => router.push(`/recipes-0-id-asc____0_true`)}
           />
 
           <WhiteButton 
