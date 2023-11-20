@@ -82,3 +82,9 @@
     padding-top: 20px;
     color: rgba(45, 43, 43, 0.848);
 }
+
+.allRecipes {
+    font-family: 'Inter', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+}
