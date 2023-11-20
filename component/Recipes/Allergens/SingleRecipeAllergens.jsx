@@ -11,9 +11,10 @@ import classes from './SingleRecipeAllergens.module.css';
  */
 export default function SingleRecipeAllergens({ allergensList }) {
   // Render an unordered list of allergens
+  // Map through the allergensList array and render a SingleAllergen component
+  // for each allergen
   return (
     <ul className={classes.list}>
-      {/* Map through the allergensList array and render a SingleAllergen component for each allergen */}
       {allergensList.map((allergen) => {
         // Assign a unique key using uuidv4 to each allergen item
         return <SingleAllergen key={uuidv4()} allergen={allergen} />;
