@@ -59,6 +59,7 @@ const SearchBar = () => {
   return (
     <div>
       <form className="previewMain">
+        <h4 style={{color:'white'}}>Category</h4>
         <Select
           options={
             categories &&
