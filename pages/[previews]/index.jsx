@@ -96,6 +96,7 @@ export default function AllRecipes({ Data, totalRecipes, error }) {
           </div>
           <WhiteButton
             click={() => {
+              <h6 style={{color:'white'}}>{total === 0 ? alert("No filters have been applied") : ''}</h6>
               setFilteredResults(0)
               setSelectedInstructionsOptions([])
               setSelectedIngredientsOptions([])
