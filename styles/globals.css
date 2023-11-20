@@ -13,6 +13,14 @@
     padding-right: 8px;
 }
 
+.previewBackgroundImage{
+    background: url('../public/images/backPic.jpg');
+    height: 62vh;
+    background-position: center;
+    background-size:1500px;
+    background-repeat: no-repeat;
+}
+
 
 /*Load more button*/
 

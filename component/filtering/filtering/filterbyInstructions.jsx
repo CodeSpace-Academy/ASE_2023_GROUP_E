@@ -62,7 +62,7 @@ export default function FilterbyInstructions() {
 
   return (
     <div>
-      <h4>Filter Instructions:</h4>
+      <h4 style={{color:'white'}}>Instructions:</h4>
       {/* Input for entering the number of instructions */}
       <input
         type="number"

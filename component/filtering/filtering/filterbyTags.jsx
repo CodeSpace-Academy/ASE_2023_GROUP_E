@@ -48,7 +48,7 @@ export default function FilterbyTags(){
   return (
     <CustomizedHook 
       options={tags} 
-      filter={'Filter Tags'} 
+      filter={'Tags'} 
       handleSelectChange={handleSelectChange} 
       selectedOptions={selectedTagsOptions} 
     />
