@@ -12,7 +12,9 @@ function Links(link, text, click){
   )
 }
 const ExpandableMenu = () => {
-  const {setToggleMenu, toggleMenu, setAddSkip} = StateContext()
+  const {setToggleMenu, toggleMenu, setAddSkip, selecteTags, selectedIngredients, selectedCategory, selectedInstructionsOptions, andOr} = StateContext()
+  const path = `/recipes-0-id-asc_${selecteTags.map((item) => item.label).join(',')}_${selectedIngredients.map((item) => item.label).join(',')}_${selectedCategory == '' ? selectedCategory : selectedCategory.value}_${selectedInstructionsOptions}_${!andOr}`
+  
 function skip(){
   localStorage.setItem("skipNo", 0)
   setAddSkip(0)
@@ -25,9 +27,9 @@ function skip(){
 
   const menuOptions = [
     { icon: Links('/',  <AiOutlineHome /> ) , name: Links('/', 'Home')},
-    { icon: Links(`/recipes-0-_id-asc`, <MdOutlineFastfood />, skip ), name: Links(`recipes`, 'All Recipes') },
+    { icon: Links(path, <MdOutlineFastfood />, skip ), name: Links(path, 'All Recipes') },
     { icon: Links('/favourites',  <AiOutlineHeart />), name: Links('/favourites', 'Favourites') },
-    { icon: Links('/recipes-0-_id-asc',  <AiOutlineSearch />), name: Links('/recipes-0-_id-asc', 'Search') },
+    { icon: Links(path,  <AiOutlineSearch />), name: Links(path, 'Search') },
     { icon: Links('/profile', <AiOutlineUser />) , name: Links('/profile', 'User') },
     { icon: Links('/', <AiOutlineSetting />) , name: Links('/', 'Settings')  },
   ];
