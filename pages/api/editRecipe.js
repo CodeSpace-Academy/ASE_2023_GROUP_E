@@ -1,18 +1,19 @@
-import editDecription from "@/database/add-Edit-Data/editDescription";
+import editRecipe from "@/database/editData/editRecipe"
 
 export default async function handler( req, res){
 
     if( req.method === 'POST'){
        
-        const { recipeTitle, recipeDescription } = req.body
+        const { recipeId, recipeValue, key, stage } = req.body
 
         try{
-            await editDecription(recipeTitle, recipeDescription)
+            await editRecipe(stage ,key, recipeId, recipeValue)
             res.status(201).json({message: 'data has been modified'})
 
         }catch(error){
             res.status(417).json({ message : error})
             return
         }
+
     }
 }
