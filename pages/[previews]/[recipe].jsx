@@ -1,21 +1,23 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import RecipeDetails from '@/component/Recipes/Details/RecipeDetails';
-import LoadingSpinner from '@/component/ui/loadingSpinner/LoadingSpinner';
+
 const RecipePage = () => {
   const router = useRouter();
   const [recipe, setRecipe] = useState(null);
   const [allergens, setAllergens] = useState([]);
+  
   useEffect(() => {
-    fetch(`/api/recipes/recipeDetails?filter=${router.query.recipe}`)
+    fetch(`/api/getData?filter=${router.query.recipe}&collection=recipes`)
       .then((res) => res.json())
-      .then((data) => setRecipe(data.recipeDetails && data.recipeDetails[0]));
-  }, []);
+      .then((data) => setRecipe(data.results && data.results[0]));
+  }, [recipe]);
+
   useEffect(() => {
-    fetch('/api/recipes/allergens')
+    fetch('/api/getData?collection=allergens')
       .then((res) => res.json())
       .then((data) =>
-        setAllergens(data.allergens && data.allergens[0].allergens),
+        setAllergens(data.results && data.results[0].allergens),
       );
   }, []);
 

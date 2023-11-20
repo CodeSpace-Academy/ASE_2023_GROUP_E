@@ -94,7 +94,7 @@ export default function PreviewList({ recipes, input, sortDate }) {
                   {/* Paper component for styling */}
                   <Item key={recipe.id}>
                     {/* Link to navigate to the individual recipe page */}
-                    <Link href={`/recipes/${recipe.title}`} className={style.link}>
+                    <Link href={`/recipes/${recipe._id}`} className={style.link}>
                       {/* Recipe content container */}
                       <div className={style.recipe}>
                         
