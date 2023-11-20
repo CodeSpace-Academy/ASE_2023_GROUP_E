@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import CustomizedHook from "./filterForm";
+import { useRouter } from "next/router";
 import StateContext from "@/useContext/StateContext";
 
 export default function FilterbyTags(){
-
-  const { setFilteredResults, filteredResults, total, setTotal, setSelectedTagsOptions, selectedTagsOptions } = StateContext()
+  const { setSelectedTags, selecteTags} = StateContext()
 
   const [tags, setTags] = useState([]);
   
@@ -16,11 +16,11 @@ export default function FilterbyTags(){
    * This state hold the options of tags to select from.
    */
   useEffect(() =>{
-    fetch('/api/filtering/filterOptions/selectOptions?object=tags')
+    fetch('/api/getData?project=tags&collection=recipes')
       .then(res => res.json())
       .then(data => {
         if (data) {
-          const allTags = data.recipes && data.recipes.reduce((tags, recipe) => {
+          const allTags = data.results && data.results.reduce((tags, recipe) => {
             return tags.concat(recipe.tags);
           }, []);
     
@@ -31,26 +31,15 @@ export default function FilterbyTags(){
   }, [tags])
 
   const handleSelectChange = (selected) => {
-    setSelectedTagsOptions(selected);
+    setSelectedTags(selected)
   };
-
-  const selected = selectedTagsOptions.map((item) => item.value).join(',')
-
-  useEffect(() => {
-      fetch(`/api/filtering/filterOptions/filterTags?selected=${selected}`)
-        .then(res => res.json())
-        .then(data => {
-          setFilteredResults(data.recipes && data.recipes[0])
-          setTotal(total + data.recipes && data.recipes[1])
-        })
-  }, [selectedTagsOptions])
 
   return (
     <CustomizedHook 
       options={tags} 
       filter={'Tags'} 
       handleSelectChange={handleSelectChange} 
-      selectedOptions={selectedTagsOptions} 
+      selectedOptions={selecteTags} 
     />
   )
 }

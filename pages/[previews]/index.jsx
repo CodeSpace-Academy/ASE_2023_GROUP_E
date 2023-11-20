@@ -4,7 +4,6 @@ import { useState, useEffect, useMemo } from 'react';
 import SearchBar from '@/component/filtering/searchCategories/categorySearch';
 import StateContext from '@/useContext/StateContext';
 import FilterbyTags from '@/component/filtering/filtering/filterbyTags';
-import getRecipes from '@/database/getData/getRecipes';
 import { useRouter } from 'next/router';
 import FilterbyIngredients from '@/component/filtering/filtering/filterbyIngredients';
 import SearchAndFilterHero from '@/component/filtering/searchAndFilterHero/searchAndFilterHero';
@@ -13,9 +12,10 @@ import { Pagination } from 'flowbite-react';
 import FilterbyInstructions from '@/component/filtering/filtering/filterbyInstructions';
 import { Spinner } from 'flowbite-react';
 import ErrorMessage from '@/component/Error/ErrorMessage';
-import Image from 'next/image';
+import { getRecipes } from '@/database/getData/getRecipesData';
+import { parseInt } from 'lodash';
 
-export default function AllRecipes({ Data, totalRecipes, error }) {
+export default function AllRecipes({error, recipes, totalRecipes}) {
 
   if(error){
     return (
@@ -28,35 +28,37 @@ export default function AllRecipes({ Data, totalRecipes, error }) {
 
   const router = useRouter();
   // const [results, setResults] = useState(null);
-  const [sortField, setSortField] = useState('_id'); // Default sort field
-  const [sortOrder, setSortOrder] = useState(''); // Default sort order
-  const { filteredResults, total, setSelectedIngredientsOptions, setSelectedTagsOptions,setSelectedInstructionsOptions,  setFilteredResults } = StateContext();
+  const [sortField, setSortField] = useState('id'); // Default sort field
+  const [sortOrder, setSortOrder] = useState('asc'); // Default sort order
+  const { filteredResults, setSelectedIngredients, setSelectedTags, setSelectedInstructionsOptions,  setFilteredResults, selecteTags, selectedIngredients, selectedCategory, selectedInstructionsOptions, setSelectedCategory, andOr } = StateContext();
 
   const skipNo = parseInt(router.query.previews.split('-')[1]) || 0;
 
   const page = (skipNo + 100) / 100;
   const [currentPage, setCurrentPage] = useState(page);
 
+  function path(skip){
+    const path = `recipes-${skip}-${sortField}-${sortOrder}_${selecteTags.map((item) => item.label).join(',')}_${selectedIngredients.map((item) => item.label).join(',')}_${selectedCategory == '' ? selectedCategory : selectedCategory.value}_${selectedInstructionsOptions}_${andOr}`
+    return path
+  }
 
   function onPageChange(page){
     setCurrentPage(page)
-    console.log(page * 100 - 100)
-    router.push(`recipes-${page * 100 - 100}-${sortField}-${sortOrder}`);
+    router.push(path(page * 100 - 100));
   }
 
   function handleNextClick() {
-    router.push(`recipes-${skipNo + 100}-${sortField}-${sortOrder}`);
+    router.push(path(skipNo + 100));
+
   }
 
   const totalPages = Math.ceil(totalRecipes/100)
 
   useEffect(() => {
-    router.push(`recipes-${skipNo}-${sortField}-${sortOrder}`);
-  }, [sortField, sortOrder]);
-  
-  function applyFilters() {
-    setFiltersApplied(true);
-  }
+    
+    router.push(path(skipNo));
+  }, [sortField, sortOrder, selecteTags, selectedIngredients, selectedCategory, selectedInstructionsOptions]);
+
   return (
     <main>
 
@@ -65,7 +67,11 @@ export default function AllRecipes({ Data, totalRecipes, error }) {
           <SearchBar />
           <div className="previewMain">
             <FilterbyTags />
-            <FilterbyIngredients />
+            <FilterbyIngredients  
+              skipNo={skipNo}
+              sortField={sortField} 
+              sortOrder={sortOrder}
+            />
             <FilterbyInstructions />
 
             <div className="sort-dropdown">
@@ -75,7 +81,7 @@ export default function AllRecipes({ Data, totalRecipes, error }) {
                 value={sortField}
                 onChange={(e) => setSortField(e.target.value)}
               >
-                <option value="_id">default</option>
+                <option value="id">default</option>
                 <option value="prep">Prep time</option>
                 <option value="cook">Cook time</option>
                 <option value="published">Date</option>
@@ -91,16 +97,17 @@ export default function AllRecipes({ Data, totalRecipes, error }) {
               </select>
             </div>
 
-            <h5 style={{color:'white'}}>{total}</h5>
-            <h6 style={{color:'white'}}>{total == 0 ? "No filters have been applied" : ''}</h6>
+            <h5 style={{color:'white'}}>{totalRecipes}</h5>
+            <h6 style={{color:'white'}}>{totalRecipes == 0 ? "No filters have been applied" : ''}</h6>
           </div>
           <WhiteButton
             click={() => {
               <h6 style={{color:'white'}}>{total === 0 ? alert("No filters have been applied") : ''}</h6>
               setFilteredResults(0)
-              setSelectedInstructionsOptions([])
-              setSelectedIngredientsOptions([])
-              setSelectedTagsOptions([])
+              setSelectedInstructionsOptions(0)
+              setSelectedIngredients([])
+              setSelectedTags([])
+              setSelectedCategory([])
               setFilteredResults(0)
             }}
             text= 'Clear filters'
@@ -109,7 +116,7 @@ export default function AllRecipes({ Data, totalRecipes, error }) {
       </div>
 
       <PreviewList
-        recipes={filteredResults.length > 0 ? filteredResults : Data}
+        recipes={filteredResults.length > 0 ? filteredResults : recipes}
       />
 
       <div className="loadMore">
@@ -132,14 +139,18 @@ export async function getServerSideProps({ params }) {
     const { previews } = params;
     const skipNo = parseInt(previews.split('-')[1]);
     const sortBy = previews.split('-')[2];
-    const sortOrder = previews.split('-')[3] === 'desc' ? -1 : 1
-    const data = await getRecipes({}, skipNo, 100, { [sortBy]: sortOrder });
-    const Data = data.recipes;
-    const totalRecipes = data.totalRecipes;
-    
+    const sortOrder = previews.split('-')[3].split('_')[0] === 'desc' ? -1 : 1
+
+    const tags = previews.split('_')[1].split(',')
+    const ingredients = previews.split('_')[2].split(',')
+    const category = previews.split('_')[3]
+    const instruction = parseInt(previews.split('_')[4])
+    const andOr = previews.split('_')[5] === 'false' ? "$and" : "$or"
+    const { recipes, totalRecipes } = await getRecipes('recipes', skipNo, 100, { [sortBy == 'id'? '_id' : sortBy]: sortOrder }, tags, ingredients, category, instruction, andOr,'', '')
+
     return {
       props: {
-        Data,
+        recipes,
         totalRecipes,
       },
     };
