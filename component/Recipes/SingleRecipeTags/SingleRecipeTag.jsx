@@ -19,4 +19,3 @@ export default function SingleRecipeTag({ tag }) {
     </li>
   );
 }
-
