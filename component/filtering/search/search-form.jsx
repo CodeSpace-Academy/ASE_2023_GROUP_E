@@ -1,9 +1,7 @@
 import React, { Fragment, useRef, useState, useEffect } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { debounce } from 'lodash';
-import PreviewList from '../../Recipes/Preview/PreviewList';
 import classes from './search-from.module.css';
-import ErrorMessage from '@/component/Error/ErrorMessage';
 import StateContext from '@/useContext/StateContext';
 
 
@@ -87,14 +85,6 @@ export default function SearchForm() {
     searchRef.current.value = selectedValue;
     searchHandler(selectedValue);
   };
-
-  // if(errorhandler){
-  //   return (
-  //     <div style={{ textAlign: 'center', marginTop:'100px'}}>
-  //       <ErrorMessage message={[errorhandler, ', ', 'check your internet connection']}/>
-  //     </div>
-  //   )
-  // }
   setSearchInput(searchText && searchRef.current.value)
   return (
     <>
