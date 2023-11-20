@@ -8,46 +8,9 @@
 .img {
     box-shadow: 3px 3px 12px black;
     border-radius: 10px;
-    width: 30em;
-    height: 25em;
-}
+    width: 60em;
+    height: 60vh;
+    margin: 5px;
+    margin-left: 15px;
 
-.imageSlider {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    /* gap: 15px; */
-}
-
-@media only screen and (max-width: 567px){
-    
-    .img{
-        width:  25em;
-        height: 20em;
-    }
-    
-}
-@media only screen and (max-width: 473px){
-    
-    .img{
-        width:  20em;
-        height: 17em;
-    }
-    
-}
-@media only screen and (max-width: 387px){
-    
-    .img{
-        width: 18em;
-        height: 15em;
-    }
-    
-}
-@media only screen and (max-width: 349px){
-    
-    .img{
-        width: 15em;
-        height: 15em;
-    }
-    
 }

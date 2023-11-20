@@ -2,19 +2,16 @@ import StateContext from "@/useContext/StateContext";
 import { useEffect, useState } from "react";
 import CustomizedHook from "./filterForm";
 import { WhiteButton } from "@/component/Button/button";
+import { useRouter } from "next/router";
 
-export default function FilterbyIngredients(){
+export default function FilterbyIngredients({skipNo, sortField, sortOrder}){
 
-  const { setFilteredResults, filteredResults, total, setTotal, selectedIngredientsOptions, setSelectedIngredientsOptions  } = StateContext()
   const [ingredients, setIngredients] = useState([]);
-  
-  /**
-   * Used to swicth filtering with $and and with $or using a boolean
-   */
-  const [andOr, setAndOr] = useState(false)
+  const { push } = useRouter()
+  const { setSelectedIngredients, selecteTags, selectedIngredients, selectedCategory, selectedInstructionsOptions, andOr, setAndOr } = StateContext();
  
   useEffect(() =>{
-    fetch('/api/filtering/filterOptions/selectOptions?object=ingredients')
+    fetch('/api/getData?project=ingredients&collection=recipes')
       .then(res => res.json())
       .then(data => {
         if (data) {
@@ -23,7 +20,7 @@ export default function FilterbyIngredients(){
            * Fetches the ingredients which is an array objects.
            * maps over this array to abstracts the object keys
            */
-          const allIngredients = data.recipes && data.recipes.map((item) => {
+          const allIngredients = data.results && data.results.map((item) => {
               return Object.keys(item.ingredients)
           })
           /**
@@ -42,22 +39,8 @@ export default function FilterbyIngredients(){
   }, [ingredients]);
 
   const handleSelectChange = (selected) => {
-    setSelectedIngredientsOptions(selected);
+    setSelectedIngredients(selected); 
   };
-
-  const selected = selectedIngredientsOptions.map((item) => item.value).join(',')
-
-  useEffect(() => {
-    if(selectedIngredientsOptions.length > 0){
-      fetch(`/api/filtering/filterOptions/filterIngredients?selected=${selected}&andOr=${andOr ? '$or' : '$and'}`)
-        .then(res => res.json())
-        .then(data => {
-          setFilteredResults(data && data.recipes[0]);
-          setTotal(total + data && data.recipes[1]);
-      
-        });
-    }
-  }, [selectedIngredientsOptions, andOr, total, selected])
 
   return (
 
@@ -67,12 +50,15 @@ export default function FilterbyIngredients(){
       options={ingredients} 
       filter={'Ingredients'}
       handleSelectChange={handleSelectChange}
-      selectedOptions={selectedIngredientsOptions} 
+      selectedOptions={selectedIngredients} 
     />
     <br/>
 
     <WhiteButton  
-      click={() => setAndOr(!andOr)}
+      click={() => {
+        push(`recipes-${skipNo}-${sortField}-${sortOrder}_${selecteTags.map((item) => item.label).join(',')}_${selectedIngredients.map((item) => item.label).join(',')}_${selectedCategory == '' ? selectedCategory : selectedCategory.value}_${selectedInstructionsOptions}_${!andOr}`)
+        setAndOr(!andOr)
+      }}
       text={andOr ? 'Includes all' : 'Includes one'}
     />
   </>
