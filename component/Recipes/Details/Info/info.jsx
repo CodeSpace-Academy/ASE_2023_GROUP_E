@@ -1,20 +1,19 @@
-
 // Import React and necessary components/icons/styles
 import { useState } from 'react';
 import { TiEdit } from 'react-icons/ti';
 import classes from './info.module.css';
-import EditDescription from '../../../../component/editDecription/editDescription';
-import Button from '../../../../component/Button/button';
+import EditDescription from '../../../editDecription/editDescription';
+import Button from '../../../Button/button';
 import SingleRecipeAllergens from '../../Allergens/SingleRecipeAllergens';
-import FavouritesButton from '../../../../component/Favourites/FavouritesButton/FavouritesButton';
+import FavouritesButton from '../../../Favourites/FavouritesButton/FavouritesButton';
 import StateContext from '../../../../useContext/StateContext';
-import ErrorMessage from '../../../../component/Error/ErrorMessage';
+import ErrorMessage from '../../../Error/ErrorMessage';
 import { PrepandCookTime } from '../../../handlerTime/timeRead';
 
 /**
  * @function Info
- * @description A component that displays information about a recipe, including category, times, allergens,
- * description, and options to edit and mark as favorite.
+ * @description A component that displays information about a recipe, including category,
+ * times, allergens, description, and options to edit and mark as favorite.
  * @param {Object} props - The component's properties.
  * @param {Object} props.recipe - The recipe object containing information.
  * @param {Array} props.allergens - An array of allergens.
