@@ -11,7 +11,7 @@ const RecipePage = () => {
     fetch(`/api/getData?filter=${router.query.recipe}&collection=recipes`)
       .then((res) => res.json())
       .then((data) => setRecipe(data.results && data.results[0]));
-  }, [setRecipe]);
+  }, []);
 
   useEffect(() => {
     fetch('/api/getData?collection=allergens')
