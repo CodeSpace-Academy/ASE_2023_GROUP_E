@@ -1,17 +1,10 @@
 import React from 'react';
 
-
 /**
- * Displays a single instruction from the instruction list.
- * Expects the index number of that instruction from the instructions array and
- * the instruction string.
+ * Function to hightlight minutes within a recipe instruction 
  * @param {number,string} //number and instruction string
  * @returns
  */
-
-
-
-
 
 const highlightMinutes = (instruction) => {
   const parts = instruction.split(/(minutes|\d+)/gi);
@@ -24,7 +17,7 @@ const highlightMinutes = (instruction) => {
           {'{' + part + '}'}
         </span>
       );
-    } else if (part.toLowerCase() === 'minutes' &&' minute') {
+    } else if (part.toLowerCase() === 'minutes' && ' minute') {
       // Highlight the word "minutes"
       return (
         <span key={index} style={{ fontWeight: 'bold' }}>
@@ -40,12 +33,7 @@ const highlightMinutes = (instruction) => {
 const IndividualRecipeIntruction = ({ instruction }) => {
   const highlightedInstruction = highlightMinutes(instruction);
 
-  return (
-    <div>
-       {highlightedInstruction}
-    </div>
-  );
+  return <div>{highlightedInstruction}</div>;
 };
 
 export default IndividualRecipeIntruction;
-
