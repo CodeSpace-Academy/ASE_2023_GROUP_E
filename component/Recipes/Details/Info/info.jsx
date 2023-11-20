@@ -35,7 +35,7 @@ export default function Info({ recipe, allergens }) {
   // Put ingredient object keys (ingredient text) into array and loop over them
   // loop over allegens and check if the ingredient includes
   // the allergen
-  Object.values(recipe.ingredients).forEach((ingredient) => {
+  Object.keys(recipe.ingredients).forEach((ingredient) => {
     allergens.forEach((allergen) => {
       if (ingredient.toLowerCase()?.includes(allergen)) {
         allergenList.push(ingredient);
