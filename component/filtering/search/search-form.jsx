@@ -66,15 +66,15 @@ export default function SearchForm() {
     /**
    * fetch a specific user's history
    */
-    // useEffect(() => {
-    //   fetch('/api/filtering/search/searchHistory?username=mike')
-    //     .then((res) => { return res.json(); })
-    //     .then((data) => {
-    //       if(data.searchhistory){
-    //         setSearchHistory(data.searchhistory[0] ? [...new Set(data.searchhistory[0].input)] : [])
-    //       }
-    //     })
-    // }, [setSearchHistory]);
+    useEffect(() => {
+      fetch('/api/filtering/search/searchHistory?username=mike')
+        .then((res) => { return res.json(); })
+        .then((data) => {
+          if(data.searchhistory){
+            setSearchHistory(data.searchhistory[0] ? [...new Set(data.searchhistory[0].input)] : [])
+          }
+        })
+    }, [setSearchHistory]);
 
   /**
    *
@@ -82,11 +82,11 @@ export default function SearchForm() {
    * when the history item is clicked it fires the following function.
    * which then triggers the search function
    */
-  // const historyItemClickHandler = (item) => {
-  //   const selectedValue = item;
-  //   searchRef.current.value = selectedValue;
-  //   searchHandler(selectedValue);
-  // };
+  const historyItemClickHandler = (item) => {
+    const selectedValue = item;
+    searchRef.current.value = selectedValue;
+    searchHandler(selectedValue);
+  };
 
   // if(errorhandler){
   //   return (
