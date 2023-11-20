@@ -33,7 +33,7 @@ const HomeWithBackground = () => {
 
           <WhiteButton 
             text='Search'
-            click={() => router.push(`/recipes-0-id-asc____0_true`)}
+            click={() => router.pushpush(`/recipes-0-id-asc_${selecteTags.map((item) => item.label).join(',')}_${selectedIngredients.map((item) => item.label).join(',')}_${selectedCategory == '' ? selectedCategory : selectedCategory.value}_${selectedInstructionsOptions}_${!andOr}`)}
           />
 
           <WhiteButton 
