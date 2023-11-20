@@ -11,7 +11,7 @@ export default function SearchForm() {
   const searchRef = useRef();
   // const [results, setResults] = useState(null);
   // const {setFilteredResults, setSearchInput, total, setTotal} = StateContext(null)
-  const {searchText, setSearchText} = StateContext(null)
+  const {searchText, setSearchText, setSearchInput} = StateContext(null)
   const [searchHistory, setSearchHistory] = useState(null);
   const [displayHistory, setDisplayHistory] = useState(false);
   // const [length, setLength] = useState(0)
@@ -95,7 +95,7 @@ export default function SearchForm() {
   //     </div>
   //   )
   // }
-  // setSearchInput(results && searchRef.current.value)
+  setSearchInput(searchText && searchRef.current.value)
   return (
     <>
       <div className={classes.search}>

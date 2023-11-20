@@ -134,7 +134,7 @@ export default function AllRecipes({error, recipes, totalRecipes}) {
 
 
       <PreviewList
-      input={searchInput}
+        input={searchInput}
         recipes={filteredResults.length > 0 ? filteredResults : recipes}
       />
 
