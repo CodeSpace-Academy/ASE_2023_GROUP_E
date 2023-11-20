@@ -4,7 +4,8 @@
       rgba(27, 27, 27, 0.142),
       rgba(180, 180, 180, 0.331)
     ),
-    url('../../../public/images/landing.png');
+    url('../../../public/images/landing.png'); 
+     ;
   background-position: 60%;
   background-size: cover;
   min-height: 50vh;
@@ -16,7 +17,7 @@
 }
 
 .inputsContainer {
-  background-color: rgba(45, 63, 13, 0.318);
+  background-color:  rgba(54, 55, 52, 0.505);
   padding: 1rem 0rem;
   border-radius: 0.7rem;
   position: relative;

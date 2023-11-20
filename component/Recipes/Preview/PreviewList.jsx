@@ -115,9 +115,7 @@ export default function PreviewList({ recipes, input, sortDate }) {
                           <p className={style.category}>{recipe.category}</p>
                           {/* Recipe title container */}
                           <div className={style.heading}>
-                            {/* Check if it's a search page */}
-                            {router.pathname === '/search' ? (
-                              // Check if there's input for highlighting
+                            {/* router.pathname === '/search' ? ( */
                               input ? (
                                 // Split title to highlight search input
                                 <div>
@@ -129,7 +127,7 @@ export default function PreviewList({ recipes, input, sortDate }) {
                                         style={
                                           title.toLowerCase() ===
                                           input.toLowerCase()
-                                            ? { color: 'orange' }
+                                            ? { color: '#a98614' }
                                             : {}
                                         }
                                       >
@@ -140,13 +138,11 @@ export default function PreviewList({ recipes, input, sortDate }) {
                                     ))}
                                 </div>
                               ) : (
-                                // Display normal title
-                                <h3 className={style.title}>{recipe.title}</h3>
+                                <h3>{recipe.title}</h3>
                               )
-                            ) : (
-                              // Display normal title for other pages
+                           /* )  : (
                               <h3>{recipe.title}</h3>
-                            )}
+                            ) */}
                           </div>
                           {/* Display recipe description if available */}
                           {showDescriptions[index] && recipe.description ? (
@@ -188,4 +184,5 @@ export default function PreviewList({ recipes, input, sortDate }) {
       </Box>
     </>
   );
+  
           }
