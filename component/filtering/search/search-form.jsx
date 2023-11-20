@@ -13,13 +13,14 @@ export default function SearchForm() {
   const [searchHistory, setSearchHistory] = useState(null);
   const [displayHistory, setDisplayHistory] = useState(false);
   // const [length, setLength] = useState(0)
-  // const [addSearchHistory, setAddSearchHistory] = useState(false);
+  const [addSearchHistory, setAddSearchHistory] = useState(false);
   // const [errorhandler, setErrorHandler] = useState(null)
 
   const searchHandler = () => {
     const filterInput = searchRef.current.value;
 
     setSearchText(filterInput)
+    setAddSearchHistory(true);
 
     /**
      * fetches results from the api folder.
@@ -46,22 +47,22 @@ export default function SearchForm() {
 
   // const checkResults = results && results.length !== 0;
 
-  // async function searchHistoryHandler() {
-  //   try {
-  //     setAddSearchHistory(false);
-  //     await addItem('/api/filtering/search/searchHistory', { username: 'mike', searchHistoryInput: results && searchRef.current.value });
-  //   } catch (error) {
-  //   }
-  // }
+  async function searchHistoryHandler() {
+    try {
+      setAddSearchHistory(false);
+      await addItem('/api/filtering/search/searchHistory', { username: 'mike', searchHistoryInput: searchText && searchRef.current.value });
+    } catch (error) {
+    }
+  }
 
-  // const debouncedSearchHistoryHandler = debounce(searchHistoryHandler, 2000);
+  const debouncedSearchHistoryHandler = debounce(searchHistoryHandler, 2000);
 
-  // if (addSearchHistory && results && searchRef.current.value.length > 1) {
-  //   setAddSearchHistory(false);
-  //   debouncedSearchHistoryHandler();
-  // }
+  if (addSearchHistory && searchRef.current.value.length > 1) {
+    setAddSearchHistory(false);
+    debouncedSearchHistoryHandler();
+  }
 
-    /**
+  /**
    * fetch a specific user's history
    */
     useEffect(() => {
@@ -97,9 +98,7 @@ export default function SearchForm() {
           ref={searchRef}
           onClick={() => setDisplayHistory(true)}
         />
-        {/* maps over results state and map over it */}
 
-        
         {/**
          * waits for input to be clicked then history pops up
          * maps over the history of the specific user
