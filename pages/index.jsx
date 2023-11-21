@@ -6,16 +6,15 @@ import ErrorMessage from '../component/Error/ErrorMessage';
 const fs = require('fs');
 
 export default function Home({ hasEnvFile, hasKey }) {
-  /**
-   * 
-   */
-  if (!hasKey || !hasEnvFile || window.location.href.includes('localhost:')) {
-    return (
-      <div style={{ textAlign: 'center', marginTop: '50px' }}>
-        <Spinner />
-        <ErrorMessage message=".env file is missing or has no values" />
-      </div>
-    );
+  if (window.location.href.includes('localhost:')) {
+    if (!hasKey || !hasEnvFile) {
+      return (
+        <div style={{ textAlign: 'center', marginTop: '50px' }}>
+          <Spinner />
+          <ErrorMessage message=".env file is missing or has no values" />
+        </div>
+      );
+    }
   }
 
   return (
