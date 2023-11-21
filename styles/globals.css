@@ -17,8 +17,30 @@
     background: url('../public/images/backPic.jpg');
     height: 62vh;
     background-position: center;
-    background-size:1500px;
-    background-repeat: no-repeat;
+    background-size: cover;
+    /* display: grid;
+    grid-template-columns: 80% 20%;
+    justify-content: center; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    
+}
+
+.allRecipesTitle {
+
+ color: rgb(72, 72, 136);
+ font-weight: 1000;
+ font-stretch: expanded;
+ font-weight: bold;
+ background-color: rgba(255, 255, 255, 0.312) ;
+ 
+}
+
+
+.searchAndFilters{
+    display: flex;
 }
 
 
@@ -52,4 +74,17 @@
     margin: 10px;
     font-size: 120%;
     border-radius: 3px;
+}
+
+
+.totalRecipes{
+    padding-left: 20px;
+    padding-top: 20px;
+    color: rgba(45, 43, 43, 0.848);
+}
+
+.allRecipes {
+    font-family: 'Inter', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
 }

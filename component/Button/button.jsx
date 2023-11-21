@@ -18,7 +18,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Button({ text, color, click }) {
   return (
-    <button onClick={click} type="button" className={`btn btn-${color}`}>{text}</button>
+    <button onClick={click} type="button" className={`btn btn-${color}`}>
+      {text}
+    </button>
   );
 }
 
@@ -27,13 +29,25 @@ export function FormButton({ text }) {
 }
 
 export function LinkButton({ path, text, click }) {
-  return <Link href={path} className={classes.linkbutton} onClick={click}>{text}</Link>;
+  return (
+    <Link href={path} className={classes.linkbutton} onClick={click}>
+      {text}
+    </Link>
+  );
 }
 
 export function BlueButton({ click, text }) {
-  return <button onClick={click} className={classes.linkbutton}>{text}</button>;
+  return (
+    <button onClick={click} className={classes.linkbutton}>
+      {text}
+    </button>
+  );
 }
 
 export function WhiteButton({ click, text }) {
-  return <button onClick={click} class={classes.whitebutton} role="button">{text}</button>;
+  return (
+    <button onClick={click} class={classes.whitebutton} role="button">
+      {text}
+    </button>
+  );
 }
