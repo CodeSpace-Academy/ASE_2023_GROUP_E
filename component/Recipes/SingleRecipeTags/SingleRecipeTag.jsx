@@ -13,9 +13,7 @@ export default function SingleRecipeTag({ tag }) {
   return (
     // List item containing a clickable button with the tag string
     <li className={classes.tagItem}>
-      <button className={classes.tagButton} type="button">
-        {tag}
-      </button>
+      <span className={classes.tagButton}>{tag}</span>
     </li>
   );
 }
