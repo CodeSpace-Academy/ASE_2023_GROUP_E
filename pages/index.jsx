@@ -8,7 +8,7 @@ import ErrorMessage from '@/component/Error/ErrorMessage';
 export default function Home({hasEnvFile, hasKey}) {
 
 
-  if(!hasKey || !hasEnvFile){
+  if(!hasKey || !hasEnvFile && window.location.href.includes('localhost:') ){
     return (
       <div style={{ textAlign:'center', marginTop:'50px' }}>
         <Spinner/>
