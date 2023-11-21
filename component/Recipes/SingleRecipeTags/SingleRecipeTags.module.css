@@ -3,13 +3,12 @@
   flex-direction: column;
   gap: 0.5rem;
   margin-top: 0.5rem;
-  z-index: 100;
 }
 
 .tagsList {
-  z-index: 100;
   display: flex;
   gap: 0.5rem;
+  row-gap: 1rem;
   flex-wrap: wrap;
   padding: 0;
 }
