@@ -3,7 +3,6 @@
 }
 
 .tagButton {
-  z-index: 100;
   background-color: rgb(129, 121, 30);
   border-radius: 0.9rem;
   padding: 0.4rem 0.6rem;
