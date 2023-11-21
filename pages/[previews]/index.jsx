@@ -30,7 +30,7 @@ export default function AllRecipes({error, recipes, totalRecipes}) {
   // const [results, setResults] = useState(null);
   const [sortField, setSortField] = useState('id'); // Default sort field
   const [sortOrder, setSortOrder] = useState('asc'); // Default sort order
-  const {searchText, searchInput, filteredResults, setSelectedIngredients, setSelectedTags, setSelectedInstructionsOptions,  setFilteredResults, selecteTags, selectedIngredients, selectedCategory, selectedInstructionsOptions, setSelectedCategory, andOr } = StateContext();
+  const {searchText, searchInput, setSelectedIngredients, setSelectedTags, setSelectedInstructionsOptions, selecteTags, selectedIngredients, selectedCategory, selectedInstructionsOptions, setSelectedCategory, andOr } = StateContext();
 
   const skipNo = parseInt(router.query.previews.split('-')[1]) || 0;
 
@@ -108,17 +108,13 @@ export default function AllRecipes({error, recipes, totalRecipes}) {
                 </select>
               </div>
 
-            {/* <h5 style={{color:'white'}}>{total}</h5> */}
-            {/* <h6 style={{color:'white'}}>{total == 0 ? "No filters have been applied" : ''}</h6> */}
           </div>
           <WhiteButton
             click={() => {
-              setFilteredResults(0)
               setSelectedInstructionsOptions(0)
               setSelectedIngredients([])
               setSelectedTags([])
               setSelectedCategory([])
-              setFilteredResults(0)
             }}
             text= 'Clear filters'
           />
@@ -135,7 +131,7 @@ export default function AllRecipes({error, recipes, totalRecipes}) {
 
       <PreviewList
         input={searchInput}
-        recipes={filteredResults.length > 0 ? filteredResults : recipes}
+        recipes={recipes}
       />
 
       <div className="loadMore">

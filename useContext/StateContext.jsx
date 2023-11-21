@@ -12,11 +12,6 @@ export function ContextProvider({ children }) {
   const [editInstruction, setEditInstruction] = useState(false);
   const [instructionIndex, setInstructionIndex] = useState(null);
   const [addInstruction, setAddInstruction] = useState(false);
-  const [addSkip, setAddSkip] = useState(0);
-  const [filteredResults, setFilteredResults] = useState([]);
-  const [total, setTotal] = useState(0)
-  const [clearfilter, setClearFilter] = useState([])
-  const [selectedIngredientsOptions, setSelectedIngredientsOptions] = useState([])
   const [selectedInstructionsOptions, setSelectedInstructionsOptions] = useState(0);
   const [selecteTags, setSelectedTags] = useState([]);
   const [selectedIngredients, setSelectedIngredients] = useState([]);
@@ -50,17 +45,8 @@ export function ContextProvider({ children }) {
         setSelectedIngredients,
         selecteTags,
         setSelectedTags,
-        selectedIngredientsOptions,
-        setSelectedIngredientsOptions,
         selectedInstructionsOptions,
         setSelectedInstructionsOptions,
-        clearfilter,
-        total, 
-        setTotal,
-        filteredResults,
-        setFilteredResults,
-        addSkip,
-        setAddSkip,
         addInstruction,
         setAddInstruction,
         instructionIndex,
