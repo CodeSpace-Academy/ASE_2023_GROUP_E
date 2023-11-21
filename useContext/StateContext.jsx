@@ -15,7 +15,7 @@ export function ContextProvider({ children }) {
   const [selectedInstructionsOptions, setSelectedInstructionsOptions] = useState(0);
   const [selecteTags, setSelectedTags] = useState([]);
   const [selectedIngredients, setSelectedIngredients] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState({value: ''});
   const [andOr, setAndOr] = useState(false);
   const [searchInput, setSearchInput] = useState(null);
   const [searchText, setSearchText] = useState('');

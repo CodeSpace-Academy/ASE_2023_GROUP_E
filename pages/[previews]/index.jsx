@@ -32,6 +32,13 @@ export default function AllRecipes({error, recipes, totalRecipes}) {
   const [sortOrder, setSortOrder] = useState('asc'); // Default sort order
   const {searchText, searchInput, setSelectedIngredients, setSelectedTags, setSelectedInstructionsOptions, selecteTags, selectedIngredients, selectedCategory, selectedInstructionsOptions, setSelectedCategory, andOr } = StateContext();
 
+/**
+   * When filtering recipes, then decides to share the url, the shared link will display the filterd recipes
+   */
+useEffect(() => {
+  setSelectedCategory({value: window.location.href.split('_')[3]})
+}, [])
+
   const skipNo = parseInt(router.query.previews.split('-')[1]) || 0;
 
   const page = (skipNo + 100) / 100;
@@ -115,6 +122,7 @@ export default function AllRecipes({error, recipes, totalRecipes}) {
               setSelectedIngredients([])
               setSelectedTags([])
               setSelectedCategory([])
+              router.query.previews.substring(0, 20) === "recipes-0-id-asc____" ? alert("No filters have been applied") :"";
             }}
             text= 'Clear filters'
           />
@@ -124,7 +132,9 @@ export default function AllRecipes({error, recipes, totalRecipes}) {
     
     </div>
     
-    {totalRecipes === 0 || totalRecipes === 164959 ? '' : <div className='totalRecipes'><h3>{totalRecipes} results</h3></div>}
+    {totalRecipes === 0 || totalRecipes === 164959 ? '' : <div className='totalRecipes'><h3>{totalRecipes} results</h3>
+    
+    </div>}
  
 
 
@@ -139,10 +149,10 @@ export default function AllRecipes({error, recipes, totalRecipes}) {
         <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={onPageChange} />
       </div>
         {totalRecipes - skipNo >= 100 ? <div >
-          <WhiteButton 
-            click={handleNextClick} 
-            text={totalRecipes - skipNo - 100+ ' '+ 'remaining'}
-          />
+         
+            <h6>  {totalRecipes - skipNo - 100+ ' '+ 'remaining'}</h6> 
+          
+          
         </div>: ''}
       </div>
     </main>

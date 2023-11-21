@@ -1,13 +1,15 @@
 .tagItem {
   list-style: none;
 }
+
 .tagButton {
   background-color: rgb(129, 121, 30);
-  border-radius: 0.25rem;
-  padding: 0.35rem 0.5rem;
+  border-radius: 0.9rem;
+  padding: 0.4rem 0.6rem;
   color: white;
   border: none;
+  font-size: 0.9rem;
 }
 .tagButton:hover {
-  cursor: auto;
+  background-color: rgb(129, 121, 30);
 }
