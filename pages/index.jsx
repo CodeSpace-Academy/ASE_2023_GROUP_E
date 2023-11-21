@@ -1,60 +1,53 @@
-const fs = require('fs');
 import path from 'path';
 import { Spinner } from 'flowbite-react';
-import HomeWithBackground from '@/component/home-page/HomeWithBackground';
-import ErrorMessage from '@/component/Error/ErrorMessage';
+import HomeWithBackground from '../component/home-page/HomeWithBackground';
+import ErrorMessage from '../component/Error/ErrorMessage';
 
+const fs = require('fs');
 
-export default function Home({hasEnvFile, hasKey}) {
-
-
-  if(!hasKey || !hasEnvFile && window.location.href.includes('localhost:') ){
+export default function Home({ hasEnvFile, hasKey }) {
+  /**
+   * 
+   */
+  if (!hasKey || !hasEnvFile || window.location.href.includes('localhost:')) {
     return (
-      <div style={{ textAlign:'center', marginTop:'50px' }}>
-        <Spinner/>
-        <ErrorMessage message='.env file is missing or has no values'/>
+      <div style={{ textAlign: 'center', marginTop: '50px' }}>
+        <Spinner />
+        <ErrorMessage message=".env file is missing or has no values" />
       </div>
-    )
+    );
   }
-
 
   return (
     <main>
-      <HomeWithBackground /> {/* Render the HomeWithBackground component. */}
+      <HomeWithBackground />
+      {' '}
+      {/* Render the HomeWithBackground component. */}
     </main>
   );
 }
 
-
-export async function getServerSideProps(){
+export async function getServerSideProps() {
   const envFilePath = path.resolve('.env');
 
-
-  let hasEnvFile = false
-  let hasKey = false
+  let hasEnvFile = false;
+  let hasKey = false;
   try {
     await fs.promises.access(envFilePath);
     hasEnvFile = true;
 
-
-    if(hasEnvFile){
+    if (hasEnvFile) {
       const envContent = await fs.promises.readFile(envFilePath, 'utf8');
       hasKey = envContent.includes('MONGODB_URI');
     }
-
-
   } catch (error) {
     hasEnvFile = false;
   }
 
-
   return {
     props: {
       hasEnvFile,
-      hasKey
+      hasKey,
     },
   };
 }
-
-
-
