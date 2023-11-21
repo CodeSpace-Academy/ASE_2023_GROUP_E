@@ -105,8 +105,8 @@ function skip(){
       </div>
 {/* Placeholder for additional content */}
       <div className={classes.mobileMenu}>
-        {menuOptions.map((option) => (
-          <p>{option.icon}</p>
+        {menuOptions.map((option, index) => (
+          <p key={index}>{option.icon}</p>
         ))}
       </div>
     </div>
