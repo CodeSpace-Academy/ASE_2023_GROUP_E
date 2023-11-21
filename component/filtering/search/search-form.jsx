@@ -17,17 +17,17 @@ export default function SearchForm() {
   const searchHandler = () => {
     const filterInput = searchRef.current.value;
 
-    if(filterInput.split('').length < 18){
+    if(filterInput.split('').length < 13){
       setSearchText(filterInput)
       setAddSearchHistory(true);
       SetLongQueryButton(false)
-    }else if(filterInput.split('').length >= 18){
+    }else if(filterInput.split('').length >= 13){
       SetLongQueryButton(true)
     }
   
   };
 
-  const debouncedSearchHandler = debounce(searchHandler, longQueryButton ? 500 : 1700);
+  const debouncedSearchHandler = debounce(searchHandler, longQueryButton ? 300 : 2000);
 
   async function searchHistoryHandler() {
     try {
@@ -63,12 +63,20 @@ export default function SearchForm() {
    * when the history item is clicked it fires the following function.
    * which then triggers the search function
    */
-  const historyItemClickHandler = (item) => {
+    const historyItemClickHandler = (item) => {
     const selectedValue = item;
     searchRef.current.value = selectedValue;
     searchHandler(selectedValue);
   };
-  setSearchInput(searchText && searchRef.current.value)
+
+  /**
+   * console was arguing that "state cant be updated"
+   * setting state inside the useffect is the solution
+   */
+  useEffect(() => {
+    setSearchInput(searchText && searchRef.current.value)
+  })
+  
   return (
     <>
       <div className={classes.search}>
