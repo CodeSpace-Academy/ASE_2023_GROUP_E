@@ -14,7 +14,6 @@ import { PrepandCookTime } from '@/component/handlerTime/timeRead';
 import FavouritesButton from '../../Favourites/FavouritesButton/FavouritesButton';
 import { useRouter } from 'next/router';
 
-
 /**
  * @function PreviewList
  * @description The main functional component that renders a list of recipe previews.
@@ -90,14 +89,16 @@ export default function PreviewList({ recipes, input, sortDate }) {
             recipes.map((recipe, index) => {
               return (
                 // Grid item for each recipe preview
-                <Grid xs={12} md={12} key={index} className={style.item}>
+                <Grid xs={12} md={12} key={index}>
                   {/* Paper component for styling */}
-                  <Item key={recipe.id}>
+                  <Item key={recipe.id} className={style.item}>
                     {/* Link to navigate to the individual recipe page */}
-                    <Link href={`/recipes/${recipe._id}`} className={style.link}>
+                    <Link
+                      href={`/recipes/${recipe._id}`}
+                      className={style.link}
+                    >
                       {/* Recipe content container */}
                       <div className={style.recipe}>
-                        
                         <div>
                           {/* Recipe image */}
                           <Image
@@ -115,7 +116,8 @@ export default function PreviewList({ recipes, input, sortDate }) {
                           <p className={style.category}>{recipe.category}</p>
                           {/* Recipe title container */}
                           <div className={style.heading}>
-                            {/* router.pathname === '/search' ? ( */
+                            {
+                              /* router.pathname === '/search' ? ( */
                               input ? (
                                 // Split title to highlight search input
                                 <div>
@@ -140,9 +142,10 @@ export default function PreviewList({ recipes, input, sortDate }) {
                               ) : (
                                 <h3>{recipe.title}</h3>
                               )
-                           /* )  : (
+                              /* )  : (
                               <h3>{recipe.title}</h3>
-                            ) */}
+                            ) */
+                            }
                           </div>
                           {/* Display recipe description if available */}
                           {showDescriptions[index] && recipe.description ? (
@@ -184,5 +187,4 @@ export default function PreviewList({ recipes, input, sortDate }) {
       </Box>
     </>
   );
-  
-          }
+}
