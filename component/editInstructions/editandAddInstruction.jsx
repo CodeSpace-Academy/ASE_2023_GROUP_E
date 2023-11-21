@@ -47,7 +47,7 @@ export default function Instructions({ recipe }) {
   return (
     <div className={classes.instructions}>
       <h2>Instructions:</h2>
-      {recipe.instruction ? ( // disable to demo instructions
+      {recipe.instructions ? ( // disable to demo instructions
         <div className={classes.instructionContainer}>
           <ol>
             {recipe.instructions &&
