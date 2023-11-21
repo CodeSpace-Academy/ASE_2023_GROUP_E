@@ -6,19 +6,17 @@ const RecipePage = () => {
   const router = useRouter();
   const [recipe, setRecipe] = useState(null);
   const [allergens, setAllergens] = useState([]);
-  
+
   useEffect(() => {
     fetch(`/api/getData?filter=${router.query.recipe}&collection=recipes`)
       .then((res) => res.json())
       .then((data) => setRecipe(data.results && data.results[0]));
-  }, [recipe]);
+  });
 
   useEffect(() => {
     fetch('/api/getData?collection=allergens')
       .then((res) => res.json())
-      .then((data) =>
-        setAllergens(data.results && data.results[0].allergens),
-      );
+      .then((data) => setAllergens(data.results && data.results[0].allergens));
   }, []);
 
   return (
