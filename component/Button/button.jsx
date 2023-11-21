@@ -46,7 +46,7 @@ export function BlueButton({ click, text }) {
 
 export function WhiteButton({ click, text }) {
   return (
-    <button onClick={click} class={classes.whitebutton} role="button">
+    <button onClick={click} className={classes.whitebutton} role="button">
       {text}
     </button>
   );
