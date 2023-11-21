@@ -120,12 +120,14 @@ useEffect(() => {
           </div>
           <WhiteButton
             click={() => {
+              
               setFilteredResults(0)
               setSelectedInstructionsOptions(0)
               setSelectedIngredients([])
               setSelectedTags([])
               setSelectedCategory([])
               setFilteredResults(0)
+              router.query.previews.substring(0, 20) === "recipes-0-id-asc____" ? alert("No filters have been applied") :"";
             }}
             text= 'Clear filters'
           />
@@ -152,10 +154,10 @@ useEffect(() => {
         <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={onPageChange} />
       </div>
         {totalRecipes - skipNo >= 100 ? <div >
-          <WhiteButton 
-            click={handleNextClick} 
-            text={totalRecipes - skipNo - 100+ ' '+ 'remaining'}
-          />
+         
+            <h6>  {totalRecipes - skipNo - 100+ ' '+ 'remaining'}</h6> 
+          
+          
         </div>: ''}
       </div>
     </main>

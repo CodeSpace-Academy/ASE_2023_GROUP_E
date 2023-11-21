@@ -33,8 +33,8 @@ export function EditandAddInstruction({ recipe }) {
         <NewInstruction />
       ) : (
         <div className={classes.addButton}>
-          <WhiteButton 
-            text='Add Instruction'
+          <WhiteButton
+            text="Add Instruction"
             click={() => setAddInstruction(!addInstruction)}
           />
         </div>
@@ -47,7 +47,7 @@ export default function Instructions({ recipe }) {
   return (
     <div className={classes.instructions}>
       <h2>Instructions:</h2>
-      {recipe.instructions ? (
+      {recipe.instructions ? ( // disable to demo instructions
         <div className={classes.instructionContainer}>
           <ol>
             {recipe.instructions &&
@@ -64,7 +64,7 @@ export default function Instructions({ recipe }) {
           <EditandAddInstruction recipe={recipe} />
         </div>
       ) : (
-        <ErrorMessage message="Error loading the instructions" />
+        <ErrorMessage message="Failed to load instructions." />
       )}
     </div>
   );
