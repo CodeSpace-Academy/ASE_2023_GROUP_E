@@ -32,6 +32,13 @@ export default function AllRecipes({error, recipes, totalRecipes}) {
   const [sortOrder, setSortOrder] = useState('asc'); // Default sort order
   const {searchInput, filteredResults, setSelectedIngredients, setSelectedTags, setSelectedInstructionsOptions,  setFilteredResults, selecteTags, selectedIngredients, selectedCategory, selectedInstructionsOptions, setSelectedCategory, andOr } = StateContext();
 
+/**
+   * When filtering recipes, then decides to share the url, the shared link will display the filterd recipes
+   */
+useEffect(() => {
+  setSelectedCategory({value: window.location.href.split('_')[3]})
+}, [])
+
   const skipNo = parseInt(router.query.previews.split('-')[1]) || 0;
 
   const page = (skipNo + 100) / 100;
