@@ -3,6 +3,7 @@ import React, { Fragment, useRef, useState, useEffect } from 'react';
 import { debounce } from 'lodash';
 import classes from './search-from.module.css';
 import StateContext from '@/useContext/StateContext';
+import { WhiteButton } from '@/component/Button/button';
 
 
 export default function SearchForm() {
@@ -11,15 +12,22 @@ export default function SearchForm() {
   const [searchHistory, setSearchHistory] = useState(null);
   const [displayHistory, setDisplayHistory] = useState(false);
   const [addSearchHistory, setAddSearchHistory] = useState(false);
+  const [longQueryButton, SetLongQueryButton] = useState(false)
 
   const searchHandler = () => {
     const filterInput = searchRef.current.value;
 
-    setSearchText(filterInput)
-    setAddSearchHistory(true);
+    if(filterInput.split('').length < 18){
+      setSearchText(filterInput)
+      setAddSearchHistory(true);
+      SetLongQueryButton(false)
+    }else if(filterInput.split('').length >= 18){
+      SetLongQueryButton(true)
+    }
+  
   };
 
-  const debouncedSearchHandler = debounce(searchHandler, 1300);
+  const debouncedSearchHandler = debounce(searchHandler, longQueryButton ? 500 : 1700);
 
   async function searchHistoryHandler() {
     try {
@@ -72,6 +80,14 @@ export default function SearchForm() {
           ref={searchRef}
           onClick={() => setDisplayHistory(true)}
         />
+
+        {
+          longQueryButton ? 
+          
+          <WhiteButton text='Submit' click={() => setSearchText(searchRef.current.value)} /> :
+
+          ''
+        }
 
         {/**
          * waits for input to be clicked then history pops up
