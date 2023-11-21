@@ -135,7 +135,9 @@ useEffect(() => {
     
     </div>
     
-    {totalRecipes === 0 || totalRecipes === 164959 ? '' : <div className='totalRecipes'><h3>{totalRecipes} results</h3></div>}
+    {totalRecipes === 0 || totalRecipes === 164959 ? '' : <div className='totalRecipes'><h3>{totalRecipes} results</h3>
+    
+    </div>}
  
 
 
