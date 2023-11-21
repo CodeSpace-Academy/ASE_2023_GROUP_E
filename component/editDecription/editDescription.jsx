@@ -4,19 +4,29 @@ import StateContext from '../../useContext/StateContext';
 import classes from './editDescription.module.css';
 import Button, { FormButton } from '../Button/button';
 
+/**
+ * Edit the description of a recipe on the single recipes page
+ * 
+ * @param {Object} info - Information about the recipe
+ * @returns {JSX.Element} The JSX element representing the EditDescription component
+ */
+
 function EditDescription({ info }) {
   const [newDescription, setNewDescription] = useState(info);
   const { edit, setEdit } = StateContext();
 
+  //goes to the description on the database and allows you to change the description
   const router = useRouter();
   const idRouter = router.query.recipe;
 
+  //adds the description you have editted and hides after
   async function addItemHandler(e) {
     e.preventDefault();
     // hides form after editing
     setEdit(!edit);
 
     try {
+      //makes a request to the API endpoint to edit the recipe description
       await addItem('/api/editRecipe', { recipeId: idRouter, recipeValue: newDescription, key: 'description', stage: '$set' });
     } catch (error) {
       console.log('Error adding item');
