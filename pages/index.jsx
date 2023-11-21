@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import path from 'path';
 import { Spinner } from 'flowbite-react';
 import HomeWithBackground from '../component/home-page/HomeWithBackground';
@@ -6,7 +7,20 @@ import ErrorMessage from '../component/Error/ErrorMessage';
 const fs = require('fs');
 
 export default function Home({ hasEnvFile, hasKey }) {
-  if (window.location.href.includes('localhost:')) {
+  const [checksPath, setCheckPath] = useState(null);
+  useEffect(() => {
+    setCheckPath(window.location.href.includes('localhost:'));
+  }, []);
+  /**
+   * The first statement is used so that the error is not triggered
+   * when on production.
+   * There error handler is specifically made for localhost
+   *
+   * There error was triggered because it specifically check for the
+   * .env file, whick cannot be read.
+   */
+
+  if (checksPath) {
     if (!hasKey || !hasEnvFile) {
       return (
         <div style={{ textAlign: 'center', marginTop: '50px' }}>
