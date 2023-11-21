@@ -143,10 +143,10 @@ export default function AllRecipes({error, recipes, totalRecipes}) {
         <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={onPageChange} />
       </div>
         {totalRecipes - skipNo >= 100 ? <div >
-          <WhiteButton 
-            click={handleNextClick} 
-            text={totalRecipes - skipNo - 100+ ' '+ 'remaining'}
-          />
+         
+            <h6>  {totalRecipes - skipNo - 100+ ' '+ 'remaining'}</h6> 
+          
+          
         </div>: ''}
       </div>
     </main>
