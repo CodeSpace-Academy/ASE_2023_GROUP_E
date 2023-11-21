@@ -15,7 +15,7 @@ const SearchAndFilterHero = ({ children }) => {
 
   return (
     <div>
-      <WhiteButton click={toggleOverlay} text={isOverlayVisible ? "hide filter" : 'Show Filter'} />
+      <WhiteButton click={toggleOverlay} text={isOverlayVisible ? "hide filter" : 'Filters'} />
       {isOverlayVisible && (
         <div className={classes.overlay}>
          

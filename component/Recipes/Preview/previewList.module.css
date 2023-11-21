@@ -86,10 +86,9 @@
   border: none;
 }
 
-.item :hover {
+.item:hover {
   background-color: rgb(229, 228, 228);
 }
-
 
 /* Mobile view */
 
@@ -123,7 +122,7 @@
     font-size: 20px;
     padding-bottom: 20px;
   }
-  
+
   .heading h3 {
     font-weight: 700;
     margin-top: 1.2rem;

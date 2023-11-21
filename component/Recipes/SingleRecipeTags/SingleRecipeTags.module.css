@@ -4,9 +4,11 @@
   gap: 0.5rem;
   margin-top: 0.5rem;
 }
+
 .tagsList {
   display: flex;
   gap: 0.5rem;
+  row-gap: 1rem;
   flex-wrap: wrap;
   padding: 0;
 }
