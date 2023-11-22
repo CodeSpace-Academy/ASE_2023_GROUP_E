@@ -23,7 +23,7 @@ const SearchAndFilterHero = ({ children }) => {
           <h1 style={{color:'white'}}> Filters</h1>
             <div className={classes.inputsContainer}>
               <button className={classes.closeButton} onClick={closeOverlay}>
-                Close
+                X
               </button>
               {children}
             </div>
