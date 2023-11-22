@@ -23,8 +23,10 @@ export default function SearchForm() {
       setSearchText(filterInput);
       setAddSearchHistory(true);
       SetLongQueryButton(false);
+      setDisplayHistory(false);
     } else if (filterInput.split('').length >= 13) {
       SetLongQueryButton(true);
+      setDisplayHistory(false);
     }
   };
 
@@ -76,7 +78,7 @@ export default function SearchForm() {
    * setting state inside the useffect is the solution
    */
   useEffect(() => {
-    setSearchInput(searchText && searchRef.current.value)
+    setSearchInput(searchText && searchRef.current.value);
   });
 
   return (

@@ -112,6 +112,18 @@ export default function AllRecipes({
     searchText,
   ]);
 
+
+  useEffect(()=>{
+    console.log(router.query.previews.split('_')[1])
+  })
+
+  function filteredby(option, position){
+   return(
+    router.query.previews.split('_')[position] ? <p>{`${option}: ${router.query.previews.split('_')[position]}`}</p> : ''
+   )
+  }
+
+
   return (
     <main>
       <div className="previewBackgroundImage">
@@ -157,45 +169,48 @@ export default function AllRecipes({
                     <option value="numberOfSteps">Number of Steps</option>
                   </select>
 
-                  <select
-                    className="previewSort"
-                    value={sortOrder}
-                    onChange={(e) => setSortOrder(e.target.value)}
-                  >
-                    <option value="asc">Ascending</option>
-                    <option value="desc">Descending</option>
-                  </select>
-                </div>
+                <select
+                  className='previewSort'
+                  value={sortOrder}
+                  onChange={(e) => setSortOrder(e.target.value)}
+                >
+                  <option value="asc">Ascending</option>
+                  <option value="desc">Descending</option>
+                </select>
               </div>
-              <div className="Clear" style={{ textAlign: 'center' }}>
-                <WhiteButton
-                  click={() => {
-                    setSelectedInstructionsOptions(0);
-                    setSelectedIngredients([]);
-                    setSelectedTags([]);
-                    setSelectedCategory([]);
-                    router.query.previews.substring(0, 20) ===
-                    'recipes-0-id-asc____'
-                      ? alert('No filters have been applied')
-                      : '';
-                  }}
-                  text="Clear filters"
-                />
-              </div>
-            </SearchAndFilterHero>
+
           </div>
-        </div>
+          <div className='Clear'style={{textAlign: 'center'}}>
+          <WhiteButton 
+            click={() => {
+              setSelectedInstructionsOptions(0)
+              setSelectedIngredients([])
+              setSelectedTags([])
+              setSelectedCategory([])
+              router.query.previews.substring(0, 20) === "recipes-0-id-asc____" ? alert("No filters have been applied") :"";
+            }}
+            text= 'Clear filters'
+          />
+          </div>
+        </SearchAndFilterHero>
       </div>
+      </div>
+    
+    </div>
+    
+    {totalRecipes === 0 || totalRecipes === 164959 ? '' : <div className='totalRecipes'><h3>{totalRecipes} results</h3>
+    {filteredby('Category',3)}
+    {filteredby('Tags',1)}
+    {filteredby('Ingredients',2)}
+    </div>}
+ 
 
-      {totalRecipes === 0 || totalRecipes === 164959 ? (
-        ''
-      ) : (
-        <div className="totalRecipes">
-          <h3>{totalRecipes} results</h3>
-        </div>
-      )}
 
-      <PreviewList input={searchInput} recipes={recipes} />
+
+      <PreviewList
+        input={searchInput}
+        recipes={recipes}
+      />
 
       <div className="loadMore">
         <div className="flex overflow-x-auto sm:justify-center">
