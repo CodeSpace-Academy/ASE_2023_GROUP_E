@@ -55,10 +55,18 @@ export default function AllRecipes({
   useEffect(() => {
     setSelectedCategory({ value: window.location.href.split('_')[3] });
   }, []);
+
+  /**
+   * When user changes the instruction filter and the instruction amount changes filter
+   * the useEffect is triggered.
+   * An error message appears (for 3 seconds) when a number of instruction is chosen but
+   * 0 totalRecipes are returned from the filter query.
+   */
   useEffect(() => {
     if (instruction > 0 && totalRecipes === 0) {
       setInstructionsErrorMessage(true);
     }
+    //removes error message after 3 seconds
     const instructionMessageTime = setTimeout(() => {
       setInstructionsErrorMessage(false);
     }, 3000);
@@ -133,8 +141,10 @@ export default function AllRecipes({
                   </Alert>
                 )}
                 <FilterbyInstructions />
-                <div className="sort-dropdown"  style={{textAlign: 'center'}}>
-                  <label style={{ color: 'white', fontSize: '25px' }}>Sort by</label>
+                <div className="sort-dropdown" style={{ textAlign: 'center' }}>
+                  <label style={{ color: 'white', fontSize: '25px' }}>
+                    Sort by
+                  </label>
                   <select
                     className="previewSort"
                     value={sortField}
@@ -144,7 +154,7 @@ export default function AllRecipes({
                     <option value="prep">Prep time</option>
                     <option value="cook">Cook time</option>
                     <option value="published">Date</option>
-                <option value="numberOfSteps">Number of Steps</option>
+                    <option value="numberOfSteps">Number of Steps</option>
                   </select>
 
                   <select
@@ -157,21 +167,21 @@ export default function AllRecipes({
                   </select>
                 </div>
               </div>
-          <div className='Clear'style={{textAlign: 'center'}}>
-              <WhiteButton 
-                click={() => {
-                  setSelectedInstructionsOptions(0);
-                  setSelectedIngredients([]);
-                  setSelectedTags([]);
-                  setSelectedCategory([]);
-                  router.query.previews.substring(0, 20) ===
-                  'recipes-0-id-asc____'
-                    ? alert('No filters have been applied')
-                    : '';
-                }}
-                text="Clear filters"
-              />
-          </div>
+              <div className="Clear" style={{ textAlign: 'center' }}>
+                <WhiteButton
+                  click={() => {
+                    setSelectedInstructionsOptions(0);
+                    setSelectedIngredients([]);
+                    setSelectedTags([]);
+                    setSelectedCategory([]);
+                    router.query.previews.substring(0, 20) ===
+                    'recipes-0-id-asc____'
+                      ? alert('No filters have been applied')
+                      : '';
+                  }}
+                  text="Clear filters"
+                />
+              </div>
             </SearchAndFilterHero>
           </div>
         </div>
