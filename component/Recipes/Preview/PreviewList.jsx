@@ -113,6 +113,7 @@ export default function PreviewList({ recipes, input, sortDate }) {
                         {/* Recipe details container */}
                         <div>
                           {/* Display recipe category */}
+                          <h1>{recipe.instructions.length}</h1>
                           <p className={style.category}>{recipe.category}</p>
                           {/* Recipe title container */}
                           <div className={style.heading}>
