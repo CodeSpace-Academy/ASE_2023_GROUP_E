@@ -1,7 +1,7 @@
 import React from 'react';
 
 /**
- * Function to hightlight minutes within a recipe instruction 
+ * Function to highlight minutes within a recipe instruction.  
  * @param {number,string} //number and instruction string
  * @returns
  */
