@@ -1,18 +1,20 @@
+/* eslint-disable no-nested-ternary */
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable no-param-reassign */
 // Import React and necessary components/styles
-import ErrorMessage from '@/component/Error/ErrorMessage';
+import { IoIosInformationCircle } from 'react-icons/io';
+import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
 import { styled } from '@mui/material/styles';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { IoIosInformationCircle } from 'react-icons/io';
 import SingleRecipeTags from '../SingleRecipeTags/SingleRecipeTags';
 import style from './previewList.module.css';
 import { PrepandCookTime } from '@/component/handlerTime/timeRead';
 import FavouritesButton from '../../Favourites/FavouritesButton/FavouritesButton';
-import { useRouter } from 'next/router';
+import ErrorMessage from '@/component/Error/ErrorMessage';
 
 /**
  * @function PreviewList
@@ -35,12 +37,12 @@ const Item = styled(Paper)(({ theme }) => {
     color: theme.palette.text.secondary,
     boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
     cursor: 'pointer',
-    color: '#003153',
   };
 });
-export default function PreviewList({ recipes, input, sortDate }) {
+export default function PreviewList({ recipes, input }) {
   /**
-   * @constant {Array} showDescriptions - State variable to manage the visibility of recipe descriptions.
+   * @constant {Array} showDescriptions - S
+   * State variable to manage the visibility of recipe descriptions.
    */
   const [showDescriptions, setShowDescriptions] = useState([]);
 
@@ -50,7 +52,7 @@ export default function PreviewList({ recipes, input, sortDate }) {
    */
   useEffect(() => {
     if (recipes) {
-      setShowDescriptions(recipes.map(() => false));
+      setShowDescriptions(recipes.map(() => { return false; }));
     }
   }, [recipes]);
 
@@ -64,11 +66,6 @@ export default function PreviewList({ recipes, input, sortDate }) {
     newShowDescriptions[index] = !newShowDescriptions[index];
     setShowDescriptions(newShowDescriptions);
   }
-
-  /**
-   * @constant {Object} router - Object for accessing the Next.js router.
-   */
-  const router = useRouter();
 
   /**
    * @function handleImageError
@@ -85,8 +82,8 @@ export default function PreviewList({ recipes, input, sortDate }) {
       <Box sx={{ flexGrow: 1 }}>
         {/* Grid container for displaying recipe previews */}
         <Grid container spacing={1}>
-          {recipes &&
-            recipes.map((recipe, index) => {
+          {recipes
+            && recipes.map((recipe, index) => {
               return (
                 // Grid item for each recipe preview
                 <Grid xs={12} md={12} key={index}>
@@ -105,7 +102,7 @@ export default function PreviewList({ recipes, input, sortDate }) {
                             src={recipe.images[0]}
                             onError={handleImageError}
                             className={style.img}
-                            alt={'recipe Image'}
+                            alt="recipe Image"
                             width={200}
                             height={100}
                           />
@@ -113,6 +110,7 @@ export default function PreviewList({ recipes, input, sortDate }) {
                         {/* Recipe details container */}
                         <div>
                           {/* Display recipe category */}
+
                           <p className={style.category}>{recipe.category}</p>
                           {/* Recipe title container */}
                           <div className={style.heading}>
@@ -122,36 +120,40 @@ export default function PreviewList({ recipes, input, sortDate }) {
                                 <div>
                                   {recipe.title
                                     .split(new RegExp(`(${input})`, 'i'))
-                                    .map((title, index) => (
-                                      <span
-                                        key={index}
-                                        style={
-                                          title.toLowerCase() ===
-                                          input.toLowerCase()
-                                            ? { color: '#a98614' }
-                                            : {}
-                                        }
-                                      >
-                                        <h3 style={{ display: 'inline' }}>
-                                          {title}
-                                        </h3>
-                                      </span>
-                                    ))}
+                                    .map((title) => {
+                                      return (
+                                        <span
+                                          key={index}
+                                          style={
+                                            title.toLowerCase()
+                                            === input.toLowerCase()
+                                              ? { color: '#a98614' }
+                                              : {}
+                                          }
+                                        >
+                                          <h3 style={{ display: 'inline' }}>
+                                            {title}
+                                          </h3>
+                                        </span>
+                                      );
+                                    })}
                                 </div>
                               ) : (
                                 <h3>{recipe.title}</h3>
-                              )}
+                              )
+                            }
                           </div>
                           {/* Display recipe description if available */}
-                          {showDescriptions[index] && recipe.description ? (
-                            <p>{recipe.description}</p>
-                          ) : showDescriptions[index] ? (
+                          {showDescriptions[index]
+                            && recipe.description ? (
+                              <p>{recipe.description}</p>
+                            ) : showDescriptions[index] ? (
                             // Display error message if description failed to load
-                            <ErrorMessage message="Failed to load description" />
-                          ) : (
+                              <ErrorMessage message="Failed to load description" />
+                            ) : (
                             // Empty string if no description to display
-                            ''
-                          )}
+                              ''
+                            )}
                           {/* Display preparation and cooking time */}
                           <PrepandCookTime recipe={recipe} />
                         </div>
@@ -170,7 +172,7 @@ export default function PreviewList({ recipes, input, sortDate }) {
                           color="light gray"
                           fontSize="20px"
                           className={style.infoIcon}
-                          onClick={() => toggleDescription(index)}
+                          onClick={() => { return toggleDescription(index); }}
                         />
                       </div>
                     </div>
