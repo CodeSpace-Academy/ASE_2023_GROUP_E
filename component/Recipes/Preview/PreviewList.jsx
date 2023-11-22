@@ -8,14 +8,11 @@ import Grid from '@mui/material/Unstable_Grid2';
 import { styled } from '@mui/material/styles';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { IoIosInformationCircle } from 'react-icons/io';
 import SingleRecipeTags from '../SingleRecipeTags/SingleRecipeTags';
 import style from './previewList.module.css';
 import { PrepandCookTime } from '@/component/handlerTime/timeRead';
 import FavouritesButton from '../../Favourites/FavouritesButton/FavouritesButton';
 import ErrorMessage from '@/component/Error/ErrorMessage';
-
 
 /**
  * @function PreviewList
@@ -38,12 +35,12 @@ const Item = styled(Paper)(({ theme }) => {
     color: theme.palette.text.secondary,
     boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
     cursor: 'pointer',
-    color: '#003153',
   };
 });
 export default function PreviewList({ recipes, input, sortDate }) {
   /**
-   * @constant {Array} showDescriptions - State variable to manage the visibility of recipe descriptions.
+   * @constant {Array} showDescriptions - S
+   * State variable to manage the visibility of recipe descriptions.
    */
   const [showDescriptions, setShowDescriptions] = useState([]);
 
@@ -53,7 +50,7 @@ export default function PreviewList({ recipes, input, sortDate }) {
    */
   useEffect(() => {
     if (recipes) {
-      setShowDescriptions(recipes.map(() => false));
+      setShowDescriptions(recipes.map(() => { return false, }));
     }
   }, [recipes]);
 
@@ -116,7 +113,7 @@ export default function PreviewList({ recipes, input, sortDate }) {
                         {/* Recipe details container */}
                         <div>
                           {/* Display recipe category */}
-                          <h1>{recipe.instructions.length}</h1>
+
                           <p className={style.category}>{recipe.category}</p>
                           {/* Recipe title container */}
                           <div className={style.heading}>
@@ -127,7 +124,7 @@ export default function PreviewList({ recipes, input, sortDate }) {
                                 <div>
                                   {recipe.title
                                     .split(new RegExp(`(${input})`, 'i'))
-                                    .map((title, index) => (
+                                    .map((title, index) => {return (
                                       <span
                                         key={index}
                                         style={
@@ -141,7 +138,7 @@ export default function PreviewList({ recipes, input, sortDate }) {
                                           {title}
                                         </h3>
                                       </span>
-                                    ))}
+                                    )})}
                                 </div>
                               ) : (
                                 <h3>{recipe.title}</h3>
@@ -179,7 +176,7 @@ export default function PreviewList({ recipes, input, sortDate }) {
                           color="light gray"
                           fontSize="20px"
                           className={style.infoIcon}
-                          onClick={() => toggleDescription(index)}
+                          onClick={() => {return toggleDescription(index)}}
                         />
                       </div>
                     </div>
