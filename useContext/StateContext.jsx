@@ -12,17 +12,13 @@ export function ContextProvider({ children }) {
   const [editInstruction, setEditInstruction] = useState(false);
   const [instructionIndex, setInstructionIndex] = useState(null);
   const [addInstruction, setAddInstruction] = useState(false);
-  const [addSkip, setAddSkip] = useState(0);
-  const [filteredResults, setFilteredResults] = useState([]);
-  const [total, setTotal] = useState(0)
-  const [clearfilter, setClearFilter] = useState([])
-  const [selectedIngredientsOptions, setSelectedIngredientsOptions] = useState([])
   const [selectedInstructionsOptions, setSelectedInstructionsOptions] = useState(0);
   const [selecteTags, setSelectedTags] = useState([]);
   const [selectedIngredients, setSelectedIngredients] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState({value: ''});
   const [andOr, setAndOr] = useState(false);
   const [searchInput, setSearchInput] = useState(null);
+  const [searchText, setSearchText] = useState('');
 
   //   Favourite recipes list global state
   let favouriteRecipesInLocalStorage;
@@ -37,6 +33,8 @@ export function ContextProvider({ children }) {
   return (
     <Context.Provider
       value={{
+        searchText, 
+        setSearchText,
         searchInput,
         setSearchInput,
         andOr, 
@@ -47,17 +45,8 @@ export function ContextProvider({ children }) {
         setSelectedIngredients,
         selecteTags,
         setSelectedTags,
-        selectedIngredientsOptions,
-        setSelectedIngredientsOptions,
         selectedInstructionsOptions,
         setSelectedInstructionsOptions,
-        clearfilter,
-        total, 
-        setTotal,
-        filteredResults,
-        setFilteredResults,
-        addSkip,
-        setAddSkip,
         addInstruction,
         setAddInstruction,
         instructionIndex,

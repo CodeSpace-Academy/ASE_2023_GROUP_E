@@ -2,11 +2,13 @@ import { client } from "../client";
 
 const db = client.db('devdb');
 
-export async function getRecipes(collection, skipNo, limit, sort, tags, ingredients, category, instructions, andOr, viewRecipe, expressionInput, username){
+export async function getRecipes(collection, skipNo, limit, sort, tags, ingredients, category, instructions, andOr, viewRecipe, expressionInput, username, title){
 
+  // const title = 'L'
   /**
    * These condition, are used so that this database module can be reusable 
    */
+  const getSearchResults =  title && title.split('').length  > 1 ? { title : { $regex: new RegExp(title, 'i') }} : {}
   const getRecipesbyTags = tags.length > 0 && tags != '' ? {tags: { $all: tags}} : {}
   const getRecipesbyIngredients = ingredients.length > 0 && ingredients != '' ? { [andOr]: ingredients.map((key) => { return ({ [`ingredients.${key}`]: { $exists: true } }); }) } : {}
   const getRecipesbyCategory = category.split('').length > 1 ?  {category: category} : {}
@@ -26,7 +28,7 @@ export async function getRecipes(collection, skipNo, limit, sort, tags, ingredie
   /**
    * This is mainly used to filter data, when the condition above are met, results will then be filtered by that expression.
    */
-  const matchby = {$and: [getRecipesbyTags, getRecipesbyIngredients, getRecipesbyCategory, getRecipesbyInstructionsLength, getSpecificRecipebyId, user]}
+  const matchby = {$and: [getRecipesbyTags, getRecipesbyIngredients, getRecipesbyCategory, getRecipesbyInstructionsLength, getSpecificRecipebyId, user, getSearchResults]}
   
   const recipes = await db.collection(collection).aggregate([
 
@@ -39,6 +41,12 @@ export async function getRecipes(collection, skipNo, limit, sort, tags, ingredie
     expression.split('').length > 1 ? {$project: { [expression]: 1, _id: 0 }} : {$match: matchby},
     {$skip: skipNo},
     {$limit: limit},
+    {
+      $addFields: {
+        numberOfSteps: { $size: "$instructions" }
+      }
+    },
+
     {$sort: sort}
 
   ]).toArray()
