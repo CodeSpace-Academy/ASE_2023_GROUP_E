@@ -66,6 +66,18 @@ useEffect(() => {
     router.push(path(skipNo));
   }, [sortField, sortOrder, selecteTags, selectedIngredients, selectedCategory, selectedInstructionsOptions]);
 
+
+  useEffect(()=>{
+    console.log(router.query.previews.split('_')[1])
+  })
+
+  function filteredby(option, position){
+   return(
+    router.query.previews.split('_')[position] ? <p>{`${option}: ${router.query.previews.split('_')[position]}`}</p> : ''
+   )
+  }
+
+
   return (
     <main>
         
@@ -136,7 +148,9 @@ useEffect(() => {
     </div>
     
     {totalRecipes === 0 || totalRecipes === 164959 ? '' : <div className='totalRecipes'><h3>{totalRecipes} results</h3>
-    
+    {filteredby('Category',3)}
+    {filteredby('Tags',1)}
+    {filteredby('Ingredients',2)}
     </div>}
  
 
