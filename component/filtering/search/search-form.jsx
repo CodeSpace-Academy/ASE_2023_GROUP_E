@@ -36,11 +36,16 @@ export default function SearchForm() {
   const debouncedSearchHandler = debounce(searchHandler, longQueryButton ? 300 : 2000);
 
   async function searchHistoryHandler() {
-    try {
-      setAddSearchHistory(false);
-      await addItem('/api/filtering/search/searchHistory', { username: 'mike', searchHistoryInput: searchText && searchRef.current.value });
-    } catch (error) {
-      console.log('failed attempt');
+
+    const searchTextTrim = searchText.trim()
+
+    if (searchText.replace(/\s/g, '').length > 0) {
+      try {
+        setAddSearchHistory(false);
+        await addItem('/api/filtering/search/searchHistory', { username: 'mike', searchHistoryInput: searchText && searchRef.current.value });
+      } catch (error) {
+        console.log('failed attempt');
+      }
     }
   }
 
