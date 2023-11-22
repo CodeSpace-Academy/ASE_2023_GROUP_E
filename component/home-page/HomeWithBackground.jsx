@@ -6,6 +6,11 @@ import { useRouter } from 'next/router';
 import { WhiteButton } from '../Button/button';
 import StateContext from '@/useContext/StateContext';
 
+/**
+ * Landing page
+ * @returns {JSX.Element} - the landing page.
+ */
+
 const HomeWithBackground = () => {
   const router = useRouter(); // Initialize the router for navigation.
   const { selecteTags, selectedIngredients, selectedCategory, selectedInstructionsOptions, andOr } = StateContext()
