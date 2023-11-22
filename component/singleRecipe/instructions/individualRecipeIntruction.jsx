@@ -1,7 +1,8 @@
+/* eslint-disable react/no-array-index-key */
 import React from 'react';
 
 /**
- * Function to highlight minutes within a recipe instruction.  
+ * Function to highlight minutes within a recipe instruction.
  * @param {number,string} //number and instruction string
  * @returns
  */
@@ -14,19 +15,19 @@ const highlightMinutes = (instruction) => {
       // If part is an integer, wrap it with brackets
       return (
         <span key={index} style={{ fontWeight: 'bold' }}>
-          {'{' + part + '}'}
+          {`{${part}}`}
         </span>
       );
-    } else if (part.toLowerCase() === 'minutes' && ' minute') {
+    } if (part.toLowerCase() === 'minutes' && ' minute') {
       // Highlight the word "minutes"
       return (
         <span key={index} style={{ fontWeight: 'bold' }}>
           {part}
         </span>
       );
-    } else {
-      return part;
-    }
+    } 
+    return part;
+    
   });
 };
 
