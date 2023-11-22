@@ -24,7 +24,7 @@ const SearchAndFilterHero = ({ children }) => {
           <h1 style={{color:'white'}}> Filters</h1>
             <div className={classes.inputsContainer}>
               <div className={classes.closeButton} onClick={closeOverlay}>
-              <IoIosCloseCircle size={33} color='dark-grey'/>
+              <IoIosCloseCircle size={33} color='grey'/>
               </div>
               {children}
             </div>
