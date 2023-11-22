@@ -117,7 +117,6 @@ export default function PreviewList({ recipes, input, sortDate }) {
                           {/* Recipe title container */}
                           <div className={style.heading}>
                             {
-                              /* router.pathname === '/search' ? ( */
                               input ? (
                                 // Split title to highlight search input
                                 <div>
@@ -141,11 +140,7 @@ export default function PreviewList({ recipes, input, sortDate }) {
                                 </div>
                               ) : (
                                 <h3>{recipe.title}</h3>
-                              )
-                              /* )  : (
-                              <h3>{recipe.title}</h3>
-                            ) */
-                            }
+                              )}
                           </div>
                           {/* Display recipe description if available */}
                           {showDescriptions[index] && recipe.description ? (
