@@ -57,7 +57,7 @@
     min-width: 500px;
     text-align: justify;
     color: black;
-    box-shadow: 3px 2px 5px 2px rgba(0, 0, 0, 0.488);
+    box-shadow: 1px 6px 6px 6px  rgba(0, 0, 0, 0.488);
 }
 
 .searhHistory li{
@@ -76,6 +76,13 @@
  .searhHistory p {
     cursor: pointer;
     margin-left: 5px;
+}
+
+.close{
+    display: flex;
+    justify-content: flex-end;
+    margin: 5px;
+ 
 }
 
 .total,

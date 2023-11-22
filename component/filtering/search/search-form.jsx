@@ -1,7 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { debounce } from 'lodash';
+import { IoCloseCircleSharp } from 'react-icons/io5';
+// eslint-disable-next-line import/no-unresolved
 import classes from './search-from.module.css';
+// eslint-disable-next-line import/no-unresolved
 import StateContext from '../../../useContext/StateContext';
 import { WhiteButton } from '../../Button/button';
 
@@ -107,14 +110,22 @@ export default function SearchForm() {
       {displayHistory
         && (
           <div className={classes.searhHistory}>
-            <p onClick={() => { setDisplayHistory(false); }}>close</p>
+            <div className={classes.close}>
+              <IoCloseCircleSharp
+                size={25}
+                onClick={() => { return setDisplayHistory(false); }}
+              />
+            </div>
             {
               searchHistory && searchHistory.map((item, index) => {
                 return (
+                  // eslint-disable-next-line max-len
+                  // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
                   <li
+                    // eslint-disable-next-line react/no-array-index-key
                     key={index}
                     onClick={() => {
-                      setDisplayHistory(false)
+                      setDisplayHistory(false);
                       historyItemClickHandler(item);
                     }}
                   >
