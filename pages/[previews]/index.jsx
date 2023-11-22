@@ -14,7 +14,7 @@ import ErrorMessage from '@/component/Error/ErrorMessage';
 import { getRecipes } from '@/database/getData/getRecipesData';
 import { parseInt } from 'lodash';
 import SearchForm from '@/component/filtering/search/search-form';
-
+import Alert from '@mui/material/Alert';
 export default function AllRecipes({
   error,
   recipes,
@@ -57,13 +57,15 @@ export default function AllRecipes({
   }, []);
   useEffect(() => {
     if (instruction > 0 && totalRecipes === 0) {
-      console.log('We have no recipes returned');
       setInstructionsErrorMessage(true);
-    } else {
-      setInstructionsErrorMessage(false);
-      console.log('totalRecipes', totalRecipes, 'instruction', instruction);
     }
-  }, [totalRecipes]);
+    const instructionMessageTime = setTimeout(() => {
+      setInstructionsErrorMessage(false);
+    }, 3000);
+    return () => {
+      clearTimeout(instructionMessageTime);
+    };
+  }, [instruction]);
 
   const skipNo = parseInt(router.query.previews.split('-')[1]) || 0;
 
@@ -126,7 +128,9 @@ export default function AllRecipes({
                 />
                 /
                 {instructionsErrorMessage && (
-                  <p>No results with {instruction} amount of instructions</p>
+                  <Alert severity="warning">
+                    No recipes with {instruction} instructions
+                  </Alert>
                 )}
                 <FilterbyInstructions />
                 <div className="sort-dropdown">
