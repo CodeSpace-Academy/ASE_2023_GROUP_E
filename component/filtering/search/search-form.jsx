@@ -1,10 +1,12 @@
 import React, { Fragment, useRef, useState, useEffect } from 'react';
+import { IoCloseCircleSharp } from "react-icons/io5";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { debounce } from 'lodash';
 import PreviewList from '../../Recipes/Preview/PreviewList';
 import classes from './search-from.module.css';
 import ErrorMessage from '@/component/Error/ErrorMessage';
 import StateContext from '@/useContext/StateContext';
+
 
 
 export default function SearchForm() {
@@ -110,7 +112,12 @@ export default function SearchForm() {
          *  */}
         {displayHistory
           && <div className={classes.searhHistory}>
-            <p onClick={() => setDisplayHistory(false)}>close</p>
+              
+             <div className={classes.close}> 
+            <IoCloseCircleSharp 
+            size={25}
+            onClick={() => setDisplayHistory(false)} />
+             </div>
               {
                 searchHistory && searchHistory.map((item, index) => {
                   return (
