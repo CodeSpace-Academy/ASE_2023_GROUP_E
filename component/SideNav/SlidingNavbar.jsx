@@ -34,16 +34,8 @@ function Links(link, text, click){
 
 const ExpandableMenu = () => {
   // Destructuring values from the StateContext
-  const {setToggleMenu, toggleMenu, setAddSkip, selecteTags, selectedIngredients, selectedCategory, selectedInstructionsOptions, andOr} = StateContext()
+  const {setToggleMenu, toggleMenu, selecteTags, selectedIngredients, selectedCategory, selectedInstructionsOptions, andOr} = StateContext()
   const path = `/recipes-0-id-asc_${selecteTags.map((item) => item.label).join(',')}_${selectedIngredients.map((item) => item.label).join(',')}_${selectedCategory == '' ? selectedCategory : selectedCategory.value}_${selectedInstructionsOptions}_${!andOr}`
-
-   /**
-   * Function to reset skip counter
-   */
-function skip(){
-  localStorage.setItem("skipNo", 0)
-  setAddSkip(0)
-}
 
   /**
    * Function to toggle the menu's expansion
@@ -59,7 +51,7 @@ function skip(){
   const menuOptions = [
     { icon: Links('/', <AiOutlineHome />), name: Links('/', 'Home') },
     {
-      icon: Links(path, <MdOutlineFastfood />, skip),
+      icon: Links(path, <MdOutlineFastfood />),
       name: Links(path, 'All Recipes'),
     },
     {
