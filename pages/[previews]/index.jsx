@@ -33,7 +33,8 @@ export default function AllRecipes({
   const router = useRouter();
   const [sortField, setSortField] = useState('id'); // Default sort field
   const [sortOrder, setSortOrder] = useState('asc'); // Default sort order
-
+  const [instructionsErrorMessage, setInstructionsErrorMessage] =
+    useState(false);
   const {
     searchText,
     searchInput,
@@ -57,8 +58,11 @@ export default function AllRecipes({
   useEffect(() => {
     if (instruction > 0 && totalRecipes === 0) {
       console.log('We have no recipes returned');
+      setInstructionsErrorMessage(true);
+    } else {
+      setInstructionsErrorMessage(false);
+      console.log('totalRecipes', totalRecipes, 'instruction', instruction);
     }
-    console.log('totalRecipes', totalRecipes, 'instruction', instruction);
   }, [totalRecipes]);
 
   const skipNo = parseInt(router.query.previews.split('-')[1]) || 0;
@@ -120,8 +124,11 @@ export default function AllRecipes({
                   sortField={sortField}
                   sortOrder={sortOrder}
                 />
+                /
+                {instructionsErrorMessage && (
+                  <p>No results with {instruction} amount of instructions</p>
+                )}
                 <FilterbyInstructions />
-
                 <div className="sort-dropdown">
                   <label style={{ color: 'white' }}> Sort by:</label>
                   <select
