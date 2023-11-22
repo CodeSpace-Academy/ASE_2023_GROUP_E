@@ -39,6 +39,12 @@ export async function getRecipes(collection, skipNo, limit, sort, tags, ingredie
     expression.split('').length > 1 ? {$project: { [expression]: 1, _id: 0 }} : {$match: matchby},
     {$skip: skipNo},
     {$limit: limit},
+    {
+      $addFields: {
+        numberOfSteps: { $size: "$instructions" }
+      }
+    },
+
     {$sort: sort}
 
   ]).toArray()
