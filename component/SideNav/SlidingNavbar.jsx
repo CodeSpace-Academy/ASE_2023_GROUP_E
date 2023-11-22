@@ -66,10 +66,7 @@ function skip(){
       icon: Links('/favourites', <AiOutlineHeart />),
       name: Links('/favourites', 'Favourites'),
     },
-    {
-      icon: Links(path, <AiOutlineSearch />),
-      name: Links('/recipes-0-id-asc____0_false', 'Search'),
-    },
+  
     {
       icon: Links(path, <AiOutlineUser />),
       name: Links(path, 'User'),
