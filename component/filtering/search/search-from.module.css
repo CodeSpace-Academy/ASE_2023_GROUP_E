@@ -57,7 +57,7 @@
     min-width: 500px;
     text-align: justify;
     color: black;
-    box-shadow: 3px 8px 2px 4px  rgba(0, 0, 0, 0.488);
+    box-shadow: 1px 6px 6px 6px  rgba(0, 0, 0, 0.488);
 }
 
 .searhHistory li{
