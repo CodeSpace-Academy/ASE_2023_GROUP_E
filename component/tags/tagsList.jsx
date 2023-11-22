@@ -15,6 +15,12 @@ const Item = styled(Paper)(({ theme }) => ({
   borderRight: 'solid black 2px',
 }));
 
+/**
+ * Displays a list of tags.
+ * @param {Object} recipe - props object
+ * @returns {JSX.Element} - Lists of tags
+ */
+
 export default function TagsListt({recipes}) {
   return (
     <Box sx={{ flexGrow: 1 }}>
