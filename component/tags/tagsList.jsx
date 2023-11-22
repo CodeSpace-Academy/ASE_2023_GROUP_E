@@ -16,7 +16,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 /**
- * Displays a list of tags.
+ * Displays a list of tags
  * @param {Object} recipe - props object
  * @returns {JSX.Element} - Lists of tags
  */
