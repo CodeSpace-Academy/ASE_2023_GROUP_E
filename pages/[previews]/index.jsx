@@ -85,14 +85,14 @@ export default function AllRecipes({error, recipes, totalRecipes}) {
             />
               <FilterbyInstructions />
 
-            <div className="sort-dropdown">
-              <label style={{color:'white'}}> Sort by:</label>
+            <div className="sort-dropdown"  style={{textAlign: 'center'}}>
+              <label style={{color:'white', fontSize: '25px'}}>Sort by</label>
               <select
                 className='previewSort'
                 value={sortField}
                 onChange={(e) => setSortField(e.target.value)}
               >
-                <option value="id">default</option>
+                <option value="id">Options</option>
                 <option value="prep">Prep time</option>
                 <option value="cook">Cook time</option>
                 <option value="published">Date</option>
@@ -111,7 +111,8 @@ export default function AllRecipes({error, recipes, totalRecipes}) {
             {/* <h5 style={{color:'white'}}>{total}</h5> */}
             {/* <h6 style={{color:'white'}}>{total == 0 ? "No filters have been applied" : ''}</h6> */}
           </div>
-          <WhiteButton
+          <div className='Clear'style={{textAlign: 'center'}}>
+          <WhiteButton 
             click={() => {
               
               setFilteredResults(0)
@@ -124,6 +125,7 @@ export default function AllRecipes({error, recipes, totalRecipes}) {
             }}
             text= 'Clear filters'
           />
+          </div>
         </SearchAndFilterHero>
       </div>
       </div>
