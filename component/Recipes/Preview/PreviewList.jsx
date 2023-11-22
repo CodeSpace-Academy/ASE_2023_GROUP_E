@@ -12,9 +12,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import SingleRecipeTags from '../SingleRecipeTags/SingleRecipeTags';
 import style from './previewList.module.css';
-import { PrepandCookTime } from '@/component/handlerTime/timeRead';
+import { PrepandCookTime } from '../../handlerTime/timeRead';
 import FavouritesButton from '../../Favourites/FavouritesButton/FavouritesButton';
-import ErrorMessage from '@/component/Error/ErrorMessage';
+import ErrorMessage from '../../Error/ErrorMessage';
 
 /**
  * @function PreviewList
