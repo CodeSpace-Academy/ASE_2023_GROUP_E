@@ -46,7 +46,7 @@
   color: #262222; /* Set your desired text color for the overlay content */
   z-index: 1; /* Ensure the overlay is above other elements */
 }
-
+component\filtering\searchAndFilterHero\searchAndFilterHero.module.css
 /* Add any additional styles for your overlay content here */
 .overlay p {
   font-size: 18px;
@@ -57,9 +57,10 @@
   top: 10px;
   right: 10px;
   padding: 10px;
+  padding-bottom: 5px;
   background-color: #333;
   color: #fff;
-  border: none;
+  border-radius: 7px;
   cursor: pointer;
   z-index: 2; /* Ensure the button is above the overlay content */
 }
