@@ -166,7 +166,7 @@ export default function AllRecipes({
                     <option value="prep">Prep time</option>
                     <option value="cook">Cook time</option>
                     <option value="published">Date</option>
-                    <option value="numberOfSteps">Number of Steps</option>
+                    {/* <option value="numberOfSteps">Number of Steps</option> */}
                   </select>
 
                 <select
