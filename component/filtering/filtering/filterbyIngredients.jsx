@@ -45,7 +45,7 @@ export default function FilterbyIngredients({ skipNo, sortField, sortOrder }) {
           setIngredients(uniqueIngredients);
         }
       });
-  }, [ingredients]);
+  }, []);
 
   const handleSelectChange = (selected) => {
     setSelectedIngredients(selected);

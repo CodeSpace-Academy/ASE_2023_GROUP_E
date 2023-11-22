@@ -1,74 +1,63 @@
-import React, { Fragment, useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { debounce } from 'lodash';
-import PreviewList from '../../Recipes/Preview/PreviewList';
 import classes from './search-from.module.css';
-import ErrorMessage from '@/component/Error/ErrorMessage';
-import StateContext from '@/useContext/StateContext';
+import StateContext from '../../../useContext/StateContext';
+import { WhiteButton } from '../../Button/button';
 
-
+/**
+ * @returns {jsx} an input with a list of previous search texts
+ */
 export default function SearchForm() {
   const searchRef = useRef();
-  const [results, setResults] = useState(null);
-  const {setFilteredResults, setSearchInput, total, setTotal} = StateContext(null)
+  const { searchText, setSearchText, setSearchInput } = StateContext(null);
   const [searchHistory, setSearchHistory] = useState(null);
   const [displayHistory, setDisplayHistory] = useState(false);
-  const [length, setLength] = useState(0)
   const [addSearchHistory, setAddSearchHistory] = useState(false);
-  const [errorhandler, setErrorHandler] = useState(null)
+  const [longQueryButton, SetLongQueryButton] = useState(false);
 
   const searchHandler = () => {
     const filterInput = searchRef.current.value;
-    /**
-     * fetches results from the api folder.
-     * insert in inside a state, state is then mapped over to display results.
-     */
-    fetch(`/api/filtering/search/search?title=${filterInput}`)
-      .then((res) => res.json())
-      .then((data) => {
-        if(data.message){
-          setErrorHandler(data.message)
-        }else{
-          setFilteredResults(data.results && data.results[0] || [])
-          setResults(data.results && data.results[0] || []);
-          setTotal(total + data.results && data.results[1] || 0);
-          setAddSearchHistory(true);
-        }
 
-      });
+    if (filterInput.split('').length < 13) {
+      setSearchText(filterInput);
+      setAddSearchHistory(true);
+      SetLongQueryButton(false);
+    } else if (filterInput.split('').length >= 13) {
+      SetLongQueryButton(true);
+    }
   };
 
-  const debouncedSearchHandler = debounce(searchHandler, 1300);
-
-  const checkResults = results && results.length !== 0;
+  const debouncedSearchHandler = debounce(searchHandler, longQueryButton ? 300 : 2000);
 
   async function searchHistoryHandler() {
     try {
       setAddSearchHistory(false);
-      await addItem('/api/filtering/search/searchHistory', { username: 'mike', searchHistoryInput: results && searchRef.current.value });
+      await addItem('/api/filtering/search/searchHistory', { username: 'mike', searchHistoryInput: searchText && searchRef.current.value });
     } catch (error) {
+      console.log('failed attempt');
     }
   }
 
   const debouncedSearchHistoryHandler = debounce(searchHistoryHandler, 2000);
 
-  if (addSearchHistory && results && searchRef.current.value.length > 1) {
+  if (addSearchHistory && searchRef.current.value.length > 1) {
     setAddSearchHistory(false);
     debouncedSearchHistoryHandler();
   }
 
-    /**
+  /**
    * fetch a specific user's history
    */
-    useEffect(() => {
-      fetch('/api/filtering/search/searchHistory?username=mike')
-        .then((res) => { return res.json(); })
-        .then((data) => {
-          if(data.searchhistory){
-            setSearchHistory(data.searchhistory[0] ? [...new Set(data.searchhistory[0].input)] : [])
-          }
-        })
-    }, [setSearchHistory]);
+  function loadHistory() {
+    fetch('/api/filtering/search/searchHistory?username=mike')
+      .then((res) => { return res.json(); })
+      .then((data) => {
+        if (data.searchhistory) {
+          setSearchHistory(data.searchhistory[0] ? [...new Set(data.searchhistory[0].input)] : []);
+        }
+      });
+  }
 
   /**
    *
@@ -76,73 +65,79 @@ export default function SearchForm() {
    * when the history item is clicked it fires the following function.
    * which then triggers the search function
    */
-  const historyItemClickHandler = (item) => {
+  function historyItemClickHandler(item) {
     const selectedValue = item;
     searchRef.current.value = selectedValue;
     searchHandler(selectedValue);
   };
 
-  if(errorhandler){
-    return (
-      <div style={{ textAlign: 'center', marginTop:'100px'}}>
-        <ErrorMessage message={[errorhandler, ', ', 'check your internet connection']}/>
-      </div>
-    )
-  }
-  setSearchInput(results && searchRef.current.value)
+  /**
+   * console was arguing that "state cant be updated"
+   * setting state inside the useffect is the solution
+   */
+  useEffect(() => {
+    setSearchInput(searchText && searchRef.current.value)
+  });
+
   return (
-    <>
-      <div className={classes.search}>
-       
-        <input
-          type="text"
-          placeholder="Search for recipes"
-          onChange={debouncedSearchHandler}
-          ref={searchRef}
-          onClick={() => setDisplayHistory(true)}
-        />
-        {/* maps over results state and map over it */}
+    <div className={classes.search}>
+      <input
+        type="text"
+        placeholder="Search for recipes"
+        onChange={debouncedSearchHandler}
+        ref={searchRef}
+        onClick={() => {
+          setDisplayHistory(true);
+          loadHistory();
+        }}
+      />
 
-        
-        {/**
-         * waits for input to be clicked then history pops up
-         * maps over the history of the specific user
-         *  */}
-        {displayHistory
-          && <div className={classes.searhHistory}>
-            <p onClick={() => setDisplayHistory(false)}>close</p>
-              {
-                searchHistory && searchHistory.map((item, index) => {
-                  return (
-                    <li
-                      key={index}
-                      onClick={() => {
-                        setDisplayHistory(false)
-                        historyItemClickHandler(item);
-                      }}
-                    >
-                      {item}
-                    </li>
-                  );
-                })
-              }
-            </div>
-        }
+      {
+        longQueryButton
+          ? <WhiteButton text="Submit" click={() => { setSearchText(searchRef.current.value); }} />
+          : ''
+      }
 
-      </div>
-     
-    </>
+      {/**
+       * waits for input to be clicked then history pops up
+       * maps over the history of the specific user
+       *  */}
+      {displayHistory
+        && (
+          <div className={classes.searhHistory}>
+            <p onClick={() => { setDisplayHistory(false); }}>close</p>
+            {
+              searchHistory && searchHistory.map((item, index) => {
+                return (
+                  <li
+                    key={index}
+                    onClick={() => {
+                      setDisplayHistory(false)
+                      historyItemClickHandler(item);
+                    }}
+                  >
+                    {item}
+                  </li>
+                );
+              })
+            }
+          </div>
+        )}
+    </div>
+
   );
 }
-
 
 /**
  * Asynchronously adds an item to a specified API endpoint using a POST request.
  *
- * @param {string} apiPath - The URL or path of the API endpoint where the item will be added. eg('/api/filename')
- * @param {Object} item - The item to be added to the API. Should be a JavaScript object.eg({key: value})
+ * @param {string} apiPath - The URL or path of the API endpoint where the
+ * item will be added. eg('/api/filename')
+ * @param {Object} item - The item to be added to the API. Should be a
+ * JavaScript object.eg({key: value})
  * @returns {Promise<Object>} A promise that resolves to the response data from the API.
- * @throws {Error} If the POST request fails or the response status is not OK, an error is thrown with a message.
+ * @throws {Error} If the POST request fails or the response status is not OK,
+ * an error is thrown with a message.
  */
 async function addItem(apiPath, item) {
   const response = await fetch(apiPath, {

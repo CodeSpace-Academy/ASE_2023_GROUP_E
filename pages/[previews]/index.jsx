@@ -30,7 +30,7 @@ export default function AllRecipes({error, recipes, totalRecipes}) {
   // const [results, setResults] = useState(null);
   const [sortField, setSortField] = useState('id'); // Default sort field
   const [sortOrder, setSortOrder] = useState('asc'); // Default sort order
-  const {searchInput, filteredResults, setSelectedIngredients, setSelectedTags, setSelectedInstructionsOptions,  setFilteredResults, selecteTags, selectedIngredients, selectedCategory, selectedInstructionsOptions, setSelectedCategory, andOr } = StateContext();
+  const {searchText, searchInput, setSelectedIngredients, setSelectedTags, setSelectedInstructionsOptions, selecteTags, selectedIngredients, selectedCategory, selectedInstructionsOptions, setSelectedCategory, andOr } = StateContext();
 
 /**
    * When filtering recipes, then decides to share the url, the shared link will display the filterd recipes
@@ -45,7 +45,7 @@ useEffect(() => {
   const [currentPage, setCurrentPage] = useState(page);
 
   function path(skip){
-    const path = `recipes-${skip}-${sortField}-${sortOrder}_${selecteTags.map((item) => item.label).join(',')}_${selectedIngredients.map((item) => item.label).join(',')}_${selectedCategory == '' ? selectedCategory : selectedCategory.value}_${selectedInstructionsOptions}_${andOr}`
+    const path = `recipes-${skip}-${sortField}-${sortOrder}_${selecteTags.map((item) => item.label).join(',')}_${selectedIngredients.map((item) => item.label).join(',')}_${selectedCategory == '' ? selectedCategory : selectedCategory.value}_${selectedInstructionsOptions}_${andOr}_${searchText}`
     return path
   }
 
@@ -64,7 +64,7 @@ useEffect(() => {
   useEffect(() => {
     
     router.push(path(skipNo));
-  }, [sortField, sortOrder, selecteTags, selectedIngredients, selectedCategory, selectedInstructionsOptions]);
+  }, [sortField, sortOrder, selecteTags, selectedIngredients, selectedCategory, selectedInstructionsOptions, searchText]);
 
   return (
     <main>
@@ -116,18 +116,13 @@ useEffect(() => {
                 </select>
               </div>
 
-            {/* <h5 style={{color:'white'}}>{total}</h5> */}
-            {/* <h6 style={{color:'white'}}>{total == 0 ? "No filters have been applied" : ''}</h6> */}
           </div>
           <WhiteButton
             click={() => {
-              
-              setFilteredResults(0)
               setSelectedInstructionsOptions(0)
               setSelectedIngredients([])
               setSelectedTags([])
               setSelectedCategory([])
-              setFilteredResults(0)
               router.query.previews.substring(0, 20) === "recipes-0-id-asc____" ? alert("No filters have been applied") :"";
             }}
             text= 'Clear filters'
@@ -146,8 +141,8 @@ useEffect(() => {
 
 
       <PreviewList
-      input={searchInput}
-        recipes={filteredResults.length > 0 ? filteredResults : recipes}
+        input={searchInput}
+        recipes={recipes}
       />
 
       <div className="loadMore">
@@ -168,17 +163,22 @@ useEffect(() => {
 
 export async function getServerSideProps({ params }) {
   try{
+
+    /**
+     * fetches data from the url 
+     * which is the use to filter or sort recipes
+     */
     const { previews } = params;
     const skipNo = parseInt(previews.split('-')[1]);
     const sortBy = previews.split('-')[2];
     const sortOrder = previews.split('-')[3].split('_')[0] === 'desc' ? -1 : 1
-
+    const searchInput = previews.split('_')[6]
     const tags = previews.split('_')[1].split(',')
     const ingredients = previews.split('_')[2].split(',')
     const category = previews.split('_')[3]
     const instruction = parseInt(previews.split('_')[4])
     const andOr = previews.split('_')[5] === 'false' ? "$and" : "$or"
-    const { recipes, totalRecipes } = await getRecipes('recipes', skipNo, 100, { [sortBy == 'id'? '_id' : sortBy]: sortOrder }, tags, ingredients, category, instruction, andOr,'', '')
+    const { recipes, totalRecipes } = await getRecipes('recipes', skipNo, 100, { [sortBy == 'id'? 'createdAt' : sortBy]: sortOrder }, tags, ingredients, category, instruction, andOr,'', '','', searchInput)
 
     return {
       props: {
