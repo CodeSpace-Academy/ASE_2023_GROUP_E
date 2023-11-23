@@ -1,5 +1,5 @@
 // Display a single recipe tag (as a list item (li))
-//from an array of tags
+// from an array of tags
 import React from 'react';
 import classes from './SingleRecipeTag.module.css';
 
