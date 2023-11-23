@@ -1,9 +1,13 @@
 import React, { useRef, useState, useEffect } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { debounce } from 'lodash';
+import { IoCloseCircleSharp } from 'react-icons/io5';
+// eslint-disable-next-line import/no-unresolved
 import classes from './search-from.module.css';
+// eslint-disable-next-line import/no-unresolved
 import StateContext from '../../../useContext/StateContext';
 import { WhiteButton } from '../../Button/button';
+import { Spinner } from 'flowbite-react';
 
 /**
  * @returns {jsx} an input with a list of previous search texts
@@ -15,27 +19,36 @@ export default function SearchForm() {
   const [displayHistory, setDisplayHistory] = useState(false);
   const [addSearchHistory, setAddSearchHistory] = useState(false);
   const [longQueryButton, SetLongQueryButton] = useState(false);
+  const [searchSpinner, setSearchSpinner] = useState(false);
 
   const searchHandler = () => {
     const filterInput = searchRef.current.value;
-
     if (filterInput.split('').length < 13) {
       setSearchText(filterInput);
       setAddSearchHistory(true);
       SetLongQueryButton(false);
-    } else if (filterInput.split('').length >= 13) {
+      setDisplayHistory(false);
+      setSearchSpinner(false)
+    } else if (filterInput.split('').length > 12) {
       SetLongQueryButton(true);
+      setDisplayHistory(false);
+      setSearchSpinner(false);
     }
   };
 
-  const debouncedSearchHandler = debounce(searchHandler, longQueryButton ? 300 : 2000);
+  const debouncedSearchHandler = debounce(searchHandler, 2350);
 
   async function searchHistoryHandler() {
-    try {
-      setAddSearchHistory(false);
-      await addItem('/api/filtering/search/searchHistory', { username: 'mike', searchHistoryInput: searchText && searchRef.current.value });
-    } catch (error) {
-      console.log('failed attempt');
+
+    const searchTextTrim = searchText.trim()
+
+    if (searchText.replace(/\s/g, '').length > 0) {
+      try {
+        setAddSearchHistory(false);
+        await addItem('/api/filtering/search/searchHistory', { username: 'mike', searchHistoryInput: searchText && searchRef.current.value });
+      } catch (error) {
+        console.log('failed attempt');
+      }
     }
   }
 
@@ -51,10 +64,17 @@ export default function SearchForm() {
    */
   function loadHistory() {
     fetch('/api/filtering/search/searchHistory?username=mike')
-      .then((res) => { return res.json(); })
+      .then((res) => {
+        return res.json();
+      })
       .then((data) => {
         if (data.searchhistory) {
-          setSearchHistory(data.searchhistory[0] ? [...new Set(data.searchhistory[0].input)] : []);
+          setSearchHistory(
+            data.searchhistory[0]
+              ? // reveresed the array so that the latest results appear first
+                [...new Set(data.searchhistory[0].input)].reverse()
+              : [],
+          );
         }
       });
   }
@@ -69,14 +89,14 @@ export default function SearchForm() {
     const selectedValue = item;
     searchRef.current.value = selectedValue;
     searchHandler(selectedValue);
-  };
+  }
 
   /**
    * console was arguing that "state cant be updated"
    * setting state inside the useffect is the solution
    */
   useEffect(() => {
-    setSearchInput(searchText && searchRef.current.value)
+    setSearchInput(searchText && searchRef.current.value);
   });
 
   return (
@@ -89,42 +109,56 @@ export default function SearchForm() {
         onClick={() => {
           setDisplayHistory(true);
           loadHistory();
+          setSearchSpinner(true)
         }}
       />
+      {searchSpinner ? <Spinner/> : ''}
 
-      {
-        longQueryButton
-          ? <WhiteButton text="Submit" click={() => { setSearchText(searchRef.current.value); }} />
-          : ''
-      }
+      {longQueryButton ? (
+        <WhiteButton
+          text="Submit"
+          click={() => {
+            setSearchText(searchRef.current.value);
+          }}
+        />
+      ) : (
+        ''
+      )}
 
       {/**
        * waits for input to be clicked then history pops up
        * maps over the history of the specific user
        *  */}
-      {displayHistory
-        && (
-          <div className={classes.searhHistory}>
-            <p onClick={() => { setDisplayHistory(false); }}>close</p>
-            {
-              searchHistory && searchHistory.map((item, index) => {
-                return (
-                  <li
-                    key={index}
-                    onClick={() => {
-                      setDisplayHistory(false)
-                      historyItemClickHandler(item);
-                    }}
-                  >
-                    {item}
-                  </li>
-                );
-              })
-            }
+      {displayHistory && (
+        <div className={classes.searhHistory}>
+          <div className={classes.close}>
+            <IoCloseCircleSharp
+              size={25}
+              onClick={() => {
+                return setDisplayHistory(false);
+              }}
+            />
           </div>
-        )}
+          {searchHistory &&
+            searchHistory.map((item, index) => {
+              return (
+                // eslint-disable-next-line max-len
+                // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
+                <li
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={index}
+                  onClick={() => {
+                    setDisplayHistory(false);
+                    historyItemClickHandler(item);
+                  }}
+                >
+                  {item}
+                </li>
+              );
+            })}
+        </div>
+      )}
     </div>
-
   );
 }
 
