@@ -25,6 +25,7 @@ function RecipeInstructionsList() {
       {instructions.map((instruction, index) => {
         return (
           <IndividualRecipeIntruction
+            // eslint-disable-next-line react/no-array-index-key
             key={index}
             instruction={instruction}
             number={index}

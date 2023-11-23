@@ -22,6 +22,7 @@ const highlightMinutes = (instruction) => {
     if (/^\d+$/.test(part)) {
       // If part is an integer, wrap it with brackets
       return (
+        // eslint-disable-next-line react/no-array-index-key
         <span key={index} style={{ fontWeight: 'bold' }}>
           {`{${part}}`}
         </span>
@@ -29,6 +30,7 @@ const highlightMinutes = (instruction) => {
     } if (part.toLowerCase() === 'minutes' && ' minute') {
       // Highlight the word "minutes"
       return (
+        // eslint-disable-next-line react/no-array-index-key
         <span key={index} style={{ fontWeight: 'bold' }}>
           {part}
         </span>
