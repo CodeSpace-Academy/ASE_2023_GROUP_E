@@ -5,7 +5,15 @@ import classes from './layout.module.css';
 import StateContext from '../../useContext/StateContext';
 import { useRouter } from 'next/router';
 
+
+/**
+ * Layout component
+ * @returns {JSX.Element} - returns the ExpandableMenu, the logo with the rendered child components.
+ */
+
+
 function LayoutAll({ children }) {
+  // Accessing toggleMenu from StateContext
   const { toggleMenu } = StateContext();
   const router = useRouter()
 
