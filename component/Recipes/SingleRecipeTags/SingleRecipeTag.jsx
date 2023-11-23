@@ -5,6 +5,7 @@ import classes from './SingleRecipeTag.module.css';
 
 /**
  * Displays an individual tag string from an array of single recipe tags.
+ * @param {object} props
  * @param {string} props.tag - The tag string to be displayed.
  * @returns {JSX.Element} List item (li) containing the tag string.
  */
