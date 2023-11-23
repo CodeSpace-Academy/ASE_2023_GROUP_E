@@ -10,8 +10,8 @@ import IndividualRecipeIntruction from './individualRecipeIntruction';
 /**
  * Takes in single recipe instructions and display each instruction
  * in the individualRecipeInstruction component.
- * @param {array} //single recipe instructions
- * @returns
+ * @param {array} instructions - Represents an array of single recipe instructions.
+ * @returns {JSX.Element} - Returns the UI displaying the list of instructions.
  */
 function RecipeInstructionsList() {
   // expect single recipe instructions as a prop
