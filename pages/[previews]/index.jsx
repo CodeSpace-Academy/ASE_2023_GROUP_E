@@ -15,6 +15,7 @@ import { getRecipes } from '@/database/getData/getRecipesData';
 import { parseInt } from 'lodash';
 import SearchForm from '@/component/filtering/search/search-form';
 import Alert from '@mui/material/Alert';
+
 export default function AllRecipes({
   error,
   recipes,
@@ -112,17 +113,11 @@ export default function AllRecipes({
     searchText,
   ]);
 
-
-  useEffect(()=>{
-    console.log(router.query.previews.split('_')[1])
-  })
-
   function filteredby(option, position){
    return(
     router.query.previews.split('_')[position] ? <p>{`${option}: ${router.query.previews.split('_')[position]}`}</p> : ''
    )
   }
-
 
   return (
     <main>
@@ -242,7 +237,7 @@ export async function getServerSideProps({ params }) {
     const skipNo = parseInt(previews.split('-')[1]);
     const sortBy = previews.split('-')[2];
     const sortOrder = previews.split('-')[3].split('_')[0] === 'desc' ? -1 : 1;
-    const searchInput = previews.split('_')[6];
+    const searchInput = previews.split('_')[6] ? previews.split('_')[6].split(' ') : [''];
     const tags = previews.split('_')[1].split(',');
     const ingredients = previews.split('_')[2].split(',');
     const category = previews.split('_')[3];

@@ -7,6 +7,7 @@ import classes from './search-from.module.css';
 // eslint-disable-next-line import/no-unresolved
 import StateContext from '../../../useContext/StateContext';
 import { WhiteButton } from '../../Button/button';
+import { Spinner } from 'flowbite-react';
 
 /**
  * @returns {jsx} an input with a list of previous search texts
@@ -18,25 +19,24 @@ export default function SearchForm() {
   const [displayHistory, setDisplayHistory] = useState(false);
   const [addSearchHistory, setAddSearchHistory] = useState(false);
   const [longQueryButton, SetLongQueryButton] = useState(false);
+  const [searchSpinner, setSearchSpinner] = useState(false);
 
   const searchHandler = () => {
     const filterInput = searchRef.current.value;
-
     if (filterInput.split('').length < 13) {
       setSearchText(filterInput);
       setAddSearchHistory(true);
       SetLongQueryButton(false);
       setDisplayHistory(false);
-    } else if (filterInput.split('').length >= 13) {
+      setSearchSpinner(false)
+    } else if (filterInput.split('').length > 12) {
       SetLongQueryButton(true);
       setDisplayHistory(false);
+      setSearchSpinner(false);
     }
   };
 
-  const debouncedSearchHandler = debounce(
-    searchHandler,
-    longQueryButton ? 300 : 2000,
-  );
+  const debouncedSearchHandler = debounce(searchHandler, 2350);
 
   async function searchHistoryHandler() {
 
@@ -109,8 +109,10 @@ export default function SearchForm() {
         onClick={() => {
           setDisplayHistory(true);
           loadHistory();
+          setSearchSpinner(true)
         }}
       />
+      {searchSpinner ? <Spinner/> : ''}
 
       {longQueryButton ? (
         <WhiteButton
