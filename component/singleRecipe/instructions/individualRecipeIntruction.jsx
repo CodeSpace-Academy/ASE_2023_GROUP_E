@@ -8,7 +8,7 @@ import React from 'react';
  * @param {number,string} instruction` (string): Represents the recipe instruction.
    - **Description**: This function identifies and highlights minutes within the given instruction by wrapping 
    numeric values in brackets and boldening the word "minutes".
- * @returns    - **Returns**: An array of React nodes presenting the modified instruction with highlighted minutes.
+ * @returns : An array of React nodes presenting the modified instruction with highlighted minutes.
 
  */
 
