@@ -32,6 +32,7 @@ export default function SearchForm() {
     } else if (filterInput.split('').length > 12) {
       SetLongQueryButton(true);
       setDisplayHistory(false);
+      setSearchSpinner(false);
     }
   };
 
