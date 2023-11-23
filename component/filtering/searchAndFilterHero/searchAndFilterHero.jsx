@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import classes from './searchAndFilterHero.module.css';
 import { WhiteButton } from '@/component/Button/button';
+import { IoIosCloseCircle } from "react-icons/io";
 
 const SearchAndFilterHero = ({ children }) => {
   const [isOverlayVisible, setIsOverlayVisible] = useState(false);
@@ -22,9 +23,9 @@ const SearchAndFilterHero = ({ children }) => {
           <div className={classes.background}>
           <h1 style={{color:'white'}}> Filters</h1>
             <div className={classes.inputsContainer}>
-              <button className={classes.closeButton} onClick={closeOverlay}>
-                Close
-              </button>
+              <div className={classes.closeButton} onClick={closeOverlay}>
+              <IoIosCloseCircle size={33} color='grey'/>
+              </div>
               {children}
             </div>
           </div>

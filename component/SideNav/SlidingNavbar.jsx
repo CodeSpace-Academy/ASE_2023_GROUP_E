@@ -58,15 +58,12 @@ const ExpandableMenu = () => {
       icon: Links('/favourites', <AiOutlineHeart />),
       name: Links('/favourites', 'Favourites'),
     },
+  
     {
-      icon: Links(path, <AiOutlineSearch />),
-      name: Links('/recipes-0-id-asc____0_false', 'Search'),
+      icon: Links(path, <AiOutlineUser />),
+      name: Links(path, 'User'),
     },
-    {
-      icon: Links('/profile', <AiOutlineUser />),
-      name: Links('/profile', 'User'),
-    },
-    { icon: Links('/', <AiOutlineSetting />), name: Links('/', 'Settings') },
+    { icon: Links(path, <AiOutlineSetting />), name: Links(path, 'Settings') },
   ];
   return (
     <div className={classes.pageContainer}>
