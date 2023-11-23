@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 // ### Purpose
 /* This file contains a React component 'RecipeInstructionsList' responsible for displaying
 a list of individual recipe instructions using the `IndividualRecipeInstruction` component. */
@@ -14,14 +15,14 @@ import IndividualRecipeIntruction from './individualRecipeIntruction';
  * @returns {JSX.Element} - Returns the UI displaying the list of instructions.
  */
 function RecipeInstructionsList() {
-  // expect single recipe instructions as a prop
+  // Renders individual recipe instructions using the IndividualRecipeInstructions component.
   return (
     <Paper
       variant="outlined"
       sx={{ padding: '2rem', fontFamily: 'sans-serif' }} // styles the mui paper component
     // eslint-disable-next-line react/jsx-no-comment-textnodes
     >
-      // eslint-disable-next-line no-undef,
+      // eslint-disable-next-line no-undef,, no-undef
       {instructions.map((instruction, index) => {
         return (
           <IndividualRecipeIntruction

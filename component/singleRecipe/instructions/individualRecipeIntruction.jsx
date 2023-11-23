@@ -1,5 +1,5 @@
 // Purpose//
-/* This file contains a React component "IndividualRecipeInstruction" used to render and 
+/* This file contains a React component "IndividualRecipeInstruction" used to render and
 highlight minutes within a recipe instruction. */
 
 import React from 'react';
