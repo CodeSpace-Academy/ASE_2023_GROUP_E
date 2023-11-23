@@ -162,7 +162,7 @@ export default function AllRecipes({
                     value={sortField}
                     onChange={(e) => setSortField(e.target.value)}
                   >
-                    <option value="id">Options</option>
+                    <option disabled value="id">Options</option>
                     <option value="prep">Prep time</option>
                     <option value="cook">Cook time</option>
                     <option value="published">Date</option>
