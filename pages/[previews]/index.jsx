@@ -15,6 +15,7 @@ import { getRecipes } from '@/database/getData/getRecipesData';
 import { parseInt } from 'lodash';
 import SearchForm from '@/component/filtering/search/search-form';
 import Alert from '@mui/material/Alert';
+
 export default function AllRecipes({
   error,
   recipes,
@@ -129,7 +130,6 @@ export default function AllRecipes({
    )
   }
 
-
   return (
     <main>
       <div className="previewBackgroundImage">
@@ -168,7 +168,7 @@ export default function AllRecipes({
                     value={sortField}
                     onChange={(e) => setSortField(e.target.value)}
                   >
-                    <option value="id">Options</option>
+                    <option disabled value="id">Options</option>
                     <option value="prep">Prep time</option>
                     <option value="cook">Cook time</option>
                     <option value="published">Date</option>
@@ -248,7 +248,7 @@ export async function getServerSideProps({ params }) {
     const skipNo = parseInt(previews.split('-')[1]);
     const sortBy = previews.split('-')[2];
     const sortOrder = previews.split('-')[3].split('_')[0] === 'desc' ? -1 : 1;
-    const searchInput = previews.split('_')[6];
+    const searchInput = previews.split('_')[6] ? previews.split('_')[6].split(' ') : [''];
     const tags = previews.split('_')[1].split(',');
     const ingredients = previews.split('_')[2].split(',');
     const category = previews.split('_')[3];
