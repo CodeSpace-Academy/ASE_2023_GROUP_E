@@ -69,8 +69,8 @@ export default function SearchForm() {
         if (data.searchhistory) {
           setSearchHistory(
             data.searchhistory[0]
-            // reveresed the array so that the latest results appear first
-              ? [...new Set(data.searchhistory[0].input)].reverse()
+              ? // reveresed the array so that the latest results appear first
+                [...new Set(data.searchhistory[0].input)].reverse()
               : [],
           );
         }
