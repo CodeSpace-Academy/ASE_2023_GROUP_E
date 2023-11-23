@@ -39,11 +39,16 @@ export default function SearchForm() {
   const debouncedSearchHandler = debounce(searchHandler, 2350);
 
   async function searchHistoryHandler() {
-    try {
-      setAddSearchHistory(false);
-      await addItem('/api/filtering/search/searchHistory', { username: 'mike', searchHistoryInput: searchText && searchRef.current.value });
-    } catch (error) {
-      console.log('failed attempt');
+
+    const searchTextTrim = searchText.trim()
+
+    if (searchText.replace(/\s/g, '').length > 0) {
+      try {
+        setAddSearchHistory(false);
+        await addItem('/api/filtering/search/searchHistory', { username: 'mike', searchHistoryInput: searchText && searchRef.current.value });
+      } catch (error) {
+        console.log('failed attempt');
+      }
     }
   }
 
@@ -59,10 +64,17 @@ export default function SearchForm() {
    */
   function loadHistory() {
     fetch('/api/filtering/search/searchHistory?username=mike')
-      .then((res) => { return res.json(); })
+      .then((res) => {
+        return res.json();
+      })
       .then((data) => {
         if (data.searchhistory) {
-          setSearchHistory(data.searchhistory[0] ? [...new Set(data.searchhistory[0].input)] : []);
+          setSearchHistory(
+            data.searchhistory[0]
+              ? // reveresed the array so that the latest results appear first
+                [...new Set(data.searchhistory[0].input)].reverse()
+              : [],
+          );
         }
       });
   }
@@ -77,7 +89,7 @@ export default function SearchForm() {
     const selectedValue = item;
     searchRef.current.value = selectedValue;
     searchHandler(selectedValue);
-  };
+  }
 
   /**
    * console was arguing that "state cant be updated"
@@ -102,47 +114,51 @@ export default function SearchForm() {
       />
       {searchSpinner ? <Spinner/> : ''}
 
-      {
-        longQueryButton
-          ? <WhiteButton text="Submit" click={() => { setSearchText(searchRef.current.value); }} />
-          : ''
-      }
+      {longQueryButton ? (
+        <WhiteButton
+          text="Submit"
+          click={() => {
+            setSearchText(searchRef.current.value);
+          }}
+        />
+      ) : (
+        ''
+      )}
 
       {/**
        * waits for input to be clicked then history pops up
        * maps over the history of the specific user
        *  */}
-      {displayHistory
-        && (
-          <div className={classes.searhHistory}>
-            <div className={classes.close}>
-              <IoCloseCircleSharp
-                size={25}
-                onClick={() => { return setDisplayHistory(false); }}
-              />
-            </div>
-            {
-              searchHistory && searchHistory.map((item, index) => {
-                return (
-                  // eslint-disable-next-line max-len
-                  // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
-                  <li
-                    // eslint-disable-next-line react/no-array-index-key
-                    key={index}
-                    onClick={() => {
-                      setDisplayHistory(false);
-                      historyItemClickHandler(item);
-                    }}
-                  >
-                    {item}
-                  </li>
-                );
-              })
-            }
+      {displayHistory && (
+        <div className={classes.searhHistory}>
+          <div className={classes.close}>
+            <IoCloseCircleSharp
+              size={25}
+              onClick={() => {
+                return setDisplayHistory(false);
+              }}
+            />
           </div>
-        )}
+          {searchHistory &&
+            searchHistory.map((item, index) => {
+              return (
+                // eslint-disable-next-line max-len
+                // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
+                <li
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={index}
+                  onClick={() => {
+                    setDisplayHistory(false);
+                    historyItemClickHandler(item);
+                  }}
+                >
+                  {item}
+                </li>
+              );
+            })}
+        </div>
+      )}
     </div>
-
   );
 }
 
