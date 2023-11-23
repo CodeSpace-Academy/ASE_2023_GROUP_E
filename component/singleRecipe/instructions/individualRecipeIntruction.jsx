@@ -11,6 +11,7 @@ import React from 'react';
  * @returns : An array of React nodes presenting the modified instruction with highlighted minutes.
 
  */
+//The highlightMinutes function employs regular expressions to identify and highlight numeric values followed by the word "minutes" within the instruction.
 
 const highlightMinutes = (instruction) => {
   const parts = instruction.split(/(minutes|\d+)/gi);
