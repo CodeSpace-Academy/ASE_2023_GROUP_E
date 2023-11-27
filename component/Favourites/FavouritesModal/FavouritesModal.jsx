@@ -1,4 +1,6 @@
 import * as React from 'react';
+// Material UI modal component where uses can decided if they'd like to remove a recipe from their
+// favourites list.
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
