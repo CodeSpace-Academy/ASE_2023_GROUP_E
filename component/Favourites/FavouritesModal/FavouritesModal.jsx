@@ -39,13 +39,14 @@ export default function FavouritesModal({
           </DialogContentText>
         </DialogContent>
         <DialogActions>
+          {/* Closes the modal and removes the recipe from the favourites recipe list in local storage */}
           <Button
             onClick={() => {
               handleClose();
               removeFromFavourites();
             }}
           >
-            Remove
+            Remove recipe
           </Button>
           <Button onClick={handleClose} autoFocus>
             Cancel
