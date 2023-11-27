@@ -8,7 +8,12 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 /**
  * Modal that prompts user to confirm if they'd like to remove the recipe from the favourites list.
- * @param {props}
+ * @param {object} props
+ * @param {string} props.title Recipe title
+ * @param {Function} props.open Opens the modal
+ * @param {Function} props.removeFromFavourites Removes the recipe object from the favourite list
+ * array stored on the user's local storage.
+ * @param {Function} props.handleClose Closes the modal
  * @returns
  */
 export default function FavouritesModal({
