@@ -6,22 +6,6 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
     domains: ['img.sndimg.com', 'images.pexels.com', 'www.pexels.com'], // Updated from remotePatterns to domains
   },
-  eslint: {
-    dirs: [
-      // components
-      'component/Favourites',
-      'component/FavouritesContainer',
-      'component/ui/loadingSpinner',
-      'component/Recipes/SingleRecipeTags',
-      'component/Recipes/Allergens',
-      'component/Recipes/Details/Info',
-      'component/handlerTime',
-      'component/Error',
-      // pages
-      'pages/recipes',
-      'pages/favourites',
-    ],
-  },
 };
 
 module.exports = nextConfig;

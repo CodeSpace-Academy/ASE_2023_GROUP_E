@@ -11,7 +11,7 @@ import { Pagination } from 'flowbite-react';
 import FilterbyInstructions from '@/component/filtering/filtering/filterbyInstructions';
 import { Spinner } from 'flowbite-react';
 import ErrorMessage from '@/component/Error/ErrorMessage';
-import { getRecipes } from '@/database/getData/getRecipesData';
+import getRecipes from '@/database/getData/getRecipesData';
 import { parseInt } from 'lodash';
 import SearchForm from '@/component/filtering/search/search-form';
 import Alert from '@mui/material/Alert';
