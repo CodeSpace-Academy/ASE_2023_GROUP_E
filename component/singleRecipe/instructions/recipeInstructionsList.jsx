@@ -20,14 +20,12 @@ function RecipeInstructionsList() {
     <Paper
       variant="outlined"
       sx={{ padding: '2rem', fontFamily: 'sans-serif' }} // styles the mui paper component
-    // eslint-disable-next-line react/jsx-no-comment-textnodes
     >
-      // eslint-disable-next-line no-undef,, no-undef
+
       {instructions.map((instruction, index) => {
         return (
           <IndividualRecipeIntruction
-            // eslint-disable-next-line react/no-array-index-key
-            key={index}
+            key={{ index }}
             instruction={instruction}
             number={index}
           />
