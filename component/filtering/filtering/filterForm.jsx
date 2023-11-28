@@ -1,5 +1,15 @@
 import Select from 'react-select';
 
+/**
+ * CustomizedHook component for rendering a customized Select component.
+ *
+ * @component
+ * @param {Array} props.options - The options for the Select component.
+ * @param {Function} props.handleSelectChange - The function to handle the Select component's change event.
+ * @param {Array} props.selectedOptions - The selected options for the Select component.
+ * @param {string} props.filter - The filter label to display.
+ */
+
 function CustomizedHook({
   options,
   handleSelectChange,

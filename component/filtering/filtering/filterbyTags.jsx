@@ -9,11 +9,17 @@ export default function FilterbyTags(){
   const [tags, setTags] = useState([]);
   
   /**
-   * after fetching the tags which is an array of arrays
-   * it is  then combined into one array.
-   * This array is then checked to remove duplicates before insering it into a state.
-   * 
-   * This state hold the options of tags to select from.
+ * FilterbyTags component for filtering recipes by tags.
+ * @type {Array<string>}
+ * @component
+ * @returns {JSX.Element} JSX element representing the FilterbyTags component.
+ * 
+ */
+ /**
+   * Fetch tags data from the server and update the component state.
+   * @function
+   * @name useEffect
+   * @param {Array} tags - The current state of tags.
    */
   useEffect(() =>{
     fetch('/api/getData?project=tags&collection=recipes')
@@ -23,7 +29,7 @@ export default function FilterbyTags(){
           const allTags = data.results && data.results.reduce((tags, recipe) => {
             return tags.concat(recipe.tags);
           }, []);
-    
+     
           const uniqueTags = [...new Set(allTags)];
           setTags(uniqueTags);
         }

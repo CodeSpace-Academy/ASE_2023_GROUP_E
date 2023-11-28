@@ -4,6 +4,17 @@ import CustomizedHook from './filterForm';
 import { WhiteButton } from '@/component/Button/button';
 import { useRouter } from 'next/router';
 
+/**
+ * FilterbyIngredients component for filtering recipes by ingredients.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {number} props.skipNo - The number of items to skip.
+ * @param {string} props.sortField - The field to sort by.
+ * @param {string} props.sortOrder - The order in which to sort.
+ * @returns {JSX.Element} JSX element representing the FilterbyIngredients component.
+ */
+
 export default function FilterbyIngredients({ skipNo, sortField, sortOrder }) {
   const [ingredients, setIngredients] = useState([]);
   const { push } = useRouter();
