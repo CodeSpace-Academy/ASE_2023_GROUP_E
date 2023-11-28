@@ -55,8 +55,18 @@ export default function AllRecipes({
    */
   useEffect(() => {
     setSelectedCategory({ value: window.location.href.split('_')[3] });
-  }, []);
 
+    setSelectedTags(window.location.href.split('_')[1].split(',').map((item) => {
+      const [value] = item.split('=');
+      return { value: value, label: value };
+    }));
+
+    setSelectedIngredients(window.location.href.split('_')[2].split(',').map((item) => {
+      const [value] = item.split('=');
+      return { value: value, label: value };
+    }));
+  }, []);
+  
   /**
    * When user changes the instruction filter and the instruction amount changes filter
    * the useEffect is triggered.
@@ -111,6 +121,7 @@ export default function AllRecipes({
     selectedCategory,
     selectedInstructionsOptions,
     searchText,
+    setSelectedTags
   ]);
 
   function filteredby(option, position){
