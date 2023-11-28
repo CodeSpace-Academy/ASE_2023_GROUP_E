@@ -1,12 +1,16 @@
 import React, { useEffect } from 'react';
+// Favourites button. When clicked users can add the recipe to the favourties recipe list in
+// the local storage. If the recipe is already in the favourites recipes list, then it will open
+// a modal where the user can decide whether to remove the recipe from the favourites recipe list.
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import classes from './FavouritesButton.module.css';
 import StateContext from '../../../useContext/StateContext';
 import FavouritesModal from '../FavouritesModal/FavouritesModal';
 /**
  * When clicked can add or remove the recipe provided from the favourite recipes list.
- * @param {object} recipe
- * @returns
+ * @param {object} props
+ * @param {object} props.recipe Single recipe
+ * @returns {JSX.Element} Div containing the favourites button and the favourites delete modal
  */
 export default function FavouritesButton({ recipe }) {
   // Global state list of favourite recipes
@@ -18,18 +22,18 @@ export default function FavouritesButton({ recipe }) {
     return singleRecipe._id === recipe._id;
   });
   // Modal open state
-  const [open, setOpen] = React.useState(false);
+  const [isFavouritesModalOpen, setIsModalOpen] = React.useState(false);
   /**
    * Opens the modal
    */
-  const handleClickOpen = () => {
-    setOpen(true);
+  const handleOpenFavouriteModal = () => {
+    setIsModalOpen(true);
   };
   /**
    * Closes the modal
    */
-  const handleClose = () => {
-    setOpen(false);
+  const handleCloseFavouriteModal = () => {
+    setIsModalOpen(false);
   };
 
   // set the favouriteRecipesList in local storage each time the favouritesList is updated
@@ -43,20 +47,20 @@ export default function FavouritesButton({ recipe }) {
    * Adds the recipe from the favouritesList based on whether
    * it is currently present in the list or not.
    */
-  const addToFavourites = () => {
+  const addRecipeToFavourites = () => {
     if (!recipeIsInFavouritesList) {
       setFavouritesList((prevFavourites) => {
         return [...prevFavourites, recipe];
       });
     } else {
-      handleClickOpen();
+      handleOpenFavouriteModal();
     }
   };
   /**
    * Removes the recipe from the favouritesList based on that
    * it is currently present in the list.
    */
-  const removeFromFavourites = () => {
+  const removeRecipeFromFavourites = () => {
     setFavouritesList((prevFavourites) => {
       return prevFavourites.filter((singleRecipe) => {
         return singleRecipe._id !== recipe._id;
@@ -68,12 +72,12 @@ export default function FavouritesButton({ recipe }) {
       {/* Pop up modal to confirm removing the recipe from the favourites page */}
       <FavouritesModal
         title={recipe.title}
-        open={open}
-        removeFromFavourites={removeFromFavourites}
-        handleClose={handleClose}
+        isFavouritesModalOpen={isFavouritesModalOpen}
+        removeRecipeFromFavourites={removeRecipeFromFavourites}
+        handleCloseFavouriteModal={handleCloseFavouriteModal}
       />
       <button
-        onClick={addToFavourites}
+        onClick={addRecipeToFavourites}
         type="button"
         className={classes.favButton}
       >
