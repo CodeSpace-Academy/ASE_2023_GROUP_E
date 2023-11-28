@@ -105,9 +105,6 @@ export default function AllRecipes({
     router.push(path(page * 100 - 100));
   }
 
-  function handleNextClick() {
-    router.push(path(skipNo + 100));
-  }
 
   const totalPages = Math.ceil(totalRecipes / 100);
 
