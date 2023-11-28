@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import StateContext from '../../../useContext/StateContext';
-
+import classes from './instructions.module.css'
 export default function FilterbyInstructions() {
   const {
     setSelectedInstructionsOptions,
@@ -14,10 +14,11 @@ export default function FilterbyInstructions() {
   };
 
   return (
-    <div>
-      <h4 style={{color:'white'}}>Instructions:</h4>
+    <div className={classes.instructionsInput}>
+      <h4  className={classes.title}style={{color:'white'}}>Instructions:</h4>
       {/* Input for entering the number of instructions */}
       <input
+      className={classes.input}
         type="number"
         id="instruction"
         value={
