@@ -1,5 +1,6 @@
 {
-  "extends": [/* "airbnb", "airbnb/hooks", */ "next/core-web-vitals"],
+  "extends": ["airbnb", "airbnb/hooks", "next/core-web-vitals"],
+
 /*   "rules": {
     "arrow-body-style": ["error", "always"],
     "no-underscore-dangle": [
