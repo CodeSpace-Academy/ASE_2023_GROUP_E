@@ -22,19 +22,18 @@ export default function FavouritesButton({ recipe }) {
     return singleRecipe._id === recipe._id;
   });
   // Modal open state
-  const [isFavouritesModalOpen, setIsFavouritesModalOpen] =
-    React.useState(false);
+  const [isFavouritesModalOpen, setIsModalOpen] = React.useState(false);
   /**
    * Opens the modal
    */
   const handleOpenFavouriteModal = () => {
-    setIsFavouritesModalOpen(true);
+    setIsModalOpen(true);
   };
   /**
    * Closes the modal
    */
   const handleCloseFavouriteModal = () => {
-    setIsFavouritesModalOpen(false);
+    setIsModalOpen(false);
   };
 
   // set the favouriteRecipesList in local storage each time the favouritesList is updated
