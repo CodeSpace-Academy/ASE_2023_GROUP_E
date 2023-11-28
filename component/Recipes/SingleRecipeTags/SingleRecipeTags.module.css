@@ -1,11 +1,5 @@
-.tagsContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-top: 0.5rem;
-}
-
 .tagsList {
+  margin-top: 0.5rem;
   display: flex;
   gap: 0.5rem;
   row-gap: 1rem;
