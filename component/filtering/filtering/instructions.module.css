@@ -1,0 +1,114 @@
+.input{
+    text-align: center;
+    height: 35px ;
+    border-radius: 3px;
+    
+}
+
+.instructionsInput{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+
+.title{
+    padding: 7px;
+}
+
+
+@media only screen and (max-width: 1040px) {
+    .input{
+        text-align: center;
+        height: 35px ;
+        border-radius: 5px;
+        width: 120px
+        
+    }
+    
+    .instructionsInput{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 5px;
+    }
+    
+    .title{
+        padding: 7px;
+    }
+}    
+ 
+  @media only screen and (max-width: 727px) {
+  
+    .input{
+        text-align: center;
+        height: 35px ;
+        width: 154px;
+        border-radius: 5px;
+        
+    }
+    
+    .instructionsInput{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6px;
+    }
+    
+    .title{
+        padding: 4px;
+    }
+    
+
+  }
+  @media only screen and (max-width: 537px) {
+    .input{
+        text-align: center;
+        height: 35px ;
+        width: 130px;
+        border-radius: 5px;
+        
+    }
+    
+    .instructionsInput{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6px;
+    }
+    
+    .title{
+        padding: 4px;
+    }
+   
+  }
+  
+  @media only screen and (max-width: 445px) {
+    .input{
+        text-align: center;
+        height: 35px ;
+        width: 110px;
+        border-radius: 5px;
+        
+    }
+    
+    .instructionsInput{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6px;
+    }
+    
+    .title{
+        padding: 4px;
+    }
+   
+  }
+  @media only screen and (max-width: 354px) {
+    .expand {
+      margin-left: 23%;
+    }
+  }
+  
+
+  
