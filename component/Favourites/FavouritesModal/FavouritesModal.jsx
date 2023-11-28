@@ -13,8 +13,8 @@ import DialogTitle from '@mui/material/DialogTitle';
  * @param {object} props
  * @param {string} props.title Recipe title
  * @param {Function} props.isFavouritesModalOpen Opens the modal
- * @param {Function} props.removeRecipeFromFavourites Removes the recipe object from the favourite list
- * array stored on the user's local storage.
+ * @param {Function} props.removeRecipeFromFavourites Removes the recipe object
+ * from the favourite list * array stored on the user's local storage.
  * @param {Function} props.handleCloseFavouriteModal Closes the modal
  * @returns
  */
@@ -41,7 +41,8 @@ export default function FavouritesModal({
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          {/* Closes the modal and removes the recipe from the favourites recipe list in local storage */}
+          {/* Closes the modal and removes the recipe from the favourites recipe list in */}
+          {/* local storage */}
           <Button
             onClick={() => {
               handleCloseFavouriteModal();
