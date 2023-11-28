@@ -50,18 +50,24 @@ export default function Instructions({ recipe }) {
       {recipe.instructions ? ( // disable to demo instructions
         <div className={classes.instructionContainer}>
           <ol>
+          
             {recipe.instructions &&
               recipe.instructions.map((instruction, index) => (
                 // eslint-disable-next-line react/no-array-index-key
-                <li key={index}>
-                  <IndividualRecipeIntruction
+              
+                
+               <li key={index}>
+                 <IndividualRecipeIntruction
                     number={index}
                     instruction={instruction}
                   />
                 </li>
               ))}
           </ol>
+          <div>
+          <h5>Edit Instructions</h5>
           <EditandAddInstruction recipe={recipe} />
+          </div>
         </div>
       ) : (
         <ErrorMessage message="Failed to load instructions." />
