@@ -1,19 +1,17 @@
-// Import React and necessary styles
+// Display a single recipe tag (as a list item (li))
+// from an array of tags
 import React from 'react';
 import classes from './SingleRecipeTag.module.css';
 
 /**
- * @function SingleRecipeTag
- * @description Displays an individual tag string as a clickable button.
- * @param {Object} props - The component's properties.
+ * Displays an individual tag string from an array of single recipe tags.
+ * @param {object} props
  * @param {string} props.tag - The tag string to be displayed.
- * @returns {React.Component} React component displaying an individual recipe tag.
+ * @returns {JSX.Element} List item (li) containing the tag string.
  */
 export default function SingleRecipeTag({ tag }) {
   return (
-    // List item containing a clickable button with the tag string
-    <li className={classes.tagItem}>
-      <span className={classes.tagButton}>{tag}</span>
-    </li>
+    // List item containing tag string
+    <li className={`${classes.tagItem} ${classes.tagButton}`}>{tag}</li>
   );
 }
