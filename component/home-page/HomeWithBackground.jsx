@@ -20,7 +20,6 @@ const HomeWithBackground = () => {
       <Head>
         <title>{"Chef's Heaven"}</title>
       </Head>
-
       <div className={classes.backgroundImage}>
         {' '}
         {/* This div represents the background image container. */}
@@ -30,17 +29,10 @@ const HomeWithBackground = () => {
             text='View Recipes'
             click={() => router.push(`/recipes-0-id-asc_${selecteTags.map((item) => item.label).join(',')}_${selectedIngredients.map((item) => item.label).join(',')}_${selectedCategory == '' ? selectedCategory : selectedCategory.value}_${selectedInstructionsOptions}_${!andOr}`)}
           />
-
           <WhiteButton 
             text='Favourites'
             click={() => router.push(`/favourites`)}
           />
-
-          <WhiteButton 
-            text='Search'
-            click={() => router.pushpush(`/recipes-0-id-asc_${selecteTags.map((item) => item.label).join(',')}_${selectedIngredients.map((item) => item.label).join(',')}_${selectedCategory == '' ? selectedCategory : selectedCategory.value}_${selectedInstructionsOptions}_${!andOr}`)}
-          />
-
           <WhiteButton 
             text='Profile'
             click={() => alert('Being updated')}

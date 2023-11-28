@@ -21,29 +21,29 @@ export default function NumToTime(num) {
   return `${hours} hr : ${minutes} min`;
 }
 /**
- * Displays preparation, cook and total time as string with
- * icons next to them.
- * @param {Object} recipe Single recipe object
- *  @returns {JSX.Element} Div containing the times and icons
+ * Displays preparation, cook, and total time as a string with icons next to them.
+ * @param {Object} recipe - Single recipe object containing preparation (prep) and cook times.
+ * @returns {JSX.Element} - Div containing the times and icons.
  */
 export function PrepandCookTime({ recipe }) {
   return (
     <div className={classes.times}>
+      {/* Display preparation time with icon */}
       <div className={classes.IconTimeContainer}>
         <PiKnifeBold className={classes.icon} />
-        Prep:
-        {NumToTime(recipe.prep)}
+        Prep: {NumToTime(recipe.prep)}
       </div>
 
+      {/* Display cook time with icon */}
       <div className={classes.IconTimeContainer}>
         <PiCookingPotBold className={classes.icon} />
-        Cook:
-        {NumToTime(recipe.cook)}
+        Cook: {NumToTime(recipe.cook)}
       </div>
+
+      {/* Display total time (preparation + cook) with icon */}
       <div className={classes.IconTimeContainer}>
         <LuAlarmClock className={classes.icon} />
-        Total Time:
-        {NumToTime(recipe.prep + recipe.cook)}
+        Total Time: {NumToTime(recipe.prep + recipe.cook)}
       </div>
     </div>
   );
