@@ -2,13 +2,13 @@ import { client } from "../client";
 
 const db = client.db('devdb');
 
-export async function getRecipes(collection, skipNo, limit, sort, tags, ingredients, category, instructions, andOr, viewRecipe, expressionInput, username, title){
+export async function getRecipes(collection, skipNo, limit, sort, tags, ingredients, category, instructions, andOr, viewRecipe, expressionInput, username, titles){
 
   // const title = 'L'
   /**
    * These condition, are used so that this database module can be reusable 
    */
-  const getSearchResults =  title && title.split('').length  > 1 ? { title : { $regex: new RegExp(title, 'i') }} : {}
+  const getSearchResults = titles && titles[0].split('').length  > 0 ? { $and : titles.map(title => ({ title: { $regex: new RegExp(title, 'i') } }))} : {}
   const getRecipesbyTags = tags.length > 0 && tags != '' ? {tags: { $all: tags}} : {}
   const getRecipesbyIngredients = ingredients.length > 0 && ingredients != '' ? { [andOr]: ingredients.map((key) => { return ({ [`ingredients.${key}`]: { $exists: true } }); }) } : {}
   const getRecipesbyCategory = category.split('').length > 1 ?  {category: category} : {}
