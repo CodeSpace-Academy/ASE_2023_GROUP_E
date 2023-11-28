@@ -12,9 +12,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import SingleRecipeTags from '../SingleRecipeTags/SingleRecipeTags';
 import style from './previewList.module.css';
-import { PrepandCookTime } from '@/component/handlerTime/timeRead';
+import { PrepandCookTime } from '../../handlerTime/timeRead';
 import FavouritesButton from '../../Favourites/FavouritesButton/FavouritesButton';
-import ErrorMessage from '@/component/Error/ErrorMessage';
+import ErrorMessage from '../../Error/ErrorMessage';
 
 /**
  * @function PreviewList
@@ -86,7 +86,7 @@ export default function PreviewList({ recipes, input }) {
             && recipes.map((recipe, index) => {
               return (
                 // Grid item for each recipe preview
-                <Grid xs={12} md={12} key={index}>
+                <Grid xs={12} md={12} key={recipe.id}>
                   {/* Paper component for styling */}
                   <Item key={recipe.id} className={style.item}>
                     {/* Link to navigate to the individual recipe page */}
@@ -114,34 +114,31 @@ export default function PreviewList({ recipes, input }) {
                           <p className={style.category}>{recipe.category}</p>
                           {/* Recipe title container */}
                           <div className={style.heading}>
-                            {
-                              input ? (
-                                // Split title to highlight search input
-                                <div>
-                                  {recipe.title
-                                    .split(new RegExp(`(${input})`, 'i'))
-                                    .map((title) => {
-                                      return (
-                                        <span
-                                          key={index}
-                                          style={
-                                            title.toLowerCase()
-                                            === input.toLowerCase()
-                                              ? { color: '#a98614' }
-                                              : {}
-                                          }
-                                        >
-                                          <h3 style={{ display: 'inline' }}>
-                                            {title}
-                                          </h3>
-                                        </span>
-                                      );
-                                    })}
-                                </div>
-                              ) : (
-                                <h3>{recipe.title}</h3>
-                              )
-                            }
+                          {
+                            input ? (
+                              <div>
+                                {recipe.title.split(' ').map((word) => {
+                                  const isMatch = input
+                                    .toLowerCase()
+                                    .split(' ')
+                                    .some(inputWord =>
+                                      word.toLowerCase().includes(inputWord)
+                                    );
+
+                                  return (
+                                    <span
+                                      key={recipe.id}
+                                      style={isMatch ? { color: '#a98614' } : {}}
+                                    >
+                                      {word}{' '}
+                                    </span>
+                                  );
+                                })}
+                              </div>
+                            ) : (
+                              <div>{recipe.title}</div>
+                            )
+                          }
                           </div>
                           {/* Display recipe description if available */}
                           {showDescriptions[index]
