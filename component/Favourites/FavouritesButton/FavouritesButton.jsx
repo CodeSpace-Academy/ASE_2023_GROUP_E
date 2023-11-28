@@ -8,7 +8,8 @@ import StateContext from '../../../useContext/StateContext';
 import FavouritesModal from '../FavouritesModal/FavouritesModal';
 /**
  * When clicked can add or remove the recipe provided from the favourite recipes list.
- * @param {object} recipe Single recipe
+ * @param {object} props
+ * @param {object} props.recipe Single recipe
  * @returns {JSX.Element} Div containing the favourites button and the favourites delete modal
  */
 export default function FavouritesButton({ recipe }) {
