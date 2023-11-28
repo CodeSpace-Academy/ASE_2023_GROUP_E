@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import StateContext from '../../../useContext/StateContext';
+
+/**
+ * FilterbyInstructions component for filtering recipes by the number of instructions.
+ *
+ * @component
+ * @returns {JSX.Element} JSX element representing the FilterbyInstructions component.
+ */
 import classes from './instructions.module.css'
+
 export default function FilterbyInstructions() {
   const {
     setSelectedInstructionsOptions,
