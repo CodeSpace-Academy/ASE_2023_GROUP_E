@@ -45,7 +45,7 @@ export default function FilterbyTags(){
       options={tags} 
       filter={'Tags'} 
       handleSelectChange={handleSelectChange} 
-      selectedOptions={selecteTags} 
+      selectedOptions={selecteTags.filter(tag => tag.value.trim() !== '')} 
     />
   )
 }

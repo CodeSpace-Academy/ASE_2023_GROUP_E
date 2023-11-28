@@ -68,7 +68,7 @@ export default function FilterbyIngredients({ skipNo, sortField, sortOrder }) {
         options={ingredients}
         filter={'Ingredients'}
         handleSelectChange={handleSelectChange}
-        selectedOptions={selectedIngredients}
+        selectedOptions={selectedIngredients.filter(tag => tag.value.trim() !== '')}
       />
       <br />
 
