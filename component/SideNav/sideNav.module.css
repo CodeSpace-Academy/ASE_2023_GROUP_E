@@ -93,7 +93,9 @@
   }
 
   .mobileMenu a{
-    font-size: 30px;
+    font-size: 35px;
     color: white;
+    transition: transform 0.3s;
   }
+  
 }
