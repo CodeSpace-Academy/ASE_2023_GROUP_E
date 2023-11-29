@@ -194,6 +194,7 @@ export default function AllRecipes({
             }}
             text= 'Clear filters'
           />
+            {totalRecipes === 0 || totalRecipes === 164959 ? <h5 style={{color:'white', padding:'10px'}}>No filters have been applied</h5> : ''}
           </div>
         </SearchAndFilterHero>
       </div>
