@@ -65,8 +65,11 @@ export default function Instructions({ recipe }) {
               ))}
           </ol>
           <div>
-          <h5>Edit Instructions</h5>
-          <EditandAddInstruction recipe={recipe} />
+          <h5>Edit or add a new instruction</h5>
+          
+          <EditandAddInstruction recipe={recipe} >
+          
+          </EditandAddInstruction>
           </div>
         </div>
       ) : (
