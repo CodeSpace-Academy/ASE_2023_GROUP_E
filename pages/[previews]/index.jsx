@@ -207,9 +207,6 @@ export default function AllRecipes({
     {filteredby('Tags',1)}
     {filteredby('Ingredients',2)}
     </div>}
- 
-
-
 
       <PreviewList
         input={searchInput}
