@@ -67,9 +67,9 @@ export default function Instructions({ recipe }) {
           <div>
           <h5>Edit or add a new instruction</h5>
           
-          <EditandAddInstruction recipe={recipe} >
+          <EditandAddInstruction recipe={recipe}/ >
           
-          </EditandAddInstruction>
+          
           </div>
         </div>
       ) : (
