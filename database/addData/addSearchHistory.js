@@ -1,10 +1,10 @@
-import { client } from '../client';
+import client from '../client';
 
 /**
  * When user uses the search input
  * the user's input will be saved to the database
  * using this function
- * 
+ *
  * @param {string} username checks for the current user
  * @param {string} searchHistoryInput what the  user has searched
  */
@@ -23,7 +23,7 @@ export default async function addSearchHistory(username, searchHistoryInput) {
   /**
    * If current user is found the search input will be added to the current user's object,
    * instead of creating a new object for the current user
-   * 
+   *
    * New object that contains current user search history will  be created
    * only if the current user does not have any data in the searchHistory collection,
    * This is when the else statement run.
@@ -32,7 +32,7 @@ export default async function addSearchHistory(username, searchHistoryInput) {
     /**
      * we dont want the current user history to duplicate 
      * so we do a check first before adding the search input
-     * 
+     *
      * If the current user has the search input saved,
      * we will not add the current search input into the searchHistory collection
      */
@@ -53,8 +53,6 @@ export default async function addSearchHistory(username, searchHistoryInput) {
         },
       );
     }
-
-    return;
   } else {
     await db.collection('searchHistory').insertOne({
       user: username,

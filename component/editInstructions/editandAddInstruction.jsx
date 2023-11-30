@@ -66,6 +66,7 @@ export default function Instructions({ recipe }) {
       <h2>Instructions:</h2>
       {recipe.instructions ? ( // Check if instructions are available (disabled for demo).
         <div className={classes.instructionContainer}>
+
           <ol>
             {/* Map through recipe instructions and render IndividualRecipeIntruction
              component for each. */}
@@ -79,7 +80,6 @@ export default function Instructions({ recipe }) {
                     />
                   </li>
                 );
-              })}
           </ol>
           <div>
             <h5>Edit or add a new instruction</h5>
