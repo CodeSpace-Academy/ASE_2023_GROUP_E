@@ -39,10 +39,10 @@ const highlightMinutes = (instruction) => {
   });
 };
 
-function IndividualRecipeIntruction({ instruction }) {
+function IndividualRecipeIntruction({ instruction, number }) {
   const highlightedInstruction = highlightMinutes(instruction);
 
-  return <div>{highlightedInstruction}</div>;
+  return <div>{number +1}. {highlightedInstruction}</div>
 }
 
 export default IndividualRecipeIntruction;

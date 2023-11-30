@@ -69,13 +69,6 @@ export function GetSpecificInstruction({instructions}){
  
       
       <Button  text={<TiEdit  fontSize={'25px'}/>}   click={optionHandler}/>
-      
-       
-        
-      
-      
-      
-    
     </form>
   )
 }

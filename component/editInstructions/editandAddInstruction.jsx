@@ -49,19 +49,18 @@ export default function Instructions({ recipe }) {
       <h2>Instructions:</h2>
       {recipe.instructions ? ( // disable to demo instructions
         <div className={classes.instructionContainer}>
+
           <ol>
-          
             {recipe.instructions &&
               recipe.instructions.map((instruction, index) => (
                 // eslint-disable-next-line react/no-array-index-key
-              
-                
-               <li key={index}>
+               <li key={index}> 
                  <IndividualRecipeIntruction
                     number={index}
                     instruction={instruction}
                   />
                 </li>
+
               ))}
           </ol>
           <div>
