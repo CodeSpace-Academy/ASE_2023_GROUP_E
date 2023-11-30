@@ -22,15 +22,15 @@ export default function Ingredients({ recipe }) {
       {/* Conditionally render the list of ingredients based on showIngredients state */}
       {showIngredients && (
         <div>
-          <ul>
+          <ol>
             {/* Map through the ingredients object and display each ingredient with its amount */}
             {recipe.ingredients &&
               Object.entries(recipe.ingredients).map(
-                ([ingredient, amount]) => (
-                  <li key={ingredient}>{`${ingredient}: ${amount}`}</li>
+                ([ingredient, amount], index) => (
+                  <li key={ingredient}>{`${index +1}. ${ingredient.slice(0,1).toUpperCase() + ingredient.slice(1)}: ${amount}`}</li>
                 )
               )}
-          </ul>
+          </ol>
         </div>
       )}
 

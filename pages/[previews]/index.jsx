@@ -165,7 +165,7 @@ export default function AllRecipes({
                     value={sortField}
                     onChange={(e) => setSortField(e.target.value)}
                   >
-                    <option disabled value="id">Options</option>
+                    <option value="id">Default</option>
                     <option value="prep">Prep time</option>
                     <option value="cook">Cook time</option>
                     <option value="published">Date</option>
@@ -194,6 +194,7 @@ export default function AllRecipes({
             }}
             text= 'Clear filters'
           />
+            {totalRecipes === 0 || totalRecipes === 164959 ? <h5 style={{color:'white', padding:'10px'}}>No filters have been applied</h5> : ''}
           </div>
         </SearchAndFilterHero>
       </div>
@@ -206,9 +207,6 @@ export default function AllRecipes({
     {filteredby('Tags',1)}
     {filteredby('Ingredients',2)}
     </div>}
- 
-
-
 
       <PreviewList
         input={searchInput}
