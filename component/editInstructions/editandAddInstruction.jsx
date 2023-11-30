@@ -1,5 +1,5 @@
 import StateContext from '../../useContext/StateContext';
-import Button, { WhiteButton } from '../Button/button';
+import { WhiteButton } from '../Button/button';
 import EditInstruction, {
   GetSpecificInstruction,
   NewInstruction,
@@ -8,8 +8,14 @@ import classes from './editandAdd.module.css';
 import ErrorMessage from '../Error/ErrorMessage';
 import IndividualRecipeIntruction from '../singleRecipe/instructions/individualRecipeIntruction';
 
+/**
+ * Component for editing and adding instructions to a recipe.
+ * @param {Object} props - The properties passed to the component.
+ * @param {Object} props.recipe - The recipe object containing instructions.
+ * @returns {JSX.Element} - The EditandAddInstruction component.
+ */
 export function EditandAddInstruction({ recipe }) {
-  // eslint-disable-next-line object-curly-newline
+  // Destructure values from the global state using the StateContext.
   const {
     editInstruction,
     addInstruction,
@@ -20,6 +26,8 @@ export function EditandAddInstruction({ recipe }) {
   return (
     <div className={classes.modifyInstruction}>
       <div className={classes.editInstruction}>
+        {/* Conditionally render specific instruction or edit instruction 
+        component based on editInstruction state. */}
         {editInstruction ? (
           ''
         ) : (
@@ -29,13 +37,16 @@ export function EditandAddInstruction({ recipe }) {
           <EditInstruction info={recipe.instructions[instructionIndex]} />
         )}
       </div>
+      {/* Conditionally render NewInstruction component or Add Instruction 
+      button based on addInstruction state. */}
       {addInstruction ? (
         <NewInstruction />
       ) : (
         <div className={classes.addButton}>
           <WhiteButton
             text="Add Instruction"
-            click={() => setAddInstruction(!addInstruction)}
+            // Toggle the addInstruction state when the button is clicked.
+            click={() => { return setAddInstruction(!addInstruction); }}
           />
         </div>
       )}
@@ -43,35 +54,42 @@ export function EditandAddInstruction({ recipe }) {
   );
 }
 
+/**
+ * Component for displaying instructions of a recipe.
+ * @param {Object} props - The properties passed to the component.
+ * @param {Object} props.recipe - The recipe object containing instructions.
+ * @returns {JSX.Element} - The Instructions component.
+ */
 export default function Instructions({ recipe }) {
   return (
     <div className={classes.instructions}>
       <h2>Instructions:</h2>
-      {recipe.instructions ? ( // disable to demo instructions
+      {recipe.instructions ? ( // Check if instructions are available (disabled for demo).
         <div className={classes.instructionContainer}>
 
           <ol>
-            {recipe.instructions &&
-              recipe.instructions.map((instruction, index) => (
-                // eslint-disable-next-line react/no-array-index-key
-               <li key={index}> 
-                 <IndividualRecipeIntruction
-                    number={index}
-                    instruction={instruction}
-                  />
-                </li>
-
-              ))}
+            {/* Map through recipe instructions and render IndividualRecipeIntruction
+             component for each. */}
+            {recipe.instructions
+              && recipe.instructions.map((instruction, index) => {
+                return (
+                  <li key={index}>
+                    <IndividualRecipeIntruction
+                      number={index}
+                      instruction={instruction}
+                    />
+                  </li>
+                );
           </ol>
           <div>
-          <h5>Edit or add a new instruction</h5>
-          
-          <EditandAddInstruction recipe={recipe}/ >
-          
-          
+            <h5>Edit or add a new instruction</h5>
+            {/* Render the EditandAddInstruction component for editing or adding instructions. */}
+            <EditandAddInstruction recipe={recipe} />
+
           </div>
         </div>
       ) : (
+        // Render an error message if instructions failed to load.
         <ErrorMessage message="Failed to load instructions." />
       )}
     </div>
