@@ -66,8 +66,9 @@ export function GetSpecificInstruction({instructions}){
           instructions.map((instructions, index) => <option key={index} value={index} >{index  +1}</option>)
         }
       </select>
-
-      <Button text={<TiEdit  fontSize={'25px'}/>}   click={optionHandler} />
+ 
+      
+      <Button  text={<TiEdit  fontSize={'25px'}/>}   click={optionHandler}/>
     </form>
   )
 }

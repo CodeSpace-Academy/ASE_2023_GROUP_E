@@ -85,7 +85,7 @@ export default function FilterbyIngredients({ skipNo, sortField, sortOrder }) {
           );
           setAndOr(!andOr);
         }}
-        text={andOr ? 'Includes All Ingredients' : 'Includes One Ingredient'}
+        text={andOr ? 'Includes One Ingredient' : 'Includes All Ingredients' }
       />
     </>
   );
