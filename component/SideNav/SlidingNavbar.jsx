@@ -55,8 +55,8 @@ const ExpandableMenu = () => {
     setToggleMenu(!toggleMenu);
   };
 
-  // Array of menu options with corresponding icons and names
-  const arrowIcon = toggleMenu ? <IoIosArrowForward /> : <IoIosArrowDropleft />;
+  // Adjusted arrowIcon based on the toggleMenu state
+  const arrowIcon = toggleMenu ? <IoIosArrowDropleft /> : <IoIosArrowForward />;
 
   const menuOptions = [
     { icon: Links('/', <AiOutlineHome />), name: Links('/', 'Home') },
