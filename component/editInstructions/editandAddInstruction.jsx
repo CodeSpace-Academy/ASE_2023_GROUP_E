@@ -1,5 +1,5 @@
 import StateContext from '../../useContext/StateContext';
-import { WhiteButton } from '../component/Button/button';
+import { WhiteButton } from '../Button/button';
 import EditInstruction, {
   GetSpecificInstruction,
   NewInstruction,
