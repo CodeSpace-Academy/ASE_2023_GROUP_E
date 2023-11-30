@@ -2,6 +2,32 @@ import { client } from '../client';
 
 const db = client.db('devdb');
 
+/**
+ *
+ * @param {String} collection - is the name of the file/collection we are accesing from our database
+ *
+ * @param {Number} skipNo - Is the number used defined how many object/recipes do we skip.
+ * eg if we have 10 objects then our skip number is 3 we will not display object before 3.
+ *
+ * @param {Number} limit - Is a number that limits how may recipes we show. eg we have 10 recipes
+ * the our limit is 4 only 4 recipes will be shown.
+ *
+ * @param {Object} sort - is an object that has a key of what we are sorting and which order
+ * we are sorting e.g {cookTime: 1} this will sort our recipes in a ascending order,
+ * -1 should be used to sort in descending.
+ *
+ * @param {*} tags
+ * @param {*} ingredients
+ * @param {*} categoryValue
+ * @param {*} instructions
+ * @param {*} andOr
+ * @param {*} viewRecipe
+ * @param {*} expressionInput
+ * @param {*} username
+ * @param {*} titles
+ * @returns
+ */
+
 export default async function getRecipes(
   collection,
   skipNo,
