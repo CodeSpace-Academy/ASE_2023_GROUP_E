@@ -1,4 +1,4 @@
-import { client } from '../client';
+import client from '../client';
 
 /**
  * When user uses the search input
