@@ -149,7 +149,6 @@ export default function AllRecipes({
                   sortField={sortField}
                   sortOrder={sortOrder}
                 />
-                /
                 {instructionsErrorMessage && (
                   <Alert severity="warning">
                     No recipes with {instruction} instructions
