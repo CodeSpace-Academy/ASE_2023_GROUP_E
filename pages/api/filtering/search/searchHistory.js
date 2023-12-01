@@ -7,7 +7,6 @@ export default async function handler(req, res) {
     await addSearchHistory(username, searchHistoryInput);
     res.status(200).json({ message: 'success' });
   }
-
   if (req.method === 'GET') {
     const username = req.query.username || [''];
     try {
