@@ -25,20 +25,22 @@ export default function Info({ recipe, allergens }) {
   // State to handle the 'Load more' functionality for the recipe description
   const [loadmore, setLoadmore] = useState(false);
 
-  /**
-   * Contains the allergens present in this recipe
-   */
-  const allergenList = Object.keys(recipe.ingredients).reduce(
-    (acc, ingredient) => {
-      allergens.forEach((allergen) => {
-        if (ingredient.toLowerCase().includes(allergen)) {
-          acc.push(ingredient);
-        }
-      });
-      return acc;
-    },
-    []
-  );
+
+ // Using reduce to filter allergens based on ingredients
+const allergenList = Object.keys(recipe.ingredients).reduce(
+  (acc, ingredient) => {
+    // Loop through the allergens array to check if the ingredient contains any allergen
+    allergens.forEach((allergen) => {
+      if (ingredient.toLowerCase().includes(allergen)) {
+        // If the ingredient contains the allergen, add it to the allergenList array
+        acc.push(ingredient);
+      }
+    });
+    return acc; // Return the accumulated allergenList array
+  },
+  [] // Initial value of the accumulator (an empty array)
+);
+
 
   return (
     <div className={classes.info}>
