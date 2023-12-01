@@ -1,8 +1,8 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import RecipeDetails from '@/component/Recipes/Details/RecipeDetails';
+import RecipeDetails from '../../component/Recipes/Details/RecipeDetails';
 
-const RecipePage = () => {
+function RecipePage() {
   const router = useRouter();
   const [recipe, setRecipe] = useState(null);
   const [allergens, setAllergens] = useState([]);
@@ -20,12 +20,12 @@ const RecipePage = () => {
   }, []);
 
   return (
-    <Fragment>
+    <div>
       {recipe && (
         <RecipeDetails recipe={recipe && recipe} allergens={allergens} />
       )}
-    </Fragment>
+    </div>
   );
-};
+}
 
 export default RecipePage;
