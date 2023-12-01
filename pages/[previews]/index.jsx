@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import PreviewList from '@/component/Recipes/Preview/PreviewList';
 import { useState, useEffect, useMemo } from 'react';
 import SearchBar from '@/component/filtering/searchCategories/categorySearch';
@@ -11,7 +12,7 @@ import { Pagination } from 'flowbite-react';
 import FilterbyInstructions from '@/component/filtering/filtering/filterbyInstructions';
 import { Spinner } from 'flowbite-react';
 import ErrorMessage from '@/component/Error/ErrorMessage';
-import { getRecipes } from '@/database/getData/getRecipesData';
+import getRecipes from '@/database/getData/getRecipesData';
 import { parseInt } from 'lodash';
 import SearchForm from '@/component/filtering/search/search-form';
 import Alert from '@mui/material/Alert';
@@ -26,7 +27,7 @@ export default function AllRecipes({
     return (
       <div style={{ textAlign: 'center', marginTop: '100px' }}>
         <Spinner />
-        <ErrorMessage message={error} />
+        <ErrorMessage message={'Something went wrong'} />
       </div>
     );
   }
@@ -48,12 +49,14 @@ export default function AllRecipes({
     selectedInstructionsOptions,
     setSelectedCategory,
     andOr,
+    setSearchText
   } = StateContext();
 
   /**
    * When filtering recipes, then decides to share the url, the shared link will display the filterd recipes
    */
   useEffect(() => {
+    // setSearchText(window.location.href.split('_')[6])
     setSelectedCategory({ value: window.location.href.split('_')[3] });
 
     setSelectedTags(window.location.href.split('_')[1].split(',').map((item) => {
@@ -96,7 +99,7 @@ export default function AllRecipes({
       .map((item) => item.label)
       .join(',')}_${selectedIngredients.map((item) => item.label).join(',')}_${
       selectedCategory == '' ? selectedCategory : selectedCategory.value
-    }_${selectedInstructionsOptions}_${andOr}_${searchText}`;
+    }_${selectedInstructionsOptions}_${andOr}_${searchText}_chefsHeaven`;
     return path;
   }
 
@@ -149,7 +152,6 @@ export default function AllRecipes({
                   sortField={sortField}
                   sortOrder={sortOrder}
                 />
-                /
                 {instructionsErrorMessage && (
                   <Alert severity="warning">
                     No recipes with {instruction} instructions

@@ -1,4 +1,3 @@
-// Import React and necessary components/icons/styles
 import { useState } from 'react';
 import { MdOutlineExpandLess, MdOutlineExpandMore } from 'react-icons/md';
 import classes from './ingredients.module.css';
@@ -14,6 +13,22 @@ export default function Ingredients({ recipe }) {
   // State to manage the visibility of ingredients (expanded or collapsed)
   const [showIngredients, setShowIngredients] = useState(false);
 
+  // Using reduce to format ingredients for display
+  const formattedIngredients = showIngredients
+    ? Object.entries(recipe.ingredients || {}).reduce(
+        (acc, [ingredient, amount], index) => {
+          // Construct the formatted ingredient text with its amount
+          acc.push(
+            `${index + 1}. ${
+              ingredient.charAt(0).toUpperCase() + ingredient.slice(1)
+            }: ${amount}`,
+          );
+          return acc;
+        },
+        [],
+      )
+    : null;
+
   return (
     <div className={classes.ingredients}>
       {/* Header for the ingredients section */}
@@ -23,13 +38,11 @@ export default function Ingredients({ recipe }) {
       {showIngredients && (
         <div>
           <ol>
-            {/* Map through the ingredients object and display each ingredient with its amount */}
-            {recipe.ingredients &&
-              Object.entries(recipe.ingredients).map(
-                ([ingredient, amount], index) => (
-                  <li key={ingredient}>{`${index +1}. ${ingredient.slice(0,1).toUpperCase() + ingredient.slice(1)}: ${amount}`}</li>
-                )
-              )}
+            {/* Display the formatted ingredients list */}
+            {formattedIngredients &&
+              formattedIngredients.map((formattedIngredient) => (
+                <li key={formattedIngredient}>{formattedIngredient}</li>
+              ))}
           </ol>
         </div>
       )}

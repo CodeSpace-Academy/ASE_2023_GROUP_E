@@ -1,7 +1,6 @@
-
-import Image from "next/image";
-import { useState, useEffect } from "react";
-import classes from './imageSlider.module.css' 
+import Image from 'next/image';
+import { useState, useEffect } from 'react';
+import classes from './imageSlider.module.css';
 
 /**
  * @module ImageSlider
@@ -37,16 +36,29 @@ const ImageSlider = ({ imageUrls }) => {
     setCurrentIndex(newIndex);
   };
 
+  const totalWidth = imageUrls.reduce((acc, imageUrl) => {
+    return acc + 30; // Assuming each image has a width of 30
+  }, 0);
+
+  const totalHeight = imageUrls.reduce((acc, imageUrl) => {
+    return acc + 30; // Assuming each image has a height of 30
+  }, 0);
+
   // Render the image slider
   return (
     <div className="image-slider">
       <div className="image-container">
         {/* Display the image using the next/image component */}
-        <Image src={imageUrls[currentIndex]} alt="Recipe" width={400} height={200} className={classes.img}/>
+        <Image
+          src={imageUrls[currentIndex]}
+          alt="Recipe"
+          width={totalWidth}
+          height={totalHeight}
+          className={classes.img}
+        />
       </div>
     </div>
   );
 };
 
 export default ImageSlider;
-

@@ -20,6 +20,7 @@ function HomeWithBackground() {
     selectedCategory,
     selectedInstructionsOptions,
     andOr,
+    searchText,
   } = StateContext();
 
   return (
@@ -38,7 +39,7 @@ function HomeWithBackground() {
           <WhiteButton
             text="View Recipes"
                // Use the router to navigate to the specified URL based on user selections.
-            click={() => { return router.push(`/recipes-0-id-asc_${selecteTags.map((item) => { return item.label; }).join(',')}_${selectedIngredients.map((item) => { return item.label; }).join(',')}_${selectedCategory == '' ? selectedCategory : selectedCategory.value}_${selectedInstructionsOptions}_${!andOr}`); }}
+            click={() => { return router.push(`/recipes-0-id-asc_${selecteTags.map((item) => { return item.label; }).join(',')}_${selectedIngredients.map((item) => { return item.label; }).join(',')}_${selectedCategory == '' ? selectedCategory : selectedCategory.value}_${selectedInstructionsOptions}_${!andOr}_${searchText}_chefsHeaven`); }}
           />
           {/* WhiteButton component for navigating to the 'Favourites' page. */}
           <WhiteButton
