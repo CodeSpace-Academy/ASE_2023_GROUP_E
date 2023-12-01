@@ -1,29 +1,3 @@
 {
-  "extends": ["airbnb", "airbnb/hooks", "next/core-web-vitals"],
-  // "rules": {
-  //   "arrow-body-style": ["error", "always"],
-  //   "no-underscore-dangle": [
-  //     "error",
-  //     {
-  //       "allow": ["_id"]
-  //     }
-  //   ]
-  // },
-  // "overrides": [
-  //   {
-  //     "files": ["components/SideNav/SlidingNavbar.jsx"],
-  //     "rules": {
-  //       "react/jsx-uses-react": 2,
-  //       "react/jsx-uses-vars": 2
-  //     }
-  //   }
-  // ],
-  // "settings": {
-  //   "import/resolver": {
-  //     "alias": {
-  //       "map": [["@", "./src"]],
-  //       "extensions": [".js", ".jsx", ".json"]
-  //     }
-  //   }
-  // }
+  "extends": [/**"airbnb", "airbnb/hooks",*/ "next/core-web-vitals"],
 }
