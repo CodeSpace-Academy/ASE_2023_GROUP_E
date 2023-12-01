@@ -15,7 +15,7 @@ export default function FavouritesContainer() {
     <div className={classes.container}>
       <h1>My favourite recipes</h1>
       {/* Recipe list component */}
-      {favouritesList ? favouritesContent : <LoadingSpinner />}
+      {favouritesList && favouritesContent}
     </div>
   );
 }
