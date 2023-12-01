@@ -27,6 +27,7 @@ const SearchAndFilterHero = ({ children }) => {
               <IoIosCloseCircle size={33} color='white'/>
               </div>
               {children}
+              <WhiteButton text='Apply Filters' click={closeOverlay}/>
             </div>
           </div>
         </div>

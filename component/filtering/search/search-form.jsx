@@ -91,13 +91,14 @@ export default function SearchForm() {
     searchHandler(selectedValue);
   }
 
+  
   /**
    * console was arguing that "state cant be updated"
    * setting state inside the useffect is the solution
    */
   useEffect(() => {
     setSearchInput(searchText && searchRef.current.value);
-  });
+  })
 
   return (
     <div className={classes.search}>
