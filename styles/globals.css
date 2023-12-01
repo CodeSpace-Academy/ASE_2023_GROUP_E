@@ -41,7 +41,7 @@
 
 .searchAndFilters{
     display: flex;
-    align-items: center;
+    
 }
 
 
@@ -102,9 +102,12 @@
         background-color: rgba(255, 255, 255, 0.312) ;
         font-size: 40px;
        }
+
+    
+    
   }
   
-  @media only screen and (max-width: 727px) {
+  @media only screen and (min-width: 727px) {
     .allRecipes {
 
         color: rgb(48, 48, 82);
@@ -114,6 +117,8 @@
         background-color: rgba(255, 255, 255, 0.312) ;
         font-size: 40px;
        }
+    
+    
   
   }
   @media only screen and (max-width: 537px) {
@@ -131,7 +136,6 @@
 .searchAndFilters{
     display: flex;
     flex-direction: column;
-    justify-content: center;
   
   
 }
