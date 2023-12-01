@@ -30,7 +30,7 @@
 
 .allRecipesTitle {
 
- color: rgb(72, 72, 136);
+  color:  #062e56  ;
  font-weight: 1000;
  font-stretch: expanded;
  font-weight: bold;
@@ -92,18 +92,53 @@
 
 
 @media only screen and (max-width: 1040px) {
- 
+    .allRecipes {
+
+        color: rgb(48, 48, 82);
+        font-weight: 1000;
+        font-stretch: expanded;
+        font-weight: bold;
+        background-color: rgba(255, 255, 255, 0.312) ;
+        font-size: 40px;
+       }
   }
   
   @media only screen and (max-width: 727px) {
+    .allRecipes {
+
+        color: rgb(48, 48, 82);
+        font-weight: 1000;
+        font-stretch: expanded;
+        font-weight: bold;
+        background-color: rgba(255, 255, 255, 0.312) ;
+        font-size: 40px;
+       }
   
   }
   @media only screen and (max-width: 537px) {
+    .allRecipes {
+
+        color: rgb(48, 48, 82);
+        font-weight: 1000;
+        font-stretch: expanded;
+        font-weight: bold;
+        background-color: rgba(255, 255, 255, 0.312) ;
+        font-size: 40px;
+       }
   
   
 .searchAndFilters{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+  
+  
+}
+
+.filtersButton{
+   display: flex;
+   justify-content: end;
+   
 }
 
   }
