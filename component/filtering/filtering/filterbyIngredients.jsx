@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import CustomizedHook from './filterForm';
 import { WhiteButton } from '@/component/Button/button';
 import { useRouter } from 'next/router';
+import classes from './instructions.module.css';
 
 /**
  * FilterbyIngredients component for filtering recipes by ingredients.
@@ -72,7 +73,7 @@ export default function FilterbyIngredients({ skipNo, sortField, sortOrder }) {
         selectedOptions={selectedIngredients.filter(tag => tag.value.trim() !== '')}
       />
       <br />
-
+    <div className = {classes.IncludeAll}>
       <WhiteButton
         click={() => {
           push(
@@ -88,6 +89,7 @@ export default function FilterbyIngredients({ skipNo, sortField, sortOrder }) {
         }}
         text={andOr ? 'Includes One Ingredient' : 'Includes All Ingredients' }
       />
+      </div>
     </>
   );
 }
