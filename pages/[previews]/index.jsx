@@ -27,7 +27,7 @@ export default function AllRecipes({
     return (
       <div style={{ textAlign: 'center', marginTop: '100px' }}>
         <Spinner />
-        <ErrorMessage message={error} />
+        <ErrorMessage message={'Something went wrong'} />
       </div>
     );
   }
