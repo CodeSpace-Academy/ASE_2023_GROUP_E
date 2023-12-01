@@ -159,10 +159,17 @@ export default function AllRecipes({
                         No recipes with {instruction} instructions
                       </Alert>
                     )}
-                    <FilterbyInstructions />
+
+                    <div className='filterOverlayOptions'>
+
+                      <div>
+                      <FilterbyInstructions />
+                      </div>
+
+                    <div>
                     <div className="sort-dropdown" style={{ textAlign: 'center' }}>
-                      <label style={{ color: 'white', fontSize: '25px' }}>
-                        Sort by
+                      <label style={{ color: 'white',fontFamily:'sans-serif', fontStyle:'bold',fontSize: '25px', marginLeft: '-68px' }}>
+                        Sort by:
                       </label>
                       <select
                         className="previewSort"
@@ -185,6 +192,9 @@ export default function AllRecipes({
                       <option value="desc">Descending</option>
                     </select>
                   </div>
+                  </div>
+
+                  
 
                 </div>
                 <div className='Clear'style={{textAlign: 'center'}}>
@@ -199,6 +209,7 @@ export default function AllRecipes({
                   text= 'Clear filters'
                 />
                   {totalRecipes === 0 || totalRecipes === 164959 ? <h5 style={{color:'white', padding:'10px'}}>No filters have been applied</h5> : ''}
+                </div>
                 </div>
               </SearchAndFilterHero>
           </div>
