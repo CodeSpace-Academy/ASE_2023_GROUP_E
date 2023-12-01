@@ -19,7 +19,6 @@ export function ContextProvider({ children }) {
   const [andOr, setAndOr] = useState(false);
   const [searchInput, setSearchInput] = useState(null);
   const [searchText, setSearchText] = useState('');
-  const [isOverlayVisible, setIsOverlayVisible] = useState(false);
 
   //   Favourite recipes list global state
   let favouriteRecipesInLocalStorage;
@@ -34,8 +33,6 @@ export function ContextProvider({ children }) {
   return (
     <Context.Provider
       value={{
-        isOverlayVisible,
-        setIsOverlayVisible,
         searchText, 
         setSearchText,
         searchInput,
