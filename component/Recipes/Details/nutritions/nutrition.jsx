@@ -13,17 +13,19 @@ export default function Nutritions({ recipe }) {
   // State to manage the visibility of nutrition information (expanded or collapsed)
   const [showNutrition, setShowNutrition] = useState(false);
 
+  // Using reduce to format and capitalize the nutrition information for display
   const formattedNutrition = showNutrition
     ? Object.entries(recipe.nutrition || {}).reduce(
         (acc, [nutrient, value]) => {
+          // Capitalizing the first character of the nutrient
           const capitalNutrient =
             nutrient.charAt(0).toUpperCase() + nutrient.slice(1);
           acc.push(`${capitalNutrient}: ${value}`);
-          return acc;
+          return acc; // Returning nutrition information array
         },
         [],
       )
-    : null;
+    : null; //  null if showNutrition is false
 
   return (
     <div className={classes.nutrition}>
