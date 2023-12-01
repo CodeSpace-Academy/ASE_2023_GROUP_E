@@ -142,7 +142,7 @@ export default function AllRecipes({
             <SearchForm />
           </div>
 
-          <div>
+          <div >
             <SearchAndFilterHero>
               <SearchBar />
               <div className="previewMain">
