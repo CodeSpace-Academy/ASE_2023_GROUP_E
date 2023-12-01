@@ -92,20 +92,22 @@
 
 
 /* Mobile view */
-@media only screen and (max-width: 508px){
+@media only screen and (max-width: 537px) {
+    .search input {
+        height: 48px;;
+        width: 150px;
+        border-radius: 10px 10px 10px 10px;
+       }
     
-.search input {
-    height: 48px;;
-    width: 200px;
-   }
-
-   .searhHistory{
+       .searhHistory{
+      
+        min-width: 200px;
+        z-index: 1;
+        
+    }
   
-    min-width: 200px;
     
-}
-   
-}
+      }
 
 
 /* Tablet view */
