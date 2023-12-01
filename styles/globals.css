@@ -41,6 +41,7 @@
 
 .searchAndFilters{
     display: flex;
+    align-items: center;
 }
 
 
