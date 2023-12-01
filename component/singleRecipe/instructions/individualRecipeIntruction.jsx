@@ -1,4 +1,4 @@
-// Purpose//
+
 /* This file contains a React component "IndividualRecipeInstruction" used to render and
 highlight minutes within a recipe instruction. */
 
