@@ -50,8 +50,6 @@ export default function AllRecipes({
     setSelectedCategory,
     andOr,
     setSearchText,
-    setIsOverlayVisible,
-    isOverlayVisible
   } = StateContext();
 
   /**
@@ -140,7 +138,7 @@ export default function AllRecipes({
         </div>
 
         <div className="searchAndFilters">
-          <div onClick={() => isOverlayVisible ? setIsOverlayVisible(false) : ''}>
+          <div>
             <SearchForm />
           </div>
 
@@ -226,7 +224,6 @@ export default function AllRecipes({
       <PreviewList
         input={searchInput}
         recipes={recipes}
-        onClick={() => isOverlayVisible ? setIsOverlayVisible(false) : ''}
       />
 
       <div className="loadMore">
