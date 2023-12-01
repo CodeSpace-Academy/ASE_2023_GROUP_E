@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import path from 'path';
 import { Spinner } from 'flowbite-react';
 import HomeWithBackground from '../component/home-page/HomeWithBackground';
-import ErrorMessage from "../component/Error/ErrorMessage";
+import ErrorMessage from '../component/Error/ErrorMessage';
 // Import the 'fs' module for file system operations.
 const fs = require('fs');
 /**

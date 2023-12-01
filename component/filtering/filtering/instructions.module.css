@@ -2,18 +2,24 @@
     text-align: center;
     height: 35px ;
     border-radius: 3px;
+   
     
 }
-
+.IncludeAll{
+    text-align: center;
+    padding-left: px;
+}
 .instructionsInput{
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 5px;
+    margin-left: -235px;
 }
 
 .title{
     padding: 7px;
+   
 }
 
 

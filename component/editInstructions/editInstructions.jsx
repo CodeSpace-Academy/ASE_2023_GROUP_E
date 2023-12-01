@@ -17,7 +17,7 @@ function EditInstruction({info}) {
     e.preventDefault()
 
     try {
-      await addItem('/api/editRecipe', { recipeId: idRouter, recipeValue: newInstruction, key: instructionKey, stage: '$set' });
+      await addItem('/api/editRecipe', { recipeId: idRouter, recipeValue: newInstruction, key: instructionKey, action: '$set' });
       //hides form after editing
       setEditInstruction(!editInstruction)
     } catch (error) {
@@ -69,13 +69,6 @@ export function GetSpecificInstruction({instructions}){
  
       
       <Button  text={<TiEdit  fontSize={'25px'}/>}   click={optionHandler}/>
-      
-       
-        
-      
-      
-      
-    
     </form>
   )
 }
@@ -91,7 +84,7 @@ export function NewInstruction() {
     e.preventDefault()
 
     try {
-      await addItem('/api/editRecipe', { recipeId: idRouter, recipeValue: newInstruction, key: 'instructions', stage: '$push' });
+      await addItem('/api/editRecipe', { recipeId: idRouter, recipeValue: newInstruction, key: 'instructions', action: '$push' });
       setAddInstruction(!addInstruction)
     } catch (error) {
       console.log('Error adding item');

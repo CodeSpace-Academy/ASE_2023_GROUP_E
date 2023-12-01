@@ -1,33 +1,29 @@
-/* eslint-disable no-undef */
-// ### Purpose
 /* This file contains a React component 'RecipeInstructionsList' responsible for displaying
 a list of individual recipe instructions using the `IndividualRecipeInstruction` component. */
 
 import React from 'react';
 import Paper from '@mui/material/Paper';
-// eslint-disable-next-line import/no-named-as-default, import/no-named-as-default-member
+
 import IndividualRecipeIntruction from './individualRecipeIntruction';
 
 /**
- * Takes in single recipe instructions and display each instruction
- * in the individualRecipeInstruction component.
- * @param {array} instructions - Represents an array of single recipe instructions.
+ * RecipeInstructionsList component renders a list of individual recipe instructions.
+ * Each instruction is displayed using the `IndividualRecipeInstruction` component.
  * @returns {JSX.Element} - Returns the UI displaying the list of instructions.
  */
-function RecipeInstructionsList() {
+function RecipeInstructionsList({ instructions }) {
   // Renders individual recipe instructions using the IndividualRecipeInstructions component.
   return (
     <Paper
       variant="outlined"
-      sx={{ padding: '2rem', fontFamily: 'sans-serif' }} // styles the mui paper component
+      sx={{ padding: '2rem', fontFamily: 'sans-serif' }} // Styles the MUI Paper component
     >
-
       {instructions.map((instruction, index) => {
         return (
           <IndividualRecipeIntruction
-            key={{ index }}
+            key={index}
             instruction={instruction}
-            number={index}
+            number={index + 1} // Adding 1 to index for a human-readable numbering
           />
         );
       })}

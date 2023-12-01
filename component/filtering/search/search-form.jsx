@@ -91,13 +91,14 @@ export default function SearchForm() {
     searchHandler(selectedValue);
   }
 
+  
   /**
    * console was arguing that "state cant be updated"
    * setting state inside the useffect is the solution
    */
   useEffect(() => {
     setSearchInput(searchText && searchRef.current.value);
-  });
+  })
 
   return (
     <div className={classes.search}>
@@ -132,12 +133,14 @@ export default function SearchForm() {
       {displayHistory && (
         <div className={classes.searhHistory}>
           <div className={classes.close}>
-            <IoCloseCircleSharp
-              size={25}
-              onClick={() => {
-                return setDisplayHistory(false);
-              }}
-            />
+            <button style={{cursor:'pointer'}}>
+              <IoCloseCircleSharp
+                size={25}
+                onClick={() => {
+                  return setDisplayHistory(false);
+                }}
+              />
+            </button>
           </div>
           {searchHistory &&
             searchHistory.map((item, index) => {

@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint --file pages/api/filtering/search/searchHistory.js"
+    "lint": "next lint "
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",

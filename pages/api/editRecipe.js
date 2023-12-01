@@ -6,11 +6,11 @@ export default async function handler(req, res) {
       recipeId,
       recipeValue,
       key,
-      stage,
+      action,
     } = req.body;
 
     try {
-      await editRecipe(stage, key, recipeId, recipeValue);
+      await editRecipe(action, key, recipeId, recipeValue);
       res.status(201).json({ message: 'data has been modified' });
     } catch (error) {
       res.status(417).json({ message: error });

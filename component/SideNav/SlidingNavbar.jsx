@@ -39,6 +39,7 @@ const ExpandableMenu = () => {
     selectedCategory,
     selectedInstructionsOptions,
     andOr,
+    searchText
   } = StateContext();
 
   // Constructing the path based on selected options
@@ -46,7 +47,7 @@ const ExpandableMenu = () => {
     .map((item) => item.label)
     .join(',')}_${selectedIngredients
     .map((item) => item.label)
-    .join(',')}_${selectedCategory == '' ? selectedCategory : selectedCategory.value}_${selectedInstructionsOptions}_${!andOr}`;
+    .join(',')}_${selectedCategory == '' ? selectedCategory : selectedCategory.value}_${selectedInstructionsOptions}_${!andOr}_${searchText}_chefsHeaven`;
 
   /**
    * Function to toggle the menu's expansion
@@ -55,8 +56,8 @@ const ExpandableMenu = () => {
     setToggleMenu(!toggleMenu);
   };
 
-  // Array of menu options with corresponding icons and names
-  const arrowIcon = toggleMenu ? <IoIosArrowForward /> : <IoIosArrowDropleft />;
+  // Adjusted arrowIcon based on the toggleMenu state
+  const arrowIcon = toggleMenu ? <IoIosArrowDropleft /> : <IoIosArrowForward />;
 
   const menuOptions = [
     { icon: Links('/', <AiOutlineHome />), name: Links('/', 'Home') },
@@ -104,8 +105,8 @@ const ExpandableMenu = () => {
       </div>
       {/* Placeholder for additional content */}
       <div className={classes.mobileMenu}>
-        {menuOptions.map((option) => (
-          <p>{option.icon}</p>
+        {menuOptions.map((option, index) => (
+          <p key={index}>{option.icon}</p>
         ))}
       </div>
     </div>
