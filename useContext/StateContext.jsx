@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-constructed-context-values */
 const { createContext, useContext, useState } = require('react');
 
 const Context = createContext();
@@ -15,7 +16,7 @@ export function ContextProvider({ children }) {
   const [selectedInstructionsOptions, setSelectedInstructionsOptions] = useState(0);
   const [selecteTags, setSelectedTags] = useState([]);
   const [selectedIngredients, setSelectedIngredients] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState({value: ''});
+  const [selectedCategory, setSelectedCategory] = useState({ value: '' });
   const [andOr, setAndOr] = useState(false);
   const [searchInput, setSearchInput] = useState(null);
   const [searchText, setSearchText] = useState('');
@@ -23,23 +24,22 @@ export function ContextProvider({ children }) {
   //   Favourite recipes list global state
   let favouriteRecipesInLocalStorage;
   if (typeof window !== 'undefined') {
-    favouriteRecipesInLocalStorage =
-      JSON.parse(localStorage.getItem('favouriteRecipesList')) || [];
+    favouriteRecipesInLocalStorage = JSON.parse(localStorage.getItem('favouriteRecipesList')) || [];
   }
   const [favouritesList, setFavouritesList] = useState(
-    favouriteRecipesInLocalStorage || []
+    favouriteRecipesInLocalStorage || [],
   );
 
   return (
     <Context.Provider
       value={{
-        searchText, 
+        searchText,
         setSearchText,
         searchInput,
         setSearchInput,
-        andOr, 
+        andOr,
         setAndOr,
-        selectedCategory, 
+        selectedCategory,
         setSelectedCategory,
         selectedIngredients,
         setSelectedIngredients,
