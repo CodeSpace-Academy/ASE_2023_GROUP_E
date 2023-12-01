@@ -1,3 +1,12 @@
+@font-face{
+  font-family: 'Montserrat', sans-serif;
+  font-family: 'Pacifico', cursive;
+  font-family: 'Permanent Marker', cursive;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  src: url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Pacifico&family=Permanent+Marker&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+}
+
 .backgroundImage {
   margin-top: 0%;
   background-image: url('../../public/images/backgroundImage.png');
@@ -9,11 +18,28 @@
 }
 
 .menu {
-  margin-top: 10%;
+  /* margin-top: 5%; */
 }
 
 .menu button{
   margin-bottom: 3%;
+}
+
+.par{ 
+width: 60%;
+}
+.text{
+  font-size: 50px;
+  font-weight: 900;
+}
+.context{
+  text-align: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 70px;
+  color: grey;
+/* margin-left: 50px; */
 }
 
 @media only screen and (max-width: 759px) {
@@ -47,6 +73,7 @@
     justify-content: center;
     gap: 5%;
   }
+ 
 }
 
 

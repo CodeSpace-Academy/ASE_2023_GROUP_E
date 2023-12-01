@@ -23,6 +23,7 @@ function HomeWithBackground() {
   } = StateContext();
 
   return (
+    
     <div>
       {/* Head component for setting metadata, including the title of the page. */}
 
@@ -30,6 +31,16 @@ function HomeWithBackground() {
         <title>Chef's Heaven</title>
       </Head>
       <div className={classes.backgroundImage}>
+      <div className={classes.context}>
+          <div className={classes.content}>
+          <h1 className={classes.text}>Welcome to Chef's Heaven!</h1>
+          </div>
+            <p className={classes.par}> Welcome to Chef's Heaven, where culinary dreams come to life! Dive into a world of mouthwatering recipes, 
+            expert tips, and culinary inspiration. Whether you're a seasoned chef or a kitchen novice, our diverse collection of 
+             recipes caters to every taste and skill level. Join our vibrant community, explore delicious possibilities, and let Chef's Heaven 
+             be your go-to destination for all things delicious. Happy cooking!
+            </p>
+          </div>
         {' '}
         {/* This div represents the background image container. */}
         {/* Links to the pages on the menu lists */}
@@ -45,14 +56,8 @@ function HomeWithBackground() {
             text="Favourites"
             click={() => { return router.push('/favourites'); }}
           />
-          {/* WhiteButton component for handling the 'Profile' button click. */}
-          <WhiteButton
-            text="Profile"
-             // Display an alert indicating that the 'Profile' page is being updated.
-            click={() => { return alert('Being updated'); }}
-          />
-
         </div>
+        
       </div>
     </div>
   );
