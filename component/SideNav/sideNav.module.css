@@ -45,6 +45,7 @@
 }
 .pageContainer {
   display: flex;
+  z-index: 5;
 }
 .link {
   font-size: 28px;
