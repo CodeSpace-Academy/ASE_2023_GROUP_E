@@ -1,4 +1,3 @@
-// Import React and necessary components/styles
 import React from 'react';
 import styles from './recipeDetails.module.css';
 import ImageSlider from './imageSlider/ImageSlider';
@@ -50,7 +49,7 @@ const RecipeDetails = ({ recipe, allergens }) => {
           {recipe.tags ? (
             <SingleRecipeTags tags={recipe.tags} />
           ) : (
-            <ErrorMessage message='Failed to load tags' />
+            <ErrorMessage message="Failed to load tags" />
           )}
         </div>
         {/* Display ingredients and nutrition information */}
@@ -66,6 +65,5 @@ const RecipeDetails = ({ recipe, allergens }) => {
     </div>
   );
 };
-
 
 export default RecipeDetails;

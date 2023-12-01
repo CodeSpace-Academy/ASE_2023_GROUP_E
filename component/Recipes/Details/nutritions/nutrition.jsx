@@ -1,7 +1,6 @@
-// Import React and necessary components/icons/styles
-import { useState } from "react";
-import classes from './nutrition.module.css'
-import { MdOutlineExpandLess, MdOutlineExpandMore } from 'react-icons/md'
+import { useState } from 'react';
+import classes from './nutrition.module.css';
+import { MdOutlineExpandLess, MdOutlineExpandMore } from 'react-icons/md';
 
 /**
  * @function Nutritions
@@ -14,6 +13,20 @@ export default function Nutritions({ recipe }) {
   // State to manage the visibility of nutrition information (expanded or collapsed)
   const [showNutrition, setShowNutrition] = useState(false);
 
+  // Using reduce to format and capitalize the nutrition information for display
+  const formattedNutrition = showNutrition
+    ? Object.entries(recipe.nutrition || {}).reduce(
+        (acc, [nutrient, value]) => {
+          // Capitalizing the first character of the nutrient
+          const capitalNutrient =
+            nutrient.charAt(0).toUpperCase() + nutrient.slice(1);
+          acc.push(`${capitalNutrient}: ${value}`);
+          return acc; // Returning nutrition information array
+        },
+        [],
+      )
+    : null; //  null if showNutrition is false
+
   return (
     <div className={classes.nutrition}>
       {/* Header for the nutrition information section */}
@@ -23,10 +36,10 @@ export default function Nutritions({ recipe }) {
       {showNutrition && (
         <div>
           <ul>
-            {/* Map through the nutrition object and display each nutrient with its value */}
-            {recipe.nutrition &&
-              Object.entries(recipe.nutrition).map(([key, value]) => (
-                <li key={key}>{`${key}: ${value}`}</li>
+            {/* Display the formatted nutrition information list */}
+            {formattedNutrition &&
+              formattedNutrition.map((formattedNutrient) => (
+                <li key={formattedNutrient}>{formattedNutrient}</li>
               ))}
           </ul>
         </div>
