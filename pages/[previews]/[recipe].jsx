@@ -1,13 +1,13 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import RecipeDetails from '@/component/Recipes/Details/RecipeDetails';
+import RecipeDetails from '../../component/Recipes/Details/RecipeDetails';
 
 /**
  * RecipePage component renders the details of a specific recipe.
  * It fetches data based on the recipe ID from the URL query parameters.
  * @returns {React.ReactElement} - The RecipePage component
  */
-const RecipePage = () => {
+function RecipePage() {
   const router = useRouter();
   const [recipe, setRecipe] = useState(null);
   const [allergens, setAllergens] = useState([]);
@@ -35,12 +35,12 @@ const RecipePage = () => {
    * @returns {React.ReactElement} - The RecipeDetails component with recipe and allergens as props.
    */
   return (
-    <Fragment>
+    <div>
       {recipe && (
         <RecipeDetails recipe={recipe} allergens={allergens} />
       )}
-    </Fragment>
+    </div>
   );
-};
+}
 
 export default RecipePage;

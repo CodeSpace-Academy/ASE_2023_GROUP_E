@@ -1,5 +1,23 @@
 import client from "../client";
-
+/**
+ * Retrieves recipes based on various search criteria from the specified collection.
+ *
+ * @param {string} collection - The name of the MongoDB collection to query.
+ * @param {number} skipNo - The number of documents to skip in the result set.
+ * @param {number} limit - The maximum number of documents to return.
+ * @param {object} sort - The sorting criteria for the query results.
+ * @param {string[]} tags - An array of tags to filter recipes by.
+ * @param {string[]} ingredients - An array of ingredients to filter recipes by.
+ * @param {string} category - The category to filter recipes by.
+ * @param {number} instructions - The number of instructions a recipe should have.
+ * @param {string} andOr - The logical operator ('$and' or '$or') for ingredients filter.
+ * @param {string} viewRecipe - The specific recipe ID to retrieve.
+ * @param {string} expressionInput - The field to project in the MongoDB aggregation pipeline.
+ * @param {string} username - The username for filtering search history.
+ * @param {string[]} titles - An array of titles to search for in recipes.
+ *
+ * @returns {object} - An object containing recipes, total number of recipes, and recipes with IDs removed.
+ */
 const db = client.db('devdb');
 
 export default async function getRecipes(collection, skipNo, limit, sort, tags, ingredients, category, instructions, andOr, viewRecipe, expressionInput, username, titles){

@@ -10,7 +10,7 @@ const Item = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(2),
   textAlign: 'center',
   color: theme.palette.text.secondary,
-  boxShadow:'none',
+  boxShadow: 'none',
   borderBottom: 'solid black 2px',
   borderRight: 'solid black 2px',
 }));
@@ -21,21 +21,19 @@ const Item = styled(Paper)(({ theme }) => ({
  * @returns {JSX.Element} - Lists of tags
  */
 
-export default function TagsListt({recipes}) {
+export default function TagsListt({ recipes }) {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
 
         {
-          recipes && recipes.map((recipe) => {
-            return(
-              <Grid xs={12} md={4} key={recipe}>
-                <Item key={recipe}> 
-                  <h4>{recipe}</h4>
-                </Item>
-              </Grid>
-            )
-          })
+          recipes && recipes.map((recipe) => (
+            <Grid xs={12} md={4} key={recipe}>
+              <Item key={recipe}>
+                <h4>{recipe}</h4>
+              </Item>
+            </Grid>
+          ))
         }
 
       </Grid>
