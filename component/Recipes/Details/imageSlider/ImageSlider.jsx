@@ -37,11 +37,11 @@ const ImageSlider = ({ imageUrls }) => {
   };
 
   const totalWidth = imageUrls.reduce((acc, imageUrl) => {
-    return acc + 30; // Assuming each image has a width of 30
+    return acc + 3; // Assuming each image has a width of 3
   }, 0);
 
   const totalHeight = imageUrls.reduce((acc, imageUrl) => {
-    return acc + 30; // Assuming each image has a height of 30
+    return acc + 3; // Assuming each image has a height of 3
   }, 0);
 
   // Render the image slider
