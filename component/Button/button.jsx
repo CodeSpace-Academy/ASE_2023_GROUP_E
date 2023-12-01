@@ -4,9 +4,7 @@ import classes from './button.module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 /**
- *
  * @param {*} param0
- *
  *
  *  {@link color} if you want to change the color of the button use :
  * success for green
@@ -46,7 +44,7 @@ export function BlueButton({ click, text }) {
 
 export function WhiteButton({ click, text }) {
   return (
-    <button onClick={click} class={classes.whitebutton} role="button">
+    <button onClick={click} className={classes.whitebutton} role="button">
       {text}
     </button>
   );
