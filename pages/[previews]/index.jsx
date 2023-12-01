@@ -1,7 +1,8 @@
 /* eslint-disable no-useless-concat */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable import/no-unresolved */
 /* eslint-disable react-hooks/rules-of-hooks */
+/* eslint-disable no-unused-expressions */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Pagination, Spinner } from 'flowbite-react';
@@ -131,7 +132,7 @@ export default function AllRecipes({
     <main>
       <div className="previewBackgroundImage">
         <div className="allRecipesTitle">
-          <h1 className="allRecipes" >All Recipes</h1>
+          <h1 className="allRecipes">All Recipes</h1>
         </div>
         <div className="searchAndFilters">
           <div>
@@ -139,30 +140,37 @@ export default function AllRecipes({
           </div>
 
           <div>
-                <SearchAndFilterHero>
-                  <SearchBar />
-                  <div className="previewMain">
-                    <FilterbyTags />
-                    <FilterbyIngredients
-                      skipNo={skipNo}
-                      sortField={sortField}
-                      sortOrder={sortOrder}
-                    />
-                    {instructionsErrorMessage && (
-                      <Alert severity="warning">
-                        No recipes with {instruction} instructions
-                      </Alert>
-                    )}
+            <SearchAndFilterHero>
+              <SearchBar />
+              <div className="previewMain">
+                <FilterbyTags />
+                <FilterbyIngredients
+                  skipNo={skipNo}
+                  sortField={sortField}
+                  sortOrder={sortOrder}
+                />
+                {instructionsErrorMessage && (
+                <Alert severity="warning">
+                  No recipes with
+                  {' '}
+                  {instruction}
+                  {' '}
+                  instructions
+                </Alert>
+                )}
 
-                    <div className='filterOverlayOptions'>
+                <div className="filterOverlayOptions">
 
-                      <div>
-                      <FilterbyInstructions />
-                      </div>
+                  <div>
+                    <FilterbyInstructions />
+                  </div>
 
-                    <div>
+                  <div>
                     <div className="sort-dropdown" style={{ textAlign: 'center' }}>
-                      <label style={{ color: 'white',fontFamily:'sans-serif', fontStyle:'bold',fontSize: '25px', marginLeft: '-68px' }}>
+                      <label style={{
+                        color: 'white', fontFamily: 'sans-serif', fontStyle: 'bold', fontSize: '25px', marginLeft: '-68px',
+                      }}
+                      >
                         Sort by:
                       </label>
                       <select
@@ -177,45 +185,50 @@ export default function AllRecipes({
                         {/* <option value="numberOfSteps">Number of Steps</option> */}
                       </select>
 
-                    <select
-                      className='previewSort'
-                      value={sortOrder}
-                      onChange={(e) => setSortOrder(e.target.value)}
-                    >
-                      <option value="asc">Ascending</option>
-                      <option value="desc">Descending</option>
-                    </select>
-                  </div>
+                      <select
+                        className="previewSort"
+                        value={sortOrder}
+                        onChange={(e) => setSortOrder(e.target.value)}
+                      >
+                        <option value="asc">Ascending</option>
+                        <option value="desc">Descending</option>
+                      </select>
+                    </div>
                   </div>
 
-                  
-
                 </div>
-                <div className='Clear'style={{textAlign: 'center'}}>
-                <WhiteButton 
-                  click={() => {
-                    setSelectedInstructionsOptions(0)
-                    setSelectedIngredients([])
-                    setSelectedTags([])
-                    setSelectedCategory([])
-                    router.query.previews.substring(0, 20) === "recipes-0-id-asc____" ? alert("No filters have been applied") :"";
-                  }}
-                  text= 'Clear filters'
-                />
-                  {totalRecipes === 0 || totalRecipes === 164959 ? <h5 style={{color:'white', padding:'10px'}}>No filters have been applied</h5> : ''}
+                <div className="Clear" style={{ textAlign: 'center' }}>
+                  <WhiteButton
+                    click={() => {
+                      setSelectedInstructionsOptions(0);
+                      setSelectedIngredients([]);
+                      setSelectedTags([]);
+                      setSelectedCategory([]);
+                      router.query.previews.substring(0, 20) === 'recipes-0-id-asc____' ? alert('No filters have been applied') : '';
+                    }}
+                    text="Clear filters"
+                  />
+                  {totalRecipes === 0 || totalRecipes === 164959 ? <h5 style={{ color: 'white', padding: '10px' }}>No filters have been applied</h5> : ''}
                 </div>
-                </div>
-              </SearchAndFilterHero>
+              </div>
+            </SearchAndFilterHero>
           </div>
         </div>
-      
+
       </div>
-    
-    {totalRecipes === 0 || totalRecipes === 164959 ? '' : <div className='totalRecipes'><h3>{totalRecipes} results</h3>
-    {filteredby('Category',3)}
-    {filteredby('Tags',1)}
-    {filteredby('Ingredients',2)}
-    </div>}
+
+      {totalRecipes === 0 || totalRecipes === 164959 ? '' : (
+        <div className="totalRecipes">
+          <h3>
+            {totalRecipes}
+            {' '}
+            results
+          </h3>
+          {filteredby('Category', 3)}
+          {filteredby('Tags', 1)}
+          {filteredby('Ingredients', 2)}
+        </div>
+      )}
 
       <PreviewList
         input={searchInput}
@@ -223,7 +236,7 @@ export default function AllRecipes({
       />
 
       <div className="loadMore">
-        <div className="flex overflow-x-auto sm:justify-center" style={{width:'99%'}}>
+        <div className="flex overflow-x-auto sm:justify-center" style={{ width: '99%' }}>
           <Pagination
             currentPage={currentPage}
             totalPages={totalPages}
