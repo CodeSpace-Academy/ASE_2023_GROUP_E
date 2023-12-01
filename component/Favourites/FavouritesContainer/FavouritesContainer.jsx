@@ -2,7 +2,6 @@ import React from 'react';
 import classes from './FavouritesContainer.module.css';
 import StateContext from '../../../useContext/StateContext';
 import PreviewList from '../../Recipes/Preview/PreviewList';
-import LoadingSpinner from '../../ui/loadingSpinner/LoadingSpinner';
 
 export default function FavouritesContainer() {
   const { favouritesList } = StateContext();
@@ -16,7 +15,7 @@ export default function FavouritesContainer() {
     <div className={classes.container}>
       <h1>My favourite recipes</h1>
       {/* Recipe list component */}
-      {favouritesList ? favouritesContent : <LoadingSpinner />}
+      {favouritesList && favouritesContent}
     </div>
   );
 }
