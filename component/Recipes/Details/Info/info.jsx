@@ -1,4 +1,3 @@
-// Import React and necessary components/icons/styles
 import { useState } from 'react';
 import { TiEdit } from 'react-icons/ti';
 import classes from './info.module.css';
@@ -26,22 +25,22 @@ export default function Info({ recipe, allergens }) {
   // State to handle the 'Load more' functionality for the recipe description
   const [loadmore, setLoadmore] = useState(false);
 
-  /**
-   * Contains the allergens present in this recipe
-   */
-  const allergenList = [];
 
-  // If ingredient is present in allergen array, add it to the allergens list
-  // Put ingredient object keys (ingredient text) into array and loop over them
-  // loop over allegens and check if the ingredient includes
-  // the allergen
-  Object.keys(recipe.ingredients).forEach((ingredient) => {
+ // Using reduce to filter allergens based on ingredients
+const allergenList = Object.keys(recipe.ingredients).reduce(
+  (acc, ingredient) => {
+    // Loop through the allergens array to check if the ingredient contains any allergen
     allergens.forEach((allergen) => {
-      if (ingredient.toLowerCase()?.includes(allergen)) {
-        allergenList.push(ingredient);
+      if (ingredient.toLowerCase().includes(allergen)) {
+        // If the ingredient contains the allergen, add it to the allergenList array
+        acc.push(ingredient);
       }
     });
-  });
+    return acc; // Return the accumulated allergenList array
+  },
+  [] // Initial value of the accumulator (an empty array)
+);
+
 
   return (
     <div className={classes.info}>
