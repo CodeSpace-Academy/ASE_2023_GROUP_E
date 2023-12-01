@@ -216,7 +216,7 @@ export default function AllRecipes({
       />
 
       <div className="loadMore">
-        <div className="flex overflow-x-auto sm:justify-center">
+        <div className="flex overflow-x-auto sm:justify-center" style={{width:'99%'}}>
           <Pagination
             currentPage={currentPage}
             totalPages={totalPages}
