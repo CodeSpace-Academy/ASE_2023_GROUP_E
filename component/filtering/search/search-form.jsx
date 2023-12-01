@@ -133,12 +133,14 @@ export default function SearchForm() {
       {displayHistory && (
         <div className={classes.searhHistory}>
           <div className={classes.close}>
-            <IoCloseCircleSharp
-              size={25}
-              onClick={() => {
-                return setDisplayHistory(false);
-              }}
-            />
+            <button style={{cursor:'pointer'}}>
+              <IoCloseCircleSharp
+                size={25}
+                onClick={() => {
+                  return setDisplayHistory(false);
+                }}
+              />
+            </button>
           </div>
           {searchHistory &&
             searchHistory.map((item, index) => {
