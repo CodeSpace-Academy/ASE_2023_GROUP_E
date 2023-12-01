@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import classes from './searchAndFilterHero.module.css';
 import { WhiteButton } from '@/component/Button/button';
 import { IoIosCloseCircle } from "react-icons/io";
+import StateContext from '@/useContext/StateContext';
 
 const SearchAndFilterHero = ({ children }) => {
-  const [isOverlayVisible, setIsOverlayVisible] = useState(false);
+
+  const { isOverlayVisible, setIsOverlayVisible } = StateContext()
 
   const toggleOverlay = () => {
     setIsOverlayVisible(!isOverlayVisible);
