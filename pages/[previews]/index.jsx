@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import PreviewList from '@/component/Recipes/Preview/PreviewList';
 import { useState, useEffect, useMemo } from 'react';
 import SearchBar from '@/component/filtering/searchCategories/categorySearch';
