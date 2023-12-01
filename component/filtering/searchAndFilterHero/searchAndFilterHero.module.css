@@ -46,6 +46,7 @@
   align-items: center;
   color: #262222; /* Set your desired text color for the overlay content */
   z-index: 1; /* Ensure the overlay is above other elements */
+  position: fixed;
 }
 /* Add any additional styles for your overlay content here */
 .overlay p {
