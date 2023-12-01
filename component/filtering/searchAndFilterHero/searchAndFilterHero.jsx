@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import classes from './searchAndFilterHero.module.css';
 import { WhiteButton } from '@/component/Button/button';
 import { IoIosCloseCircle } from "react-icons/io";
-import StateContext from '@/useContext/StateContext';
 
 const SearchAndFilterHero = ({ children }) => {
-
-  const { isOverlayVisible, setIsOverlayVisible } = StateContext()
+  const [isOverlayVisible, setIsOverlayVisible] = useState(false);
 
   const toggleOverlay = () => {
     setIsOverlayVisible(!isOverlayVisible);
@@ -20,9 +18,9 @@ const SearchAndFilterHero = ({ children }) => {
     <div>
       <WhiteButton click={toggleOverlay} text={isOverlayVisible ? "hide filter" : 'Filters'} />
       {isOverlayVisible && (
-        <div className={classes.overlay} >
+        <div className={classes.overlay}>
          
-          <div className={classes.background} >
+          <div className={classes.background}>
           <h1 style={{color:'white'}}> Filters</h1>
             <div className={classes.inputsContainer}>
               <div className={classes.closeButton} onClick={closeOverlay}>
