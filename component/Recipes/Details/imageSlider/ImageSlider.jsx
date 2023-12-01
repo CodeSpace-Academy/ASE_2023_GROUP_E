@@ -1,7 +1,6 @@
-
-import Image from "next/image";
-import { useState, useEffect } from "react";
-import classes from './imageSlider.module.css' 
+import Image from 'next/image';
+import { useState, useEffect } from 'react';
+import classes from './imageSlider.module.css';
 
 /**
  * @module ImageSlider
@@ -50,11 +49,16 @@ const ImageSlider = ({ imageUrls }) => {
     <div className="image-slider">
       <div className="image-container">
         {/* Display the image using the next/image component */}
-        <Image src={imageUrls[currentIndex]} alt="Recipe" width={totalWidth} height={totalHeight} className={classes.img}/>
+        <Image
+          src={imageUrls[currentIndex]}
+          alt="Recipe"
+          width={totalWidth}
+          height={totalHeight}
+          className={classes.img}
+        />
       </div>
     </div>
   );
 };
 
 export default ImageSlider;
-

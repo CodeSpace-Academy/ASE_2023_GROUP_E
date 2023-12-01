@@ -1,4 +1,3 @@
-// Import React and necessary components/icons/styles
 import { useState } from 'react';
 import { MdOutlineExpandLess, MdOutlineExpandMore } from 'react-icons/md';
 import classes from './ingredients.module.css';
@@ -13,14 +12,21 @@ import classes from './ingredients.module.css';
 export default function Ingredients({ recipe }) {
   // State to manage the visibility of ingredients (expanded or collapsed)
   const [showIngredients, setShowIngredients] = useState(false);
-  
+
   // Using reduce to format ingredients for display
   const formattedIngredients = showIngredients
-    ? Object.entries(recipe.ingredients || {}).reduce((acc, [ingredient, amount], index) => {
-        // Construct the formatted ingredient text with its amount
-        acc.push(`${index + 1}. ${ingredient.charAt(0).toUpperCase() + ingredient.slice(1)}: ${amount}`);
-        return acc;
-      }, [])
+    ? Object.entries(recipe.ingredients || {}).reduce(
+        (acc, [ingredient, amount], index) => {
+          // Construct the formatted ingredient text with its amount
+          acc.push(
+            `${index + 1}. ${
+              ingredient.charAt(0).toUpperCase() + ingredient.slice(1)
+            }: ${amount}`,
+          );
+          return acc;
+        },
+        [],
+      )
     : null;
 
   return (
@@ -30,7 +36,7 @@ export default function Ingredients({ recipe }) {
 
       {/* Conditionally render the list of ingredients based on showIngredients state */}
       {showIngredients && (
-           <div>
+        <div>
           <ol>
             {/* Display the formatted ingredients list */}
             {formattedIngredients &&
