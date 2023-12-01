@@ -26,6 +26,7 @@ export default function FilterbyIngredients({ skipNo, sortField, sortOrder }) {
     selectedInstructionsOptions,
     andOr,
     setAndOr,
+    searchText
   } = StateContext();
 
   useEffect(() => {
@@ -81,7 +82,7 @@ export default function FilterbyIngredients({ skipNo, sortField, sortOrder }) {
               .map((item) => item.label)
               .join(',')}_${
               selectedCategory == '' ? selectedCategory : selectedCategory.value
-            }_${selectedInstructionsOptions}_${!andOr}`,
+            }_${selectedInstructionsOptions}_${!andOr}_${searchText}_chefsHeaven`,
           );
           setAndOr(!andOr);
         }}
