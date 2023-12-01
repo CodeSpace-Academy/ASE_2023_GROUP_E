@@ -15,6 +15,7 @@ import style from './previewList.module.css';
 import { PrepandCookTime } from '../../handlerTime/timeRead';
 import FavouritesButton from '../../Favourites/FavouritesButton/FavouritesButton';
 import ErrorMessage from '../../Error/ErrorMessage';
+import { v4 as uuidv4 } from 'uuid';
 
 /**
  * @function PreviewList
@@ -86,7 +87,7 @@ export default function PreviewList({ recipes, input }) {
             && recipes.map((recipe, index) => {
               return (
                 // Grid item for each recipe preview
-                <Grid xs={12} md={12} key={recipe.id}>
+                <Grid xs={12} md={12} key={uuidv4()}>
                   {/* Paper component for styling */}
                   <Item key={recipe.id} className={style.item}>
                     {/* Link to navigate to the individual recipe page */}
