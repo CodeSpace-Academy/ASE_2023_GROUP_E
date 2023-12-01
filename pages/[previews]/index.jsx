@@ -48,23 +48,14 @@ export default function AllRecipes({
     selectedInstructionsOptions,
     setSelectedCategory,
     andOr,
-    setSearchText,
-    setSearchInput,
+    setSearchText
   } = StateContext();
-
-    /**
-   * console was arguing that "state cant be updated"
-   * setting state inside the useffect is the solution
-   */
-    useEffect(() => {
-      setSearchInput(window.location.href.split('_')[6].replace('%20', ' '));
-    });
 
   /**
    * When filtering recipes, then decides to share the url, the shared link will display the filterd recipes
    */
   useEffect(() => {
-    setSearchText(window.location.href.split('_')[6])
+    // setSearchText(window.location.href.split('_')[6])
     setSelectedCategory({ value: window.location.href.split('_')[3] });
 
     setSelectedTags(window.location.href.split('_')[1].split(',').map((item) => {
