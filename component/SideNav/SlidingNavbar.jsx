@@ -39,6 +39,7 @@ const ExpandableMenu = () => {
     selectedCategory,
     selectedInstructionsOptions,
     andOr,
+    searchText
   } = StateContext();
 
   // Constructing the path based on selected options
@@ -46,7 +47,7 @@ const ExpandableMenu = () => {
     .map((item) => item.label)
     .join(',')}_${selectedIngredients
     .map((item) => item.label)
-    .join(',')}_${selectedCategory == '' ? selectedCategory : selectedCategory.value}_${selectedInstructionsOptions}_${!andOr}`;
+    .join(',')}_${selectedCategory == '' ? selectedCategory : selectedCategory.value}_${selectedInstructionsOptions}_${!andOr}_${searchText}_chefsHeaven`;
 
   /**
    * Function to toggle the menu's expansion

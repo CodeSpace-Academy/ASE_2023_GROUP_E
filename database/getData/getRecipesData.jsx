@@ -2,7 +2,7 @@ import client from "../client";
 
 const db = client.db('devdb');
 
-export async function getRecipes(collection, skipNo, limit, sort, tags, ingredients, category, instructions, andOr, viewRecipe, expressionInput, username, titles){
+export default async function getRecipes(collection, skipNo, limit, sort, tags, ingredients, category, instructions, andOr, viewRecipe, expressionInput, username, titles){
 
   // const title = 'L'
   /**
