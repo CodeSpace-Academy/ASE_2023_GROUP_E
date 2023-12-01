@@ -56,7 +56,7 @@ export default function AllRecipes({
    * When filtering recipes, then decides to share the url, the shared link will display the filterd recipes
    */
   useEffect(() => {
-    setSearchText(window.location.href.split('_')[6])
+    // setSearchText(window.location.href.split('_')[6])
     setSelectedCategory({ value: window.location.href.split('_')[3] });
 
     setSelectedTags(window.location.href.split('_')[1].split(',').map((item) => {
