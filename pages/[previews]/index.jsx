@@ -49,7 +49,9 @@ export default function AllRecipes({
     selectedInstructionsOptions,
     setSelectedCategory,
     andOr,
-    setSearchText
+    setSearchText,
+    setIsOverlayVisible,
+    isOverlayVisible
   } = StateContext();
 
   /**
@@ -121,7 +123,7 @@ export default function AllRecipes({
     selectedCategory,
     selectedInstructionsOptions,
     searchText,
-    setSelectedTags
+    setSelectedTags,
   ]);
 
   function filteredby(option, position){
@@ -131,7 +133,7 @@ export default function AllRecipes({
   }
 
   return (
-    <main>
+    <main onClick={() => setIsOverlayVisible(!isOverlayVisible)}>
       <div className="previewBackgroundImage">
         <div className="allRecipesTitle">
           <h1 className="allRecipes">All Recipes</h1>
