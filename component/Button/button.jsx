@@ -14,7 +14,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
  */
 export default function Button({ text, color, click }) {
   return (
-    <button onClick={click} type="button" className={`btn btn-${color}`} aria-label={text}>
+    <button onClick={click} className={`btn btn-${color}`} aria-label={text}>
       {text}
     </button>
   );
@@ -26,7 +26,7 @@ export default function Button({ text, color, click }) {
  * @returns {JSX.Element} - Rendered button element.
  */
 export function FormButton({ text }) {
-  return <button type="button" className={classes.button}>{text}</button>;
+  return <button className={classes.button}>{text}</button>;
 }
 
 /**
@@ -52,7 +52,7 @@ export function LinkButton({ path, text, click }) {
  */
 export function BlueButton({ click, text }) {
   return (
-    <button onClick={click} type="button" className={classes.linkbutton}>
+    <button onClick={click} className={classes.linkbutton}>
       {text}
     </button>
   );
@@ -66,7 +66,7 @@ export function BlueButton({ click, text }) {
  */
 export function WhiteButton({ click, text }) {
   return (
-    <button onClick={click} type="button" className={classes.whitebutton}>
+    <button onClick={click} className={classes.whitebutton}>
       {text}
     </button>
   );
