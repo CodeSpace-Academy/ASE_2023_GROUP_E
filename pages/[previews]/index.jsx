@@ -99,7 +99,7 @@ export default function AllRecipes({
     const path = `recipes-${skip}-${sortField}-${sortOrder}_${selecteTags
       .map((item) => item.label)
       .join(',')}_${selectedIngredients.map((item) => item.label).join(',')}_${
-      selectedCategory === '' ? selectedCategory : selectedCategory.value
+      selectedCategory == '' ? selectedCategory : selectedCategory.value
     }_${selectedInstructionsOptions}_${andOr}_${searchText}_chefsHeaven`;
     return path;
   }
