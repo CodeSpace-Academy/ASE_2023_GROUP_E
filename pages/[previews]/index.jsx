@@ -1,7 +1,8 @@
 /* eslint-disable no-useless-concat */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable import/no-unresolved */
 /* eslint-disable react-hooks/rules-of-hooks */
+/* eslint-disable no-unused-expressions */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Pagination, Spinner } from 'flowbite-react';
@@ -99,7 +100,7 @@ export default function AllRecipes({
     const path = `recipes-${skip}-${sortField}-${sortOrder}_${selecteTags
       .map((item) => item.label)
       .join(',')}_${selectedIngredients.map((item) => item.label).join(',')}_${
-      selectedCategory === '' ? selectedCategory : selectedCategory.value
+      selectedCategory == '' ? selectedCategory : selectedCategory.value
     }_${selectedInstructionsOptions}_${andOr}_${searchText}_chefsHeaven`;
     return path;
   }
@@ -138,7 +139,7 @@ export default function AllRecipes({
             <SearchForm />
           </div>
 
-          <div className='filtersButton'>
+          <div>
             <SearchAndFilterHero>
               <SearchBar />
               <div className="previewMain">
@@ -149,61 +150,73 @@ export default function AllRecipes({
                   sortOrder={sortOrder}
                 />
                 {instructionsErrorMessage && (
-                  <Alert severity="warning">
-                    No recipes with
-                    {' '}
-                    {instruction}
-                    {' '}
-                    instructions
-                  </Alert>
+                <Alert severity="warning">
+                  No recipes with
+                  {' '}
+                  {instruction}
+                  {' '}
+                  instructions
+                </Alert>
                 )}
-                <FilterbyInstructions />
-                <div className="sort-dropdown" style={{ textAlign: 'center' }}>
-                  <label style={{ color: 'white', fontSize: '25px' }}>
-                    Sort by
-                  </label>
-                  <select
-                    className="previewSort"
-                    value={sortField}
-                    onChange={(e) => setSortField(e.target.value)}
-                  >
-                    <option value="id">Default</option>
-                    <option value="prep">Prep time</option>
-                    <option value="cook">Cook time</option>
-                    <option value="published">Date</option>
-                    {/* <option value="numberOfSteps">Number of Steps</option> */}
-                  </select>
 
-                  <select
-                    className="previewSort"
-                    value={sortOrder}
-                    onChange={(e) => setSortOrder(e.target.value)}
-                  >
-                    <option value="asc">Ascending</option>
-                    <option value="desc">Descending</option>
-                  </select>
+                <div className="filterOverlayOptions">
+
+                  <div>
+                    <FilterbyInstructions />
+                  </div>
+
+                  <div>
+                    <div className="sort-dropdown" style={{ textAlign: 'center' }}>
+                      <label style={{
+                        color: 'white', fontFamily: 'sans-serif', fontStyle: 'bold', fontSize: '25px', marginLeft: '-68px',
+                      }}
+                      >
+                        Sort by:
+                      </label>
+                      <select
+                        className="previewSort"
+                        value={sortField}
+                        onChange={(e) => setSortField(e.target.value)}
+                      >
+                        <option value="id">Default</option>
+                        <option value="prep">Prep time</option>
+                        <option value="cook">Cook time</option>
+                        <option value="published">Date</option>
+                        {/* <option value="numberOfSteps">Number of Steps</option> */}
+                      </select>
+
+                      <select
+                        className="previewSort"
+                        value={sortOrder}
+                        onChange={(e) => setSortOrder(e.target.value)}
+                      >
+                        <option value="asc">Ascending</option>
+                        <option value="desc">Descending</option>
+                      </select>
+                    </div>
+                  </div>
+
                 </div>
-
-              </div>
-              <div className="Clear" style={{ textAlign: 'center' }}>
-                <WhiteButton
-                  click={() => {
-                    setSelectedInstructionsOptions(0);
-                    setSelectedIngredients([]);
-                    setSelectedTags([]);
-                    setSelectedCategory([]);
-                    // eslint-disable-next-line no-unused-expressions, no-alert
-                    router.query.previews.substring(0, 20) === 'recipes-0-id-asc____' ? alert('No filters have been applied') : '';
-                  }}
-                  text="Clear filters"
-                />
-                {totalRecipes === 0 || totalRecipes === 164959 ? <h5 style={{ color: 'white', padding: '10px' }}>No filters have been applied</h5> : ''}
+                <div className="Clear" style={{ textAlign: 'center' }}>
+                  <WhiteButton
+                    click={() => {
+                      setSelectedInstructionsOptions(0);
+                      setSelectedIngredients([]);
+                      setSelectedTags([]);
+                      setSelectedCategory([]);
+                      router.query.previews.substring(0, 20) === 'recipes-0-id-asc____' ? alert('No filters have been applied') : '';
+                    }}
+                    text="Clear filters"
+                  />
+                  {totalRecipes === 0 || totalRecipes === 164959 ? <h5 style={{ color: 'white', padding: '10px' }}>No filters have been applied</h5> : ''}
+                </div>
               </div>
             </SearchAndFilterHero>
           </div>
         </div>
 
       </div>
+
       {totalRecipes === 0 || totalRecipes === 164959 ? '' : (
         <div className="totalRecipes">
           <h3>
@@ -223,7 +236,7 @@ export default function AllRecipes({
       />
 
       <div className="loadMore">
-        <div className="flex overflow-x-auto sm:justify-center" style={{width:'99%'}}>
+        <div className="flex overflow-x-auto sm:justify-center" style={{ width: '99%' }}>
           <Pagination
             currentPage={currentPage}
             totalPages={totalPages}
