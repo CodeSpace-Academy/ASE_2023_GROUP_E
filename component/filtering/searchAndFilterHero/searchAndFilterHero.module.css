@@ -63,6 +63,10 @@
   z-index: 2; /* Ensure the button is above the overlay content */
 }
 
+.applyFiltersButton{
+  padding-left: 8px;
+}
+
 @media only screen and (max-width: 768px) {
   .inputsContainer {
     width: 80%;

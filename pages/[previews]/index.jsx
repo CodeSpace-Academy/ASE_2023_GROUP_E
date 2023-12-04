@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-useless-concat */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable react-hooks/rules-of-hooks */
@@ -139,7 +140,7 @@ export default function AllRecipes({
             <SearchForm />
           </div>
 
-          <div>
+          <div className="filtersButton">
             <SearchAndFilterHero>
               <SearchBar />
               <div className="previewMain">

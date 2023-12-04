@@ -41,7 +41,7 @@
 
 .searchAndFilters{
     display: flex;
-    
+    align-items: center;
 }
 
 
@@ -103,6 +103,8 @@
         font-size: 40px;
        }
 
+  
+
     
     
   }
@@ -134,16 +136,28 @@
   
   
 .searchAndFilters{
-    display: flex;
+    
     flex-direction: column;
-  
+    align-items: end;
+   
   
 }
 
 .filtersButton{
    display: flex;
-   justify-content: end;
+   justify-content: flex-end;
    
 }
 
   }
+
+.totalRecipes{
+    color: gray;
+    font-weight: 300;
+}
+
+.totalRecipes > h3{
+    font-size: 20px;
+    font-weight: 400;
+    color: gray;
+}
