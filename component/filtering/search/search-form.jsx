@@ -3,11 +3,11 @@ import React, { useRef, useState, useEffect } from 'react';
 import { debounce } from 'lodash';
 import { IoCloseCircleSharp } from 'react-icons/io5';
 // eslint-disable-next-line import/no-unresolved
+import { Spinner } from 'flowbite-react';
 import classes from './search-from.module.css';
 // eslint-disable-next-line import/no-unresolved
 import StateContext from '../../../useContext/StateContext';
 import { WhiteButton } from '../../Button/button';
-import { Spinner } from 'flowbite-react';
 
 /**
  * @returns {jsx} an input with a list of previous search texts
@@ -91,14 +91,13 @@ export default function SearchForm() {
     searchHandler(selectedValue);
   }
 
-  
   /**
    * console was arguing that "state cant be updated"
    * setting state inside the useffect is the solution
    */
   useEffect(() => {
     setSearchInput(searchText && searchRef.current.value);
-  })
+  });
 
   return (
     <div className={classes.search}>
@@ -110,10 +109,10 @@ export default function SearchForm() {
         onClick={() => {
           setDisplayHistory(true);
           loadHistory();
-          setSearchSpinner(true)
+          setSearchSpinner(true);
         }}
       />
-      {searchSpinner ? <Spinner/> : ''}
+      {searchSpinner ? <Spinner /> : ''}
 
       {longQueryButton ? (
         <WhiteButton
