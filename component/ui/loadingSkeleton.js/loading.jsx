@@ -16,23 +16,25 @@ import { v4 as uuidv4 } from 'uuid';
 // Array of typography variants
 const variants = ['h1', 'h1', 'h1', 'h1', 'h3', 'h4', 'h4'];
 
-// TypographyDemo component that renders Typography components with Skeleton loadingfunction TypographyDemo(props) {
+// TypographyDemo component that renders Typography components with Skeleton loading
+function TypographyDemo(props) {
   const { loading = false } = props; // Accepts a loading prop, default is false
 
   return (
     <div>
-    {/* Mapping through variants to render Typography components */}
+      {/* Mapping through variants to render Typography components */}
       {variants.map((variant) => {
         const uniqueKey = uuidv4(); // Generate a unique key
         return (
           <Typography component="div" key={uniqueKey} variant={variant}>
-          {/* Show Skeleton if loading is true */}  
-          {loading && <Skeleton />}
+            {/* Show Skeleton if loading is true */}
+            {loading && <Skeleton />}
           </Typography>
         );
       })}
     </div>
   );
+}
 
 // PropTypes for TypographyDemo component
 TypographyDemo.propTypes = {
@@ -43,6 +45,7 @@ TypographyDemo.propTypes = {
 TypographyDemo.defaultProps = {
   loading: false, // Set a default value for loading prop
 };
+
 // SkeletonTypography component that uses TypographyDemo component in a Grid layout
 export default function SkeletonTypography() {
   return (
