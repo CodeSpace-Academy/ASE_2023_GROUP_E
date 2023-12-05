@@ -6,7 +6,6 @@ This code snippet demonstrates the use of Material-UI components to render multi
 */
 
 // Import necessary modules and components
-
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
