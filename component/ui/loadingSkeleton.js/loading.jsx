@@ -34,7 +34,7 @@ const variants = ['h1', 'h1', 'h1', 'h1', 'h3', 'h4', 'h4'];
       })}
     </div>
   );
-}
+
 // PropTypes for TypographyDemo component
 TypographyDemo.propTypes = {
   loading: PropTypes.bool,
