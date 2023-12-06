@@ -161,3 +161,18 @@
     font-weight: 400;
     color: gray;
 }
+
+@media only screen and (max-width: 990px) {
+   .sort-dropdown{
+    padding-left: 40px;
+   }
+   
+  }
+
+  @media only screen and (max-width: 989px) {
+    .sort-dropdown{
+    margin-left:17px ;
+    }
+
+    
+   }
