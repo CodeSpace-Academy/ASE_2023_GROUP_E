@@ -7,10 +7,20 @@ We're a team of eight Junior Software Developers embarking on an exciting journe
 users with an intuitive and seamless interface, ensuring effortless navigation throughout the application. Together,
 we're dedicated to building an exceptional tool that will redefine the cooking experience. Let's dive in and bring our collective vision to life!
 
-About the app 
+
+## Technologies Used :technologist:
+
+- [Next.js](https://nextjs.org/)
+- [React Icons](https://react-icons.github.io/react-icons/)
+- [Bootstrap](https://getbootstrap.com/)
+- [Flowbite](https://flowbite.com/)
+- [MongoDB](https://www.mongodb.com/)
+- CSS Modules
+
+## About the app :shallow_pan_of_food:
 
 
-Introducing "Chef's Haven" - The Ultimate Recipe App!
+### Introducing "Chef's Haven" - The Ultimate Recipe App!
 
 Are you ready to unleash your inner chef?
 
@@ -19,4 +29,12 @@ With a multitude of capabilities, we've curated an app that will guide you throu
 ensuring a gourmet result every time. From personalized recipe suggestions to interactive tutorials,
 ingredient substitutions, and even a virtual pantry manager,
 Chef's Haven has it all. Elevate your culinary journey with us! Happy cooking! 🍴
+
+## App Screenshots:iphone:
+
+
+<video id="myVideo" width="640" height="360" controls>
+    <source src="./public/images/ezgif.com-crop.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
 
