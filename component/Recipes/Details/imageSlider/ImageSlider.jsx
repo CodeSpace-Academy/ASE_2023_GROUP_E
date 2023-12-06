@@ -46,17 +46,15 @@ const ImageSlider = ({ imageUrls }) => {
 
   // Render the image slider
   return (
-    <div className="image-slider">
-      <div className="image-container">
-        {/* Display the image using the next/image component */}
-        <Image
-          src={imageUrls[currentIndex]}
-          alt="Recipe"
-          width={totalWidth}
-          height={totalHeight}
-          className={classes.img}
-        />
-      </div>
+    <div className={classes.container}>
+      {/* Display the image using the next/image component */}
+      <Image
+        src={imageUrls[currentIndex]}
+        alt="Recipe"
+        width={totalWidth}
+        height={totalHeight}
+        className={classes.img}
+      />
     </div>
   );
 };
