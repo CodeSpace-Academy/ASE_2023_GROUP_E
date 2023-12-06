@@ -38,11 +38,6 @@
   /* Add default styles for the title and image container */
 }
 
-.imageRow {
-  margin-bottom: 20px;
-  width: 90%;
-}
-
 .listContainer {
   display: grid;
   grid-template-columns: 1fr; /* Default layout for small screens */
