@@ -19,7 +19,7 @@ function RecipePage() {
     fetch(`/api/getData?filter=${router.query.recipe}&collection=recipes`)
       .then((res) => res.json())
       .then((data) => setRecipe(data.results && data.results[0]));
-  }, [router.query.recipe]);
+  });
 
   /**
    * Fetches a list of allergens.
