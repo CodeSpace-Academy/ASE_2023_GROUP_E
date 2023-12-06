@@ -146,6 +146,7 @@
 .totalRecipes{
     color: gray;
     font-weight: 300;
+    margin-left: 35px;
 }
 
 .totalRecipes > h3{
