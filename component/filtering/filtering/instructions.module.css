@@ -66,6 +66,29 @@
     }
     
 
+    @media only screen and (max-width: 990px) {
+        .input{
+            text-align: center;
+            height: 35px ;
+            width: 130px;
+            border-radius: 5px;
+            
+        }
+        
+        .instructionsInput{
+            display: flex;
+            align-items: center;
+            justify-content: left;
+            margin-left: 0.1px;
+            padding: 6px;
+        }
+        
+        .title{
+            padding: 6px;
+        }
+       
+      }
+
   }
   @media only screen and (max-width: 537px) {
     .input{
