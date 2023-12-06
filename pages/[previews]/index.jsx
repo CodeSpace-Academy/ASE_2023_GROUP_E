@@ -36,6 +36,7 @@ export default function AllRecipes({
     );
   }
 
+
   const router = useRouter();
   const [sortField, setSortField] = useState('id'); // Default sort field
   const [sortOrder, setSortOrder] = useState('asc'); // Default sort order
@@ -180,6 +181,7 @@ export default function AllRecipes({
                         onChange={(e) => setSortField(e.target.value)}
                       >
                         <option value="id">Default</option>
+                        <option value="title">Title</option>
                         <option value="prep">Prep time</option>
                         <option value="cook">Cook time</option>
                         <option value="published">Date</option>
@@ -205,6 +207,8 @@ export default function AllRecipes({
                       setSelectedIngredients([]);
                       setSelectedTags([]);
                       setSelectedCategory([]);
+                      setSortField('id'); 
+                      setSortOrder('asc'); 
                       router.query.previews.substring(0, 20) === 'recipes-0-id-asc____' ? alert('No filters have been applied') : '';
                     }}
                     text="Clear filters"
