@@ -67,9 +67,31 @@
   padding-left: 8px;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 990px) {
   .inputsContainer {
-    width: 80%;
+    width: 400px;
+    
+  }
+
+  .background{
+    margin-left: 80px;
+  
+  }
+  .heading {
+    font-size: 1.5rem;
+  }
+}
+
+
+@media only screen and (max-width: 989px) {
+  .inputsContainer {
+    width: 349px;
+    margin-top: -6px;
+  }
+
+  .background{
+    margin: 0px;
+  
   }
   .heading {
     font-size: 1.5rem;
