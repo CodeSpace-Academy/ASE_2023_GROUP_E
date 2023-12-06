@@ -43,6 +43,8 @@ function HomeWithBackground() {
         {/* Links to the pages on the menu lists */}
         <div className={classes.menu}>
           {/* WhiteButton component for navigating to the 'View Recipes' page. */}
+         
+         
           <WhiteButton
             text="View Recipes"
                // Use the router to navigate to the specified URL based on user selections.
@@ -53,6 +55,7 @@ function HomeWithBackground() {
             text="Favourites"
             click={() => { return router.push('/favourites'); }}
           />
+         
         </div>
         
       </div>
