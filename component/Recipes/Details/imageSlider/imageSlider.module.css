@@ -1,21 +1,63 @@
-.image-container{
-    width: 35em;
-    height: 40vh;
-}
-
-.imageSlider button{
-    background-color: transparent;
-    border: none;
-    font-size: 200%;
-    cursor: pointer;
-}
-
 .img {
     box-shadow: 3px 3px 12px black;
     border-radius: 10px;
-    margin: 5px;
-    margin-left: 15px;
-    width: 35em;
-    height: 40vh;
+    width: 430px;
+    height: 60vh;
 
+}
+
+.container{
+    padding: 10px;
+    width: 430px;
+}
+
+@media only screen and (max-width: 320px){
+    .img {
+        box-shadow: 3px 3px 12px black;
+        border-radius: 10px;
+        width: 400px;
+        height: 40vh;
+    }
+    
+    .container{
+        width: 270px;
+    }
+}
+
+@media only screen and (max-width: 759px){
+    .img {
+        box-shadow: 3px 3px 12px black;
+        border-radius: 10px;
+        width: 450px;
+        height: 60vh;        
+    }
+    
+    .container{
+        width: 475px;
+    }
+}
+
+@media only screen and (max-width: 575px){
+    .img {
+        box-shadow: 3px 3px 12px black;
+        border-radius: 10px;
+        width: 350px;
+        height: 55vh;        
+    }
+    
+    .container{
+        width: 375px;
+    }
+}
+@media only screen and (max-width: 476px){
+    .img {
+        box-shadow: 3px 3px 12px black;
+        border-radius: 10px;
+        width: 250px;
+        height: 40vh;        
+    }
+    
+    .container{
+        width: 275px;
+    }
 }
