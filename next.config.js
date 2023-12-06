@@ -5,6 +5,7 @@ const nextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
     domains: ['img.sndimg.com', 'images.pexels.com', 'www.pexels.com'], // Updated from remotePatterns to domains
+
   },
 };
 

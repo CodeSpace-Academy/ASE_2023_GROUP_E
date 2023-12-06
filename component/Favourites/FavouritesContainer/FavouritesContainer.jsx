@@ -12,10 +12,13 @@ export default function FavouritesContainer() {
     <PreviewList recipes={favouritesList} />
   );
   return (
-    <div className={classes.container}>
-      <h1>My favourite recipes</h1>
+    <div>
+      <div className={classes.container}>
+      <h1 className={classes.h1}>My Favourite Recipes</h1>
+      </div>
       {/* Recipe list component */}
       {favouritesList && favouritesContent}
+      
     </div>
   );
 }

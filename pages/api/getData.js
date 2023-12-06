@@ -1,5 +1,6 @@
-import getRecipes from "@/database/getData/getRecipesData";
+import getRecipes from '../../database/getData/getRecipesData';
 
+// eslint-disable-next-line consistent-return
 export default async function handler(req, res) {
   if (req.method === 'GET') {
     const { collection } = req.query;

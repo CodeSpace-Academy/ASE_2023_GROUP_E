@@ -38,10 +38,9 @@
  
 }
 
-
 .searchAndFilters{
     display: flex;
-    
+    align-items: center;
 }
 
 
@@ -90,8 +89,6 @@
     font-weight: 600;
 }
 
-
-
 @media only screen and (max-width: 1040px) {
     .allRecipes {
 
@@ -103,8 +100,6 @@
         font-size: 40px;
        }
 
-    
-    
   }
   
   @media only screen and (min-width: 727px) {
@@ -119,7 +114,6 @@
        }
     
     
-  
   }
   @media only screen and (max-width: 537px) {
     .allRecipes {
@@ -134,16 +128,46 @@
   
   
 .searchAndFilters{
-    display: flex;
+    
     flex-direction: column;
-  
+    align-items: end;
+   
   
 }
 
 .filtersButton{
    display: flex;
-   justify-content: end;
+   justify-content: flex-end;
    
 }
 
   }
+
+.totalRecipes{
+    color: gray;
+    font-weight: 300;
+}
+
+.totalRecipes > h3{
+    font-size: 20px;
+    font-weight: 400;
+    color: gray;
+}
+
+@media only screen and (max-width: 990px) {
+   .sort-dropdown{
+    padding-left: 40px;
+   }
+   
+  }
+
+  @media only screen and (max-width: 989px) {
+    .sort-dropdown{
+    margin-left:17px ;
+    }
+
+    
+   }
+
+
+    

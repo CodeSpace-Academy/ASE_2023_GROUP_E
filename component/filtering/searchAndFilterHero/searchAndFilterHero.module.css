@@ -46,6 +46,7 @@
   align-items: center;
   color: #262222; /* Set your desired text color for the overlay content */
   z-index: 1; /* Ensure the overlay is above other elements */
+  position: fixed;
 }
 /* Add any additional styles for your overlay content here */
 .overlay p {
@@ -62,11 +63,70 @@
   z-index: 2; /* Ensure the button is above the overlay content */
 }
 
-@media only screen and (max-width: 768px) {
+.applyFiltersButton{
+  padding-left: 8px;
+}
+
+@media only screen and (max-width: 990px) {
   .inputsContainer {
-    width: 80%;
+    width: 400px;
+    
+  }
+
+  .background{
+    margin-left: 80px;
+  
   }
   .heading {
     font-size: 1.5rem;
   }
 }
+
+
+@media only screen and (max-width: 989px) {
+  .inputsContainer {
+    width: 349px;
+    margin-top: -6px;
+  }
+
+  .background{
+    margin: 0px;
+  
+  }
+  .heading {
+    font-size: 1.5rem;
+  }
+}
+
+
+@media only screen and (max-width: 989px) {
+  .inputsContainer {
+    width: 349px;
+    margin-top: -6px;
+  }
+
+  .background{
+    margin-left: 80px;
+  
+  }
+  .heading {
+    font-size: 1.5rem;
+  }
+}
+
+@media only screen and (max-width: 589px) {
+  .inputsContainer {
+    width: 349px;
+    margin-top: -6px;
+  }
+
+  .background{
+    margin: 0px;
+  
+  
+  }
+  .heading {
+    font-size: 1.5rem;
+  }
+}
+
