@@ -33,8 +33,13 @@ Chef's Haven has it all. Elevate your culinary journey with us! Happy cooking! ð
 ## App Screenshots:iphone:
 
 
-<video id="myVideo" width="640" height="360" controls>
+<video width="640" height="360" controls>
     <source src="./public/images/ezgif.com-crop.mp4" type="video/mp4">
-    Your browser does not support the video tag.
 </video>
+
+<img src="./public/images/HomePg.jpg" alt="Recipe book app" width="300" height="200" />
+<img src="./public/images/preview.jpg" alt="Recipe book app" width="300" height="200" />
+<img src="./public/images/overlay.jpg" alt="Recipe book app" width="300" height="200" />
+<img src="./public/images/single.jpg" alt="Recipe book app" width="300" height="200" />
+<img src="./public/images/descp.jpg" alt="Recipe book app" width="300" height="200" />
 
