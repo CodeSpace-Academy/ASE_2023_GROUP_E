@@ -1,14 +1,22 @@
-.container h1 {
+.container > h1 {
   font-size: 3rem;
   font-weight: 700;
   font-family: sans-serif;
   text-align: center;
+  padding-top: 8%;
   margin: 3rem 0;
   color: #003153;
 }
 
+.container{
+  background-image: url(../../../public/images/CatPage.jpg);
+  height:350px;
+  background-size: cover;
+
+}
+
 .message {
   text-align: center;
-  margin-top: 8rem;
+  margin-top: 20rem;
   font-size: 2rem;
 }
