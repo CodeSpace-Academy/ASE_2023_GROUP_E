@@ -36,17 +36,15 @@ function HomeWithBackground() {
           <div className={classes.content}>
           <h1 className={classes.text}>Welcome to Chef's Heaven!</h1>
           </div>
-            <p className={classes.par}> Where culinary dreams come to life! Dive into a world of mouthwatering recipes, 
-            expert tips, and culinary inspiration. Whether you're a seasoned chef or a kitchen novice, our diverse collection of 
-             recipes caters to every taste and skill level. Join our vibrant community, explore delicious possibilities, and let Chef's Heaven 
-             be your go-to destination for all things delicious. Happy cooking!
-            </p>
+          
           </div>
         {' '}
         {/* This div represents the background image container. */}
         {/* Links to the pages on the menu lists */}
         <div className={classes.menu}>
           {/* WhiteButton component for navigating to the 'View Recipes' page. */}
+         
+         
           <WhiteButton
             text="View Recipes"
                // Use the router to navigate to the specified URL based on user selections.
@@ -57,6 +55,7 @@ function HomeWithBackground() {
             text="Favourites"
             click={() => { return router.push('/favourites'); }}
           />
+         
         </div>
         
       </div>
