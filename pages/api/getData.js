@@ -1,4 +1,4 @@
-import getRecipes from '../../database/getData/getRecipesData';
+import {getRecipe} from '../../database/getData/getRecipesData';
 
 // eslint-disable-next-line consistent-return
 export default async function handler(req, res) {
@@ -8,7 +8,7 @@ export default async function handler(req, res) {
     const filter = req.query.filter || '';
 
     try {
-      const { recipes } = await getRecipes(collection, 0, 5, { createdAt: 1 }, [], [], '', 0, null, filter, project);
+      const { recipes } = await getRecipe(collection, filter, project);
       res.status(200).json({ results: recipes });
     } catch (error) {
       return res.status(417).json({ message: 'failed to load Recipes' });

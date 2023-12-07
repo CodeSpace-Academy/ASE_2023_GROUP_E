@@ -1,5 +1,5 @@
 import addSearchHistory from '../../../../database/addData/addSearchHistory';
-import getRecipes from '../../../../database/getData/getRecipesData';
+import {getRecipe} from '../../../../database/getData/getRecipesData';
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
@@ -10,7 +10,7 @@ export default async function handler(req, res) {
   if (req.method === 'GET') {
     const username = req.query.username || [''];
     try {
-      const { removeId } = await getRecipes('searchHistory', 0, 5, { createdAt: 1 }, [], [], '', 0, null, '', '', username);
+      const { removeId } = await getRecipe('searchHistory', '', '', username);
       res.status(417).json({ searchhistory: removeId });
     } catch (error) {
       res.status(417).json({ message: error });

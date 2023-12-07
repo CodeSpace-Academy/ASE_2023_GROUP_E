@@ -59,11 +59,11 @@ export default async function getRecipes(collection, skipNo, limit, sort, tags, 
     expression.split('').length > 1 ? {$project: { [expression]: 1, _id: 0 }} : {$match: matchby},
     {$skip: skipNo},
     {$limit: limit},
-    // {
-    //   $addFields: {
-    //     numberOfSteps: { $size: "$instructions" }
-    //   }
-    // },
+    limit !== 5 && {
+      $addFields: {
+        numberOfSteps: { $size: "$instructions" }
+      }
+    },
 
     {$sort: sort}
 
@@ -90,5 +90,27 @@ export default async function getRecipes(collection, skipNo, limit, sort, tags, 
     recipes,
     totalRecipes,
     removeId
+  }
+}
+
+
+export async function getRecipe(collection, viewRecipe, expressionInput, username, titles){
+
+  const getSearchResults = titles && titles[0].split('').length  > 0 ? { $and : titles.map(title => ({ title: { $regex: new RegExp(title, 'i') } }))} : {}
+  const getSpecificRecipebyId = viewRecipe ?  {_id : viewRecipe } : {}
+  const expression = expressionInput
+
+  const user = collection === 'searchHistory' ? { user: username } : {}
+
+  const matchby = {$and: [ getSpecificRecipebyId, user, getSearchResults]}
+  
+  const recipes = await db.collection(collection).aggregate([
+
+    expression.split('').length > 1 ? {$project: { [expression]: 1, _id: 0 }} : {$match: matchby},
+
+  ]).toArray()
+
+  return {
+    recipes,
   }
 }
