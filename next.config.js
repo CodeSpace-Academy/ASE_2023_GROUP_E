@@ -3,6 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
 
   images: {
+    unoptimized: true,
     formats: ['image/avif', 'image/webp'],
     domains: ['img.sndimg.com', 'images.pexels.com', 'www.pexels.com'], // Updated from remotePatterns to domains
 
