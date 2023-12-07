@@ -173,7 +173,7 @@ export default function AllRecipes({
                         color: 'white', fontFamily: 'sans-serif', fontStyle: 'bold', fontSize: '25px', marginLeft: '-68px',
                       }}
                       >
-                        Sort by:
+                       <h4>Sort by:</h4> 
                       </label>
                       <select
                         className="previewSort"
